@@ -59,12 +59,12 @@ class WorldRenderer {
     private val text3d = Text3dRenderer(assets)
     private var activeBatch = modelBatch
     private val shadowCenter = Vector3()
-    private val shadowDirection = Vector3(-0.5f, -1.8f, -1.2f)
+    private val shadowDirection = Vector3(-0.5f, -1.8f, 1.2f)
 
     init {
-        shadowLight.set(0.62f, 0.62f, 0.62f, -0.5f, -1.8f, -1.2f)
+        shadowLight.set(0.62f, 0.62f, 0.62f, -0.5f, -1.8f, 1.2f)
         shadowLight.setColor(Color(0.62f, 0.62f, 0.62f, 0.5f))
-        mainLight.set(0.78f, 0.78f, 0.78f, -0.5f, -1.8f, -1.2f)
+        mainLight.set(0.78f, 0.78f, 0.78f, -0.5f, -1.8f, 1.2f)
         mainLight.color.set(0.78f, 0.78f, 0.78f, 1f)
         environment.set(ColorAttribute(ColorAttribute.AmbientLight, 0.42f, 0.42f, 0.42f, 1f))
         environment.set(ColorAttribute(ColorAttribute.Specular, 0.2f, 0.2f, 0.2f, 0.95f))
