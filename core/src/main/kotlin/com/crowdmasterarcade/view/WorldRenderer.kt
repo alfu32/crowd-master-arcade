@@ -99,9 +99,12 @@ class WorldRenderer {
 
     private fun renderRoad(appModel: AppModel) {
         assets.road.transform.setToTranslation(0f, -0.08f, appModel.road.length / 2f)
+        assets.road.transform.scale(appModel.road.width, 1f, appModel.road.length)
         activeBatch.render(assets.road, environment)
         assets.leftRail.transform.setToTranslation(appModel.road.leftBoundary - 0.15f, 0.05f, appModel.road.length / 2f)
+        assets.leftRail.transform.scale(1f, 1f, appModel.road.length)
         assets.rightRail.transform.setToTranslation(appModel.road.rightBoundary + 0.15f, 0.05f, appModel.road.length / 2f)
+        assets.rightRail.transform.scale(1f, 1f, appModel.road.length)
         activeBatch.render(assets.leftRail, environment)
         activeBatch.render(assets.rightRail, environment)
     }
@@ -159,9 +162,9 @@ class WorldRenderer {
         private val ownedModels = mutableListOf<Model>()
         private var currentPaths: LevelModelPaths? = null
 
-        val road = instance(box(8f, 0.12f, 220f, Color(0.24f, 0.27f, 0.28f, 1f)))
-        val leftRail = instance(box(0.12f, 0.16f, 220f, Color(0.92f, 0.86f, 0.42f, 1f)))
-        val rightRail = instance(box(0.12f, 0.16f, 220f, Color(0.92f, 0.86f, 0.42f, 1f)))
+        val road = instance(box(1f, 0.12f, 1f, Color(0.24f, 0.27f, 0.28f, 1f)))
+        val leftRail = instance(box(0.12f, 0.16f, 1f, Color(0.92f, 0.86f, 0.42f, 1f)))
+        val rightRail = instance(box(0.12f, 0.16f, 1f, Color(0.92f, 0.86f, 0.42f, 1f)))
         val projectile = instance(sphere(0.18f, Color(1f, 0.9f, 0.2f, 1f)))
         val textBlock = instance(box(0.055f, 0.055f, 0.035f, Color.BLACK))
         private val decorationInstances = mutableMapOf<String, ModelInstance>()

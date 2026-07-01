@@ -21,7 +21,7 @@ object CollisionSystem {
     private fun handleCards(appModel: AppModel) {
         appModel.cards.filter { it.active }.forEach { card ->
             if (overlaps(appModel.player.position, card.position, GameConfig.PLAYER_COLLISION_RADIUS + GameConfig.CARD_COLLISION_RADIUS)) {
-                CardEffectSystem.applyCard(appModel.player, card, appModel.runtimeConfig.maxFireRate)
+                CardEffectSystem.applyCard(appModel.player, card, appModel.runtimeConfig.maxFireRate, appModel.road.width)
             }
         }
     }
@@ -70,7 +70,7 @@ object CollisionSystem {
                 repeat(losses) { appModel.player.soldiers.removeLast() }
                 enemy.soldiers.clear()
                 enemy.alive = false
-                FormationSystem.recalculateFormation(appModel.player.soldiers)
+                FormationSystem.recalculateFormation(appModel.player.soldiers, appModel.road.width)
             }
         }
     }

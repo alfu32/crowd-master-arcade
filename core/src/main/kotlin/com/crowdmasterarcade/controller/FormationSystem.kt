@@ -6,13 +6,13 @@ import com.crowdmasterarcade.model.EnemyBrigade
 import com.crowdmasterarcade.model.PlayerBrigade
 import com.crowdmasterarcade.model.RegularSoldier
 import kotlin.math.ceil
-import kotlin.math.sqrt
 
 object FormationSystem {
-    fun recalculateFormation(soldiers: MutableList<RegularSoldier>) {
+    fun recalculateFormation(soldiers: MutableList<RegularSoldier>, roadWidth: Float = GameConfig.ROAD_WIDTH) {
         val count = soldiers.size
         if (count == 0) return
-        val columns = ceil(sqrt(count.toFloat())).toInt().coerceAtLeast(1)
+        val usableWidth = (roadWidth - GameConfig.SOLDIER_SPACING).coerceAtLeast(GameConfig.SOLDIER_SPACING)
+        val columns = ceil(usableWidth / GameConfig.SOLDIER_SPACING).toInt().coerceAtLeast(1)
         soldiers.forEachIndexed { index, soldier ->
             val row = index / columns
             val column = index % columns
