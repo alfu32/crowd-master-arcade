@@ -8,6 +8,7 @@ object DefaultLevels {
         starting_soldiers: 10
         fire_rate: 1.2
         projectile_pool: 768
+        projectile_length: 80
         soldier_model: assets/default-soldier.obj
         boss_model: assets/default-boss.obj
         manpower_card_model: assets/default-manpower-card.obj
@@ -21,11 +22,11 @@ object DefaultLevels {
           - op: times, param: firepower, val: 3, x: 0, z: 96
 
         enemy_brigades:
-          - effective: 20, x: 0, z: 88
-          - effective: 20, x: 1.4, z: 132
+          - name: vanguard, effective: 20, strength: 10, x: 0, z: 88
+          - effective: 20, strength: 12, x: 1.4, z: 132
 
         bosses:
-          - power: 400, x: 0, z: 190
+          - name: General Raven, power: 400, x: 0, z: 190
           - power: 400, x: 0, z: 380
     """.trimIndent()
 

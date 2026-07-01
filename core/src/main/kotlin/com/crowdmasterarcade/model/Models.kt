@@ -32,8 +32,10 @@ data class PlayerBrigade(
 
 data class EnemyBrigade(
     val id: Long,
+    val name: String,
     var position: Vector3,
     var speed: Float,
+    var unitStrength: Float,
     var soldiers: MutableList<RegularSoldier>,
     var alive: Boolean
 )
@@ -61,6 +63,7 @@ data class Projectile(
     var position: Vector3,
     var velocity: Vector3,
     var damage: Float,
+    var remainingLife: Float,
     var active: Boolean
 )
 
@@ -76,8 +79,10 @@ data class Background(
 )
 
 data class Boss(
+    val name: String,
     var position: Vector3,
     var health: Float,
+    val maxHealth: Float,
     var speed: Float,
     var active: Boolean,
     var alive: Boolean
@@ -86,7 +91,8 @@ data class Boss(
 data class RuntimeConfig(
     val maxFireRate: Float,
     val projectileSpeed: Float,
-    val projectileDamage: Float
+    val projectileDamage: Float,
+    val projectileLifeSeconds: Float
 )
 
 data class LevelData(

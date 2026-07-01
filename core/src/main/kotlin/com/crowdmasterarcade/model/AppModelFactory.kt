@@ -27,8 +27,13 @@ object AppModelFactory {
         FormationSystem.updatePlayerFormation(player, 1f)
 
         val cards = levelDefinition.cards.mapTo(mutableListOf()) { card(it) }
-        val enemies = levelDefinition.enemyBrigades.mapTo(mutableListOf()) { enemy(it.effective, it.x, it.z) }
-        val bosses = levelDefinition.bosses.mapTo(mutableListOf()) { boss(it.power, it.x, it.z) }
+        val enemies = levelDefinition.enemyBrigades.mapIndexedTo(mutableListOf()) { index, definition ->
+            enemy(definition, index + 1)
+        }
+        val bosses = levelDefinition.bosses.mapIndexedTo(mutableListOf()) { index, definition ->
+            boss(definition, index + 1)
+        }
+        val projectileLifeSeconds = levelDefinition.projectileLength / GameConfig.PROJECTILE_SPEED
 
         return AppModel(
             gameState = GameState.RUNNING,
@@ -47,7 +52,8 @@ object AppModelFactory {
             runtimeConfig = RuntimeConfig(
                 maxFireRate = GameConfig.MAX_FIRE_RATE,
                 projectileSpeed = GameConfig.PROJECTILE_SPEED,
-                projectileDamage = GameConfig.PROJECTILE_DAMAGE
+                projectileDamage = GameConfig.PROJECTILE_DAMAGE,
+                projectileLifeSeconds = projectileLifeSeconds
             )
         )
     }
@@ -74,22 +80,34 @@ object AppModelFactory {
             active = true
         )
 
-    private fun enemy(count: Int, x: Float, z: Float): EnemyBrigade {
-        val brigade = EnemyBrigade(nextId++, Vector3(x, GameConfig.PLAYER_Y, z), GameConfig.ENEMY_SPEED, createSoldiers(count), alive = true)
+    private fun enemy(definition: EnemyBrigadeDefinition, index: Int): EnemyBrigade {
+        val soldiers = createSoldiers(definition.effective)
+        soldiers.forEach { it.health = definition.unitStrength }
+        val brigade = EnemyBrigade(
+            id = nextId++,
+            name = definition.name ?: "brigade $index",
+            position = Vector3(definition.x, GameConfig.PLAYER_Y, definition.z),
+            speed = GameConfig.ENEMY_SPEED,
+            unitStrength = definition.unitStrength,
+            soldiers = soldiers,
+            alive = true
+        )
         FormationSystem.recalculateFormation(brigade.soldiers)
         FormationSystem.updateEnemyFormation(brigade, 1f)
         return brigade
     }
 
-    private fun boss(power: Float, x: Float, z: Float): Boss =
+    private fun boss(definition: BossDefinition, index: Int): Boss =
         Boss(
-            position = Vector3(x, 1.2f, z),
-            health = power,
+            name = definition.name ?: "General $index",
+            position = Vector3(definition.x, 1.2f, definition.z),
+            health = definition.power,
+            maxHealth = definition.power,
             speed = GameConfig.BOSS_SPEED,
             active = true,
             alive = true
         )
 
     private fun projectile(active: Boolean): Projectile =
-        Projectile(nextId++, Vector3(), Vector3(), GameConfig.PROJECTILE_DAMAGE, active)
+        Projectile(nextId++, Vector3(), Vector3(), GameConfig.PROJECTILE_DAMAGE, remainingLife = 0f, active)
 }

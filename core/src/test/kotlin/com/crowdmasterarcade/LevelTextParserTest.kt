@@ -18,6 +18,7 @@ class LevelTextParserTest {
         assertEquals(220f, level.roadLength)
         assertEquals(10, level.startingSoldiers)
         assertEquals(768, level.projectilePool)
+        assertEquals(80f, level.projectileLength)
         assertEquals("assets/default-soldier.obj", level.modelPaths.soldier)
         assertEquals("assets/default-boss.obj", level.modelPaths.boss)
         assertEquals("assets/default-manpower-card.obj", level.modelPaths.manpowerCard)
@@ -28,7 +29,12 @@ class LevelTextParserTest {
         assertEquals(CardOperation.TIMES, level.cards[2].operation)
         assertEquals(CardTarget.FIREPOWER, level.cards[2].target)
         assertEquals(2, level.enemyBrigades.size)
+        assertEquals("vanguard", level.enemyBrigades[0].name)
+        assertEquals(10f, level.enemyBrigades[0].unitStrength)
+        assertEquals(12f, level.enemyBrigades[1].unitStrength)
         assertEquals(2, level.bosses.size)
+        assertEquals("General Raven", level.bosses[0].name)
+        assertEquals(null, level.bosses[1].name)
         assertEquals(380f, level.bosses[1].z)
     }
 

@@ -7,6 +7,7 @@ data class LevelDefinition(
     val startingSoldiers: Int,
     val fireRate: Float,
     val projectilePool: Int,
+    val projectileLength: Float,
     val modelPaths: LevelModelPaths,
     val cards: List<CardDefinition>,
     val enemyBrigades: List<EnemyBrigadeDefinition>,
@@ -30,12 +31,15 @@ data class CardDefinition(
 
 data class EnemyBrigadeDefinition(
     val effective: Int,
+    val unitStrength: Float,
+    val name: String?,
     val x: Float,
     val z: Float
 )
 
 data class BossDefinition(
     val power: Float,
+    val name: String?,
     val x: Float,
     val z: Float
 )

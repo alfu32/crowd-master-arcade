@@ -71,6 +71,10 @@ Status: substantially complete for minimum playable prototype.
 - Added object-pooled projectiles.
 - Updated shooting so each live player soldier fires its own projectile per volley.
 - Added card effects for operation/target pairs such as `plus manpower` and `times firepower`.
+- Player soldiers now shoot straight forward along the road instead of aiming diagonally.
+- Projectile lifetime is derived from the level's `projectile_length`.
+- Enemy brigades support per-unit `strength` and optional names.
+- Bosses support names and display current/maximum life above their model.
 - Added win/loss state transitions.
 
 Remaining work:

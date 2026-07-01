@@ -31,11 +31,14 @@ object LevelTextParser {
                         )
                         "enemy_brigades", "enemies" -> enemies += EnemyBrigadeDefinition(
                             effective = item.int("effective"),
+                            unitStrength = item.float("strength", 10f),
+                            name = item["name"],
                             x = item.float("x", 0f),
                             z = item.float("z")
                         )
                         "bosses", "boss" -> bosses += BossDefinition(
                             power = item.float("power"),
+                            name = item["name"],
                             x = item.float("x", 0f),
                             z = item.float("z")
                         )
@@ -57,6 +60,7 @@ object LevelTextParser {
             startingSoldiers = values.int("starting_soldiers", 10),
             fireRate = values.float("fire_rate", 1.2f),
             projectilePool = values.int("projectile_pool", 768),
+            projectileLength = values.float("projectile_length", 80f),
             modelPaths = LevelModelPaths(
                 soldier = values["soldier_model"] ?: "assets/default-soldier.obj",
                 boss = values["boss_model"] ?: "assets/default-boss.obj",
@@ -65,7 +69,7 @@ object LevelTextParser {
             ),
             cards = cards,
             enemyBrigades = enemies,
-            bosses = bosses.ifEmpty { listOf(BossDefinition(400f, 0f, 190f)) }
+            bosses = bosses.ifEmpty { listOf(BossDefinition(400f, null, 0f, 190f)) }
         )
     }
 

@@ -4,6 +4,7 @@ road_width: 8
 starting_soldiers: 10
 fire_rate: 1.2
 projectile_pool: 768
+projectile_length: 80
 soldier_model: assets/default-soldier.obj
 boss_model: assets/default-boss.obj
 manpower_card_model: assets/default-manpower-card.obj
@@ -20,13 +21,13 @@ cards:
   - op: minus, param: firepower, val: 5, x: 2, z: 120
 
 enemy_brigades:
-  - effective: 40, x: 2, z: 50
-  - effective: 60, x: -2, z: 60
-  - effective: 80, x: -1.5, z: 70
-  - effective: 100, x: 1.4, z: 80
-  - effective: 100, x: -2, z: 90
-  - effective: 140, x: 2, z: 100
+  - name: vanguard, effective: 40, strength: 10, x: 2, z: 50
+  - effective: 60, strength: 10, x: -2, z: 60
+  - effective: 80, strength: 12, x: -1.5, z: 70
+  - effective: 100, strength: 12, x: 1.4, z: 80
+  - effective: 100, strength: 14, x: -2, z: 90
+  - effective: 140, strength: 14, x: 2, z: 100
 
 bosses:
-  - power: 1600, x: 0, z: 120
-  - power: 2500, x: 0, z: 140
+  - name: General Raven, power: 1600, x: 0, z: 120
+  - name: Darth Putin, power: 2500, x: 0, z: 140

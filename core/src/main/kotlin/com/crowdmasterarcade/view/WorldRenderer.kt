@@ -20,6 +20,7 @@ import com.crowdmasterarcade.model.AppModel
 import com.crowdmasterarcade.model.Card
 import com.crowdmasterarcade.model.CardOperation
 import com.crowdmasterarcade.model.CardTarget
+import com.crowdmasterarcade.model.Boss
 import com.crowdmasterarcade.model.LevelModelPaths
 import java.io.File
 
@@ -65,6 +66,9 @@ class WorldRenderer {
         }
         appModel.cards.filter { it.active }.forEach { card ->
             text3d.renderCardText(modelBatch, environment, card)
+        }
+        appModel.bosses.filter { it.active && it.alive }.forEach { boss ->
+            text3d.renderBossText(modelBatch, environment, boss)
         }
         modelBatch.end()
     }
@@ -140,6 +144,8 @@ class WorldRenderer {
             private set
         var firepowerCardHalfHeight = modelHalfHeight(firepowerCard.model)
             private set
+        var bossHalfHeight = modelHalfHeight(boss.model)
+            private set
 
         fun useModelPaths(paths: LevelModelPaths) {
             if (paths == currentPaths) return
@@ -150,6 +156,7 @@ class WorldRenderer {
             firepowerCard = instance(loadObj(paths.firepowerCard, fallback = { box(1.2f, 1.2f, 0.22f, Color.WHITE) }))
             manpowerCardHalfHeight = modelHalfHeight(manpowerCard.model)
             firepowerCardHalfHeight = modelHalfHeight(firepowerCard.model)
+            bossHalfHeight = modelHalfHeight(boss.model)
         }
 
         private fun loadObj(path: String, fallback: () -> Model): Model {
@@ -225,6 +232,21 @@ class WorldRenderer {
             renderLine(modelBatch, environment, "POWER", card.position.x, labelBottomY + 0.16f, card.position.z - 0.14f, smallCell)
         }
 
+        fun renderBossText(modelBatch: ModelBatch, environment: Environment, boss: Boss) {
+            val baseY = boss.position.y + assets.bossHalfHeight + 0.55f
+            val z = boss.position.z - 0.22f
+            renderLine(modelBatch, environment, boss.name, boss.position.x, baseY + 0.28f, z, 0.055f)
+            renderLine(
+                modelBatch,
+                environment,
+                "${boss.health.coerceAtLeast(0f).toInt()}/${boss.maxHealth.toInt()}",
+                boss.position.x,
+                baseY,
+                z,
+                0.052f
+            )
+        }
+
         private fun renderLine(
             modelBatch: ModelBatch,
             environment: Environment,
@@ -291,16 +313,31 @@ class WorldRenderer {
                 '8' to listOf("111", "101", "111", "101", "111"),
                 '9' to listOf("111", "101", "111", "001", "111"),
                 'A' to listOf("01110", "10001", "11111", "10001", "10001"),
+                'B' to listOf("11110", "10001", "11110", "10001", "11110"),
+                'C' to listOf("01111", "10000", "10000", "10000", "01111"),
+                'D' to listOf("11110", "10001", "10001", "10001", "11110"),
                 'E' to listOf("11111", "10000", "11110", "10000", "11111"),
                 'F' to listOf("11111", "10000", "11110", "10000", "10000"),
+                'G' to listOf("01111", "10000", "10011", "10001", "01111"),
+                'H' to listOf("10001", "10001", "11111", "10001", "10001"),
                 'I' to listOf("111", "010", "010", "010", "111"),
+                'J' to listOf("00111", "00010", "00010", "10010", "01100"),
+                'K' to listOf("10001", "10010", "11100", "10010", "10001"),
+                'L' to listOf("10000", "10000", "10000", "10000", "11111"),
                 'M' to listOf("10001", "11011", "10101", "10001", "10001"),
                 'N' to listOf("10001", "11001", "10101", "10011", "10001"),
                 'O' to listOf("01110", "10001", "10001", "10001", "01110"),
                 'P' to listOf("11110", "10001", "11110", "10000", "10000"),
+                'Q' to listOf("01110", "10001", "10001", "10011", "01111"),
                 'R' to listOf("11110", "10001", "11110", "10010", "10001"),
+                'S' to listOf("01111", "10000", "01110", "00001", "11110"),
+                'T' to listOf("11111", "00100", "00100", "00100", "00100"),
+                'U' to listOf("10001", "10001", "10001", "10001", "01110"),
+                'V' to listOf("10001", "10001", "10001", "01010", "00100"),
                 'W' to listOf("10001", "10001", "10101", "11011", "10001"),
-                'X' to listOf("10001", "01010", "00100", "01010", "10001")
+                'X' to listOf("10001", "01010", "00100", "01010", "10001"),
+                'Y' to listOf("10001", "01010", "00100", "00100", "00100"),
+                'Z' to listOf("11111", "00010", "00100", "01000", "11111")
             )
         }
     }
