@@ -12,14 +12,21 @@ firepower_card_model: assets/default-firepower-card.obj
 cards:
   - op: plus, param: manpower, val: 10, x: -2, z: 28
   - op: minus, param: manpower, val: 5, x: 2, z: 44
-  - op: times, param: firepower, val: 2, x: -1.5, z: 60
-  - op: div, param: manpower, val: 2, x: 1.5, z: 76
+  - op: times, param: manpower, val: 2, x: -1.5, z: 56
+  - op: div, param: manpower, val: 2, x: 1.5, z: 68
+  - op: times, param: firepower, val: 2, x: -1.5, z: 80
   - op: times, param: firepower, val: 3, x: 0, z: 96
+  - op: div, param: firepower, val: 2, x: 1.5, z: 106
+  - op: minus, param: firepower, val: 5, x: 2, z: 120
 
 enemy_brigades:
-  - effective: 20, x: 0, z: 88
-  - effective: 20, x: 1.4, z: 132
+  - effective: 40, x: 2, z: 50
+  - effective: 60, x: -2, z: 60
+  - effective: 80, x: -1.5, z: 70
+  - effective: 100, x: 1.4, z: 80
+  - effective: 100, x: -2, z: 90
+  - effective: 140, x: 2, z: 100
 
 bosses:
-  - power: 400, x: 0, z: 190
-  - power: 400, x: 0, z: 380
+  - power: 1600, x: 0, z: 120
+  - power: 2500, x: 0, z: 140

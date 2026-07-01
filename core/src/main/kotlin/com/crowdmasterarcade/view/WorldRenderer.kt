@@ -15,6 +15,7 @@ import com.badlogic.gdx.graphics.g3d.attributes.ColorAttribute
 import com.badlogic.gdx.graphics.g3d.environment.DirectionalLight
 import com.badlogic.gdx.graphics.g3d.loader.ObjLoader
 import com.badlogic.gdx.graphics.g3d.utils.ModelBuilder
+import com.badlogic.gdx.math.collision.BoundingBox
 import com.crowdmasterarcade.model.AppModel
 import com.crowdmasterarcade.model.Card
 import com.crowdmasterarcade.model.CardOperation
@@ -135,6 +136,10 @@ class WorldRenderer {
             private set
         var firepowerCard = instance(box(1.2f, 1.2f, 0.22f, Color.WHITE))
             private set
+        var manpowerCardHalfHeight = modelHalfHeight(manpowerCard.model)
+            private set
+        var firepowerCardHalfHeight = modelHalfHeight(firepowerCard.model)
+            private set
 
         fun useModelPaths(paths: LevelModelPaths) {
             if (paths == currentPaths) return
@@ -143,6 +148,8 @@ class WorldRenderer {
             boss = instance(loadObj(paths.boss, fallback = { box(2.4f, 2.6f, 2.4f, Color.WHITE) }))
             manpowerCard = instance(loadObj(paths.manpowerCard, fallback = { box(1.2f, 1.2f, 0.22f, Color.WHITE) }))
             firepowerCard = instance(loadObj(paths.firepowerCard, fallback = { box(1.2f, 1.2f, 0.22f, Color.WHITE) }))
+            manpowerCardHalfHeight = modelHalfHeight(manpowerCard.model)
+            firepowerCardHalfHeight = modelHalfHeight(firepowerCard.model)
         }
 
         private fun loadObj(path: String, fallback: () -> Model): Model {
@@ -191,6 +198,12 @@ class WorldRenderer {
 
         private fun instance(model: Model) = ModelInstance(model)
 
+        private fun modelHalfHeight(model: Model): Float {
+            val bounds = BoundingBox()
+            model.calculateBoundingBox(bounds)
+            return bounds.height * 0.5f
+        }
+
         fun dispose() {
             ownedModels.distinct().forEach(Model::dispose)
         }
@@ -198,9 +211,18 @@ class WorldRenderer {
 
     private class Text3dRenderer(private val assets: RenderAssets) {
         fun renderCardText(modelBatch: ModelBatch, environment: Environment, card: Card) {
-            renderLine(modelBatch, environment, operationLabel(card), card.position.x, card.position.y + 0.31f, card.position.z - 0.135f, 0.075f)
-            renderLine(modelBatch, environment, targetTop(card), card.position.x, card.position.y - 0.12f, card.position.z - 0.135f, 0.038f)
-            renderLine(modelBatch, environment, "POWER", card.position.x, card.position.y - 0.30f, card.position.z - 0.135f, 0.038f)
+            val cardHalfHeight = if (card.target == CardTarget.FIREPOWER) {
+                assets.firepowerCardHalfHeight
+            } else {
+                assets.manpowerCardHalfHeight
+            }
+            val cardTopY = card.position.y + cardHalfHeight
+            val labelBottomY = cardTopY + 0.28f
+            val smallCell = 0.038f
+            val largeCell = 0.075f
+            renderLine(modelBatch, environment, operationLabel(card), card.position.x, labelBottomY + 0.76f, card.position.z - 0.14f, largeCell)
+            renderLine(modelBatch, environment, targetTop(card), card.position.x, labelBottomY + 0.34f, card.position.z - 0.14f, smallCell)
+            renderLine(modelBatch, environment, "POWER", card.position.x, labelBottomY + 0.16f, card.position.z - 0.14f, smallCell)
         }
 
         private fun renderLine(
@@ -214,14 +236,15 @@ class WorldRenderer {
         ) {
             val upper = text.uppercase()
             val width = upper.sumOf { (glyph(it).firstOrNull()?.length ?: 0) + 1 } - 1
-            var cursorX = centerX - width * cell * 0.5f
+            var cursorX = centerX + width * cell * 0.5f
             upper.forEach { char ->
                 val glyph = glyph(char)
+                val glyphWidth = glyph.firstOrNull()?.length ?: 0
                 glyph.forEachIndexed { row, bits ->
                     bits.forEachIndexed { col, bit ->
                         if (bit == '1') {
                             assets.textBlock.transform.setToTranslation(
-                                cursorX + col * cell,
+                                cursorX - col * cell,
                                 baselineY - row * cell,
                                 z
                             )
@@ -230,7 +253,7 @@ class WorldRenderer {
                         }
                     }
                 }
-                cursorX += (glyph.firstOrNull()?.length ?: 0) * cell + cell
+                cursorX -= glyphWidth * cell + cell
             }
         }
 
