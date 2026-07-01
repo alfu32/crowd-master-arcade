@@ -12,6 +12,7 @@ import com.badlogic.gdx.graphics.g3d.Model
 import com.badlogic.gdx.graphics.g3d.ModelBatch
 import com.badlogic.gdx.graphics.g3d.ModelInstance
 import com.badlogic.gdx.graphics.g3d.attributes.ColorAttribute
+import com.badlogic.gdx.graphics.g3d.environment.DirectionalLight
 import com.badlogic.gdx.graphics.g3d.environment.DirectionalShadowLight
 import com.badlogic.gdx.graphics.g3d.loader.ObjLoader
 import com.badlogic.gdx.graphics.g3d.utils.DepthShaderProvider
@@ -29,21 +30,32 @@ import kotlin.math.max
 import kotlin.math.min
 
 class WorldRenderer {
-    private val modelBatch = ModelBatch()
-    private val shadowBatch = ModelBatch(DepthShaderProvider())
     private val camera = PerspectiveCamera(50f, Gdx.graphics.width.toFloat(), Gdx.graphics.height.toFloat())
     private val environment = Environment()
-    private val shadowLight = DirectionalShadowLight(2048, 2048, 42f, 42f, 1f, 180f)
+    private val shadowSettings = ShadowSettings()
+    private val shadowLight = DirectionalShadowLight(4096, 4096, 60f, 60f, 1f, 300f)
+    private val mainLight = DirectionalLight()
+    private val fillLight = DirectionalLight()
+        .set(0.005f, 0.005f, 0.005f, 1.2f, 1.8f, 0.5f)
+        .setColor(Color(0.005f, 0.005f, 0.005f, 0.15f))
+    private val modelBatch = ModelBatch(SketchShaderProvider({ shadowSettings }, { shadowLight }))
+    private val shadowBatch = ModelBatch(DepthShaderProvider())
     private val assets = RenderAssets()
     private val text3d = Text3dRenderer(assets)
     private var activeBatch = modelBatch
     private val shadowCenter = Vector3(0f, 0f, 80f)
-    private val shadowDirection = Vector3(-0.25f, -0.8f, -0.35f)
+    private val shadowDirection = Vector3(-0.5f, -1.8f, -1.2f)
 
     init {
-        environment.set(ColorAttribute(ColorAttribute.AmbientLight, 0.62f, 0.62f, 0.62f, 1f))
-        shadowLight.set(0.82f, 0.82f, 0.76f, -0.25f, -0.8f, -0.35f)
+        shadowLight.set(0.59f, 0.59f, 0.59f, -0.5f, -1.8f, -1.2f)
+        shadowLight.setColor(Color(0.59f, 0.59f, 0.59f, 0.5f))
+        mainLight.set(0.73f, 0.73f, 0.73f, -0.5f, -1.8f, -1.2f)
+        mainLight.color.set(0.73f, 0.73f, 0.73f, 1f)
+        environment.set(ColorAttribute(ColorAttribute.AmbientLight, 0.59f, 0.59f, 0.59f, 1f))
+        environment.set(ColorAttribute(ColorAttribute.Specular, 0.2f, 0.2f, 0.2f, 0.95f))
         environment.add(shadowLight)
+        environment.add(mainLight)
+        environment.add(fillLight)
         environment.shadowMap = shadowLight
         Gdx.gl.glEnable(GL20.GL_DEPTH_TEST)
     }
