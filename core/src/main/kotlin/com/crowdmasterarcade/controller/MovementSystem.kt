@@ -11,11 +11,15 @@ object MovementSystem {
         player.position.x += inputState.dragDeltaX * 0.025f
         player.position.x = player.position.x.coerceIn(appModel.road.leftBoundary, appModel.road.rightBoundary)
 
-        appModel.cards.filter { it.active }.forEach { it.position.z -= it.speed * deltaTime }
-        appModel.decorations.filter { it.active }.forEach { it.position.z -= GameConfig.BOSS_SPEED * deltaTime }
-        appModel.enemyBrigades.filter { it.alive }.forEach { it.position.z -= it.speed * deltaTime }
+        val dz = -GameConfig.WORLD_SCROLL_SPEED * deltaTime
+        appModel.cards.filter { it.active }.forEach { it.position.z += dz }
+        appModel.decorations.filter { it.active }.forEach { it.position.z += dz }
+        appModel.enemyBrigades.filter { it.alive }.forEach { enemy ->
+            enemy.position.z += dz
+            enemy.soldiers.filter { it.alive }.forEach { it.worldPosition.z += dz }
+        }
         appModel.bosses.filter { it.active && it.alive }.forEach { boss ->
-            boss.position.z -= boss.speed * deltaTime
+            boss.position.z += dz
         }
     }
 }

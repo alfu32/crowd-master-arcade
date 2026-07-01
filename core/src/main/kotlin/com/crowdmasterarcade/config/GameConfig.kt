@@ -6,6 +6,7 @@ object GameConfig {
     const val ROAD_WIDTH = 8f
     const val ROAD_LENGTH = 220f
     const val PLAYER_LATERAL_SPEED = 8f
+    const val WORLD_SCROLL_SPEED = 3.2f
     const val CARD_SPEED = 6f
     const val ENEMY_SPEED = 3.2f
     const val BOSS_SPEED = 1.6f

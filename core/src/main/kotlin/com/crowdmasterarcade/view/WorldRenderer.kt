@@ -33,7 +33,7 @@ class WorldRenderer {
     private val camera = PerspectiveCamera(50f, Gdx.graphics.width.toFloat(), Gdx.graphics.height.toFloat())
     private val environment = Environment()
     private val shadowSettings = ShadowSettings()
-    private val shadowLight = DirectionalShadowLight(4096, 4096, 60f, 60f, 1f, 300f)
+    private val shadowLight = DirectionalShadowLight(4096, 4096, 80f, 80f, 1f, 300f)
     private val mainLight = DirectionalLight()
     private val fillLight = DirectionalLight()
         .set(0.005f, 0.005f, 0.005f, 1.2f, 1.8f, 0.5f)
@@ -43,15 +43,15 @@ class WorldRenderer {
     private val assets = RenderAssets()
     private val text3d = Text3dRenderer(assets)
     private var activeBatch = modelBatch
-    private val shadowCenter = Vector3(0f, 0f, 80f)
+    private val shadowCenter = Vector3()
     private val shadowDirection = Vector3(-0.5f, -1.8f, -1.2f)
 
     init {
-        shadowLight.set(0.59f, 0.59f, 0.59f, -0.5f, -1.8f, -1.2f)
-        shadowLight.setColor(Color(0.59f, 0.59f, 0.59f, 0.5f))
-        mainLight.set(0.73f, 0.73f, 0.73f, -0.5f, -1.8f, -1.2f)
-        mainLight.color.set(0.73f, 0.73f, 0.73f, 1f)
-        environment.set(ColorAttribute(ColorAttribute.AmbientLight, 0.59f, 0.59f, 0.59f, 1f))
+        shadowLight.set(0.62f, 0.62f, 0.62f, -0.5f, -1.8f, -1.2f)
+        shadowLight.setColor(Color(0.62f, 0.62f, 0.62f, 0.5f))
+        mainLight.set(0.78f, 0.78f, 0.78f, -0.5f, -1.8f, -1.2f)
+        mainLight.color.set(0.78f, 0.78f, 0.78f, 1f)
+        environment.set(ColorAttribute(ColorAttribute.AmbientLight, 0.42f, 0.42f, 0.42f, 1f))
         environment.set(ColorAttribute(ColorAttribute.Specular, 0.2f, 0.2f, 0.2f, 0.95f))
         environment.add(shadowLight)
         environment.add(mainLight)
@@ -72,6 +72,7 @@ class WorldRenderer {
         camera.update()
 
         activeBatch = shadowBatch
+        shadowCenter.set(appModel.player.position.x * 0.2f, 0f, 22f)
         shadowLight.begin(shadowCenter, shadowDirection)
         shadowBatch.begin(shadowLight.camera)
         renderSceneModels(appModel)

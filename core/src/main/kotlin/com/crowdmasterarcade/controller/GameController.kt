@@ -12,9 +12,6 @@ class GameController {
         val step = deltaTime.coerceIn(0f, GameConfig.MAX_DELTA_TIME)
         MovementSystem.update(appModel, inputState, step)
         FormationSystem.updatePlayerFormation(appModel.player, appModel.road, 0.28f)
-        appModel.enemyBrigades.filter { it.alive }.forEach {
-            FormationSystem.updateEnemyFormation(it, 0.28f)
-        }
         ShootingSystem.update(appModel, step)
         ShootingSystem.updateProjectiles(appModel, step)
         CollisionSystem.update(appModel)
