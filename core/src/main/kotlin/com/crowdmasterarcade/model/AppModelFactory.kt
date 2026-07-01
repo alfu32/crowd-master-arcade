@@ -95,7 +95,7 @@ object AppModelFactory {
             alive = true
         )
         FormationSystem.recalculateEnemyFormation(brigade, road)
-        FormationSystem.updateEnemyFormation(brigade, road, 1f)
+        FormationSystem.updateEnemyFormation(brigade, 1f)
         return brigade
     }
 

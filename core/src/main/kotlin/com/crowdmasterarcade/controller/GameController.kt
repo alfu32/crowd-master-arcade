@@ -13,7 +13,7 @@ class GameController {
         MovementSystem.update(appModel, inputState, step)
         FormationSystem.updatePlayerFormation(appModel.player, appModel.road, 0.28f)
         appModel.enemyBrigades.filter { it.alive }.forEach {
-            FormationSystem.updateEnemyFormation(it, appModel.road, 0.28f)
+            FormationSystem.updateEnemyFormation(it, 0.28f)
         }
         ShootingSystem.update(appModel, step)
         ShootingSystem.updateProjectiles(appModel, step)

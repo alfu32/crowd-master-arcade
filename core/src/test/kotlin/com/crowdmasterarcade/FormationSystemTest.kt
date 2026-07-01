@@ -4,6 +4,7 @@ import com.crowdmasterarcade.config.GameConfig
 import com.crowdmasterarcade.controller.FormationSystem
 import com.crowdmasterarcade.model.AppModelFactory
 import com.crowdmasterarcade.model.Road
+import kotlin.test.assertContentEquals
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertTrue
@@ -36,5 +37,26 @@ class FormationSystemTest {
 
         assertEquals(8f, FormationSystem.maxFormationWidthAt(0f, road))
         assertEquals(2f, FormationSystem.maxFormationWidthAt(3f, road))
+    }
+
+    @Test
+    fun enemyFormationStartsAtAnchorAndExtendsBehindIt() {
+        val appModel = AppModelFactory.initAppModel()
+        val enemy = appModel.enemyBrigades.first()
+
+        assertEquals(0f, enemy.soldiers.minOf { it.localOffset.z })
+        assertTrue(enemy.soldiers.maxOf { it.localOffset.z } > 0f)
+    }
+
+    @Test
+    fun enemyFormationUpdateDoesNotReconfigureOffsets() {
+        val appModel = AppModelFactory.initAppModel()
+        val enemy = appModel.enemyBrigades.first()
+        val before = enemy.soldiers.map { it.localOffset.cpy() }
+
+        FormationSystem.updateEnemyFormation(enemy, 1f)
+
+        val after = enemy.soldiers.map { it.localOffset }
+        assertContentEquals(before, after)
     }
 }

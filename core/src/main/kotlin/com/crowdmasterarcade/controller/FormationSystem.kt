@@ -10,7 +10,11 @@ import kotlin.math.ceil
 import kotlin.math.min
 
 object FormationSystem {
-    fun recalculateFormation(soldiers: MutableList<RegularSoldier>, roadWidth: Float = GameConfig.ROAD_WIDTH) {
+    fun recalculateFormation(
+        soldiers: MutableList<RegularSoldier>,
+        roadWidth: Float = GameConfig.ROAD_WIDTH,
+        zDirection: Float = -1f
+    ) {
         val count = soldiers.size
         if (count == 0) return
         val usableWidth = (roadWidth - GameConfig.SOLDIER_SPACING).coerceAtLeast(GameConfig.SOLDIER_SPACING)
@@ -20,7 +24,7 @@ object FormationSystem {
             val column = index % columns
             val rowWidth = minOf(columns, count - row * columns)
             val x = (column - (rowWidth - 1) / 2f) * GameConfig.SOLDIER_SPACING
-            val z = -row * GameConfig.SOLDIER_SPACING
+            val z = row * GameConfig.SOLDIER_SPACING * zDirection
             soldier.localOffset.set(x, 0f, z)
         }
     }
@@ -30,7 +34,7 @@ object FormationSystem {
     }
 
     fun recalculateEnemyFormation(enemy: EnemyBrigade, road: Road) {
-        recalculateFormation(enemy.soldiers, maxFormationWidthAt(enemy.position.x, road))
+        recalculateFormation(enemy.soldiers, maxFormationWidthAt(enemy.position.x, road), zDirection = 1f)
     }
 
     fun updatePlayerFormation(player: PlayerBrigade, road: Road, alpha: Float) {
@@ -38,8 +42,7 @@ object FormationSystem {
         updateFormation(player.soldiers, player.position, alpha)
     }
 
-    fun updateEnemyFormation(enemy: EnemyBrigade, road: Road, alpha: Float) {
-        recalculateEnemyFormation(enemy, road)
+    fun updateEnemyFormation(enemy: EnemyBrigade, alpha: Float) {
         updateFormation(enemy.soldiers, enemy.position, alpha)
     }
 
