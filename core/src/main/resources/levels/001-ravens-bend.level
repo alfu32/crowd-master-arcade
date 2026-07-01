@@ -2,23 +2,26 @@ name: The Raven's Bend
 road_length: 220
 road_width: 16
 starting_soldiers: 10
-fire_rate: 1.2
+fire_rate: 2
 projectile_pool: 768
-projectile_length: 80
+projectile_length: 50
 soldier_model: assets/default-soldier.obj
 boss_model: assets/default-boss.obj
 manpower_card_model: assets/default-manpower-card.obj
 firepower_card_model: assets/default-firepower-card.obj
 
 cards:
-  - op: plus, param: manpower, val: 10, x: -2, z: 28
-  - op: minus, param: manpower, val: 5, x: 2, z: 44
-  - op: times, param: manpower, val: 2, x: -1.5, z: 56
-  - op: div, param: manpower, val: 2, x: 1.5, z: 68
-  - op: times, param: firepower, val: 2, x: -1.5, z: 80
-  - op: times, param: firepower, val: 3, x: 0, z: 96
-  - op: div, param: firepower, val: 2, x: 1.5, z: 106
-  - op: minus, param: firepower, val: 5, x: 2, z: 120
+  - op: plus, param: manpower, val: 15, x: -2, z: 10
+  - op: minus, param: manpower, val: 5, x: 2, z: 30
+  - op: times, param: manpower, val: 7, x: -1.5, z: 50
+  - op: div, param: manpower, val: 2, x: 1.5, z: 70
+  - op: times, param: firepower, val: 5, x: -1.5, z: 20
+  - op: times, param: firepower, val: 7, x: 0, z: 40
+  - op: div, param: firepower, val: 2, x: 1.5, z: 60
+  - op: minus, param: firepower, val: 5, x: 2, z: 80
+  - op: plus, param: manpower, val: 15, x: -2, z: 90
+  - op: minus, param: manpower, val: 5, x: 2, z: 110
+  - op: times, param: firepower, val: 5, x: -1.5, z: 100
 
 decorations:
   - name: triumphal arch, power: 999999, x: 0, z: 95, model: assets/triumphal-arch.obj
@@ -37,9 +40,9 @@ enemy_brigades:
   - name: boss guard, effective: 1000, strength: 14, x: 2, z: 150
 
 bosses:
-  - name: General Raven, power: 1600, x: 0, z: 102
+  - name: General Raven, power: 800, x: 0, z: 102
   - name: Darth Putin, power: 2500, x: 0, z: 115
-  - name: Moloch, power: 5000, x: 0, z: 125
+  - name: Moloch, power: 15000, x: 0, z: 180
 
 decorations:
   - name: triumphal arch, power 999999, x:0, z:95, model: assets/triumphal-arch.obj
