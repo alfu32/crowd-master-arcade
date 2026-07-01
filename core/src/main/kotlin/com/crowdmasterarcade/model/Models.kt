@@ -91,7 +91,8 @@ data class RuntimeConfig(
 
 data class LevelData(
     val name: String,
-    val startingSoldiers: Int
+    val startingSoldiers: Int,
+    val modelPaths: LevelModelPaths
 )
 
 data class InputState(

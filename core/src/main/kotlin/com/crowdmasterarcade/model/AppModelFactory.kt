@@ -39,7 +39,11 @@ object AppModelFactory {
             road = road,
             background = Background(theme = "training-ground"),
             bosses = bosses,
-            levelData = LevelData(name = levelDefinition.name, startingSoldiers = levelDefinition.startingSoldiers),
+            levelData = LevelData(
+                name = levelDefinition.name,
+                startingSoldiers = levelDefinition.startingSoldiers,
+                modelPaths = levelDefinition.modelPaths
+            ),
             runtimeConfig = RuntimeConfig(
                 maxFireRate = GameConfig.MAX_FIRE_RATE,
                 projectileSpeed = GameConfig.PROJECTILE_SPEED,

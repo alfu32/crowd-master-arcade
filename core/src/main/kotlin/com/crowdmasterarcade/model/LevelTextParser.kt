@@ -57,6 +57,12 @@ object LevelTextParser {
             startingSoldiers = values.int("starting_soldiers", 10),
             fireRate = values.float("fire_rate", 1.2f),
             projectilePool = values.int("projectile_pool", 768),
+            modelPaths = LevelModelPaths(
+                soldier = values["soldier_model"] ?: "assets/default-soldier.obj",
+                boss = values["boss_model"] ?: "assets/default-boss.obj",
+                manpowerCard = values["manpower_card_model"] ?: "assets/default-manpower-card.obj",
+                firepowerCard = values["firepower_card_model"] ?: "assets/default-firepower-card.obj"
+            ),
             cards = cards,
             enemyBrigades = enemies,
             bosses = bosses.ifEmpty { listOf(BossDefinition(400f, 0f, 190f)) }

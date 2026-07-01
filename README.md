@@ -41,6 +41,10 @@ road_width: 8
 starting_soldiers: 10
 fire_rate: 1.2
 projectile_pool: 768
+soldier_model: assets/default-soldier.obj
+boss_model: assets/default-boss.obj
+manpower_card_model: assets/default-manpower-card.obj
+firepower_card_model: assets/default-firepower-card.obj
 
 cards:
   - op: plus, param: manpower, val: 10, x: -2, z: 28
@@ -57,3 +61,7 @@ bosses:
   - power: 400, x: 0, z: 190
   - power: 400, x: 0, z: 380
 ```
+
+Default OBJ assets live in `core/src/main/resources/assets`. They are centered
+reference boxes with explicit bounding boxes in comments, so replacement models
+can be authored to the same dimensions without hidden scaling.

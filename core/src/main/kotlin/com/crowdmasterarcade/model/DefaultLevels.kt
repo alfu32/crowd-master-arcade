@@ -8,6 +8,10 @@ object DefaultLevels {
         starting_soldiers: 10
         fire_rate: 1.2
         projectile_pool: 768
+        soldier_model: assets/default-soldier.obj
+        boss_model: assets/default-boss.obj
+        manpower_card_model: assets/default-manpower-card.obj
+        firepower_card_model: assets/default-firepower-card.obj
 
         cards:
           - op: plus, param: manpower, val: 10, x: -2, z: 28

@@ -112,12 +112,15 @@ Status: complete for placeholder prototype.
 - Added operation card labels:
   - operation text such as `x2`, `/2`, `+15`, `-5`, `+1`
   - target text: `MANPOWER` or `FIREPOWER`
+- Replaced card label overlays with larger in-world 3D block text.
+- Added OBJ model loading for soldier, boss, manpower card, and firepower card paths from level files.
+- Added default OBJ assets in `core/src/main/resources/assets`.
+- Reduced camera FOV so the road and entities occupy more screen space.
 
 Remaining work:
 
-- Card labels are projected screen-space text rather than true textured 3D card faces.
-- Soldiers and boss are simple primitives, not final low-poly models.
-- No generated or imported art assets are present yet.
+- Default models are simple OBJ reference boxes, not final low-poly production assets.
+- Card labels are block-style 3D geometry rather than textured typography.
 
 Key files:
 
