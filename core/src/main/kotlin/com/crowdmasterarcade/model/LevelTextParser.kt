@@ -6,6 +6,7 @@ object LevelTextParser {
     fun parse(text: String): LevelDefinition {
         val values = mutableMapOf<String, String>()
         val cards = mutableListOf<CardDefinition>()
+        val decorations = mutableListOf<DecorationDefinition>()
         val enemies = mutableListOf<EnemyBrigadeDefinition>()
         val bosses = mutableListOf<BossDefinition>()
         var section = ""
@@ -28,6 +29,13 @@ object LevelTextParser {
                             value = item.float("val"),
                             x = item.float("x", 0f),
                             z = item.float("z")
+                        )
+                        "decorations" -> decorations += DecorationDefinition(
+                            name = item["name"] ?: "decoration ${decorations.size + 1}",
+                            power = item.float("power", 1f),
+                            x = item.float("x", 0f),
+                            z = item.float("z"),
+                            modelPath = item["model"] ?: "assets/default-decoration.obj"
                         )
                         "enemy_brigades", "enemies" -> enemies += EnemyBrigadeDefinition(
                             effective = item.int("effective"),
@@ -68,6 +76,7 @@ object LevelTextParser {
                 firepowerCard = values["firepower_card_model"] ?: "assets/default-firepower-card.obj"
             ),
             cards = cards,
+            decorations = decorations,
             enemyBrigades = enemies,
             bosses = bosses.ifEmpty { listOf(BossDefinition(400f, null, 0f, 190f)) }
         )
@@ -78,9 +87,15 @@ object LevelTextParser {
         return cleaned.split(",")
             .mapNotNull { part ->
                 val separator = part.indexOf(":")
-                if (separator <= 0) return@mapNotNull null
-                part.substring(0, separator).trim().canonical() to
-                    part.substring(separator + 1).trim().trim('"')
+                if (separator > 0) {
+                    return@mapNotNull part.substring(0, separator).trim().canonical() to
+                        part.substring(separator + 1).trim().trim('"')
+                }
+                val trimmed = part.trim()
+                val shorthandSeparator = trimmed.indexOf(" ")
+                if (shorthandSeparator <= 0) return@mapNotNull null
+                trimmed.substring(0, shorthandSeparator).trim().canonical() to
+                    trimmed.substring(shorthandSeparator + 1).trim().trim('"')
             }
             .toMap()
     }

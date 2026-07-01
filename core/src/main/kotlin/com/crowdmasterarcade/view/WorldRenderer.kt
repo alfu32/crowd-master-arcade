@@ -12,28 +12,39 @@ import com.badlogic.gdx.graphics.g3d.Model
 import com.badlogic.gdx.graphics.g3d.ModelBatch
 import com.badlogic.gdx.graphics.g3d.ModelInstance
 import com.badlogic.gdx.graphics.g3d.attributes.ColorAttribute
-import com.badlogic.gdx.graphics.g3d.environment.DirectionalLight
+import com.badlogic.gdx.graphics.g3d.environment.DirectionalShadowLight
 import com.badlogic.gdx.graphics.g3d.loader.ObjLoader
+import com.badlogic.gdx.graphics.g3d.utils.DepthShaderProvider
 import com.badlogic.gdx.graphics.g3d.utils.ModelBuilder
-import com.badlogic.gdx.math.collision.BoundingBox
+import com.badlogic.gdx.math.Vector3
 import com.crowdmasterarcade.model.AppModel
+import com.crowdmasterarcade.model.Boss
 import com.crowdmasterarcade.model.Card
 import com.crowdmasterarcade.model.CardOperation
 import com.crowdmasterarcade.model.CardTarget
-import com.crowdmasterarcade.model.Boss
+import com.crowdmasterarcade.model.Decoration
 import com.crowdmasterarcade.model.LevelModelPaths
 import java.io.File
+import kotlin.math.max
+import kotlin.math.min
 
 class WorldRenderer {
     private val modelBatch = ModelBatch()
+    private val shadowBatch = ModelBatch(DepthShaderProvider())
     private val camera = PerspectiveCamera(50f, Gdx.graphics.width.toFloat(), Gdx.graphics.height.toFloat())
     private val environment = Environment()
+    private val shadowLight = DirectionalShadowLight(2048, 2048, 42f, 42f, 1f, 180f)
     private val assets = RenderAssets()
     private val text3d = Text3dRenderer(assets)
+    private var activeBatch = modelBatch
+    private val shadowCenter = Vector3(0f, 0f, 80f)
+    private val shadowDirection = Vector3(-0.25f, -0.8f, -0.35f)
 
     init {
         environment.set(ColorAttribute(ColorAttribute.AmbientLight, 0.62f, 0.62f, 0.62f, 1f))
-        environment.add(DirectionalLight().set(0.82f, 0.82f, 0.76f, -0.25f, -0.8f, -0.35f))
+        shadowLight.set(0.82f, 0.82f, 0.76f, -0.25f, -0.8f, -0.35f)
+        environment.add(shadowLight)
+        environment.shadowMap = shadowLight
         Gdx.gl.glEnable(GL20.GL_DEPTH_TEST)
     }
 
@@ -48,22 +59,16 @@ class WorldRenderer {
         camera.far = 500f
         camera.update()
 
+        activeBatch = shadowBatch
+        shadowLight.begin(shadowCenter, shadowDirection)
+        shadowBatch.begin(shadowLight.camera)
+        renderSceneModels(appModel)
+        shadowBatch.end()
+        shadowLight.end()
+
+        activeBatch = modelBatch
         modelBatch.begin(camera)
-        renderRoad(appModel)
-        renderSoldiers(appModel.player.soldiers, assets.soldier, Color(0.12f, 0.72f, 0.92f, 1f))
-        appModel.enemyBrigades.filter { it.alive }.forEach {
-            renderSoldiers(it.soldiers, assets.soldier, Color(0.84f, 0.16f, 0.18f, 1f))
-        }
-        appModel.cards.filter { it.active }.forEach(::renderCard)
-        appModel.projectiles.filter { it.active }.forEach {
-            assets.projectile.transform.setToTranslation(it.position)
-            modelBatch.render(assets.projectile, environment)
-        }
-        appModel.bosses.filter { it.active && it.alive }.forEach { boss ->
-            assets.boss.transform.setToTranslation(boss.position)
-            colorize(assets.boss, Color(0.36f, 0.14f, 0.58f, 1f))
-            modelBatch.render(assets.boss, environment)
-        }
+        renderSceneModels(appModel)
         appModel.cards.filter { it.active }.forEach { card ->
             text3d.renderCardText(modelBatch, environment, card)
         }
@@ -73,13 +78,32 @@ class WorldRenderer {
         modelBatch.end()
     }
 
+    private fun renderSceneModels(appModel: AppModel) {
+        renderRoad(appModel)
+        renderSoldiers(appModel.player.soldiers, assets.soldier, Color(0.12f, 0.72f, 0.92f, 1f))
+        appModel.enemyBrigades.filter { it.alive }.forEach {
+            renderSoldiers(it.soldiers, assets.soldier, Color(0.84f, 0.16f, 0.18f, 1f))
+        }
+        appModel.cards.filter { it.active }.forEach(::renderCard)
+        appModel.decorations.filter { it.active }.forEach(::renderDecoration)
+        appModel.projectiles.filter { it.active }.forEach {
+            assets.projectile.transform.setToTranslation(it.position)
+            activeBatch.render(assets.projectile, environment)
+        }
+        appModel.bosses.filter { it.active && it.alive }.forEach { boss ->
+            assets.boss.transform.setToTranslation(boss.position)
+            colorize(assets.boss, Color(0.36f, 0.14f, 0.58f, 1f))
+            activeBatch.render(assets.boss, environment)
+        }
+    }
+
     private fun renderRoad(appModel: AppModel) {
         assets.road.transform.setToTranslation(0f, -0.08f, appModel.road.length / 2f)
-        modelBatch.render(assets.road, environment)
+        activeBatch.render(assets.road, environment)
         assets.leftRail.transform.setToTranslation(appModel.road.leftBoundary - 0.15f, 0.05f, appModel.road.length / 2f)
         assets.rightRail.transform.setToTranslation(appModel.road.rightBoundary + 0.15f, 0.05f, appModel.road.length / 2f)
-        modelBatch.render(assets.leftRail, environment)
-        modelBatch.render(assets.rightRail, environment)
+        activeBatch.render(assets.leftRail, environment)
+        activeBatch.render(assets.rightRail, environment)
     }
 
     private fun renderSoldiers(
@@ -90,7 +114,7 @@ class WorldRenderer {
         colorize(instance, color)
         soldiers.filter { it.alive }.forEach { soldier ->
             instance.transform.setToTranslation(soldier.worldPosition)
-            modelBatch.render(instance, environment)
+            activeBatch.render(instance, environment)
         }
     }
 
@@ -98,7 +122,14 @@ class WorldRenderer {
         val instance = if (card.target == CardTarget.FIREPOWER) assets.firepowerCard else assets.manpowerCard
         colorize(instance, if (card.target == CardTarget.FIREPOWER) Color(0.95f, 0.38f, 0.82f, 1f) else cardColor(card))
         instance.transform.setToTranslation(card.position)
-        modelBatch.render(instance, environment)
+        activeBatch.render(instance, environment)
+    }
+
+    private fun renderDecoration(decoration: Decoration) {
+        val instance = assets.decoration(decoration.modelPath)
+        colorize(instance, Color(0.55f, 0.52f, 0.47f, 1f))
+        instance.transform.setToTranslation(decoration.position)
+        activeBatch.render(instance, environment)
     }
 
     private fun cardColor(card: Card): Color =
@@ -118,6 +149,8 @@ class WorldRenderer {
     fun dispose() {
         assets.dispose()
         modelBatch.dispose()
+        shadowBatch.dispose()
+        shadowLight.dispose()
     }
 
     private class RenderAssets {
@@ -130,7 +163,8 @@ class WorldRenderer {
         val leftRail = instance(box(0.12f, 0.16f, 220f, Color(0.92f, 0.86f, 0.42f, 1f)))
         val rightRail = instance(box(0.12f, 0.16f, 220f, Color(0.92f, 0.86f, 0.42f, 1f)))
         val projectile = instance(sphere(0.18f, Color(1f, 0.9f, 0.2f, 1f)))
-        val textBlock = instance(box(0.055f, 0.055f, 0.035f, Color.WHITE))
+        val textBlock = instance(box(0.055f, 0.055f, 0.035f, Color.BLACK))
+        private val decorationInstances = mutableMapOf<String, ModelInstance>()
 
         var soldier = instance(box(0.36f, 0.8f, 0.36f, Color.WHITE))
             private set
@@ -158,6 +192,11 @@ class WorldRenderer {
             firepowerCardHalfHeight = modelHalfHeight(firepowerCard.model)
             bossHalfHeight = modelHalfHeight(boss.model)
         }
+
+        fun decoration(path: String): ModelInstance =
+            decorationInstances.getOrPut(path) {
+                instance(loadObj(path, fallback = { box(2f, 2f, 2f, Color.WHITE) }))
+            }
 
         private fun loadObj(path: String, fallback: () -> Model): Model {
             val file = resolve(path)
@@ -205,11 +244,29 @@ class WorldRenderer {
 
         private fun instance(model: Model) = ModelInstance(model)
 
-        private fun modelHalfHeight(model: Model): Float {
-            val bounds = BoundingBox()
-            model.calculateBoundingBox(bounds)
-            return bounds.height * 0.5f
+        private fun modelHalfHeight(model: Model): Float = modelBounds(model).halfHeight
+
+        private fun modelBounds(model: Model): ModelBounds {
+            var minY = Float.POSITIVE_INFINITY
+            var maxY = Float.NEGATIVE_INFINITY
+            model.meshes.forEach { mesh ->
+                val position = mesh.getVertexAttribute(Usage.Position) ?: return@forEach
+                val vertexSize = mesh.vertexSize / 4
+                val positionOffset = position.offset / 4
+                val vertices = FloatArray(mesh.numVertices * vertexSize)
+                mesh.getVertices(vertices)
+                for (vertex in 0 until mesh.numVertices) {
+                    val base = vertex * vertexSize + positionOffset
+                    val y = vertices[base + 1]
+                    minY = min(minY, y)
+                    maxY = max(maxY, y)
+                }
+            }
+            if (!minY.isFinite() || !maxY.isFinite()) return ModelBounds(0f)
+            return ModelBounds((maxY - minY) * 0.5f)
         }
+
+        private data class ModelBounds(val halfHeight: Float)
 
         fun dispose() {
             ownedModels.distinct().forEach(Model::dispose)
@@ -225,8 +282,8 @@ class WorldRenderer {
             }
             val cardTopY = card.position.y + cardHalfHeight
             val labelBottomY = cardTopY + 0.28f
-            val smallCell = 0.038f
-            val largeCell = 0.075f
+            val smallCell = 0.07f
+            val largeCell = 0.14f
             renderLine(modelBatch, environment, operationLabel(card), card.position.x, labelBottomY + 0.76f, card.position.z - 0.14f, largeCell)
             renderLine(modelBatch, environment, targetTop(card), card.position.x, labelBottomY + 0.34f, card.position.z - 0.14f, smallCell)
             renderLine(modelBatch, environment, "POWER", card.position.x, labelBottomY + 0.16f, card.position.z - 0.14f, smallCell)
@@ -235,7 +292,7 @@ class WorldRenderer {
         fun renderBossText(modelBatch: ModelBatch, environment: Environment, boss: Boss) {
             val baseY = boss.position.y + assets.bossHalfHeight + 0.55f
             val z = boss.position.z - 0.22f
-            renderLine(modelBatch, environment, boss.name, boss.position.x, baseY + 0.28f, z, 0.055f)
+            renderLine(modelBatch, environment, boss.name, boss.position.x, baseY + 0.34f, z, 0.1f)
             renderLine(
                 modelBatch,
                 environment,
@@ -243,7 +300,7 @@ class WorldRenderer {
                 boss.position.x,
                 baseY,
                 z,
-                0.052f
+                0.095f
             )
         }
 

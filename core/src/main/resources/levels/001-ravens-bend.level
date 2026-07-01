@@ -1,6 +1,6 @@
 name: The Raven's Bend
 road_length: 220
-road_width: 8
+road_width: 16
 starting_soldiers: 10
 fire_rate: 1.2
 projectile_pool: 768
@@ -20,6 +20,9 @@ cards:
   - op: div, param: firepower, val: 2, x: 1.5, z: 106
   - op: minus, param: firepower, val: 5, x: 2, z: 120
 
+decorations:
+  - name: triumphal arch, power: 999999, x: 0, z: 95, model: assets/triumphal-arch.obj
+
 enemy_brigades:
   - name: vanguard, effective: 40, strength: 10, x: 2, z: 50
   - effective: 60, strength: 10, x: -2, z: 60
@@ -27,7 +30,16 @@ enemy_brigades:
   - effective: 100, strength: 12, x: 1.4, z: 80
   - effective: 100, strength: 14, x: -2, z: 90
   - effective: 140, strength: 14, x: 2, z: 100
+  - effective: 60, strength: 10, x: -2, z: 110
+  - effective: 80, strength: 12, x: -1.5, z: 120
+  - effective: 100, strength: 12, x: 1.4, z: 130
+  - effective: 100, strength: 14, x: -2, z: 140
+  - name: boss guard, effective: 1000, strength: 14, x: 2, z: 150
 
 bosses:
-  - name: General Raven, power: 1600, x: 0, z: 120
-  - name: Darth Putin, power: 2500, x: 0, z: 140
+  - name: General Raven, power: 1600, x: 0, z: 102
+  - name: Darth Putin, power: 2500, x: 0, z: 115
+  - name: Moloch, power: 5000, x: 0, z: 125
+
+decorations:
+  - name: triumphal arch, power 999999, x:0, z:95, model: assets/triumphal-arch.obj

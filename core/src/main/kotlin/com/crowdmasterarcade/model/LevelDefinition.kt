@@ -10,6 +10,7 @@ data class LevelDefinition(
     val projectileLength: Float,
     val modelPaths: LevelModelPaths,
     val cards: List<CardDefinition>,
+    val decorations: List<DecorationDefinition>,
     val enemyBrigades: List<EnemyBrigadeDefinition>,
     val bosses: List<BossDefinition>
 )
@@ -35,6 +36,14 @@ data class EnemyBrigadeDefinition(
     val name: String?,
     val x: Float,
     val z: Float
+)
+
+data class DecorationDefinition(
+    val name: String,
+    val power: Float,
+    val x: Float,
+    val z: Float,
+    val modelPath: String
 )
 
 data class BossDefinition(

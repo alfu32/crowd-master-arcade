@@ -27,6 +27,7 @@ object AppModelFactory {
         FormationSystem.updatePlayerFormation(player, 1f)
 
         val cards = levelDefinition.cards.mapTo(mutableListOf()) { card(it) }
+        val decorations = levelDefinition.decorations.mapTo(mutableListOf()) { decoration(it) }
         val enemies = levelDefinition.enemyBrigades.mapIndexedTo(mutableListOf()) { index, definition ->
             enemy(definition, index + 1)
         }
@@ -41,6 +42,7 @@ object AppModelFactory {
             enemyBrigades = enemies,
             cards = cards,
             projectiles = MutableList(levelDefinition.projectilePool) { projectile(active = false) },
+            decorations = decorations,
             road = road,
             background = Background(theme = "training-ground"),
             bosses = bosses,
@@ -96,6 +98,17 @@ object AppModelFactory {
         FormationSystem.updateEnemyFormation(brigade, 1f)
         return brigade
     }
+
+    private fun decoration(definition: DecorationDefinition): Decoration =
+        Decoration(
+            id = nextId++,
+            name = definition.name,
+            position = Vector3(definition.x, 0.7f, definition.z),
+            health = definition.power,
+            maxHealth = definition.power,
+            modelPath = definition.modelPath,
+            active = true
+        )
 
     private fun boss(definition: BossDefinition, index: Int): Boss =
         Boss(

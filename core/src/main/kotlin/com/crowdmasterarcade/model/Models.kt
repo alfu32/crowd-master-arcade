@@ -8,6 +8,7 @@ data class AppModel(
     val enemyBrigades: MutableList<EnemyBrigade>,
     val cards: MutableList<Card>,
     val projectiles: MutableList<Projectile>,
+    val decorations: MutableList<Decoration>,
     val road: Road,
     val background: Background,
     val bosses: MutableList<Boss>,
@@ -64,6 +65,16 @@ data class Projectile(
     var velocity: Vector3,
     var damage: Float,
     var remainingLife: Float,
+    var active: Boolean
+)
+
+data class Decoration(
+    val id: Long,
+    val name: String,
+    var position: Vector3,
+    var health: Float,
+    val maxHealth: Float,
+    val modelPath: String,
     var active: Boolean
 )
 

@@ -21,6 +21,9 @@ object DefaultLevels {
           - op: div, param: manpower, val: 2, x: 1.5, z: 76
           - op: times, param: firepower, val: 3, x: 0, z: 96
 
+        decorations:
+          - name: triumphal arch, power: 999999, x: 0, z: 95, model: assets/triumphal-arch.obj
+
         enemy_brigades:
           - name: vanguard, effective: 20, strength: 10, x: 0, z: 88
           - effective: 20, strength: 12, x: 1.4, z: 132

@@ -36,6 +36,24 @@ class LevelTextParserTest {
         assertEquals("General Raven", level.bosses[0].name)
         assertEquals(null, level.bosses[1].name)
         assertEquals(380f, level.bosses[1].z)
+        assertEquals(1, level.decorations.size)
+        assertEquals("triumphal arch", level.decorations[0].name)
+        assertEquals(999999f, level.decorations[0].power)
+        assertEquals("assets/triumphal-arch.obj", level.decorations[0].modelPath)
+    }
+
+    @Test
+    fun parsesDecorationShorthandFields() {
+        val level = LevelTextParser.parse(
+            """
+            name: Decor Test
+            decorations:
+              - name: triumphal arch, power 999999, x:0, z:95, model: assets/triumphal-arch.obj
+            """.trimIndent()
+        )
+
+        assertEquals(1, level.decorations.size)
+        assertEquals(999999f, level.decorations[0].power)
     }
 
     @Test
