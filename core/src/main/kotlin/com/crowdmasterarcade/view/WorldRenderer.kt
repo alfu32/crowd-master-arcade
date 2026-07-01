@@ -255,6 +255,8 @@ class WorldRenderer {
             var minX = Float.POSITIVE_INFINITY
             var minY = Float.POSITIVE_INFINITY
             var minZ = Float.POSITIVE_INFINITY
+            var maxX = Float.NEGATIVE_INFINITY
+            var maxZ = Float.NEGATIVE_INFINITY
 
             model.meshes.forEach { mesh ->
                 val position = mesh.getVertexAttribute(Usage.Position) ?: return@forEach
@@ -267,10 +269,15 @@ class WorldRenderer {
                     minX = min(minX, vertices[base])
                     minY = min(minY, vertices[base + 1])
                     minZ = min(minZ, vertices[base + 2])
+                    maxX = max(maxX, vertices[base])
+                    maxZ = max(maxZ, vertices[base + 2])
                 }
             }
 
-            if (!minX.isFinite() || !minY.isFinite() || !minZ.isFinite()) return
+            if (!minX.isFinite() || !minY.isFinite() || !minZ.isFinite() || !maxX.isFinite() || !maxZ.isFinite()) return
+
+            val centerX = (minX + maxX) * 0.5f
+            val centerZ = (minZ + maxZ) * 0.5f
 
             model.meshes.forEach { mesh ->
                 val position = mesh.getVertexAttribute(Usage.Position) ?: return@forEach
@@ -280,9 +287,9 @@ class WorldRenderer {
                 mesh.getVertices(vertices)
                 for (vertex in 0 until mesh.numVertices) {
                     val base = vertex * vertexSize + positionOffset
-                    vertices[base] -= minX
+                    vertices[base] -= centerX
                     vertices[base + 1] -= minY
-                    vertices[base + 2] -= minZ
+                    vertices[base + 2] -= centerZ
                 }
                 mesh.setVertices(vertices)
             }
