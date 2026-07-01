@@ -9,17 +9,22 @@ import com.crowdmasterarcade.model.AppModel
 import com.crowdmasterarcade.model.AppModelFactory
 import com.crowdmasterarcade.model.GameState
 import com.crowdmasterarcade.model.InputState
+import com.crowdmasterarcade.model.LevelCatalog
+import com.crowdmasterarcade.model.LevelDefinition
 import com.crowdmasterarcade.view.GameView
 
 class CrowdDefenseGame : ApplicationAdapter() {
     private lateinit var appModel: AppModel
+    private lateinit var levels: List<LevelDefinition>
     private lateinit var controller: GameController
     private lateinit var inputController: InputController
     private lateinit var inputState: InputState
     private lateinit var view: GameView
+    private var levelIndex = 0
 
     override fun create() {
-        appModel = AppModelFactory.initAppModel()
+        levels = LevelCatalog.load()
+        appModel = loadLevel(levelIndex)
         controller = GameController()
         inputController = InputController()
         inputState = InputState()
@@ -28,7 +33,11 @@ class CrowdDefenseGame : ApplicationAdapter() {
 
     override fun render() {
         if (Gdx.input.isKeyJustPressed(Input.Keys.R)) {
-            appModel = AppModelFactory.initAppModel()
+            appModel = loadLevel(levelIndex)
+        }
+        if (Gdx.input.isKeyJustPressed(Input.Keys.N)) {
+            levelIndex = (levelIndex + 1) % levels.size
+            appModel = loadLevel(levelIndex)
         }
         if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) {
             appModel.gameState = GameState.EXIT
@@ -44,4 +53,7 @@ class CrowdDefenseGame : ApplicationAdapter() {
     override fun dispose() {
         view.dispose()
     }
+
+    private fun loadLevel(index: Int): AppModel =
+        AppModelFactory.initAppModel(levels[index])
 }

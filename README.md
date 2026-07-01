@@ -8,6 +8,12 @@ A Kotlin/libGDX prototype for the crowd defense runner described in `SPEC.md`.
 GRADLE_USER_HOME=.gradle-user gradle :lwjgl3:run
 ```
 
+Run with external textual levels:
+
+```bash
+GRADLE_USER_HOME=.gradle-user gradle :lwjgl3:run -Dlevels.dir=/path/to/levels
+```
+
 ## Test
 
 ```bash
@@ -19,5 +25,35 @@ Controls:
 - `A` / left arrow: move left
 - `D` / right arrow: move right
 - mouse/touch drag: steer horizontally
+- `N`: load next level
 - `R`: restart
 - `Esc`: quit
+
+## Level Format
+
+Levels are text files with a small YAML-like format. Bundled levels live in
+`core/src/main/resources/levels` and are listed in `levels/index.txt`.
+
+```yaml
+name: The Raven's Bend
+road_length: 220
+road_width: 8
+starting_soldiers: 10
+fire_rate: 1.2
+projectile_pool: 768
+
+cards:
+  - op: plus, param: manpower, val: 10, x: -2, z: 28
+  - op: minus, param: manpower, val: 5, x: 2, z: 44
+  - op: times, param: firepower, val: 2, x: -1.5, z: 60
+  - op: div, param: manpower, val: 2, x: 1.5, z: 76
+  - op: times, param: firepower, val: 3, x: 0, z: 96
+
+enemy_brigades:
+  - effective: 20, x: 0, z: 88
+  - effective: 20, x: 1.4, z: 132
+
+bosses:
+  - power: 400, x: 0, z: 190
+  - power: 400, x: 0, z: 380
+```

@@ -10,13 +10,13 @@ object LevelSystem {
             appModel.gameState = GameState.LOST
             return
         }
-        if (!appModel.boss.alive) {
+        if (appModel.bosses.none { it.alive }) {
             appModel.gameState = GameState.WON
             return
         }
         val allEnemiesCleared = appModel.enemyBrigades.none { it.alive }
         val allCardsCleared = appModel.cards.none { it.active }
-        if (allEnemiesCleared && allCardsCleared && !appModel.boss.active) {
+        if (allEnemiesCleared && allCardsCleared && appModel.bosses.none { it.active }) {
             appModel.gameState = GameState.WON
         }
     }

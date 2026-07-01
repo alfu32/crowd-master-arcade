@@ -14,3 +14,9 @@ dependencies {
 application {
     mainClass.set("com.crowdmasterarcade.desktop.DesktopLauncherKt")
 }
+
+tasks.named<JavaExec>("run") {
+    System.getProperty("levels.dir")?.let {
+        systemProperty("levels.dir", it)
+    }
+}

@@ -40,10 +40,14 @@ object CollisionSystem {
                     }
                 }
             }
-            if (!consumed && appModel.boss.active && appModel.boss.alive && overlaps(projectile.position, appModel.boss.position, GameConfig.BOSS_COLLISION_RADIUS)) {
-                appModel.boss.health -= projectile.damage
-                appModel.boss.alive = appModel.boss.health > 0f
-                projectile.active = false
+            if (!consumed) {
+                appModel.bosses.firstOrNull { boss ->
+                    boss.active && boss.alive && overlaps(projectile.position, boss.position, GameConfig.BOSS_COLLISION_RADIUS)
+                }?.let { boss ->
+                    boss.health -= projectile.damage
+                    boss.alive = boss.health > 0f
+                    projectile.active = false
+                }
             }
         }
     }
@@ -61,11 +65,12 @@ object CollisionSystem {
     }
 
     private fun handleBossContact(appModel: AppModel) {
-        val boss = appModel.boss
-        if (boss.active && boss.alive && overlaps(appModel.player.position, boss.position, GameConfig.PLAYER_COLLISION_RADIUS + GameConfig.BOSS_COLLISION_RADIUS)) {
-            appModel.player.soldiers.clear()
-            appModel.player.alive = false
-            appModel.gameState = GameState.LOST
+        appModel.bosses.filter { it.active && it.alive }.forEach { boss ->
+            if (overlaps(appModel.player.position, boss.position, GameConfig.PLAYER_COLLISION_RADIUS + GameConfig.BOSS_COLLISION_RADIUS)) {
+                appModel.player.soldiers.clear()
+                appModel.player.alive = false
+                appModel.gameState = GameState.LOST
+            }
         }
     }
 

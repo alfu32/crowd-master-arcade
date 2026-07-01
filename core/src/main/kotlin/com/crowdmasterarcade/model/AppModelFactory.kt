@@ -7,53 +7,39 @@ import com.crowdmasterarcade.controller.FormationSystem
 object AppModelFactory {
     private var nextId = 1L
 
-    fun initAppModel(): AppModel {
+    fun initAppModel(levelDefinition: LevelDefinition = DefaultLevels.ravenBend()): AppModel {
         nextId = 1L
         val road = Road(
-            width = GameConfig.ROAD_WIDTH,
-            length = GameConfig.ROAD_LENGTH,
-            leftBoundary = -GameConfig.ROAD_WIDTH / 2f,
-            rightBoundary = GameConfig.ROAD_WIDTH / 2f
+            width = levelDefinition.roadWidth,
+            length = levelDefinition.roadLength,
+            leftBoundary = -levelDefinition.roadWidth / 2f,
+            rightBoundary = levelDefinition.roadWidth / 2f
         )
         val player = PlayerBrigade(
             position = Vector3(0f, GameConfig.PLAYER_Y, GameConfig.PLAYER_Z),
             lateralSpeed = GameConfig.PLAYER_LATERAL_SPEED,
-            soldiers = createSoldiers(10),
-            fireRate = 1.2f,
+            soldiers = createSoldiers(levelDefinition.startingSoldiers),
+            fireRate = levelDefinition.fireRate,
             fireCooldown = 0f,
             alive = true
         )
         FormationSystem.recalculateFormation(player.soldiers)
         FormationSystem.updatePlayerFormation(player, 1f)
 
-        val cards = mutableListOf(
-            card(CardType.MULTIPLY, 2f, -2f, 28f),
-            card(CardType.ADD, 15f, 2f, 44f),
-            card(CardType.SUBTRACT, 5f, -1.5f, 60f),
-            card(CardType.DIVIDE, 2f, 1.5f, 76f),
-            card(CardType.FIRE_RATE_UP, 1f, 0f, 96f)
-        )
-        val enemies = mutableListOf(
-            enemy(18, 0f, 88f),
-            enemy(28, 1.4f, 132f)
-        )
+        val cards = levelDefinition.cards.mapTo(mutableListOf()) { card(it) }
+        val enemies = levelDefinition.enemyBrigades.mapTo(mutableListOf()) { enemy(it.effective, it.x, it.z) }
+        val bosses = levelDefinition.bosses.mapTo(mutableListOf()) { boss(it.power, it.x, it.z) }
 
         return AppModel(
             gameState = GameState.RUNNING,
             player = player,
             enemyBrigades = enemies,
             cards = cards,
-            projectiles = MutableList(768) { projectile(active = false) },
+            projectiles = MutableList(levelDefinition.projectilePool) { projectile(active = false) },
             road = road,
             background = Background(theme = "training-ground"),
-            boss = Boss(
-                position = Vector3(0f, 1.2f, 190f),
-                health = 500f,
-                speed = GameConfig.BOSS_SPEED,
-                active = true,
-                alive = true
-            ),
-            levelData = LevelData(name = "Prototype Run", startingSoldiers = 10),
+            bosses = bosses,
+            levelData = LevelData(name = levelDefinition.name, startingSoldiers = levelDefinition.startingSoldiers),
             runtimeConfig = RuntimeConfig(
                 maxFireRate = GameConfig.MAX_FIRE_RATE,
                 projectileSpeed = GameConfig.PROJECTILE_SPEED,
@@ -73,8 +59,16 @@ object AppModelFactory {
             )
         }
 
-    private fun card(type: CardType, value: Float, x: Float, z: Float): Card =
-        Card(nextId++, type, value, Vector3(x, 0.7f, z), GameConfig.CARD_SPEED, active = true)
+    private fun card(definition: CardDefinition): Card =
+        Card(
+            id = nextId++,
+            operation = definition.operation,
+            target = definition.target,
+            value = definition.value,
+            position = Vector3(definition.x, 0.7f, definition.z),
+            speed = GameConfig.CARD_SPEED,
+            active = true
+        )
 
     private fun enemy(count: Int, x: Float, z: Float): EnemyBrigade {
         val brigade = EnemyBrigade(nextId++, Vector3(x, GameConfig.PLAYER_Y, z), GameConfig.ENEMY_SPEED, createSoldiers(count), alive = true)
@@ -82,6 +76,15 @@ object AppModelFactory {
         FormationSystem.updateEnemyFormation(brigade, 1f)
         return brigade
     }
+
+    private fun boss(power: Float, x: Float, z: Float): Boss =
+        Boss(
+            position = Vector3(x, 1.2f, z),
+            health = power,
+            speed = GameConfig.BOSS_SPEED,
+            active = true,
+            alive = true
+        )
 
     private fun projectile(active: Boolean): Projectile =
         Projectile(nextId++, Vector3(), Vector3(), GameConfig.PROJECTILE_DAMAGE, active)

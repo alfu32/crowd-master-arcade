@@ -18,7 +18,8 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import com.badlogic.gdx.math.Vector3
 import com.crowdmasterarcade.model.AppModel
 import com.crowdmasterarcade.model.Card
-import com.crowdmasterarcade.model.CardType
+import com.crowdmasterarcade.model.CardOperation
+import com.crowdmasterarcade.model.CardTarget
 
 class WorldRenderer {
     private val modelBatch = ModelBatch()
@@ -56,8 +57,8 @@ class WorldRenderer {
             assets.projectile.transform.setToTranslation(it.position)
             modelBatch.render(assets.projectile, environment)
         }
-        if (appModel.boss.active && appModel.boss.alive) {
-            assets.boss.transform.setToTranslation(appModel.boss.position)
+        appModel.bosses.filter { it.active && it.alive }.forEach { boss ->
+            assets.boss.transform.setToTranslation(boss.position)
             modelBatch.render(assets.boss, environment)
         }
         modelBatch.end()
@@ -82,12 +83,13 @@ class WorldRenderer {
     }
 
     private fun renderCard(card: Card) {
-        val instance = when (card.type) {
-            CardType.ADD -> assets.cardAdd
-            CardType.SUBTRACT -> assets.cardSubtract
-            CardType.MULTIPLY -> assets.cardMultiply
-            CardType.DIVIDE -> assets.cardDivide
-            CardType.FIRE_RATE_UP -> assets.cardFireRate
+        val instance = when {
+            card.target == CardTarget.FIREPOWER -> assets.cardFireRate
+            card.operation == CardOperation.PLUS -> assets.cardAdd
+            card.operation == CardOperation.MINUS -> assets.cardSubtract
+            card.operation == CardOperation.TIMES -> assets.cardMultiply
+            card.operation == CardOperation.DIV -> assets.cardDivide
+            else -> assets.cardAdd
         }
         instance.transform.setToTranslation(card.position)
         modelBatch.render(instance, environment)
@@ -112,18 +114,17 @@ class WorldRenderer {
     }
 
     private fun operationLabel(card: Card): String =
-        when (card.type) {
-            CardType.ADD -> "+${card.value.toInt()}"
-            CardType.SUBTRACT -> "-${card.value.toInt()}"
-            CardType.MULTIPLY -> "x${card.value.toInt()}"
-            CardType.DIVIDE -> "/${card.value.toInt()}"
-            CardType.FIRE_RATE_UP -> "+${card.value.toInt()}"
+        when (card.operation) {
+            CardOperation.PLUS -> "+${card.value.toInt()}"
+            CardOperation.MINUS -> "-${card.value.toInt()}"
+            CardOperation.TIMES -> "x${card.value.toInt()}"
+            CardOperation.DIV -> "/${card.value.toInt()}"
         }
 
     private fun targetLabel(card: Card): String =
-        when (card.type) {
-            CardType.FIRE_RATE_UP -> "FIREPOWER"
-            else -> "MANPOWER"
+        when (card.target) {
+            CardTarget.FIREPOWER -> "FIREPOWER"
+            CardTarget.MANPOWER -> "MANPOWER"
         }
 
     fun dispose() {

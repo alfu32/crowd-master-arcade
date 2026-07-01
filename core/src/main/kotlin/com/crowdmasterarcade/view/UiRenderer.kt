@@ -5,7 +5,8 @@ import com.badlogic.gdx.graphics.Color
 import com.badlogic.gdx.graphics.g2d.BitmapFont
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import com.crowdmasterarcade.model.AppModel
-import com.crowdmasterarcade.model.CardType
+import com.crowdmasterarcade.model.CardOperation
+import com.crowdmasterarcade.model.CardTarget
 import com.crowdmasterarcade.model.GameState
 
 class UiRenderer {
@@ -22,18 +23,22 @@ class UiRenderer {
         val height = Gdx.graphics.height.toFloat()
         font.draw(batch, "Soldiers: ${appModel.player.soldiers.size}", 20f, height - 20f)
         font.draw(batch, "Fire: ${"%.1f".format(appModel.player.fireRate)}/s", 20f, height - 48f)
-        font.draw(batch, "Boss: ${appModel.boss.health.coerceAtLeast(0f).toInt()}", 20f, height - 76f)
+        font.draw(batch, "Level: ${appModel.levelData.name}", 20f, height - 76f)
+        font.draw(batch, "Bosses: ${appModel.bosses.count { it.alive }}", 20f, height - 104f)
         font.draw(batch, "A/D or arrows move | drag to steer | R restart | Esc quit", 20f, 32f)
 
         appModel.cards.filter { it.active }.forEach { card ->
-            val label = when (card.type) {
-                CardType.ADD -> "+${card.value.toInt()}"
-                CardType.SUBTRACT -> "-${card.value.toInt()}"
-                CardType.MULTIPLY -> "x${card.value.toInt()}"
-                CardType.DIVIDE -> "/${card.value.toInt()}"
-                CardType.FIRE_RATE_UP -> "FIRE +${card.value}"
+            val op = when (card.operation) {
+                CardOperation.PLUS -> "+${card.value.toInt()}"
+                CardOperation.MINUS -> "-${card.value.toInt()}"
+                CardOperation.TIMES -> "x${card.value.toInt()}"
+                CardOperation.DIV -> "/${card.value.toInt()}"
             }
-            font.draw(batch, label, 20f, height - 112f - card.id % 6 * 22f)
+            val target = when (card.target) {
+                CardTarget.MANPOWER -> "MAN"
+                CardTarget.FIREPOWER -> "FIRE"
+            }
+            font.draw(batch, "$op $target", 20f, height - 140f - card.id % 6 * 22f)
         }
 
         when (appModel.gameState) {

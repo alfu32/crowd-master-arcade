@@ -12,8 +12,8 @@ object MovementSystem {
 
         appModel.cards.filter { it.active }.forEach { it.position.z -= it.speed * deltaTime }
         appModel.enemyBrigades.filter { it.alive }.forEach { it.position.z -= it.speed * deltaTime }
-        if (appModel.boss.active && appModel.boss.alive) {
-            appModel.boss.position.z -= appModel.boss.speed * deltaTime
+        appModel.bosses.filter { it.active && it.alive }.forEach { boss ->
+            boss.position.z -= boss.speed * deltaTime
         }
     }
 }

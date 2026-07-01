@@ -47,10 +47,11 @@ object ShootingSystem {
                 }
             }
         }
-        if (appModel.boss.active && appModel.boss.alive) {
-            val dst = origin.dst2(appModel.boss.position)
-            if (dst < nearestDst && appModel.boss.position.z > GameConfig.PLAYER_Z) {
-                nearest = appModel.boss.position
+        appModel.bosses.filter { it.active && it.alive }.forEach { boss ->
+            val dst = origin.dst2(boss.position)
+            if (dst < nearestDst && boss.position.z > GameConfig.PLAYER_Z) {
+                nearestDst = dst
+                nearest = boss.position
             }
         }
         return nearest

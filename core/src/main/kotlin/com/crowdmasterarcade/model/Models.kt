@@ -10,12 +10,15 @@ data class AppModel(
     val projectiles: MutableList<Projectile>,
     val road: Road,
     val background: Background,
-    val boss: Boss,
+    val bosses: MutableList<Boss>,
     val levelData: LevelData,
     val runtimeConfig: RuntimeConfig
 ) {
     val running: Boolean
         get() = gameState != GameState.EXIT
+
+    val boss: Boss
+        get() = bosses.firstOrNull { it.active && it.alive } ?: bosses.first()
 }
 
 data class PlayerBrigade(
@@ -45,7 +48,8 @@ data class RegularSoldier(
 
 data class Card(
     val id: Long,
-    val type: CardType,
+    val operation: CardOperation,
+    val target: CardTarget,
     val value: Float,
     var position: Vector3,
     var speed: Float,
