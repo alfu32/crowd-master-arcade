@@ -6,6 +6,7 @@ import com.crowdmasterarcade.model.Card
 import com.crowdmasterarcade.model.CardOperation
 import com.crowdmasterarcade.model.CardTarget
 import com.crowdmasterarcade.model.PlayerBrigade
+import com.crowdmasterarcade.model.Road
 
 object CardEffectSystem {
     fun applyCard(player: PlayerBrigade, card: Card, maxFireRate: Float, roadWidth: Float = GameConfig.ROAD_WIDTH) {
@@ -14,7 +15,8 @@ object CardEffectSystem {
             CardTarget.FIREPOWER -> applyFirepower(player, card, maxFireRate)
         }
         card.active = false
-        FormationSystem.recalculateFormation(player.soldiers, roadWidth)
+        val road = Road(roadWidth, 0f, -roadWidth / 2f, roadWidth / 2f)
+        FormationSystem.recalculatePlayerFormation(player, road)
     }
 
     private fun applyManpower(player: PlayerBrigade, card: Card) {

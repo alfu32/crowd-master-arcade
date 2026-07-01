@@ -3,7 +3,9 @@ package com.crowdmasterarcade
 import com.crowdmasterarcade.config.GameConfig
 import com.crowdmasterarcade.controller.FormationSystem
 import com.crowdmasterarcade.model.AppModelFactory
+import com.crowdmasterarcade.model.Road
 import kotlin.test.Test
+import kotlin.test.assertEquals
 import kotlin.test.assertTrue
 
 class FormationSystemTest {
@@ -19,5 +21,20 @@ class FormationSystemTest {
 
         assertTrue(maxAbsX <= roadWidth / 2f)
         assertTrue(minZ < -GameConfig.SOLDIER_SPACING * 4f)
+    }
+
+    @Test
+    fun playerFormationIsCappedAtHalfRoadWidth() {
+        val road = Road(width = 8f, length = 100f, leftBoundary = -4f, rightBoundary = 4f)
+
+        assertEquals(4f, FormationSystem.playerFormationWidth(0f, road))
+    }
+
+    @Test
+    fun enemyFormationWidthAccountsForXPosition() {
+        val road = Road(width = 8f, length = 100f, leftBoundary = -4f, rightBoundary = 4f)
+
+        assertEquals(8f, FormationSystem.maxFormationWidthAt(0f, road))
+        assertEquals(2f, FormationSystem.maxFormationWidthAt(3f, road))
     }
 }

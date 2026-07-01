@@ -70,7 +70,7 @@ object CollisionSystem {
                 repeat(losses) { appModel.player.soldiers.removeLast() }
                 enemy.soldiers.clear()
                 enemy.alive = false
-                FormationSystem.recalculateFormation(appModel.player.soldiers, appModel.road.width)
+                FormationSystem.recalculatePlayerFormation(appModel.player, appModel.road)
             }
         }
     }

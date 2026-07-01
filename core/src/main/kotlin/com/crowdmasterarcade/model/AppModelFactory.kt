@@ -23,13 +23,13 @@ object AppModelFactory {
             fireCooldown = 0f,
             alive = true
         )
-        FormationSystem.recalculateFormation(player.soldiers, road.width)
-        FormationSystem.updatePlayerFormation(player, 1f)
+        FormationSystem.recalculatePlayerFormation(player, road)
+        FormationSystem.updatePlayerFormation(player, road, 1f)
 
         val cards = levelDefinition.cards.mapTo(mutableListOf()) { card(it) }
         val decorations = levelDefinition.decorations.mapTo(mutableListOf()) { decoration(it) }
         val enemies = levelDefinition.enemyBrigades.mapIndexedTo(mutableListOf()) { index, definition ->
-            enemy(definition, index + 1, road.width)
+            enemy(definition, index + 1, road)
         }
         val bosses = levelDefinition.bosses.mapIndexedTo(mutableListOf()) { index, definition ->
             boss(definition, index + 1)
@@ -82,7 +82,7 @@ object AppModelFactory {
             active = true
         )
 
-    private fun enemy(definition: EnemyBrigadeDefinition, index: Int, roadWidth: Float): EnemyBrigade {
+    private fun enemy(definition: EnemyBrigadeDefinition, index: Int, road: Road): EnemyBrigade {
         val soldiers = createSoldiers(definition.effective)
         soldiers.forEach { it.health = definition.unitStrength }
         val brigade = EnemyBrigade(
@@ -94,8 +94,8 @@ object AppModelFactory {
             soldiers = soldiers,
             alive = true
         )
-        FormationSystem.recalculateFormation(brigade.soldiers, roadWidth)
-        FormationSystem.updateEnemyFormation(brigade, 1f)
+        FormationSystem.recalculateEnemyFormation(brigade, road)
+        FormationSystem.updateEnemyFormation(brigade, road, 1f)
         return brigade
     }
 
