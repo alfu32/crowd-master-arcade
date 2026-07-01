@@ -1,0 +1,9 @@
+.gradle/
+.gradle-user/
+build/
+**/build/
+out/
+.idea/
+*.iml
+.kode
+.kode.json
