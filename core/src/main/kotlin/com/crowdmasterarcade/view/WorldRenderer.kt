@@ -233,7 +233,7 @@ class WorldRenderer {
             val file = resolve(path)
             if (!file.exists()) return fallback()
             return try {
-                objLoader.loadModel(file)
+                objLoader.loadModel(objWithNormals(file, path))
                     .also(::normalizeModelToMinOrigin)
                     .also(ownedModels::add)
             } catch (_: RuntimeException) {
@@ -247,6 +247,75 @@ class WorldRenderer {
             val internal = Gdx.files.internal(path)
             if (internal.exists()) return internal
             return Gdx.files.local(path)
+        }
+
+        private fun objWithNormals(file: FileHandle, sourcePath: String): FileHandle {
+            val text = file.readString("UTF-8")
+            if (text.lineSequence().any { it.trimStart().startsWith("vn ") }) return file
+
+            val vertices = mutableListOf<Vector3>()
+            val output = StringBuilder(text.length + text.length / 4)
+            var normalIndex = 0
+
+            text.lineSequence().forEach { line ->
+                val trimmed = line.trim()
+                when {
+                    trimmed.startsWith("v ") -> {
+                        val parts = trimmed.split(WHITESPACE)
+                        if (parts.size >= 4) {
+                            vertices += Vector3(parts[1].toFloat(), parts[2].toFloat(), parts[3].toFloat())
+                        }
+                        output.append(line).append('\n')
+                    }
+                    trimmed.startsWith("f ") -> {
+                        val faceTokens = trimmed.substring(2).trim().split(WHITESPACE).filter { it.isNotBlank() }
+                        val normal = faceNormal(faceTokens, vertices)
+                        normalIndex += 1
+                        output.append("vn ")
+                            .append(normal.x).append(' ')
+                            .append(normal.y).append(' ')
+                            .append(normal.z).append('\n')
+                        output.append("f ")
+                            .append(faceTokens.joinToString(" ") { token -> tokenWithNormal(token, normalIndex) })
+                            .append('\n')
+                    }
+                    else -> output.append(line).append('\n')
+                }
+            }
+
+            val cacheName = sourcePath
+                .replace(File.separatorChar, '_')
+                .replace('/', '_')
+                .replace(':', '_')
+                .replace(' ', '_')
+            val generated = Gdx.files.local(".generated/normal-assets/$cacheName.obj")
+            generated.parent().mkdirs()
+            generated.writeString(output.toString(), false, "UTF-8")
+            return generated
+        }
+
+        private fun faceNormal(faceTokens: List<String>, vertices: List<Vector3>): Vector3 {
+            if (faceTokens.size < 3) return Vector3.Y.cpy()
+            val a = vertices.getOrNull(vertexIndex(faceTokens[0], vertices.size)) ?: return Vector3.Y.cpy()
+            val b = vertices.getOrNull(vertexIndex(faceTokens[1], vertices.size)) ?: return Vector3.Y.cpy()
+            val c = vertices.getOrNull(vertexIndex(faceTokens[2], vertices.size)) ?: return Vector3.Y.cpy()
+            val normal = TEMP_NORMAL_A.set(b).sub(a).crs(TEMP_NORMAL_B.set(c).sub(a))
+            if (normal.len2() < 0.000001f) return Vector3.Y.cpy()
+            return normal.nor().cpy()
+        }
+
+        private fun vertexIndex(faceToken: String, vertexCount: Int): Int {
+            val raw = faceToken.substringBefore('/').toIntOrNull() ?: return -1
+            return if (raw > 0) raw - 1 else vertexCount + raw
+        }
+
+        private fun tokenWithNormal(token: String, normalIndex: Int): String {
+            val parts = token.split('/')
+            return when (parts.size) {
+                1 -> "${parts[0]}//$normalIndex"
+                2 -> "${parts[0]}/${parts[1]}/$normalIndex"
+                else -> "${parts[0]}/${parts[1]}/$normalIndex"
+            }
         }
 
         private fun box(width: Float, height: Float, depth: Float, color: Color): Model {
@@ -344,6 +413,12 @@ class WorldRenderer {
         }
 
         private data class ModelBounds(val minY: Float, val maxY: Float)
+
+        companion object {
+            private val WHITESPACE = Regex("\\s+")
+            private val TEMP_NORMAL_A = Vector3()
+            private val TEMP_NORMAL_B = Vector3()
+        }
 
         fun dispose() {
             ownedModels.distinct().forEach(Model::dispose)
