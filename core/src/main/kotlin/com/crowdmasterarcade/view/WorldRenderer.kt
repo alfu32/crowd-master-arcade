@@ -13,6 +13,8 @@ import com.badlogic.gdx.graphics.g3d.ModelInstance
 import com.badlogic.gdx.graphics.g3d.attributes.ColorAttribute
 import com.badlogic.gdx.graphics.g3d.environment.DirectionalLight
 import com.badlogic.gdx.graphics.g3d.utils.ModelBuilder
+import com.badlogic.gdx.graphics.g2d.BitmapFont
+import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import com.badlogic.gdx.math.Vector3
 import com.crowdmasterarcade.model.AppModel
 import com.crowdmasterarcade.model.Card
@@ -20,13 +22,17 @@ import com.crowdmasterarcade.model.CardType
 
 class WorldRenderer {
     private val modelBatch = ModelBatch()
+    private val spriteBatch = SpriteBatch()
+    private val cardFont = BitmapFont()
     private val camera = PerspectiveCamera(67f, Gdx.graphics.width.toFloat(), Gdx.graphics.height.toFloat())
     private val environment = Environment()
     private val assets = PrimitiveAssets()
+    private val labelPosition = Vector3()
 
     init {
         environment.set(ColorAttribute(ColorAttribute.AmbientLight, 0.62f, 0.62f, 0.62f, 1f))
         environment.add(DirectionalLight().set(0.82f, 0.82f, 0.76f, -0.25f, -0.8f, -0.35f))
+        cardFont.color = Color.WHITE
         Gdx.gl.glEnable(GL20.GL_DEPTH_TEST)
     }
 
@@ -55,6 +61,7 @@ class WorldRenderer {
             modelBatch.render(assets.boss, environment)
         }
         modelBatch.end()
+        renderCardLabels(appModel)
     }
 
     private fun renderRoad(appModel: AppModel) {
@@ -86,8 +93,43 @@ class WorldRenderer {
         modelBatch.render(instance, environment)
     }
 
+    private fun renderCardLabels(appModel: AppModel) {
+        spriteBatch.begin()
+        cardFont.data.setScale(1.25f)
+        appModel.cards.filter { it.active }.forEach { card ->
+            labelPosition.set(card.position).add(0f, 0.35f, -0.25f)
+            camera.project(labelPosition)
+            if (labelPosition.z in 0f..1f) {
+                val x = labelPosition.x - 36f
+                val y = labelPosition.y + 12f
+                cardFont.draw(spriteBatch, operationLabel(card), x, y)
+                cardFont.data.setScale(0.72f)
+                cardFont.draw(spriteBatch, targetLabel(card), x - 8f, y - 24f)
+                cardFont.data.setScale(1.25f)
+            }
+        }
+        spriteBatch.end()
+    }
+
+    private fun operationLabel(card: Card): String =
+        when (card.type) {
+            CardType.ADD -> "+${card.value.toInt()}"
+            CardType.SUBTRACT -> "-${card.value.toInt()}"
+            CardType.MULTIPLY -> "x${card.value.toInt()}"
+            CardType.DIVIDE -> "/${card.value.toInt()}"
+            CardType.FIRE_RATE_UP -> "+${card.value.toInt()}"
+        }
+
+    private fun targetLabel(card: Card): String =
+        when (card.type) {
+            CardType.FIRE_RATE_UP -> "FIREPOWER"
+            else -> "MANPOWER"
+        }
+
     fun dispose() {
         modelBatch.dispose()
+        spriteBatch.dispose()
+        cardFont.dispose()
         assets.dispose()
     }
 

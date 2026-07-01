@@ -31,7 +31,7 @@ object AppModelFactory {
             card(CardType.ADD, 15f, 2f, 44f),
             card(CardType.SUBTRACT, 5f, -1.5f, 60f),
             card(CardType.DIVIDE, 2f, 1.5f, 76f),
-            card(CardType.FIRE_RATE_UP, 0.8f, 0f, 96f)
+            card(CardType.FIRE_RATE_UP, 1f, 0f, 96f)
         )
         val enemies = mutableListOf(
             enemy(18, 0f, 88f),
@@ -43,7 +43,7 @@ object AppModelFactory {
             player = player,
             enemyBrigades = enemies,
             cards = cards,
-            projectiles = MutableList(96) { projectile(active = false) },
+            projectiles = MutableList(768) { projectile(active = false) },
             road = road,
             background = Background(theme = "training-ground"),
             boss = Boss(
