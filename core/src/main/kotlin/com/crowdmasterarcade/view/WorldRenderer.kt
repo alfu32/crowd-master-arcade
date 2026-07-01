@@ -30,10 +30,25 @@ import kotlin.math.max
 import kotlin.math.min
 
 class WorldRenderer {
+    private companion object {
+        const val SHADOW_MAP_SIZE = 8192
+        const val SHADOW_VIEWPORT = 150f
+        const val SHADOW_NEAR = 1f
+        const val SHADOW_FAR = 500f
+        const val SHADOW_LOOKAHEAD_Z = 18f
+    }
+
     private val camera = PerspectiveCamera(50f, Gdx.graphics.width.toFloat(), Gdx.graphics.height.toFloat())
     private val environment = Environment()
     private val shadowSettings = ShadowSettings()
-    private val shadowLight = DirectionalShadowLight(4096, 4096, 80f, 80f, 1f, 300f)
+    private val shadowLight = DirectionalShadowLight(
+        SHADOW_MAP_SIZE,
+        SHADOW_MAP_SIZE,
+        SHADOW_VIEWPORT,
+        SHADOW_VIEWPORT,
+        SHADOW_NEAR,
+        SHADOW_FAR
+    )
     private val mainLight = DirectionalLight()
     private val fillLight = DirectionalLight()
         .set(0.005f, 0.005f, 0.005f, 1.2f, 1.8f, 0.5f)
@@ -72,7 +87,7 @@ class WorldRenderer {
         camera.update()
 
         activeBatch = shadowBatch
-        shadowCenter.set(appModel.player.position.x * 0.2f, 0f, 22f)
+        shadowCenter.set(appModel.player.position.x, appModel.player.position.y, appModel.player.position.z + SHADOW_LOOKAHEAD_Z)
         shadowLight.begin(shadowCenter, shadowDirection)
         shadowBatch.begin(shadowLight.camera)
         renderSceneModels(appModel)
