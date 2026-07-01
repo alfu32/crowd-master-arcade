@@ -75,7 +75,7 @@ Status: substantially complete for minimum playable prototype.
 - Projectile lifetime is derived from the level's `projectile_length`.
 - Enemy brigades support per-unit `strength` and optional names.
 - Bosses support names and display current/maximum life above their model.
-- Decorations can be declared in level files, render from OBJ models, fall back to cubes when missing, and are destructible without affecting the squad.
+- Decorations can be declared in level files, render from OBJ models, fall back to cubes when missing, and are ignored by gameplay collisions.
 - Model height calculations now scan mesh vertices directly instead of relying on framework bounding-box helpers.
 - Added a directional shadow-map pass for 3D scene shadows.
 - 3D label blocks are black and larger for readability.

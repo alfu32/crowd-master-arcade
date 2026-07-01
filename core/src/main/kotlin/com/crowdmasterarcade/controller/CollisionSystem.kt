@@ -11,7 +11,6 @@ object CollisionSystem {
         handleProjectiles(appModel)
         handleEnemyContact(appModel)
         handleBossContact(appModel)
-        appModel.decorations.removeAll { !it.active }
         appModel.enemyBrigades.forEach { enemy ->
             enemy.soldiers.removeAll { !it.alive }
             if (enemy.soldiers.isEmpty()) enemy.alive = false
@@ -46,16 +45,6 @@ object CollisionSystem {
                         projectile.active = false
                         consumed = true
                     }
-                }
-            }
-            if (!consumed) {
-                appModel.decorations.firstOrNull { decoration ->
-                    decoration.active && overlaps(projectile.position, decoration.position, GameConfig.BOSS_COLLISION_RADIUS)
-                }?.let { decoration ->
-                    decoration.health -= projectile.damage
-                    decoration.active = decoration.health > 0f
-                    projectile.active = false
-                    consumed = true
                 }
             }
             if (!consumed) {

@@ -74,6 +74,6 @@ can be authored to the same dimensions without hidden scaling.
 `strength` controls each enemy unit's health. Boss and brigade names are
 optional; defaults are `General N` and `brigade N`.
 
-Decorations are destructible scenery. They absorb projectile damage until
-`power` is depleted, but they do not damage or block the player squad. Missing
+Decorations are visual scenery only. They are transparent to projectiles and
+characters, do not shield units, and do not affect gameplay collisions. Missing
 decoration models fall back to a cube.
