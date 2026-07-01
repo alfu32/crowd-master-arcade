@@ -20,9 +20,16 @@ object CollisionSystem {
 
     private fun handleCards(appModel: AppModel) {
         appModel.cards.filter { it.active }.forEach { card ->
-            if (overlaps(appModel.player.position, card.position, GameConfig.PLAYER_COLLISION_RADIUS + GameConfig.CARD_COLLISION_RADIUS)) {
+            if (playerFormationOverlapsCard(appModel, card.position)) {
                 CardEffectSystem.applyCard(appModel.player, card, appModel.runtimeConfig.maxFireRate, appModel.road.width)
             }
+        }
+    }
+
+    private fun playerFormationOverlapsCard(appModel: AppModel, cardPosition: Vector3): Boolean {
+        val aliveSoldiers = appModel.player.soldiers.asSequence().filter { it.alive }
+        return aliveSoldiers.any { soldier ->
+            overlaps(soldier.worldPosition, cardPosition, GameConfig.CARD_COLLISION_RADIUS)
         }
     }
 

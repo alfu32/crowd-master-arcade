@@ -177,11 +177,11 @@ class WorldRenderer {
             private set
         var firepowerCard = instance(box(1.2f, 1.2f, 0.22f, Color.WHITE))
             private set
-        var manpowerCardHalfHeight = modelHalfHeight(manpowerCard.model)
+        var manpowerCardTopY = modelTopY(manpowerCard.model)
             private set
-        var firepowerCardHalfHeight = modelHalfHeight(firepowerCard.model)
+        var firepowerCardTopY = modelTopY(firepowerCard.model)
             private set
-        var bossHalfHeight = modelHalfHeight(boss.model)
+        var bossTopY = modelTopY(boss.model)
             private set
 
         fun useModelPaths(paths: LevelModelPaths) {
@@ -191,9 +191,9 @@ class WorldRenderer {
             boss = instance(loadObj(paths.boss, fallback = { box(2.4f, 2.6f, 2.4f, Color.WHITE) }))
             manpowerCard = instance(loadObj(paths.manpowerCard, fallback = { box(1.2f, 1.2f, 0.22f, Color.WHITE) }))
             firepowerCard = instance(loadObj(paths.firepowerCard, fallback = { box(1.2f, 1.2f, 0.22f, Color.WHITE) }))
-            manpowerCardHalfHeight = modelHalfHeight(manpowerCard.model)
-            firepowerCardHalfHeight = modelHalfHeight(firepowerCard.model)
-            bossHalfHeight = modelHalfHeight(boss.model)
+            manpowerCardTopY = modelTopY(manpowerCard.model)
+            firepowerCardTopY = modelTopY(firepowerCard.model)
+            bossTopY = modelTopY(boss.model)
         }
 
         fun decoration(path: String): ModelInstance =
@@ -205,7 +205,9 @@ class WorldRenderer {
             val file = resolve(path)
             if (!file.exists()) return fallback()
             return try {
-                objLoader.loadModel(file).also(ownedModels::add)
+                objLoader.loadModel(file)
+                    .also(::normalizeModelToMinOrigin)
+                    .also(ownedModels::add)
             } catch (_: RuntimeException) {
                 fallback()
             }
@@ -247,7 +249,44 @@ class WorldRenderer {
 
         private fun instance(model: Model) = ModelInstance(model)
 
-        private fun modelHalfHeight(model: Model): Float = modelBounds(model).halfHeight
+        private fun modelTopY(model: Model): Float = modelBounds(model).maxY
+
+        private fun normalizeModelToMinOrigin(model: Model) {
+            var minX = Float.POSITIVE_INFINITY
+            var minY = Float.POSITIVE_INFINITY
+            var minZ = Float.POSITIVE_INFINITY
+
+            model.meshes.forEach { mesh ->
+                val position = mesh.getVertexAttribute(Usage.Position) ?: return@forEach
+                val vertexSize = mesh.vertexSize / 4
+                val positionOffset = position.offset / 4
+                val vertices = FloatArray(mesh.numVertices * vertexSize)
+                mesh.getVertices(vertices)
+                for (vertex in 0 until mesh.numVertices) {
+                    val base = vertex * vertexSize + positionOffset
+                    minX = min(minX, vertices[base])
+                    minY = min(minY, vertices[base + 1])
+                    minZ = min(minZ, vertices[base + 2])
+                }
+            }
+
+            if (!minX.isFinite() || !minY.isFinite() || !minZ.isFinite()) return
+
+            model.meshes.forEach { mesh ->
+                val position = mesh.getVertexAttribute(Usage.Position) ?: return@forEach
+                val vertexSize = mesh.vertexSize / 4
+                val positionOffset = position.offset / 4
+                val vertices = FloatArray(mesh.numVertices * vertexSize)
+                mesh.getVertices(vertices)
+                for (vertex in 0 until mesh.numVertices) {
+                    val base = vertex * vertexSize + positionOffset
+                    vertices[base] -= minX
+                    vertices[base + 1] -= minY
+                    vertices[base + 2] -= minZ
+                }
+                mesh.setVertices(vertices)
+            }
+        }
 
         private fun modelBounds(model: Model): ModelBounds {
             var minY = Float.POSITIVE_INFINITY
@@ -265,11 +304,11 @@ class WorldRenderer {
                     maxY = max(maxY, y)
                 }
             }
-            if (!minY.isFinite() || !maxY.isFinite()) return ModelBounds(0f)
-            return ModelBounds((maxY - minY) * 0.5f)
+            if (!minY.isFinite() || !maxY.isFinite()) return ModelBounds(0f, 0f)
+            return ModelBounds(minY, maxY)
         }
 
-        private data class ModelBounds(val halfHeight: Float)
+        private data class ModelBounds(val minY: Float, val maxY: Float)
 
         fun dispose() {
             ownedModels.distinct().forEach(Model::dispose)
@@ -278,12 +317,12 @@ class WorldRenderer {
 
     private class Text3dRenderer(private val assets: RenderAssets) {
         fun renderCardText(modelBatch: ModelBatch, environment: Environment, card: Card) {
-            val cardHalfHeight = if (card.target == CardTarget.FIREPOWER) {
-                assets.firepowerCardHalfHeight
+            val cardTopOffset = if (card.target == CardTarget.FIREPOWER) {
+                assets.firepowerCardTopY
             } else {
-                assets.manpowerCardHalfHeight
+                assets.manpowerCardTopY
             }
-            val cardTopY = card.position.y + cardHalfHeight
+            val cardTopY = card.position.y + cardTopOffset
             val labelBottomY = cardTopY + 0.28f
             val smallCell = 0.07f
             val largeCell = 0.14f
@@ -293,7 +332,7 @@ class WorldRenderer {
         }
 
         fun renderBossText(modelBatch: ModelBatch, environment: Environment, boss: Boss) {
-            val baseY = boss.position.y + assets.bossHalfHeight + 0.55f
+            val baseY = boss.position.y + assets.bossTopY + 0.55f
             val z = boss.position.z - 0.22f
             renderLine(modelBatch, environment, boss.name, boss.position.x, baseY + 0.34f, z, 0.1f)
             renderLine(
