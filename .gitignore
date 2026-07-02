@@ -7,4 +7,5 @@ out/
 *.iml
 .kode
 .kode.json
+.secrets/
 .secrets
