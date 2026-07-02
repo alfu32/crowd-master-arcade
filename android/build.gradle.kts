@@ -84,6 +84,11 @@ android {
             )
         }
     }
+
+    dependenciesInfo {
+        includeInApk = false
+        includeInBundle = false
+    }
 }
 
 val copyAndroidNatives by tasks.registering {

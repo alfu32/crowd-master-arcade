@@ -12,13 +12,19 @@ plugins {
     id("org.jetbrains.intellij.platform.settings") version "2.17.0"
 }
 
+val buildsIntellijPlugin = gradle.startParameter.taskNames.any { taskName ->
+    taskName.contains("level-intellij-plugin") || taskName.contains("buildPlugin")
+}
+
 dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {
         mavenCentral()
         google()
-        intellijPlatform {
-            defaultRepositories()
+        if (buildsIntellijPlugin) {
+            intellijPlatform {
+                defaultRepositories()
+            }
         }
     }
 }
