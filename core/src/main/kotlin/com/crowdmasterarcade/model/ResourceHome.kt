@@ -8,7 +8,6 @@ object ResourceHome {
     private const val ROOT_FOLDER = ".crowdmaster"
     private const val HOME_PROPERTY = "crowdmaster.home"
     private const val HOME_ENV = "CROWD_MASTER_ARCADE_HOME"
-    private val seedFolders = listOf("levels", "assets")
 
     private var initialized = false
     private var rootOverride: FileHandle? = null
@@ -20,9 +19,9 @@ object ResourceHome {
         if (initialized) return
         val root = root
         root.mkdirs()
-        seedFolders.forEach { folder ->
-            copyMissing(Gdx.files.internal(folder), root.child(folder))
-        }
+        seedLevels(root)
+        copyMissing(Gdx.files.internal("assets"), root.child("assets"))
+        seedOctdSources(root)
         initialized = true
     }
 
@@ -35,7 +34,7 @@ object ResourceHome {
 
     fun levelsFolder(): FileHandle {
         initialize()
-        return root.child("levels")
+        return root
     }
 
     internal fun useRootForTests(root: FileHandle?) {
@@ -61,6 +60,35 @@ object ResourceHome {
         } else {
             Gdx.files.local(ROOT_FOLDER)
         }
+    }
+
+    private fun seedLevels(root: FileHandle) {
+        val index = Gdx.files.internal("levels/index.txt")
+        if (index.exists()) {
+            index.readString("UTF-8")
+                .lineSequence()
+                .map { it.substringBefore("#").trim() }
+                .filter { it.isNotBlank() }
+                .forEach { name ->
+                    copyMissing(Gdx.files.internal("levels/$name"), root.child(name))
+                }
+            return
+        }
+
+        val levels = Gdx.files.internal("levels")
+        if (levels.exists()) {
+            levels.list().forEach { level ->
+                if (!level.isDirectory) copyMissing(level, root.child(level.name()))
+            }
+        }
+    }
+
+    private fun seedOctdSources(root: FileHandle) {
+        val assets = Gdx.files.internal("assets")
+        if (!assets.exists()) return
+        assets.list()
+            .filter { !it.isDirectory && it.extension().equals("octd", ignoreCase = true) }
+            .forEach { source -> copyMissing(source, root.child(source.name())) }
     }
 
     private fun copyMissing(source: FileHandle, target: FileHandle) {

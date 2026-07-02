@@ -26,6 +26,7 @@ import com.crowdmasterarcade.model.CardTarget
 import com.crowdmasterarcade.model.Decoration
 import com.crowdmasterarcade.model.LevelModelPaths
 import com.crowdmasterarcade.model.ResourceHome
+import java.io.ByteArrayInputStream
 import java.io.File
 import kotlin.math.max
 import kotlin.math.min
@@ -234,7 +235,7 @@ class WorldRenderer {
             val file = resolve(path)
             if (!file.exists()) return fallback()
             return try {
-                objLoader.loadModel(objWithNormals(file, path))
+                objLoader.loadModel(objWithNormals(file))
                     .also(::normalizeModelToMinOrigin)
                     .also(ownedModels::add)
             } catch (_: RuntimeException) {
@@ -248,7 +249,7 @@ class WorldRenderer {
             return ResourceHome.resolve(path)
         }
 
-        private fun objWithNormals(file: FileHandle, sourcePath: String): FileHandle {
+        private fun objWithNormals(file: FileHandle): FileHandle {
             val text = file.readString("UTF-8")
             if (text.lineSequence().any { it.trimStart().startsWith("vn ") }) return file
 
@@ -282,15 +283,7 @@ class WorldRenderer {
                 }
             }
 
-            val cacheName = sourcePath
-                .replace(File.separatorChar, '_')
-                .replace('/', '_')
-                .replace(':', '_')
-                .replace(' ', '_')
-            val generated = ResourceHome.root.child(".generated/normal-assets/$cacheName.obj")
-            generated.parent().mkdirs()
-            generated.writeString(output.toString(), false, "UTF-8")
-            return generated
+            return InMemoryFileHandle(file.path(), output.toString())
         }
 
         private fun faceNormal(faceTokens: List<String>, vertices: List<Vector3>): Vector3 {
@@ -417,6 +410,13 @@ class WorldRenderer {
             private val WHITESPACE = Regex("\\s+")
             private val TEMP_NORMAL_A = Vector3()
             private val TEMP_NORMAL_B = Vector3()
+        }
+
+        private class InMemoryFileHandle(path: String, private val text: String) : FileHandle(path) {
+            override fun exists(): Boolean = true
+            override fun read() = ByteArrayInputStream(text.toByteArray(Charsets.UTF_8))
+            override fun readString(charset: String?): String = text
+            override fun length(): Long = text.toByteArray(Charsets.UTF_8).size.toLong()
         }
 
         fun dispose() {

@@ -13,7 +13,12 @@ plugins {
 }
 
 val buildsIntellijPlugin = gradle.startParameter.taskNames.any { taskName ->
-    taskName.contains("level-intellij-plugin") || taskName.contains("buildPlugin")
+    taskName == "test" ||
+        taskName == "check" ||
+        taskName.endsWith(":test") ||
+        taskName.endsWith(":check") ||
+        taskName.contains("level-intellij-plugin") ||
+        taskName.contains("buildPlugin")
 }
 
 dependencyResolutionManagement {

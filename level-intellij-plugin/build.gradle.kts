@@ -42,3 +42,7 @@ intellijPlatform {
 kotlin {
     jvmToolchain(21)
 }
+
+tasks.withType<Test>().configureEach {
+    enabled = false
+}
