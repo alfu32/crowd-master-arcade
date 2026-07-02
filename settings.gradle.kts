@@ -15,4 +15,4 @@ dependencyResolutionManagement {
 }
 
 rootProject.name = "crowd-master-arcade"
-include("core", "lwjgl3")
+include("core", "lwjgl3", "android")

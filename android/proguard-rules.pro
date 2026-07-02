@@ -1,0 +1,2 @@
+-keep class com.badlogic.gdx.backends.android.AndroidApplication { *; }
+-keep class com.crowdmasterarcade.** { *; }

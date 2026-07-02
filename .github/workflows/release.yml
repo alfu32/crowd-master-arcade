@@ -1,0 +1,240 @@
+name: Release
+
+on:
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: "Release tag, e.g. 1.0.0"
+        required: true
+      android_version_code:
+        description: "Android versionCode"
+        required: false
+        default: "1"
+      draft:
+        description: "Create GitHub release as draft"
+        required: false
+        default: "true"
+      prerelease:
+        description: "Mark GitHub release as prerelease"
+        required: false
+        default: "false"
+
+permissions:
+  contents: write
+
+jobs:
+  build-linux:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: "21"
+      - name: Fetch appimagetool
+        run: |
+          set -euo pipefail
+          curl -fsSL -o "$RUNNER_TEMP/appimagetool.AppImage" \
+            https://github.com/AppImage/AppImageKit/releases/download/continuous/appimagetool-x86_64.AppImage
+          chmod +x "$RUNNER_TEMP/appimagetool.AppImage"
+      - name: Build Linux bundles
+        env:
+          APPIMAGETOOL: ${{ runner.temp }}/appimagetool.AppImage
+        run: ./gradlew :lwjgl3:bundleLinuxTar :lwjgl3:bundleLinuxAppImage :lwjgl3:jar -PreleaseNumber="${{ inputs.tag }}"
+      - uses: snapcore/action-build@v1
+        id: snapcraft
+        env:
+          CROWD_MASTER_ARCADE_SNAP_VERSION: ${{ inputs.tag }}
+      - name: Collect snap
+        run: |
+          mkdir -p dist
+          cp "${{ steps.snapcraft.outputs.snap }}" "dist/crowd-master-arcade-dist-${{ inputs.tag }}-linux.snap"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: crowd-master-arcade-linux
+          path: |
+            dist/*.tar.gz
+            dist/*.AppImage
+            dist/*.snap
+            lwjgl3/build/libs/*.jar
+
+  build-windows:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: "21"
+      - name: Build desktop jar
+        run: .\gradlew.bat :lwjgl3:jar -PreleaseNumber="${{ inputs.tag }}"
+      - name: Build MSI
+        shell: powershell
+        run: |
+          $ErrorActionPreference = "Stop"
+          $version = "${{ inputs.tag }}"
+          $appName = "CrowdMasterArcade"
+          $jarDir = "lwjgl3\build\libs"
+          $jarName = "crowd-master-arcade-$version.jar"
+          $jpackage = Join-Path $env:JAVA_HOME "bin\jpackage.exe"
+          & $jpackage --type app-image --name $appName --app-version $version --vendor "K3D0" `
+            --input $jarDir --main-jar $jarName --dest "dist\jpackage" `
+            --icon "assets\appicon.ico" --java-options "-Xms256m" --java-options "-Xmx1g"
+          & $jpackage --type msi --name $appName --app-version $version --vendor "K3D0" `
+            --app-image "dist\jpackage\$appName" --dest "dist\installer" `
+            --icon "assets\appicon.ico" --win-per-user-install --win-menu --win-shortcut
+      - name: Prepare MSIX layout
+        shell: powershell
+        run: |
+          $ErrorActionPreference = "Stop"
+          $version = "${{ inputs.tag }}"
+          $appName = "CrowdMasterArcade"
+          $displayName = "Crowd Master Arcade"
+          $publisher = "CN=7F0CBC95-8035-4AF2-9B17-C38D58351CE5"
+          $publisherDisplayName = "K3D0"
+          $packageName = "K3D0.crowd-master-arcade"
+          $appImage = "dist\jpackage\$appName"
+          $msixRoot = "dist\msix"
+          if (Test-Path $msixRoot) { Remove-Item $msixRoot -Recurse -Force }
+          New-Item $msixRoot -ItemType Directory -Force | Out-Null
+          Copy-Item -Path (Join-Path $appImage "*") -Destination $msixRoot -Recurse -Force
+          $assetsDir = Join-Path $msixRoot "Assets"
+          New-Item $assetsDir -ItemType Directory -Force | Out-Null
+          Copy-Item "assets\appicon.png" (Join-Path $assetsDir "Square150x150Logo.png")
+          Copy-Item "assets\appicon.png" (Join-Path $assetsDir "Square44x44Logo.png")
+          Copy-Item "assets\appicon.png" (Join-Path $assetsDir "StoreLogo.png")
+          $manifest = @(
+            '<?xml version="1.0" encoding="utf-8"?>',
+            '<Package',
+            '  xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10"',
+            '  xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10"',
+            '  xmlns:desktop="http://schemas.microsoft.com/appx/manifest/desktop/windows10"',
+            '  xmlns:rescap="http://schemas.microsoft.com/appx/manifest/foundation/windows10/restrictedcapabilities"',
+            '  IgnorableNamespaces="uap desktop rescap">',
+            '  <Identity Name="__PACKAGE_NAME__" Publisher="__PUBLISHER__" Version="__VERSION__.0" />',
+            '  <Properties>',
+            '    <DisplayName>__DISPLAY_NAME__</DisplayName>',
+            '    <PublisherDisplayName>__PUBLISHER_DISPLAY_NAME__</PublisherDisplayName>',
+            '    <Logo>Source\Assets\StoreLogo.png</Logo>',
+            '  </Properties>',
+            '  <Resources><Resource Language="en-us" /></Resources>',
+            '  <Dependencies><TargetDeviceFamily Name="Windows.Desktop" MinVersion="10.0.17763.0" MaxVersionTested="10.0.22621.0" /></Dependencies>',
+            '  <Applications>',
+            '    <Application Id="CrowdMasterArcade" Executable="Source\__APP_EXE__" EntryPoint="Windows.FullTrustApplication">',
+            '      <uap:VisualElements DisplayName="__DISPLAY_NAME__" Description="__DISPLAY_NAME__" Square150x150Logo="Source\Assets\Square150x150Logo.png" Square44x44Logo="Source\Assets\Square44x44Logo.png" BackgroundColor="transparent" />',
+            '    </Application>',
+            '  </Applications>',
+            '  <Capabilities><rescap:Capability Name="runFullTrust" /></Capabilities>',
+            '</Package>'
+          ) -join "`n"
+          $exe = Get-ChildItem $msixRoot -Filter *.exe | Select-Object -First 1
+          if ($null -eq $exe) { throw "No executable found in $msixRoot" }
+          $manifest = $manifest.Replace("__PACKAGE_NAME__", $packageName)
+          $manifest = $manifest.Replace("__PUBLISHER__", $publisher)
+          $manifest = $manifest.Replace("__PUBLISHER_DISPLAY_NAME__", $publisherDisplayName)
+          $manifest = $manifest.Replace("__VERSION__", $version)
+          $manifest = $manifest.Replace("__DISPLAY_NAME__", $displayName)
+          $manifest = $manifest.Replace("__APP_EXE__", $exe.Name)
+          $manifest | Out-File -Encoding utf8 (Join-Path $msixRoot "AppxManifest.xml")
+      - name: Build MSIX
+        id: msix-build
+        uses: BHznJNs/msix-build@v0.9
+        with:
+          app-build-path: dist/msix/.
+          appx-manifest-path: dist/msix/AppxManifest.xml
+          icon-path: assets/appicon.png
+          priconfig-path: scripts/priconfig.xml
+      - name: Sign MSIX and MSI
+        shell: powershell
+        env:
+          K3D_PFX_B64: ${{ secrets.K3D_PFX_B64 }}
+          K3D_PFX_PASSWORD: ${{ secrets.K3D_PFX_PASSWORD }}
+        run: |
+          $ErrorActionPreference = "Stop"
+          if ([string]::IsNullOrWhiteSpace($env:K3D_PFX_B64)) { throw "K3D_PFX_B64 secret is empty" }
+          if ([string]::IsNullOrWhiteSpace($env:K3D_PFX_PASSWORD)) { throw "K3D_PFX_PASSWORD secret is empty" }
+          $pfxPath = Join-Path $env:RUNNER_TEMP "k3d-sign.pfx"
+          [IO.File]::WriteAllBytes($pfxPath, [Convert]::FromBase64String($env:K3D_PFX_B64))
+          $signtool = Get-ChildItem "C:\Program Files (x86)\Windows Kits\10\bin" -Recurse -Filter signtool.exe | Sort-Object FullName -Descending | Select-Object -First 1
+          if ($null -eq $signtool) { throw "signtool.exe not found" }
+          $msixPath = "${{ steps.msix-build.outputs.msix-path }}"
+          & $signtool.FullName sign /fd SHA256 /f $pfxPath /p $env:K3D_PFX_PASSWORD /tr http://timestamp.digicert.com /td SHA256 $msixPath
+          Get-ChildItem "dist\installer" -Filter *.msi | ForEach-Object {
+            & $signtool.FullName sign /fd SHA256 /f $pfxPath /p $env:K3D_PFX_PASSWORD /tr http://timestamp.digicert.com /td SHA256 $_.FullName
+          }
+          Copy-Item $msixPath "dist\installer\crowd-master-arcade-${{ inputs.tag }}.msix" -Force
+      - uses: actions/upload-artifact@v4
+        with:
+          name: crowd-master-arcade-windows
+          path: |
+            dist/installer/*.msi
+            dist/installer/*.msix
+
+  build-android:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: "21"
+      - uses: android-actions/setup-android@v3
+      - name: Install Android SDK components
+        run: sdkmanager "platforms;android-36" "build-tools;36.0.0"
+      - name: Prepare Android signing keystore
+        env:
+          ANDROID_UPLOAD_KEYSTORE_B64: ${{ secrets.ANDROID_UPLOAD_KEYSTORE_B64 }}
+          ANDROID_UPLOAD_STORE_PASSWORD: ${{ secrets.ANDROID_UPLOAD_STORE_PASSWORD }}
+          ANDROID_UPLOAD_KEY_ALIAS: ${{ secrets.ANDROID_UPLOAD_KEY_ALIAS }}
+          ANDROID_UPLOAD_KEY_PASSWORD: ${{ secrets.ANDROID_UPLOAD_KEY_PASSWORD }}
+        run: |
+          set -euo pipefail
+          test -n "${ANDROID_UPLOAD_KEYSTORE_B64:-}"
+          test -n "${ANDROID_UPLOAD_STORE_PASSWORD:-}"
+          test -n "${ANDROID_UPLOAD_KEY_ALIAS:-}"
+          test -n "${ANDROID_UPLOAD_KEY_PASSWORD:-}"
+          keystore_path="$RUNNER_TEMP/crowd-master-arcade-upload.jks"
+          echo "$ANDROID_UPLOAD_KEYSTORE_B64" | base64 --decode > "$keystore_path"
+          chmod 600 "$keystore_path"
+          {
+            echo "ANDROID_UPLOAD_STORE_FILE=$keystore_path"
+            echo "ANDROID_UPLOAD_STORE_PASSWORD=$ANDROID_UPLOAD_STORE_PASSWORD"
+            echo "ANDROID_UPLOAD_KEY_ALIAS=$ANDROID_UPLOAD_KEY_ALIAS"
+            echo "ANDROID_UPLOAD_KEY_PASSWORD=$ANDROID_UPLOAD_KEY_PASSWORD"
+          } >> "$GITHUB_ENV"
+      - name: Build Android APK + AAB
+        run: ./gradlew :android:bundleAndroidApk :android:bundleAndroidAab -PreleaseNumber="${{ inputs.tag }}" -PandroidVersionCode="${{ inputs.android_version_code }}"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: crowd-master-arcade-android
+          path: |
+            dist/*.apk
+            dist/*.aab
+
+  release:
+    runs-on: ubuntu-latest
+    needs: [build-linux, build-windows, build-android]
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/download-artifact@v4
+        with:
+          path: artifacts
+      - name: Create or update GitHub release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          TAG: ${{ inputs.tag }}
+          DRAFT: ${{ inputs.draft }}
+          PRERELEASE: ${{ inputs.prerelease }}
+        run: |
+          set -euo pipefail
+          if ! gh release view "$TAG" >/dev/null 2>&1; then
+            gh release create "$TAG" --draft="$DRAFT" --prerelease="$PRERELEASE"
+          else
+            gh release edit "$TAG" --draft="$DRAFT" --prerelease="$PRERELEASE"
+          fi
+          files=$(find artifacts -type f \( -name "*.tar.gz" -o -name "*.AppImage" -o -name "*.snap" -o -name "*.jar" -o -name "*.msi" -o -name "*.msix" -o -name "*.apk" -o -name "*.aab" \))
+          if [ -z "$files" ]; then
+            echo "No release artifacts found."
+            exit 1
+          fi
+          gh release upload "$TAG" $files --clobber
