@@ -211,7 +211,8 @@ tasks.register("bundleLinuxAppImage") {
         val payload = appDir.resolve("usr/lib/$appSlug")
         val bin = appDir.resolve("usr/bin")
         val applications = appDir.resolve("usr/share/applications")
-        listOf(payload, bin, applications).forEach { it.mkdirs() }
+        val iconDir = appDir.resolve("usr/share/icons/hicolor/512x512/apps")
+        listOf(payload, bin, applications, iconDir).forEach { it.mkdirs() }
         copy { from(bundleDir); into(payload) }
         bin.resolve(appSlug).writeText("#!/bin/sh\nexec \"${'$'}APPDIR/usr/lib/$appSlug/$appSlug\" \"${'$'}@\"\n")
         bin.resolve(appSlug).setExecutable(true, false)
@@ -230,6 +231,16 @@ tasks.register("bundleLinuxAppImage") {
         """.trimMargin()
         appDir.resolve("$appSlug.desktop").writeText(desktop)
         applications.resolve("$appSlug.desktop").writeText(desktop)
+        copy {
+            from(rootProject.layout.projectDirectory.file("assets/appicon.png"))
+            into(appDir)
+            rename { "$appSlug.png" }
+        }
+        copy {
+            from(rootProject.layout.projectDirectory.file("assets/appicon.png"))
+            into(iconDir)
+            rename { "$appSlug.png" }
+        }
         val process = ProcessBuilder(appImageTool, appDir.absolutePath, outFile.absolutePath)
             .directory(rootProject.projectDir)
             .inheritIO()
@@ -268,4 +279,19 @@ tasks.register("bundleLinuxSnap") {
 
 tasks.register("bundleAll") {
     dependsOn("bundleLinuxTar", "bundleWin", "bundleMacArm64Tar")
+}
+
+tasks.register("bundleLocalDir") {
+    val osName = System.getProperty("os.name").lowercase()
+    dependsOn(
+        when {
+            osName.contains("win") -> "bundleWinDir"
+            osName.contains("mac") -> "bundleMacArm64Dir"
+            else -> "bundleLinuxDir"
+        }
+    )
+}
+
+tasks.register("dev") {
+    dependsOn("bundleLocalDir")
 }

@@ -122,6 +122,20 @@ tasks.register<Copy>("bundleAndroidApk") {
     into(rootProject.layout.projectDirectory.dir("dist"))
 }
 
+tasks.register<Copy>("bundleAndroidDebugApk") {
+    dependsOn("assembleDebug")
+    from(layout.buildDirectory.dir("outputs/apk/debug"))
+    include("*-debug.apk")
+    rename { "crowd-master-arcade-$releaseVersionName-debug.apk" }
+    into(rootProject.layout.projectDirectory.dir("dist"))
+}
+
+tasks.register("bundleAndroidLocalTestApk") {
+    group = "distribution"
+    description = "Builds a debug APK for local device testing and copies it to dist/."
+    dependsOn("bundleAndroidDebugApk")
+}
+
 tasks.register<Copy>("bundleAndroidAab") {
     dependsOn("bundleRelease")
     from(layout.buildDirectory.dir("outputs/bundle/release"))

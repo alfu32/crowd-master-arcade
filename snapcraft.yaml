@@ -71,11 +71,17 @@ parts:
       set -eux
 
       export JAVA_HOME="$(dirname "$(dirname "$(readlink -f "$(command -v javac)")")")"
+      export GRADLE_USER_HOME="$CRAFT_PROJECT_DIR/.gradle-user"
       export PATH="$JAVA_HOME/bin:$PATH"
       SNAP_VERSION="${CROWD_MASTER_ARCADE_SNAP_VERSION:-$(git describe --tags --abbrev=0 2>/dev/null || echo 0.1.0)}"
 
-      chmod 755 ./gradlew
-      ./gradlew --no-daemon -PreleaseNumber="$SNAP_VERSION" :lwjgl3:jar
+      if command -v gradle >/dev/null 2>&1; then
+        GRADLE_CMD="gradle"
+      else
+        chmod 755 ./gradlew
+        GRADLE_CMD="./gradlew"
+      fi
+      "$GRADLE_CMD" --no-daemon -PreleaseNumber="$SNAP_VERSION" :lwjgl3:jar
 
       APP_JAR="lwjgl3/build/libs/crowd-master-arcade-$SNAP_VERSION.jar"
       if [ ! -f "$APP_JAR" ]; then
