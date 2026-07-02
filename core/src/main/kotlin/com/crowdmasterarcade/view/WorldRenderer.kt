@@ -550,17 +550,18 @@ class WorldRenderer {
         fun renderCardText(modelBatch: ModelBatch, environment: Environment, card: Card) {
             val cardTopOffset = assets.cardTopY(card)
             val cardTopY = card.position.y + cardTopOffset
-            val labelBottomY = cardTopY + 0.36f
             val smallCell = 0.08f
             val largeCell = 0.14f
-            renderLine(modelBatch, environment, operationLabel(card), card.position.x, labelBottomY + 0.34f, card.position.z - 0.14f, largeCell)
-            renderLine(modelBatch, environment, targetTop(card), card.position.x, labelBottomY, card.position.z - 0.14f, smallCell)
+            val targetBaselineY = cardTopY + 0.58f
+            val operationBaselineY = targetBaselineY + glyphHeight(largeCell) + 0.18f
+            renderLine(modelBatch, environment, operationLabel(card), card.position.x, operationBaselineY, card.position.z - 0.14f, largeCell)
+            renderLine(modelBatch, environment, targetTop(card), card.position.x, targetBaselineY, card.position.z - 0.14f, smallCell)
         }
 
         fun renderBossText(modelBatch: ModelBatch, environment: Environment, boss: Boss) {
-            val baseY = boss.position.y + assets.bossTopY(boss.modelPath) + 0.65f
+            val baseY = boss.position.y + assets.bossTopY(boss.modelPath) + 0.82f
             val z = boss.position.z - 0.22f
-            renderLine(modelBatch, environment, boss.name, boss.position.x, baseY + 0.34f, z, 0.1f)
+            renderLine(modelBatch, environment, boss.name, boss.position.x, baseY + glyphHeight(0.1f) + 0.18f, z, 0.1f)
             renderLine(
                 modelBatch,
                 environment,
@@ -595,6 +596,7 @@ class WorldRenderer {
                                 baselineY - row * cell,
                                 z
                             )
+                            assets.textBlock.transform.rotate(Vector3.Y, 180f)
                             assets.textBlock.transform.scale(cell / 0.055f, cell / 0.055f, 1f)
                             modelBatch.render(assets.textBlock, environment)
                         }
@@ -603,6 +605,8 @@ class WorldRenderer {
                 cursorX += glyphWidth * cell + cell
             }
         }
+
+        private fun glyphHeight(cell: Float): Float = 5f * cell
 
         private fun operationLabel(card: Card): String =
             when (card.operation) {
