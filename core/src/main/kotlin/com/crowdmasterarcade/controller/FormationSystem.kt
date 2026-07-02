@@ -30,7 +30,7 @@ object FormationSystem {
     }
 
     fun recalculatePlayerFormation(player: PlayerBrigade, road: Road) {
-        recalculateFormation(player.soldiers, playerFormationWidth(player.position.x, road))
+        recalculateFormation(player.soldiers, playerFormationWidth(player.position.x, road), zDirection = 1f)
     }
 
     fun recalculateEnemyFormation(enemy: EnemyBrigade, road: Road) {

@@ -32,6 +32,14 @@ class FormationSystemTest {
     }
 
     @Test
+    fun playerFormationStartsAtAnchorAndExtendsForward() {
+        val appModel = AppModelFactory.initAppModel()
+
+        assertEquals(0f, appModel.player.soldiers.minOf { it.localOffset.z })
+        assertTrue(appModel.player.soldiers.maxOf { it.localOffset.z } > 0f)
+    }
+
+    @Test
     fun enemyFormationWidthAccountsForXPosition() {
         val road = Road(width = 8f, length = 100f, leftBoundary = -4f, rightBoundary = 4f)
 

@@ -38,6 +38,7 @@ class WorldRenderer {
         const val SHADOW_NEAR = 1f
         const val SHADOW_FAR = 500f
         const val SHADOW_LOOKAHEAD_Z = 18f
+        const val ROAD_START_Z = -28f
     }
 
     private val camera = PerspectiveCamera(50f, Gdx.graphics.width.toFloat(), Gdx.graphics.height.toFloat())
@@ -129,12 +130,13 @@ class WorldRenderer {
     }
 
     private fun renderRoad(appModel: AppModel) {
-        assets.road.transform.setToTranslation(0f, -0.08f, appModel.road.length / 2f)
+        val centerZ = ROAD_START_Z + appModel.road.length / 2f
+        assets.road.transform.setToTranslation(0f, -0.08f, centerZ)
         assets.road.transform.scale(appModel.road.width, 1f, appModel.road.length)
         activeBatch.render(assets.road, environment)
-        assets.leftRail.transform.setToTranslation(appModel.road.leftBoundary - 0.15f, 0.05f, appModel.road.length / 2f)
+        assets.leftRail.transform.setToTranslation(appModel.road.leftBoundary - 0.15f, 0.05f, centerZ)
         assets.leftRail.transform.scale(1f, 1f, appModel.road.length)
-        assets.rightRail.transform.setToTranslation(appModel.road.rightBoundary + 0.15f, 0.05f, appModel.road.length / 2f)
+        assets.rightRail.transform.setToTranslation(appModel.road.rightBoundary + 0.15f, 0.05f, centerZ)
         assets.rightRail.transform.scale(1f, 1f, appModel.road.length)
         activeBatch.render(assets.leftRail, environment)
         activeBatch.render(assets.rightRail, environment)
@@ -472,12 +474,11 @@ class WorldRenderer {
         fun renderCardText(modelBatch: ModelBatch, environment: Environment, card: Card) {
             val cardTopOffset = assets.cardTopY(card)
             val cardTopY = card.position.y + cardTopOffset
-            val labelBottomY = cardTopY + 0.28f
-            val smallCell = 0.07f
+            val labelBottomY = cardTopY + 0.36f
+            val smallCell = 0.08f
             val largeCell = 0.14f
-            renderLine(modelBatch, environment, operationLabel(card), card.position.x, labelBottomY + 0.76f, card.position.z - 0.14f, largeCell)
-            renderLine(modelBatch, environment, targetTop(card), card.position.x, labelBottomY + 0.34f, card.position.z - 0.14f, smallCell)
-            renderLine(modelBatch, environment, "POWER", card.position.x, labelBottomY + 0.16f, card.position.z - 0.14f, smallCell)
+            renderLine(modelBatch, environment, operationLabel(card), card.position.x, labelBottomY + 0.34f, card.position.z - 0.14f, largeCell)
+            renderLine(modelBatch, environment, targetTop(card), card.position.x, labelBottomY, card.position.z - 0.14f, smallCell)
         }
 
         fun renderBossText(modelBatch: ModelBatch, environment: Environment, boss: Boss) {
