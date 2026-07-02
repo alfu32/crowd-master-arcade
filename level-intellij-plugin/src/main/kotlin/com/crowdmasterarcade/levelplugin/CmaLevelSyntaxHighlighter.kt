@@ -35,6 +35,10 @@ class CmaLevelSyntaxHighlighter : SyntaxHighlighterBase() {
             "CMA_LEVEL_NUMBER",
             DefaultLanguageHighlighterColors.NUMBER
         )
+        val HEX_COLOR = TextAttributesKey.createTextAttributesKey(
+            "CMA_LEVEL_HEX_COLOR",
+            DefaultLanguageHighlighterColors.VALID_STRING_ESCAPE
+        )
         val PATH = TextAttributesKey.createTextAttributesKey(
             "CMA_LEVEL_PATH",
             DefaultLanguageHighlighterColors.STRING
@@ -58,6 +62,7 @@ class CmaLevelSyntaxHighlighter : SyntaxHighlighterBase() {
             CmaLevelTokenTypes.OPERATION to OPERATION,
             CmaLevelTokenTypes.PARAM to PARAM,
             CmaLevelTokenTypes.NUMBER to NUMBER,
+            CmaLevelTokenTypes.HEX_COLOR to HEX_COLOR,
             CmaLevelTokenTypes.PATH to PATH,
             CmaLevelTokenTypes.COMMENT to COMMENT,
             CmaLevelTokenTypes.SEPARATOR to SEPARATOR,

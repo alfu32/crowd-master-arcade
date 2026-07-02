@@ -19,13 +19,14 @@ The highlighter recognizes the lightweight level format parsed by `LevelTextPars
 
 Highlighted token classes:
 
-- Key names: field names before `:`, including `name`, `road_length`, `road_width`, `starting_soldiers`, `fire_rate`, `projectile_pool`, `projectile_length`, `soldier_model`, `boss_model`, `manpower_card_model`, `firepower_card_model`, `op`, `param`, `val`, `x`, `z`, `model`, `power`, `effective`, and `strength`.
+- Key names: field names before `:`, including `name`, `road_length`, `road_width`, `starting_soldiers`, `fire_rate`, `max_fire_rate`, `projectile_pool`, `projectile_length`, `soldier_model`, `boss_model`, `manpower_card_model`, `firepower_card_model`, `player_color`, `enemy_color`, `boss_color`, `decoration_color`, `op`, `param`, `val`, `x`, `z`, `model`, `color`, `power`, `effective`, and `strength`.
 - Operation enum values: `plus`, `minus`, `div`, `times`.
 - Param enum values: `manpower`, `firepower`.
 - Number values: signed integer and decimal values, with optional `f`/`F` suffix.
+- Hex color values: `#RRGGBB` and `#RRGGBBAA`.
 - Path reference values: values that look like asset or model paths, including slash-separated paths and `.obj` files.
 - Object categories: `cards`, `decorations`, `enemy_brigades`, `bosses`, plus parser aliases `enemies` and `boss`.
-- Comments: `#` through end of line.
+- Comments: `# ` through end of line, so color values such as `#1FB8EBFF` remain highlightable values.
 - Separators and punctuation: `:`, `,`, `-`, `(`, and `)`.
 
 ## Highlighting Behavior
@@ -33,6 +34,7 @@ Highlighted token classes:
 - A bare identifier followed by `:` is highlighted as a key.
 - A known object category followed by `:` at the end of a logical line is highlighted as an object category.
 - Enum values are highlighted only when they appear as standalone value tokens.
+- Hex color values are highlighted only when they contain exactly 6 or 8 hexadecimal digits after `#`.
 - Path-like values are highlighted when they contain `/` or `\`, or when they end in `.obj`.
 - Unknown free text remains plain text so level names such as `The Raven's Bend` are not over-highlighted.
 

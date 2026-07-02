@@ -36,7 +36,9 @@ class CmaLevelLexer : LexerBase() {
         val current = buffer[tokenStart]
         when {
             current.isWhitespace() -> readWhile { it.isWhitespace() }.also { tokenType = TokenType.WHITE_SPACE }
-            current == '#' -> readUntilLineEnd().also { tokenType = CmaLevelTokenTypes.COMMENT }
+            current == '#' && tokenStart + 1 < endOffset && buffer[tokenStart + 1] == ' ' ->
+                readUntilLineEnd().also { tokenType = CmaLevelTokenTypes.COMMENT }
+            current == '#' -> readHexColor()
             current in ":,()" -> readOne(CmaLevelTokenTypes.SEPARATOR)
             current == '-' && isListMarker(tokenStart) -> readOne(CmaLevelTokenTypes.SEPARATOR)
             isNumberStart(tokenStart) -> readNumber()
@@ -81,6 +83,14 @@ class CmaLevelLexer : LexerBase() {
         if (index < endOffset && (buffer[index] == 'f' || buffer[index] == 'F')) index++
         tokenEnd = index
         tokenType = CmaLevelTokenTypes.NUMBER
+    }
+
+    private fun readHexColor() {
+        var index = tokenStart + 1
+        while (index < endOffset && buffer[index].isHexDigit()) index++
+        tokenEnd = index.coerceAtLeast(tokenStart + 1)
+        val digits = tokenEnd - tokenStart - 1
+        tokenType = if (digits == 6 || digits == 8) CmaLevelTokenTypes.HEX_COLOR else TokenType.BAD_CHARACTER
     }
 
     private fun readWord() {
@@ -137,6 +147,9 @@ class CmaLevelLexer : LexerBase() {
         text.contains('/') || text.contains('\\') || text.endsWith(".obj", ignoreCase = true)
 
     private fun isLineBreak(char: Char): Boolean = char == '\n' || char == '\r'
+
+    private fun Char.isHexDigit(): Boolean =
+        isDigit() || this in 'a'..'f' || this in 'A'..'F'
 
     private fun String.canonical(): String =
         lowercase().replace("-", "_").replace(" ", "_")

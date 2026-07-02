@@ -1,0 +1,51 @@
+name: Ambush
+road_length: 245
+road_width: 18
+starting_soldiers: 16
+fire_rate: 2.6
+max_fire_rate: 30
+projectile_pool: 1300
+projectile_length: 62
+soldier_model: assets/default-soldier.obj
+boss_model: assets/default-boss.obj
+manpower_card_model: assets/default-manpower-card.obj
+firepower_card_model: assets/default-firepower-card.obj
+player_color: #1FB8EBFF
+enemy_color: #9C2735FF
+boss_color: #302E7DFF
+decoration_color: #50585BFF
+
+cards:
+  - op: plus, param: manpower, val: 18, x: 0, z: 10
+  - op: times, param: firepower, val: 3, x: -3.2, z: 24
+  - op: minus, param: manpower, val: 12, x: 3.2, z: 38
+  - op: plus, param: manpower, val: 30, x: -2.6, z: 54
+  - op: div, param: firepower, val: 2, x: 2.4, z: 70
+  - op: times, param: manpower, val: 3, x: 0.4, z: 88
+  - op: plus, param: manpower, val: 40, x: 3.4, z: 110
+  - op: times, param: firepower, val: 4, x: -3.4, z: 132
+  - op: minus, param: firepower, val: 5, x: 0, z: 154
+  - op: times, param: firepower, val: 5, x: 2.8, z: 176
+  - op: plus, param: manpower, val: 35, x: -2.8, z: 198
+
+decorations:
+  - name: blind left arch, power: 999999, x: -2.8, z: 78, model: assets/triumphal-arch.obj, color: #4E555AFF
+  - name: blind right arch, power: 999999, x: 2.8, z: 146, model: assets/triumphal-arch.obj, color: #4E555AFF
+
+enemy_brigades:
+  - name: hidden left, effective: 90, strength: 11, x: -3.6, z: 44, color: #7A1C28FF
+  - name: hidden right, effective: 90, strength: 11, x: 3.6, z: 48, color: #7A1C28FF
+  - name: center bait, effective: 110, strength: 12, x: 0, z: 66
+  - name: knife wing, effective: 160, strength: 13, x: -3.2, z: 88
+  - name: trap wing, effective: 180, strength: 13, x: 3.2, z: 96
+  - name: closing net, effective: 240, strength: 15, x: 0, z: 122
+  - name: rear left surge, effective: 300, strength: 16, x: -2.6, z: 152
+  - name: rear right surge, effective: 300, strength: 16, x: 2.6, z: 160
+  - name: ambush core, effective: 480, strength: 18, x: 0, z: 190, color: #C21F34FF
+  - name: no escape line, effective: 700, strength: 20, x: 1.4, z: 218
+
+bosses:
+  - name: Lady Snare, power: 2600, x: -2.8, z: 118, color: #2C327EFF
+  - name: Baron Crossfire, power: 3600, x: 2.8, z: 142, color: #383C96FF
+  - name: The Netmaker, power: 11000, x: 0, z: 228, color: #251F62FF
+

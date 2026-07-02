@@ -7,6 +7,7 @@ import com.crowdmasterarcade.model.AppModelFactory
 import com.crowdmasterarcade.model.Card
 import com.crowdmasterarcade.model.CardOperation
 import com.crowdmasterarcade.model.CardTarget
+import com.crowdmasterarcade.model.LevelColor
 import com.crowdmasterarcade.model.PlayerBrigade
 import kotlin.test.Test
 import kotlin.test.assertEquals
@@ -33,7 +34,7 @@ class CardEffectSystemTest {
     }
 
     @Test
-    fun fireRateIsCapped() {
+    fun fireRateIsCappedByRuntimeMax() {
         val player = player(4)
         player.fireRate = 7.8f
         CardEffectSystem.applyCard(player, card(CardOperation.PLUS, CardTarget.FIREPOWER, 5f), GameConfig.MAX_FIRE_RATE)
@@ -56,7 +57,8 @@ class CardEffectSystemTest {
         soldiers = AppModelFactory.createSoldiers(count),
         fireRate = 1f,
         fireCooldown = 0f,
-        alive = true
+        alive = true,
+        color = LevelColor.PLAYER
     )
 
     private fun card(operation: CardOperation, target: CardTarget, value: Float) =

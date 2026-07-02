@@ -8,7 +8,9 @@ data class LevelDefinition(
     val fireRate: Float,
     val projectilePool: Int,
     val projectileLength: Float,
+    val maxFireRate: Float,
     val modelPaths: LevelModelPaths,
+    val colors: LevelColors,
     val cards: List<CardDefinition>,
     val decorations: List<DecorationDefinition>,
     val enemyBrigades: List<EnemyBrigadeDefinition>,
@@ -21,6 +23,27 @@ data class LevelModelPaths(
     val manpowerCard: String,
     val firepowerCard: String
 )
+
+data class LevelColors(
+    val player: LevelColor,
+    val enemy: LevelColor,
+    val boss: LevelColor,
+    val decoration: LevelColor
+)
+
+data class LevelColor(
+    val red: Float,
+    val green: Float,
+    val blue: Float,
+    val alpha: Float
+) {
+    companion object {
+        val PLAYER = LevelColor(0.12f, 0.72f, 0.92f, 1f)
+        val ENEMY = LevelColor(0.84f, 0.16f, 0.18f, 1f)
+        val BOSS = LevelColor(0.36f, 0.14f, 0.58f, 1f)
+        val DECORATION = LevelColor(0.55f, 0.52f, 0.47f, 1f)
+    }
+}
 
 data class CardDefinition(
     val operation: CardOperation,
@@ -37,7 +60,8 @@ data class EnemyBrigadeDefinition(
     val name: String?,
     val x: Float,
     val z: Float,
-    val modelPath: String?
+    val modelPath: String?,
+    val color: LevelColor?
 )
 
 data class DecorationDefinition(
@@ -45,7 +69,8 @@ data class DecorationDefinition(
     val power: Float,
     val x: Float,
     val z: Float,
-    val modelPath: String
+    val modelPath: String,
+    val color: LevelColor?
 )
 
 data class BossDefinition(
@@ -53,5 +78,6 @@ data class BossDefinition(
     val name: String?,
     val x: Float,
     val z: Float,
-    val modelPath: String?
+    val modelPath: String?,
+    val color: LevelColor?
 )

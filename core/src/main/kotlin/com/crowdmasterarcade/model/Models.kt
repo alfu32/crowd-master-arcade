@@ -31,7 +31,8 @@ data class PlayerBrigade(
     var soldiers: MutableList<RegularSoldier>,
     var fireRate: Float,
     var fireCooldown: Float,
-    var alive: Boolean
+    var alive: Boolean,
+    val color: LevelColor
 )
 
 data class EnemyBrigade(
@@ -41,6 +42,7 @@ data class EnemyBrigade(
     var speed: Float,
     var unitStrength: Float,
     val modelPath: String,
+    val color: LevelColor,
     var soldiers: MutableList<RegularSoldier>,
     var alive: Boolean
 )
@@ -80,6 +82,7 @@ data class Decoration(
     var health: Float,
     val maxHealth: Float,
     val modelPath: String,
+    val color: LevelColor,
     var active: Boolean
 )
 
@@ -100,6 +103,7 @@ data class Boss(
     var health: Float,
     val maxHealth: Float,
     val modelPath: String,
+    val color: LevelColor,
     var speed: Float,
     var active: Boolean,
     var alive: Boolean

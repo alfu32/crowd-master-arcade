@@ -11,6 +11,7 @@ object CmaLevelTokenTypes {
     val OPERATION = CmaLevelTokenType("OPERATION")
     val PARAM = CmaLevelTokenType("PARAM")
     val NUMBER = CmaLevelTokenType("NUMBER")
+    val HEX_COLOR = CmaLevelTokenType("HEX_COLOR")
     val PATH = CmaLevelTokenType("PATH")
     val VALUE = CmaLevelTokenType("VALUE")
     val SEPARATOR = CmaLevelTokenType("SEPARATOR")

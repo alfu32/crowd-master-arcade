@@ -23,6 +23,7 @@ class LevelTextParserTest {
         assertEquals(10, level.startingSoldiers)
         assertEquals(768, level.projectilePool)
         assertEquals(80f, level.projectileLength)
+        assertEquals(8f, level.maxFireRate)
         assertEquals("assets/default-soldier.obj", level.modelPaths.soldier)
         assertEquals("assets/default-boss.obj", level.modelPaths.boss)
         assertEquals("assets/default-manpower-card.obj", level.modelPaths.manpowerCard)
@@ -58,6 +59,39 @@ class LevelTextParserTest {
 
         assertEquals(1, level.decorations.size)
         assertEquals(999999f, level.decorations[0].power)
+    }
+
+    @Test
+    fun parsesHexColorsAndHashSpaceComments() {
+        val level = LevelTextParser.parse(
+            """
+            # this is a comment
+            name: Color Test # this is also a comment
+            player_color: #1FB8EBFF
+            enemy_color: #D6292EFF
+            boss_color: #5C248FFF
+            decoration_color: #8C8578CC
+            max_fire_rate: 24
+            decorations:
+              - name: grey arch, x: 0, z: 10, color: #22222280
+            enemy_brigades:
+              - effective: 1, strength: 10, x: 0, z: 20, color: #00FF00FF
+            bosses:
+              - power: 100, x: 0, z: 30, color: #FF00FFFF
+            """.trimIndent()
+        )
+
+        assertEquals(24f, level.maxFireRate)
+        assertEquals(0x1F / 255f, level.colors.player.red)
+        assertEquals(0xEB / 255f, level.colors.player.blue)
+        assertEquals(1f, level.colors.player.alpha)
+        assertEquals(0xCC / 255f, level.colors.decoration.alpha)
+        assertEquals(0x22 / 255f, level.decorations[0].color?.red)
+        assertEquals(0x80 / 255f, level.decorations[0].color?.alpha)
+        assertEquals(0f, level.enemyBrigades[0].color?.red)
+        assertEquals(1f, level.enemyBrigades[0].color?.green)
+        assertEquals(1f, level.bosses[0].color?.red)
+        assertEquals(1f, level.bosses[0].color?.blue)
     }
 
     @Test

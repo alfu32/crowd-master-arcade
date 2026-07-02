@@ -1,0 +1,55 @@
+name: Run Through the Jungle
+road_length: 320
+road_width: 20
+starting_soldiers: 20
+fire_rate: 2.8
+max_fire_rate: 36
+projectile_pool: 1600
+projectile_length: 72
+soldier_model: assets/default-soldier.obj
+boss_model: assets/default-boss.obj
+manpower_card_model: assets/default-manpower-card.obj
+firepower_card_model: assets/default-firepower-card.obj
+player_color: #1FB8EBFF
+enemy_color: #317B3DFF
+boss_color: #6B3B87FF
+decoration_color: #27664AFF
+
+cards:
+  - op: plus, param: manpower, val: 22, x: -3.8, z: 12
+  - op: times, param: firepower, val: 3, x: 3.4, z: 26
+  - op: plus, param: manpower, val: 35, x: 0, z: 44
+  - op: minus, param: manpower, val: 14, x: 3.6, z: 64
+  - op: div, param: firepower, val: 2, x: -3.4, z: 84
+  - op: times, param: manpower, val: 3, x: -1.2, z: 106
+  - op: times, param: firepower, val: 4, x: 2.0, z: 130
+  - op: plus, param: manpower, val: 45, x: 3.8, z: 154
+  - op: minus, param: firepower, val: 6, x: -3.8, z: 178
+  - op: times, param: firepower, val: 5, x: 0.6, z: 204
+  - op: div, param: manpower, val: 2, x: -1.8, z: 230
+  - op: plus, param: manpower, val: 55, x: 3.0, z: 254
+  - op: times, param: firepower, val: 6, x: -2.4, z: 280
+
+decorations:
+  - name: vine gate, power: 999999, x: 0, z: 70, model: assets/triumphal-arch.obj, color: #246C4FFF
+  - name: river shrine, power: 999999, x: -4.8, z: 152, model: assets/default-decoration.obj, color: #3E7E8AFF
+  - name: canopy arch, power: 999999, x: 0, z: 238, model: assets/triumphal-arch.obj, color: #1F5B3BFF
+
+enemy_brigades:
+  - name: green scouts, effective: 80, strength: 11, x: -4.0, z: 54, color: #2C8A46FF
+  - name: river flank, effective: 110, strength: 12, x: 4.0, z: 70, color: #2E6F6DFF
+  - name: canopy rush, effective: 140, strength: 12, x: 0, z: 88
+  - name: thorn column, effective: 180, strength: 14, x: -3.4, z: 110
+  - name: fern wall, effective: 220, strength: 14, x: 3.2, z: 132
+  - name: deep green horde, effective: 280, strength: 15, x: 0, z: 156, color: #1F7A36FF
+  - name: river teeth, effective: 260, strength: 16, x: -3.8, z: 182
+  - name: jungle drums, effective: 340, strength: 17, x: 3.6, z: 206
+  - name: canopy guard, effective: 420, strength: 18, x: -1.8, z: 234
+  - name: root blockade, effective: 520, strength: 19, x: 1.8, z: 262
+  - name: last jungle tide, effective: 780, strength: 21, x: 0, z: 294, color: #155C29FF
+
+bosses:
+  - name: Colonel Vine, power: 3000, x: -2.5, z: 170, color: #4A7A2DFF
+  - name: River Mother, power: 5200, x: 2.5, z: 222, color: #315B91FF
+  - name: The Green Thunder, power: 15000, x: 0, z: 306, color: #5F2B80FF
+

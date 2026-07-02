@@ -3,12 +3,17 @@ road_length: 260
 road_width: 16
 starting_soldiers: 12
 fire_rate: 2.2
+max_fire_rate: 28
 projectile_pool: 900
 projectile_length: 58
 soldier_model: assets/default-soldier.obj
 boss_model: assets/default-boss.obj
 manpower_card_model: assets/default-manpower-card.obj
 firepower_card_model: assets/default-firepower-card.obj
+player_color: #1FB8EBFF
+enemy_color: #B72E2EFF
+boss_color: #3D3F8FFF
+decoration_color: #77736AFF
 
 cards:
   - op: plus, param: manpower, val: 20, x: -2.6, z: 12

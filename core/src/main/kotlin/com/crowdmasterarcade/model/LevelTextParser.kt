@@ -13,7 +13,7 @@ object LevelTextParser {
 
         text.lineSequence()
             .withIndex()
-            .map { (index, rawLine) -> ParsedLine(index + 1, rawLine, rawLine.substringBefore("#").trim()) }
+            .map { (index, rawLine) -> ParsedLine(index + 1, rawLine, stripComment(rawLine).trim()) }
             .filter { it.text.isNotBlank() }
             .forEach { parsed ->
                 val line = parsed.text
@@ -39,7 +39,8 @@ object LevelTextParser {
                                 power = item.float("power", 1f),
                                 x = item.float("x", 0f),
                                 z = item.float("z"),
-                                modelPath = item["model"] ?: "assets/default-decoration.obj"
+                                modelPath = item["model"] ?: "assets/default-decoration.obj",
+                                color = item.color("color")
                             )
                             "enemy_brigades", "enemies" -> enemies += EnemyBrigadeDefinition(
                                 effective = item.int("effective"),
@@ -47,14 +48,16 @@ object LevelTextParser {
                                 name = item["name"],
                                 x = item.float("x", 0f),
                                 z = item.float("z"),
-                                modelPath = item["model"]
+                                modelPath = item["model"],
+                                color = item.color("color")
                             )
                             "bosses", "boss" -> bosses += BossDefinition(
                                 power = item.float("power"),
                                 name = item["name"],
                                 x = item.float("x", 0f),
                                 z = item.float("z"),
-                                modelPath = item["model"]
+                                modelPath = item["model"],
+                                color = item.color("color")
                             )
                         }
                     } catch (exception: RuntimeException) {
@@ -81,16 +84,23 @@ object LevelTextParser {
             fireRate = values.float("fire_rate", 1.2f),
             projectilePool = values.int("projectile_pool", 768),
             projectileLength = values.float("projectile_length", 80f),
+            maxFireRate = values.float("max_fire_rate", GameConfig.MAX_FIRE_RATE),
             modelPaths = LevelModelPaths(
                 soldier = values["soldier_model"] ?: "assets/default-soldier.obj",
                 boss = values["boss_model"] ?: "assets/default-boss.obj",
                 manpowerCard = values["manpower_card_model"] ?: "assets/default-manpower-card.obj",
                 firepowerCard = values["firepower_card_model"] ?: "assets/default-firepower-card.obj"
             ),
+            colors = LevelColors(
+                player = values.color("player_color") ?: LevelColor.PLAYER,
+                enemy = values.color("enemy_color") ?: LevelColor.ENEMY,
+                boss = values.color("boss_color") ?: LevelColor.BOSS,
+                decoration = values.color("decoration_color") ?: LevelColor.DECORATION
+            ),
             cards = cards,
             decorations = decorations,
             enemyBrigades = enemies,
-            bosses = bosses.ifEmpty { listOf(BossDefinition(400f, null, 0f, 190f, null)) }
+            bosses = bosses.ifEmpty { listOf(BossDefinition(400f, null, 0f, 190f, null, null)) }
         )
     }
 
@@ -110,6 +120,11 @@ object LevelTextParser {
                     trimmed.substring(shorthandSeparator + 1).trim().trim('"')
             }
             .toMap()
+    }
+
+    private fun stripComment(line: String): String {
+        val comment = line.indexOf("# ")
+        return if (comment >= 0) line.substring(0, comment) else line
     }
 
     private fun parseOperation(value: String): CardOperation =
@@ -136,6 +151,21 @@ object LevelTextParser {
 
     private fun Map<String, String>.int(key: String, default: Int? = null): Int =
         this[key]?.toInt() ?: default ?: error("Missing required int level field: $key")
+
+    private fun Map<String, String>.color(key: String): LevelColor? =
+        this[key]?.let(::parseColor)
+
+    private fun parseColor(value: String): LevelColor {
+        val hex = value.trim().trim('"').removePrefix("#")
+        require(hex.length == 6 || hex.length == 8) {
+            "Expected color #RRGGBB or #RRGGBBAA for value: $value"
+        }
+        val red = hex.substring(0, 2).toInt(16) / 255f
+        val green = hex.substring(2, 4).toInt(16) / 255f
+        val blue = hex.substring(4, 6).toInt(16) / 255f
+        val alpha = if (hex.length == 8) hex.substring(6, 8).toInt(16) / 255f else 1f
+        return LevelColor(red, green, blue, alpha)
+    }
 
     private fun String.canonical(): String =
         trimStart('\uFEFF').lowercase().replace("-", "_").replace(" ", "_")

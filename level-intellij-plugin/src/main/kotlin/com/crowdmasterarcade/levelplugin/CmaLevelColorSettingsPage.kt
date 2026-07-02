@@ -23,6 +23,7 @@ class CmaLevelColorSettingsPage : ColorSettingsPage {
             AttributesDescriptor("Operation enum", CmaLevelSyntaxHighlighter.OPERATION),
             AttributesDescriptor("Param enum", CmaLevelSyntaxHighlighter.PARAM),
             AttributesDescriptor("Number", CmaLevelSyntaxHighlighter.NUMBER),
+            AttributesDescriptor("Hex color", CmaLevelSyntaxHighlighter.HEX_COLOR),
             AttributesDescriptor("Path reference", CmaLevelSyntaxHighlighter.PATH),
             AttributesDescriptor("Comment", CmaLevelSyntaxHighlighter.COMMENT),
             AttributesDescriptor("Separator", CmaLevelSyntaxHighlighter.SEPARATOR)
@@ -33,16 +34,18 @@ name: The Raven's Bend
 road_length: 220
 road_width: 16
 soldier_model: assets/default-soldier.obj
+player_color: #1FB8EBFF
+enemy_color: #D6292EFF
 
 cards:
   - op: plus, param: manpower, val: 15, x: -2, z: 10
   - op: times, param: firepower, val: 5, x: -1.5, z: 20
 
 decorations:
-  - name: triumphal arch, power: 999999, x: 0, z: 95, model: assets/triumphal-arch.obj
+  - name: triumphal arch, power: 999999, x: 0, z: 95, model: assets/triumphal-arch.obj, color: #8C8578FF
 
 enemy_brigades:
-  - name: vanguard, effective: 40, strength: 10, x: 2, z: 50
+  - name: vanguard, effective: 40, strength: 10, x: 2, z: 50, color: #A02020FF
 
 bosses:
   - name: General Raven, power: 800, x: 0, z: 102

@@ -24,7 +24,8 @@ object AppModelFactory {
             soldiers = createSoldiers(levelDefinition.startingSoldiers),
             fireRate = levelDefinition.fireRate,
             fireCooldown = 0f,
-            alive = true
+            alive = true,
+            color = levelDefinition.colors.player
         )
         FormationSystem.recalculatePlayerFormation(player, road)
         FormationSystem.updatePlayerFormation(player, road, 1f)
@@ -32,12 +33,14 @@ object AppModelFactory {
         val cards = levelDefinition.cards.mapTo(mutableListOf()) {
             card(it, levelDefinition.modelPaths, GameConfig.LEVEL_INTRO_DISTANCE)
         }
-        val decorations = levelDefinition.decorations.mapTo(mutableListOf()) { decoration(it, GameConfig.LEVEL_INTRO_DISTANCE) }
+        val decorations = levelDefinition.decorations.mapTo(mutableListOf()) {
+            decoration(it, levelDefinition.colors, GameConfig.LEVEL_INTRO_DISTANCE)
+        }
         val enemies = levelDefinition.enemyBrigades.mapIndexedTo(mutableListOf()) { index, definition ->
-            enemy(definition, index + 1, road, levelDefinition.modelPaths, GameConfig.LEVEL_INTRO_DISTANCE)
+            enemy(definition, index + 1, road, levelDefinition.modelPaths, levelDefinition.colors, GameConfig.LEVEL_INTRO_DISTANCE)
         }
         val bosses = levelDefinition.bosses.mapIndexedTo(mutableListOf()) { index, definition ->
-            boss(definition, index + 1, levelDefinition.modelPaths, GameConfig.LEVEL_INTRO_DISTANCE)
+            boss(definition, index + 1, levelDefinition.modelPaths, levelDefinition.colors, GameConfig.LEVEL_INTRO_DISTANCE)
         }
         val projectileLifeSeconds = levelDefinition.projectileLength / GameConfig.PROJECTILE_SPEED
 
@@ -59,7 +62,7 @@ object AppModelFactory {
                 totalLevels = campaignContext.totalLevels
             ),
             runtimeConfig = RuntimeConfig(
-                maxFireRate = GameConfig.MAX_FIRE_RATE,
+                maxFireRate = levelDefinition.maxFireRate,
                 projectileSpeed = GameConfig.PROJECTILE_SPEED,
                 projectileDamage = GameConfig.PROJECTILE_DAMAGE,
                 projectileLifeSeconds = projectileLifeSeconds
@@ -104,6 +107,7 @@ object AppModelFactory {
         index: Int,
         road: Road,
         levelModels: LevelModelPaths,
+        levelColors: LevelColors,
         zOffset: Float
     ): EnemyBrigade {
         val soldiers = createSoldiers(definition.effective)
@@ -115,6 +119,7 @@ object AppModelFactory {
             speed = GameConfig.ENEMY_SPEED,
             unitStrength = definition.unitStrength,
             modelPath = definition.modelPath ?: levelModels.soldier,
+            color = definition.color ?: levelColors.enemy,
             soldiers = soldiers,
             alive = true
         )
@@ -123,7 +128,7 @@ object AppModelFactory {
         return brigade
     }
 
-    private fun decoration(definition: DecorationDefinition, zOffset: Float): Decoration =
+    private fun decoration(definition: DecorationDefinition, levelColors: LevelColors, zOffset: Float): Decoration =
         Decoration(
             id = nextId++,
             name = definition.name,
@@ -131,16 +136,24 @@ object AppModelFactory {
             health = definition.power,
             maxHealth = definition.power,
             modelPath = definition.modelPath,
+            color = definition.color ?: levelColors.decoration,
             active = true
         )
 
-    private fun boss(definition: BossDefinition, index: Int, levelModels: LevelModelPaths, zOffset: Float): Boss =
+    private fun boss(
+        definition: BossDefinition,
+        index: Int,
+        levelModels: LevelModelPaths,
+        levelColors: LevelColors,
+        zOffset: Float
+    ): Boss =
         Boss(
             name = definition.name ?: "General $index",
             position = Vector3(definition.x, 1.2f, definition.z + zOffset),
             health = definition.power,
             maxHealth = definition.power,
             modelPath = definition.modelPath ?: levelModels.boss,
+            color = definition.color ?: levelColors.boss,
             speed = GameConfig.BOSS_SPEED,
             active = true,
             alive = true

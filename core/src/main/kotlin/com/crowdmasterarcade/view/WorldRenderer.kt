@@ -11,6 +11,7 @@ import com.badlogic.gdx.graphics.g3d.Material
 import com.badlogic.gdx.graphics.g3d.Model
 import com.badlogic.gdx.graphics.g3d.ModelBatch
 import com.badlogic.gdx.graphics.g3d.ModelInstance
+import com.badlogic.gdx.graphics.g3d.attributes.BlendingAttribute
 import com.badlogic.gdx.graphics.g3d.attributes.ColorAttribute
 import com.badlogic.gdx.graphics.g3d.environment.DirectionalLight
 import com.badlogic.gdx.graphics.g3d.environment.DirectionalShadowLight
@@ -24,6 +25,7 @@ import com.crowdmasterarcade.model.Card
 import com.crowdmasterarcade.model.CardOperation
 import com.crowdmasterarcade.model.CardTarget
 import com.crowdmasterarcade.model.Decoration
+import com.crowdmasterarcade.model.LevelColor
 import com.crowdmasterarcade.model.LevelModelPaths
 import com.crowdmasterarcade.model.ResourceHome
 import java.io.ByteArrayInputStream
@@ -111,9 +113,9 @@ class WorldRenderer {
 
     private fun renderSceneModels(appModel: AppModel) {
         renderRoad(appModel)
-        renderSoldiers(appModel.player.soldiers, assets.soldier, Color(0.12f, 0.72f, 0.92f, 1f))
+        renderSoldiers(appModel.player.soldiers, assets.soldier, appModel.player.color.toGdxColor())
         appModel.enemyBrigades.filter { it.alive }.forEach {
-            renderSoldiers(it.soldiers, assets.soldier(it.modelPath), Color(0.84f, 0.16f, 0.18f, 1f))
+            renderSoldiers(it.soldiers, assets.soldier(it.modelPath), it.color.toGdxColor())
         }
         appModel.cards.filter { it.active }.forEach(::renderCard)
         appModel.decorations.filter { it.active }.forEach(::renderDecoration)
@@ -124,7 +126,7 @@ class WorldRenderer {
         appModel.bosses.filter { it.active && it.alive }.forEach { boss ->
             val instance = assets.boss(boss.modelPath)
             instance.transform.setToTranslation(boss.position)
-            colorize(instance, Color(0.36f, 0.14f, 0.58f, 1f))
+            colorize(instance, boss.color.toGdxColor())
             activeBatch.render(instance, environment)
         }
     }
@@ -163,7 +165,7 @@ class WorldRenderer {
 
     private fun renderDecoration(decoration: Decoration) {
         val instance = assets.decoration(decoration.modelPath)
-        colorize(instance, Color(0.55f, 0.52f, 0.47f, 1f))
+        colorize(instance, decoration.color.toGdxColor())
         instance.transform.setToTranslation(decoration.position)
         activeBatch.render(instance, environment)
     }
@@ -179,8 +181,16 @@ class WorldRenderer {
     private fun colorize(instance: ModelInstance, color: Color) {
         instance.materials.forEach { material ->
             material.set(ColorAttribute.createDiffuse(color))
+            if (color.a < 0.999f) {
+                material.set(BlendingAttribute(true, GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA, color.a))
+            } else {
+                material.remove(BlendingAttribute.Type)
+            }
         }
     }
+
+    private fun LevelColor.toGdxColor(): Color =
+        Color(red, green, blue, alpha)
 
     fun dispose() {
         assets.dispose()
