@@ -596,7 +596,7 @@ class WorldRenderer {
                                 baselineY - row * cell,
                                 z
                             )
-                            assets.textBlock.transform.rotate(Vector3.Y, 180f)
+                            assets.textBlock.transform.rotate(Vector3.Y, 179f)
                             assets.textBlock.transform.scale(cell / 0.055f, cell / 0.055f, 1f)
                             modelBatch.render(assets.textBlock, environment)
                         }
