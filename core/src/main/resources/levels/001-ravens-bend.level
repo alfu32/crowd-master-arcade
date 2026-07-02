@@ -37,9 +37,9 @@ enemy_brigades:
   - effective: 80, strength: 12, x: -1.5, z: 120
   - effective: 100, strength: 12, x: 1.4, z: 130
   - effective: 100, strength: 14, x: -2, z: 140
-  - name: Moloch, power: 15000, x: 0, z: 180,model: assets/bigbot.obj
 
 bosses:
   - name: General Raven, power: 800, x: 0, z: 102
   - name: Darth Putin, power: 2500, x: 0, z: 115
-  - name: Moloch, power: 15000, x: 0, z: 180
+  - name: Moloch, power: 15000, x: 0, z: 183,model: assets/bigbot.obj
+  - name: Moloch, power: 15000, x: 0, z: 200
