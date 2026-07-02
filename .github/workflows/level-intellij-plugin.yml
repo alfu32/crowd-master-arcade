@@ -1,14 +1,19 @@
 name: Level IntelliJ Plugin
 
 on:
-  push:
-    tags:
-      - "*"
   workflow_dispatch:
     inputs:
       tag:
         description: "Release tag, e.g. 1.0.0"
         required: true
+      draft:
+        description: "Create GitHub release as draft"
+        required: false
+        default: "true"
+      prerelease:
+        description: "Mark GitHub release as prerelease"
+        required: false
+        default: "false"
 
 permissions:
   contents: write
@@ -26,11 +31,7 @@ jobs:
         id: vars
         run: |
           set -euo pipefail
-          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
-            tag="${{ inputs.tag }}"
-          else
-            tag="${GITHUB_REF_NAME}"
-          fi
+          tag="${{ inputs.tag }}"
           echo "tag=$tag" >> "$GITHUB_OUTPUT"
       - name: Build plugin
         run: ./gradlew :level-intellij-plugin:buildPlugin -PreleaseNumber="${{ steps.vars.outputs.tag }}"
@@ -49,9 +50,13 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           TAG: ${{ steps.vars.outputs.tag }}
+          DRAFT: ${{ inputs.draft }}
+          PRERELEASE: ${{ inputs.prerelease }}
         run: |
           set -euo pipefail
           if ! gh release view "$TAG" >/dev/null 2>&1; then
-            gh release create "$TAG"
+            gh release create "$TAG" --draft="$DRAFT" --prerelease="$PRERELEASE"
+          else
+            gh release edit "$TAG" --draft="$DRAFT" --prerelease="$PRERELEASE"
           fi
           gh release upload "$TAG" dist/*.zip --clobber

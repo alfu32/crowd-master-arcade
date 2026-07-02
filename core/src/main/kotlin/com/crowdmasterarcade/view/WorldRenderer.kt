@@ -25,6 +25,7 @@ import com.crowdmasterarcade.model.CardOperation
 import com.crowdmasterarcade.model.CardTarget
 import com.crowdmasterarcade.model.Decoration
 import com.crowdmasterarcade.model.LevelModelPaths
+import com.crowdmasterarcade.model.ResourceHome
 import java.io.File
 import kotlin.math.max
 import kotlin.math.min
@@ -244,9 +245,7 @@ class WorldRenderer {
         private fun resolve(path: String): FileHandle {
             val external = File(path)
             if (external.isAbsolute && external.exists()) return Gdx.files.absolute(path)
-            val internal = Gdx.files.internal(path)
-            if (internal.exists()) return internal
-            return Gdx.files.local(path)
+            return ResourceHome.resolve(path)
         }
 
         private fun objWithNormals(file: FileHandle, sourcePath: String): FileHandle {
@@ -288,7 +287,7 @@ class WorldRenderer {
                 .replace('/', '_')
                 .replace(':', '_')
                 .replace(' ', '_')
-            val generated = Gdx.files.local(".generated/normal-assets/$cacheName.obj")
+            val generated = ResourceHome.root.child(".generated/normal-assets/$cacheName.obj")
             generated.parent().mkdirs()
             generated.writeString(output.toString(), false, "UTF-8")
             return generated

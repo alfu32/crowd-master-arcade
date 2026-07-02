@@ -11,6 +11,7 @@ import com.crowdmasterarcade.model.GameState
 import com.crowdmasterarcade.model.InputState
 import com.crowdmasterarcade.model.LevelCatalog
 import com.crowdmasterarcade.model.LevelDefinition
+import com.crowdmasterarcade.model.ResourceHome
 import com.crowdmasterarcade.view.GameView
 
 class CrowdDefenseGame : ApplicationAdapter() {
@@ -23,6 +24,7 @@ class CrowdDefenseGame : ApplicationAdapter() {
     private var levelIndex = 0
 
     override fun create() {
+        ResourceHome.initialize()
         levels = LevelCatalog.load()
         appModel = loadLevel(levelIndex)
         controller = GameController()

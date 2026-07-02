@@ -4,7 +4,7 @@ import com.badlogic.gdx.Gdx
 import java.io.File
 
 object LevelCatalog {
-    private val supportedExtensions = setOf("level", "txt", "yaml", "yml")
+    private val supportedExtensions = setOf("level", "cma-level", "txt", "yaml", "yml")
 
     fun load(folderPath: String? = System.getProperty("levels.dir")): List<LevelDefinition> {
         val externalLevels = folderPath
@@ -12,6 +12,9 @@ object LevelCatalog {
             ?.let(::loadFromFolder)
             .orEmpty()
         if (externalLevels.isNotEmpty()) return externalLevels
+
+        val resourceHomeLevels = loadFromResourceHome()
+        if (resourceHomeLevels.isNotEmpty()) return resourceHomeLevels
 
         return loadFromAssets().ifEmpty { listOf(DefaultLevels.ravenBend()) }
     }
@@ -23,9 +26,21 @@ object LevelCatalog {
         return folder.listFiles()
             .orEmpty()
             .asSequence()
-            .filter { it.isFile && it.extension.lowercase() in supportedExtensions }
+            .filter { it.isFile && isSupportedLevelFile(it.name, it.extension) }
             .sortedBy { it.name }
             .map { LevelTextParser.parse(it.readText()) }
+            .toList()
+    }
+
+    fun loadFromResourceHome(): List<LevelDefinition> {
+        val folder = ResourceHome.levelsFolder()
+        if (!folder.exists()) return emptyList()
+
+        return folder.list()
+            .asSequence()
+            .filter { !it.isDirectory && isSupportedLevelFile(it.name(), it.extension()) }
+            .sortedBy { it.name() }
+            .map { LevelTextParser.parse(it.readString("UTF-8")) }
             .toList()
     }
 
@@ -42,4 +57,7 @@ object LevelCatalog {
             .map { LevelTextParser.parse(it.readString()) }
             .toList()
     }
+
+    private fun isSupportedLevelFile(name: String, extension: String): Boolean =
+        name != "index.txt" && extension.lowercase() in supportedExtensions
 }

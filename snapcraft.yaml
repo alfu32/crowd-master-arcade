@@ -20,7 +20,7 @@ apps:
     command: bin/crowd-master-arcade
     desktop: snap/gui/crowd-master-arcade.desktop
     environment:
-      CROWD_MASTER_ARCADE_HOME: $SNAP_USER_COMMON
+      CROWD_MASTER_ARCADE_HOME: $SNAP_USER_COMMON/.crowdmaster
       ALSA_CONFIG_PATH: $SNAP/usr/share/alsa/alsa.conf
     plugs:
       - desktop
@@ -125,7 +125,7 @@ parts:
       #!/bin/sh
       set -eu
       INSTALL_PATH="$SNAP/opt/crowd-master-arcade"
-      RUNTIME_HOME="${CROWD_MASTER_ARCADE_HOME:-$SNAP_USER_COMMON}"
+      RUNTIME_HOME="${CROWD_MASTER_ARCADE_HOME:-$SNAP_USER_COMMON/.crowdmaster}"
       mkdir -p "$RUNTIME_HOME"
       export HOME="$RUNTIME_HOME"
       exec "$INSTALL_PATH/runtime/bin/java" -jar "$INSTALL_PATH/crowd-master-arcade.jar" "$@"

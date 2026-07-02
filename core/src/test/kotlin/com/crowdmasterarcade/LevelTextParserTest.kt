@@ -59,11 +59,13 @@ class LevelTextParserTest {
     @Test
     fun loadsLevelsFromFolderInFilenameOrder() {
         val folder = Files.createTempDirectory("crowd-master-levels").toFile()
+        folder.resolve("index.txt").writeText("001-first.level")
         folder.resolve("002-second.level").writeText(DefaultLevels.ravenBendText.replace("The Raven's Bend", "Second"))
         folder.resolve("001-first.level").writeText(DefaultLevels.ravenBendText.replace("The Raven's Bend", "First"))
+        folder.resolve("003-third.cma-level").writeText(DefaultLevels.ravenBendText.replace("The Raven's Bend", "Third"))
 
         val levels = LevelCatalog.loadFromFolder(folder.absolutePath)
 
-        assertEquals(listOf("First", "Second"), levels.map { it.name })
+        assertEquals(listOf("First", "Second", "Third"), levels.map { it.name })
     }
 }
