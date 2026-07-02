@@ -582,8 +582,8 @@ class WorldRenderer {
             cell: Float
         ) {
             val upper = text.uppercase()
-            val width = upper.sumOf { (glyph(it).firstOrNull()?.length ?: 0) + 1 } - 1
-            var cursorX = centerX + width * cell * 0.5f
+            val width = upper.sumOf { (glyph(it).firstOrNull()?.length ?: 0) + 1 }.coerceAtLeast(1) - 1
+            var cursorX = centerX - width * cell * 0.5f
             upper.forEach { char ->
                 val glyph = glyph(char)
                 val glyphWidth = glyph.firstOrNull()?.length ?: 0
@@ -591,17 +591,16 @@ class WorldRenderer {
                     bits.forEachIndexed { col, bit ->
                         if (bit == '1') {
                             assets.textBlock.transform.setToTranslation(
-                                cursorX - col * cell,
+                                cursorX + col * cell,
                                 baselineY - row * cell,
                                 z
                             )
-                            assets.textBlock.transform.rotate(Vector3.Y, 180f)
                             assets.textBlock.transform.scale(cell / 0.055f, cell / 0.055f, 1f)
                             modelBatch.render(assets.textBlock, environment)
                         }
                     }
                 }
-                cursorX -= glyphWidth * cell + cell
+                cursorX += glyphWidth * cell + cell
             }
         }
 
