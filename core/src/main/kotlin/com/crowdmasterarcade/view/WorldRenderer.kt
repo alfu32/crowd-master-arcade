@@ -113,9 +113,12 @@ class WorldRenderer {
 
     private fun renderSceneModels(appModel: AppModel) {
         renderRoad(appModel)
-        renderSoldiers(appModel.player.soldiers, assets.soldier, appModel.player.color.toGdxColor())
+        renderSoldiers(
+            appModel.player.soldiers,
+            assets.soldier(appModel.levelData.modelPaths.soldier, appModel.player.color.toGdxColor())
+        )
         appModel.enemyBrigades.filter { it.alive }.forEach {
-            renderSoldiers(it.soldiers, assets.soldier(it.modelPath), it.color.toGdxColor())
+            renderSoldiers(it.soldiers, assets.soldier(it.modelPath, it.color.toGdxColor()))
         }
         appModel.cards.filter { it.active }.forEach(::renderCard)
         appModel.decorations.filter { it.active }.forEach(::renderDecoration)
@@ -124,9 +127,8 @@ class WorldRenderer {
             activeBatch.render(assets.projectile, environment)
         }
         appModel.bosses.filter { it.active && it.alive }.forEach { boss ->
-            val instance = assets.boss(boss.modelPath)
+            val instance = assets.boss(boss.modelPath, boss.color.toGdxColor())
             instance.transform.setToTranslation(boss.position)
-            colorize(instance, boss.color.toGdxColor())
             activeBatch.render(instance, environment)
         }
     }
@@ -146,10 +148,8 @@ class WorldRenderer {
 
     private fun renderSoldiers(
         soldiers: Iterable<com.crowdmasterarcade.model.RegularSoldier>,
-        instance: ModelInstance,
-        color: Color
+        instance: ModelInstance
     ) {
-        colorize(instance, color)
         soldiers.filter { it.alive }.forEach { soldier ->
             instance.transform.setToTranslation(soldier.worldPosition)
             activeBatch.render(instance, environment)
@@ -157,15 +157,14 @@ class WorldRenderer {
     }
 
     private fun renderCard(card: Card) {
-        val instance = assets.card(card)
-        colorize(instance, if (card.target == CardTarget.FIREPOWER) Color(0.95f, 0.38f, 0.82f, 1f) else cardColor(card))
+        val color = if (card.target == CardTarget.FIREPOWER) Color(0.95f, 0.38f, 0.82f, 1f) else cardColor(card)
+        val instance = assets.card(card, color)
         instance.transform.setToTranslation(card.position)
         activeBatch.render(instance, environment)
     }
 
     private fun renderDecoration(decoration: Decoration) {
-        val instance = assets.decoration(decoration.modelPath)
-        colorize(instance, decoration.color.toGdxColor())
+        val instance = assets.decoration(decoration.modelPath, decoration.color.toGdxColor())
         instance.transform.setToTranslation(decoration.position)
         activeBatch.render(instance, environment)
     }
@@ -177,17 +176,6 @@ class WorldRenderer {
             CardOperation.TIMES -> Color(0.2f, 0.48f, 0.9f, 1f)
             CardOperation.DIV -> Color(0.9f, 0.66f, 0.14f, 1f)
         }
-
-    private fun colorize(instance: ModelInstance, color: Color) {
-        instance.materials.forEach { material ->
-            material.set(ColorAttribute.createDiffuse(color))
-            if (color.a < 0.999f) {
-                material.set(BlendingAttribute(true, GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA, color.a))
-            } else {
-                material.remove(BlendingAttribute.Type)
-            }
-        }
-    }
 
     private fun LevelColor.toGdxColor(): Color =
         Color(red, green, blue, alpha)
@@ -214,6 +202,10 @@ class WorldRenderer {
         private val soldierInstances = mutableMapOf<String, ModelInstance>()
         private val bossInstances = mutableMapOf<String, ModelInstance>()
         private val cardInstances = mutableMapOf<String, ModelInstance>()
+        private val coloredDecorationInstances = mutableMapOf<ColoredInstanceKey, ModelInstance>()
+        private val coloredSoldierInstances = mutableMapOf<ColoredInstanceKey, ModelInstance>()
+        private val coloredBossInstances = mutableMapOf<ColoredInstanceKey, ModelInstance>()
+        private val coloredCardInstances = mutableMapOf<ColoredInstanceKey, ModelInstance>()
 
         var soldier = instance(box(0.36f, 0.8f, 0.36f, Color.WHITE))
             private set
@@ -242,7 +234,10 @@ class WorldRenderer {
             bossTopY = modelTopY(boss.model)
         }
 
-        fun soldier(path: String): ModelInstance =
+        fun soldier(path: String, color: Color): ModelInstance =
+            coloredInstance(ColoredInstanceKey(path, colorKey(color)), soldierBase(path), coloredSoldierInstances, color)
+
+        private fun soldierBase(path: String): ModelInstance =
             if (currentPaths?.soldier == path) {
                 soldier
             } else {
@@ -251,7 +246,10 @@ class WorldRenderer {
                 }
             }
 
-        fun boss(path: String): ModelInstance =
+        fun boss(path: String, color: Color): ModelInstance =
+            coloredInstance(ColoredInstanceKey(path, colorKey(color)), bossBase(path), coloredBossInstances, color)
+
+        private fun bossBase(path: String): ModelInstance =
             if (currentPaths?.boss == path) {
                 boss
             } else {
@@ -260,7 +258,10 @@ class WorldRenderer {
                 }
             }
 
-        fun card(card: Card): ModelInstance {
+        fun card(card: Card, color: Color): ModelInstance =
+            coloredInstance(ColoredInstanceKey(card.modelPath, colorKey(color)), cardBase(card), coloredCardInstances, color)
+
+        private fun cardBase(card: Card): ModelInstance {
             val defaultPath = if (card.target == CardTarget.FIREPOWER) currentPaths?.firepowerCard else currentPaths?.manpowerCard
             if (defaultPath == card.modelPath) {
                 return if (card.target == CardTarget.FIREPOWER) firepowerCard else manpowerCard
@@ -276,16 +277,46 @@ class WorldRenderer {
             } else if (card.target == CardTarget.MANPOWER && currentPaths?.manpowerCard == card.modelPath) {
                 manpowerCardTopY
             } else {
-                modelTopY(card(card).model)
+                modelTopY(cardBase(card).model)
             }
 
         fun bossTopY(path: String): Float =
-            if (currentPaths?.boss == path) bossTopY else modelTopY(boss(path).model)
+            if (currentPaths?.boss == path) bossTopY else modelTopY(bossBase(path).model)
 
-        fun decoration(path: String): ModelInstance =
+        fun decoration(path: String, color: Color): ModelInstance =
+            coloredInstance(ColoredInstanceKey(path, colorKey(color)), decorationBase(path), coloredDecorationInstances, color)
+
+        private fun decorationBase(path: String): ModelInstance =
             decorationInstances.getOrPut(path) {
                 instance(loadObj(path, fallback = { box(2f, 2f, 2f, Color.WHITE) }))
             }
+
+        private fun coloredInstance(
+            key: ColoredInstanceKey,
+            base: ModelInstance,
+            cache: MutableMap<ColoredInstanceKey, ModelInstance>,
+            color: Color
+        ): ModelInstance =
+            cache.getOrPut(key) {
+                instance(base.model).also { tint(it, color) }
+            }
+
+        private fun tint(instance: ModelInstance, color: Color) {
+            instance.materials.forEach { material ->
+                material.set(ColorAttribute.createDiffuse(color))
+                if (color.a < 0.999f) {
+                    material.set(BlendingAttribute(true, GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA, color.a))
+                } else {
+                    material.remove(BlendingAttribute.Type)
+                }
+            }
+        }
+
+        private fun colorKey(color: Color): Int =
+            ((color.r.coerceIn(0f, 1f) * 255f + 0.5f).toInt() shl 24) or
+                ((color.g.coerceIn(0f, 1f) * 255f + 0.5f).toInt() shl 16) or
+                ((color.b.coerceIn(0f, 1f) * 255f + 0.5f).toInt() shl 8) or
+                (color.a.coerceIn(0f, 1f) * 255f + 0.5f).toInt()
 
         private fun loadObj(path: String, fallback: () -> Model): Model {
             val file = resolve(path)
@@ -461,6 +492,7 @@ class WorldRenderer {
         }
 
         private data class ModelBounds(val minY: Float, val maxY: Float)
+        private data class ColoredInstanceKey(val path: String, val color: Int)
 
         companion object {
             private val WHITESPACE = Regex("\\s+")
