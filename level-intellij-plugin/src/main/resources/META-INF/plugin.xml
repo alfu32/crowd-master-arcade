@@ -1,0 +1,22 @@
+<idea-plugin>
+    <id>com.crowdmasterarcade.levels</id>
+    <name>Crowd Master Arcade Level Support</name>
+    <vendor>K3D0</vendor>
+    <description>Syntax highlighting for Crowd Master Arcade .level and .cma-level files.</description>
+
+    <depends>com.intellij.modules.platform</depends>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <fileType
+            name="Crowd Master Arcade Level"
+            language="CrowdMasterArcadeLevel"
+            implementationClass="com.crowdmasterarcade.levelplugin.CmaLevelFileType"
+            fieldName="INSTANCE"
+            extensions="level;cma-level" />
+        <lang.syntaxHighlighterFactory
+            language="CrowdMasterArcadeLevel"
+            implementationClass="com.crowdmasterarcade.levelplugin.CmaLevelSyntaxHighlighterFactory" />
+        <colorSettingsPage
+            implementation="com.crowdmasterarcade.levelplugin.CmaLevelColorSettingsPage" />
+    </extensions>
+</idea-plugin>

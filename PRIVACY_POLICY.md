@@ -33,4 +33,4 @@ Crowd Master Arcade is an offline desktop application. It does not require an ac
 
 For privacy questions, contact:
 
-- cristian.alferaru@gmail.com
+- 82draw@gmail.com

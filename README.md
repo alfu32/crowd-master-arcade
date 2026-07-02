@@ -8,6 +8,8 @@ A Kotlin/libGDX prototype for the crowd defense runner described in `SPEC.md`.
 
 
 
+[![Get it from the Snap Store](https://snapcraft.io/en/dark/install.svg)](https://snapcraft.io/crowd-master-arcade)
+
 
 ## Run
 

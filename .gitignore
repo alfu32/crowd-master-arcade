@@ -4,8 +4,11 @@ build/
 **/build/
 out/
 .idea/
+.intellijPlatform/
 *.iml
 .kode
 .kode.json
 .secrets/
 .secrets
+dist
+*.snap

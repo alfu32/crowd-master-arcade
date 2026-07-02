@@ -1,0 +1,57 @@
+name: Level IntelliJ Plugin
+
+on:
+  push:
+    tags:
+      - "*"
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: "Release tag, e.g. 1.0.0"
+        required: true
+
+permissions:
+  contents: write
+
+jobs:
+  build-plugin:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: "21"
+      - name: Resolve tag
+        id: vars
+        run: |
+          set -euo pipefail
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            tag="${{ inputs.tag }}"
+          else
+            tag="${GITHUB_REF_NAME}"
+          fi
+          echo "tag=$tag" >> "$GITHUB_OUTPUT"
+      - name: Build plugin
+        run: ./gradlew :level-intellij-plugin:buildPlugin -PreleaseNumber="${{ steps.vars.outputs.tag }}"
+      - name: Collect plugin ZIP
+        run: |
+          set -euo pipefail
+          mkdir -p dist
+          zip_path="$(find level-intellij-plugin/build/distributions -type f -name '*.zip' | head -n 1)"
+          test -n "$zip_path"
+          cp "$zip_path" "dist/crowd-master-arcade-level-intellij-plugin-${{ steps.vars.outputs.tag }}.zip"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: crowd-master-arcade-level-intellij-plugin
+          path: dist/*.zip
+      - name: Upload to GitHub release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          TAG: ${{ steps.vars.outputs.tag }}
+        run: |
+          set -euo pipefail
+          if ! gh release view "$TAG" >/dev/null 2>&1; then
+            gh release create "$TAG"
+          fi
+          gh release upload "$TAG" dist/*.zip --clobber
