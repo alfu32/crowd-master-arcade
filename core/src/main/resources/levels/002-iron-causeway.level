@@ -1,0 +1,48 @@
+name: The Iron Causeway
+road_length: 260
+road_width: 16
+starting_soldiers: 12
+fire_rate: 2.2
+projectile_pool: 900
+projectile_length: 58
+soldier_model: assets/default-soldier.obj
+boss_model: assets/default-boss.obj
+manpower_card_model: assets/default-manpower-card.obj
+firepower_card_model: assets/default-firepower-card.obj
+
+cards:
+  - op: plus, param: manpower, val: 20, x: -2.6, z: 12
+  - op: times, param: firepower, val: 3, x: 2.2, z: 22
+  - op: minus, param: manpower, val: 8, x: 0, z: 34
+  - op: plus, param: manpower, val: 25, x: 2.8, z: 46
+  - op: div, param: firepower, val: 2, x: -2.2, z: 58
+  - op: times, param: manpower, val: 3, x: -1.2, z: 72
+  - op: times, param: firepower, val: 4, x: 1.5, z: 86
+  - op: minus, param: firepower, val: 5, x: 3.0, z: 102
+  - op: plus, param: manpower, val: 30, x: -3.0, z: 118
+  - op: div, param: manpower, val: 2, x: 0.8, z: 136
+  - op: times, param: firepower, val: 5, x: -1.8, z: 154
+  - op: plus, param: manpower, val: 20, x: 2.4, z: 174
+
+decorations:
+  - name: warning arch, power: 999999, x: 0, z: 68, model: assets/triumphal-arch.obj
+  - name: iron gate, power: 999999, x: 0, z: 166, model: assets/triumphal-arch.obj
+
+enemy_brigades:
+  - name: bridge picket, effective: 55, strength: 10, x: -2.8, z: 54
+  - name: right column, effective: 75, strength: 11, x: 2.6, z: 66
+  - name: center wall, effective: 95, strength: 12, x: 0, z: 80
+  - name: left hooks, effective: 120, strength: 12, x: -2.4, z: 96
+  - name: steel reserve, effective: 150, strength: 13, x: 2.2, z: 112
+  - name: causeway block, effective: 180, strength: 14, x: 0, z: 130
+  - name: gate watch, effective: 120, strength: 15, x: -3.0, z: 150
+  - name: hammer flank, effective: 150, strength: 15, x: 3.0, z: 166
+  - name: redoubt, effective: 220, strength: 16, x: 0, z: 184
+  - name: black standard, effective: 320, strength: 18, x: -1.8, z: 204
+  - name: final shield, effective: 500, strength: 18, x: 2.0, z: 224
+
+bosses:
+  - name: Marshal Ferrum, power: 1800, x: -1.6, z: 142
+  - name: Duchess Vanta, power: 3200, x: 1.8, z: 172
+  - name: The Gate Engine, power: 7000, x: 0, z: 212
+  - name: Iron Crown, power: 12000, x: 0, z: 246

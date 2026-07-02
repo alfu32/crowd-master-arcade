@@ -7,6 +7,7 @@ import com.crowdmasterarcade.model.Card
 import com.crowdmasterarcade.model.CardOperation
 import com.crowdmasterarcade.model.CardTarget
 import kotlin.test.Test
+import kotlin.test.assertEquals
 import kotlin.test.assertFalse
 
 class CollisionSystemTest {
@@ -28,5 +29,25 @@ class CollisionSystemTest {
         CollisionSystem.update(appModel)
 
         assertFalse(appModel.cards.single().active)
+    }
+
+    @Test
+    fun projectileScoresActualDamageAgainstEnemyUnit() {
+        val appModel = AppModelFactory.initAppModel()
+        appModel.cards.clear()
+        appModel.bosses.clear()
+        val enemy = appModel.enemyBrigades.first()
+        val soldier = enemy.soldiers.first()
+        soldier.health = 6f
+        val projectile = appModel.projectiles.first()
+        projectile.position.set(soldier.worldPosition)
+        projectile.damage = 10f
+        projectile.active = true
+
+        CollisionSystem.update(appModel)
+
+        assertEquals(6f, appModel.scoreData.levelPoints)
+        assertFalse(projectile.active)
+        assertFalse(soldier.alive)
     }
 }

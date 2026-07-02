@@ -20,8 +20,7 @@ object ResourceHome {
         val root = root
         root.mkdirs()
         seedLevels(root)
-        copyMissing(Gdx.files.internal("assets"), root.child("assets"))
-        seedOctdSources(root)
+        seedAssets(root)
         initialized = true
     }
 
@@ -84,11 +83,34 @@ object ResourceHome {
     }
 
     private fun seedOctdSources(root: FileHandle) {
-        val assets = Gdx.files.internal("assets")
-        if (!assets.exists()) return
-        assets.list()
-            .filter { !it.isDirectory && it.extension().equals("octd", ignoreCase = true) }
-            .forEach { source -> copyMissing(source, root.child(source.name())) }
+        assetIndexEntries()
+            .filter { it.endsWith(".octd", ignoreCase = true) }
+            .forEach { name ->
+                copyMissing(Gdx.files.internal("assets/$name"), root.child(name.substringAfterLast('/')))
+            }
+    }
+
+    private fun seedAssets(root: FileHandle) {
+        val assetRoot = root.child("assets")
+        val entries = assetIndexEntries()
+        if (entries.isNotEmpty()) {
+            entries.forEach { name ->
+                copyMissing(Gdx.files.internal("assets/$name"), assetRoot.child(name))
+            }
+        } else {
+            copyMissing(Gdx.files.internal("assets"), assetRoot)
+        }
+        seedOctdSources(root)
+    }
+
+    private fun assetIndexEntries(): List<String> {
+        val index = Gdx.files.internal("assets/index.txt")
+        if (!index.exists()) return emptyList()
+        return index.readString("UTF-8")
+            .lineSequence()
+            .map { it.substringBefore("#").trim() }
+            .filter { it.isNotBlank() }
+            .toList()
     }
 
     private fun copyMissing(source: FileHandle, target: FileHandle) {

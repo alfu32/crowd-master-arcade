@@ -40,7 +40,9 @@ object CollisionSystem {
                     enemy.soldiers.firstOrNull { soldier ->
                         soldier.alive && overlaps(projectile.position, soldier.worldPosition, GameConfig.PROJECTILE_COLLISION_RADIUS)
                     }?.let { soldier ->
+                        val scored = minOf(projectile.damage, soldier.health.coerceAtLeast(0f))
                         soldier.health -= projectile.damage
+                        appModel.scoreData.levelPoints += scored
                         if (soldier.health <= 0f) soldier.alive = false
                         projectile.active = false
                         consumed = true
@@ -51,7 +53,9 @@ object CollisionSystem {
                 appModel.bosses.firstOrNull { boss ->
                     boss.active && boss.alive && overlaps(projectile.position, boss.position, GameConfig.BOSS_COLLISION_RADIUS)
                 }?.let { boss ->
+                    val scored = minOf(projectile.damage, boss.health.coerceAtLeast(0f))
                     boss.health -= projectile.damage
+                    appModel.scoreData.levelPoints += scored
                     boss.alive = boss.health > 0f
                     projectile.active = false
                 }

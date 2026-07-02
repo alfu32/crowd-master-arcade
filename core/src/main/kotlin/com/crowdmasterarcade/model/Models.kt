@@ -13,7 +13,10 @@ data class AppModel(
     val background: Background,
     val bosses: MutableList<Boss>,
     val levelData: LevelData,
-    val runtimeConfig: RuntimeConfig
+    val runtimeConfig: RuntimeConfig,
+    val scoreData: ScoreData,
+    var introRoadPosition: Float = -10f,
+    var completionRecorded: Boolean = false
 ) {
     val running: Boolean
         get() = gameState != GameState.EXIT
@@ -109,8 +112,23 @@ data class RuntimeConfig(
 data class LevelData(
     val name: String,
     val startingSoldiers: Int,
-    val modelPaths: LevelModelPaths
+    val modelPaths: LevelModelPaths,
+    val levelNumber: Int,
+    val totalLevels: Int
 )
+
+data class ScoreData(
+    var levelPoints: Float,
+    val levelPossiblePoints: Float,
+    val previousPlayerPoints: Float,
+    val previousPossiblePoints: Float
+) {
+    val totalPlayerPoints: Float
+        get() = previousPlayerPoints + levelPoints
+
+    val totalPossiblePointsSoFar: Float
+        get() = previousPossiblePoints + levelPossiblePoints
+}
 
 data class InputState(
     var moveX: Float = 0f,

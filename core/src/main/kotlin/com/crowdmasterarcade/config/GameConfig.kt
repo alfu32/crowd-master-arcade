@@ -20,4 +20,5 @@ object GameConfig {
     const val BOSS_COLLISION_RADIUS = 1.8f
     const val MAX_FIRE_RATE = 8f
     const val MAX_DELTA_TIME = 1f / 20f
+    const val LEVEL_INTRO_DISTANCE = 10f
 }

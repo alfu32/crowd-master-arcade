@@ -11,7 +11,11 @@ object MovementSystem {
         player.position.x += inputState.dragDeltaX * 0.025f
         player.position.x = player.position.x.coerceIn(appModel.road.leftBoundary, appModel.road.rightBoundary)
 
-        val dz = -GameConfig.WORLD_SCROLL_SPEED * deltaTime
+        val scrollDistance = GameConfig.WORLD_SCROLL_SPEED * deltaTime
+        val dz = -scrollDistance
+        if (appModel.introRoadPosition < 0f) {
+            appModel.introRoadPosition = (appModel.introRoadPosition + scrollDistance).coerceAtMost(0f)
+        }
         appModel.cards.filter { it.active }.forEach { it.position.z += dz }
         appModel.decorations.filter { it.active }.forEach { it.position.z += dz }
         appModel.enemyBrigades.filter { it.alive }.forEach { enemy ->
