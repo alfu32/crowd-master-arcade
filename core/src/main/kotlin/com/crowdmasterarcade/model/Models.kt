@@ -40,6 +40,7 @@ data class EnemyBrigade(
     var position: Vector3,
     var speed: Float,
     var unitStrength: Float,
+    val modelPath: String,
     var soldiers: MutableList<RegularSoldier>,
     var alive: Boolean
 )
@@ -57,6 +58,7 @@ data class Card(
     val operation: CardOperation,
     val target: CardTarget,
     val value: Float,
+    val modelPath: String,
     var position: Vector3,
     var speed: Float,
     var active: Boolean
@@ -97,6 +99,7 @@ data class Boss(
     var position: Vector3,
     var health: Float,
     val maxHealth: Float,
+    val modelPath: String,
     var speed: Float,
     var active: Boolean,
     var alive: Boolean

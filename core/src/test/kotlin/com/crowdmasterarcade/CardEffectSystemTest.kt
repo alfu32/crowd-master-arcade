@@ -60,5 +60,5 @@ class CardEffectSystemTest {
     )
 
     private fun card(operation: CardOperation, target: CardTarget, value: Float) =
-        Card(1L, operation, target, value, Vector3(), 1f, true)
+        Card(1L, operation, target, value, "assets/default-manpower-card.obj", Vector3(), 1f, true)
 }

@@ -28,7 +28,8 @@ object LevelTextParser {
                             target = parseTarget(item.required("param")),
                             value = item.float("val"),
                             x = item.float("x", 0f),
-                            z = item.float("z")
+                            z = item.float("z"),
+                            modelPath = item["model"]
                         )
                         "decorations" -> decorations += DecorationDefinition(
                             name = item["name"] ?: "decoration ${decorations.size + 1}",
@@ -42,13 +43,15 @@ object LevelTextParser {
                             unitStrength = item.float("strength", 10f),
                             name = item["name"],
                             x = item.float("x", 0f),
-                            z = item.float("z")
+                            z = item.float("z"),
+                            modelPath = item["model"]
                         )
                         "bosses", "boss" -> bosses += BossDefinition(
                             power = item.float("power"),
                             name = item["name"],
                             x = item.float("x", 0f),
-                            z = item.float("z")
+                            z = item.float("z"),
+                            modelPath = item["model"]
                         )
                     }
                     return@forEach
@@ -78,7 +81,7 @@ object LevelTextParser {
             cards = cards,
             decorations = decorations,
             enemyBrigades = enemies,
-            bosses = bosses.ifEmpty { listOf(BossDefinition(400f, null, 0f, 190f)) }
+            bosses = bosses.ifEmpty { listOf(BossDefinition(400f, null, 0f, 190f, null)) }
         )
     }
 

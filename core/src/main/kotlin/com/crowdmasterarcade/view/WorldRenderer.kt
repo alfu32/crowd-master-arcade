@@ -112,7 +112,7 @@ class WorldRenderer {
         renderRoad(appModel)
         renderSoldiers(appModel.player.soldiers, assets.soldier, Color(0.12f, 0.72f, 0.92f, 1f))
         appModel.enemyBrigades.filter { it.alive }.forEach {
-            renderSoldiers(it.soldiers, assets.soldier, Color(0.84f, 0.16f, 0.18f, 1f))
+            renderSoldiers(it.soldiers, assets.soldier(it.modelPath), Color(0.84f, 0.16f, 0.18f, 1f))
         }
         appModel.cards.filter { it.active }.forEach(::renderCard)
         appModel.decorations.filter { it.active }.forEach(::renderDecoration)
@@ -121,9 +121,10 @@ class WorldRenderer {
             activeBatch.render(assets.projectile, environment)
         }
         appModel.bosses.filter { it.active && it.alive }.forEach { boss ->
-            assets.boss.transform.setToTranslation(boss.position)
-            colorize(assets.boss, Color(0.36f, 0.14f, 0.58f, 1f))
-            activeBatch.render(assets.boss, environment)
+            val instance = assets.boss(boss.modelPath)
+            instance.transform.setToTranslation(boss.position)
+            colorize(instance, Color(0.36f, 0.14f, 0.58f, 1f))
+            activeBatch.render(instance, environment)
         }
     }
 
@@ -152,7 +153,7 @@ class WorldRenderer {
     }
 
     private fun renderCard(card: Card) {
-        val instance = if (card.target == CardTarget.FIREPOWER) assets.firepowerCard else assets.manpowerCard
+        val instance = assets.card(card)
         colorize(instance, if (card.target == CardTarget.FIREPOWER) Color(0.95f, 0.38f, 0.82f, 1f) else cardColor(card))
         instance.transform.setToTranslation(card.position)
         activeBatch.render(instance, environment)
@@ -198,6 +199,9 @@ class WorldRenderer {
         val projectile = instance(sphere(0.18f, Color(1f, 0.9f, 0.2f, 1f)))
         val textBlock = instance(box(0.055f, 0.055f, 0.035f, Color.BLACK))
         private val decorationInstances = mutableMapOf<String, ModelInstance>()
+        private val soldierInstances = mutableMapOf<String, ModelInstance>()
+        private val bossInstances = mutableMapOf<String, ModelInstance>()
+        private val cardInstances = mutableMapOf<String, ModelInstance>()
 
         var soldier = instance(box(0.36f, 0.8f, 0.36f, Color.WHITE))
             private set
@@ -225,6 +229,46 @@ class WorldRenderer {
             firepowerCardTopY = modelTopY(firepowerCard.model)
             bossTopY = modelTopY(boss.model)
         }
+
+        fun soldier(path: String): ModelInstance =
+            if (currentPaths?.soldier == path) {
+                soldier
+            } else {
+                soldierInstances.getOrPut(path) {
+                    instance(loadObj(path, fallback = { box(0.36f, 0.8f, 0.36f, Color.WHITE) }))
+                }
+            }
+
+        fun boss(path: String): ModelInstance =
+            if (currentPaths?.boss == path) {
+                boss
+            } else {
+                bossInstances.getOrPut(path) {
+                    instance(loadObj(path, fallback = { box(2.4f, 2.6f, 2.4f, Color.WHITE) }))
+                }
+            }
+
+        fun card(card: Card): ModelInstance {
+            val defaultPath = if (card.target == CardTarget.FIREPOWER) currentPaths?.firepowerCard else currentPaths?.manpowerCard
+            if (defaultPath == card.modelPath) {
+                return if (card.target == CardTarget.FIREPOWER) firepowerCard else manpowerCard
+            }
+            return cardInstances.getOrPut(card.modelPath) {
+                instance(loadObj(card.modelPath, fallback = { box(1.2f, 1.2f, 0.22f, Color.WHITE) }))
+            }
+        }
+
+        fun cardTopY(card: Card): Float =
+            if (card.target == CardTarget.FIREPOWER && currentPaths?.firepowerCard == card.modelPath) {
+                firepowerCardTopY
+            } else if (card.target == CardTarget.MANPOWER && currentPaths?.manpowerCard == card.modelPath) {
+                manpowerCardTopY
+            } else {
+                modelTopY(card(card).model)
+            }
+
+        fun bossTopY(path: String): Float =
+            if (currentPaths?.boss == path) bossTopY else modelTopY(boss(path).model)
 
         fun decoration(path: String): ModelInstance =
             decorationInstances.getOrPut(path) {
@@ -426,11 +470,7 @@ class WorldRenderer {
 
     private class Text3dRenderer(private val assets: RenderAssets) {
         fun renderCardText(modelBatch: ModelBatch, environment: Environment, card: Card) {
-            val cardTopOffset = if (card.target == CardTarget.FIREPOWER) {
-                assets.firepowerCardTopY
-            } else {
-                assets.manpowerCardTopY
-            }
+            val cardTopOffset = assets.cardTopY(card)
             val cardTopY = card.position.y + cardTopOffset
             val labelBottomY = cardTopY + 0.28f
             val smallCell = 0.07f
@@ -441,7 +481,7 @@ class WorldRenderer {
         }
 
         fun renderBossText(modelBatch: ModelBatch, environment: Environment, boss: Boss) {
-            val baseY = boss.position.y + assets.bossTopY + 0.55f
+            val baseY = boss.position.y + assets.bossTopY(boss.modelPath) + 0.55f
             val z = boss.position.z - 0.22f
             renderLine(modelBatch, environment, boss.name, boss.position.x, baseY + 0.34f, z, 0.1f)
             renderLine(

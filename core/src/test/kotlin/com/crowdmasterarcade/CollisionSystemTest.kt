@@ -21,6 +21,7 @@ class CollisionSystemTest {
             operation = CardOperation.PLUS,
             target = CardTarget.MANPOWER,
             value = 1f,
+            modelPath = "assets/default-manpower-card.obj",
             position = Vector3(outerSoldier.worldPosition.x, outerSoldier.worldPosition.y, outerSoldier.worldPosition.z),
             speed = 0f,
             active = true

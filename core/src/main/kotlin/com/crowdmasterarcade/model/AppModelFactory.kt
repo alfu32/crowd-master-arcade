@@ -29,13 +29,15 @@ object AppModelFactory {
         FormationSystem.recalculatePlayerFormation(player, road)
         FormationSystem.updatePlayerFormation(player, road, 1f)
 
-        val cards = levelDefinition.cards.mapTo(mutableListOf()) { card(it, GameConfig.LEVEL_INTRO_DISTANCE) }
+        val cards = levelDefinition.cards.mapTo(mutableListOf()) {
+            card(it, levelDefinition.modelPaths, GameConfig.LEVEL_INTRO_DISTANCE)
+        }
         val decorations = levelDefinition.decorations.mapTo(mutableListOf()) { decoration(it, GameConfig.LEVEL_INTRO_DISTANCE) }
         val enemies = levelDefinition.enemyBrigades.mapIndexedTo(mutableListOf()) { index, definition ->
-            enemy(definition, index + 1, road, GameConfig.LEVEL_INTRO_DISTANCE)
+            enemy(definition, index + 1, road, levelDefinition.modelPaths, GameConfig.LEVEL_INTRO_DISTANCE)
         }
         val bosses = levelDefinition.bosses.mapIndexedTo(mutableListOf()) { index, definition ->
-            boss(definition, index + 1, GameConfig.LEVEL_INTRO_DISTANCE)
+            boss(definition, index + 1, levelDefinition.modelPaths, GameConfig.LEVEL_INTRO_DISTANCE)
         }
         val projectileLifeSeconds = levelDefinition.projectileLength / GameConfig.PROJECTILE_SPEED
 
@@ -82,18 +84,28 @@ object AppModelFactory {
             )
         }
 
-    private fun card(definition: CardDefinition, zOffset: Float): Card =
+    private fun card(definition: CardDefinition, levelModels: LevelModelPaths, zOffset: Float): Card =
         Card(
             id = nextId++,
             operation = definition.operation,
             target = definition.target,
             value = definition.value,
+            modelPath = definition.modelPath ?: when (definition.target) {
+                CardTarget.MANPOWER -> levelModels.manpowerCard
+                CardTarget.FIREPOWER -> levelModels.firepowerCard
+            },
             position = Vector3(definition.x, 0.7f, definition.z + zOffset),
             speed = GameConfig.CARD_SPEED,
             active = true
         )
 
-    private fun enemy(definition: EnemyBrigadeDefinition, index: Int, road: Road, zOffset: Float): EnemyBrigade {
+    private fun enemy(
+        definition: EnemyBrigadeDefinition,
+        index: Int,
+        road: Road,
+        levelModels: LevelModelPaths,
+        zOffset: Float
+    ): EnemyBrigade {
         val soldiers = createSoldiers(definition.effective)
         soldiers.forEach { it.health = definition.unitStrength }
         val brigade = EnemyBrigade(
@@ -102,6 +114,7 @@ object AppModelFactory {
             position = Vector3(definition.x, GameConfig.PLAYER_Y, definition.z + zOffset),
             speed = GameConfig.ENEMY_SPEED,
             unitStrength = definition.unitStrength,
+            modelPath = definition.modelPath ?: levelModels.soldier,
             soldiers = soldiers,
             alive = true
         )
@@ -121,12 +134,13 @@ object AppModelFactory {
             active = true
         )
 
-    private fun boss(definition: BossDefinition, index: Int, zOffset: Float): Boss =
+    private fun boss(definition: BossDefinition, index: Int, levelModels: LevelModelPaths, zOffset: Float): Boss =
         Boss(
             name = definition.name ?: "General $index",
             position = Vector3(definition.x, 1.2f, definition.z + zOffset),
             health = definition.power,
             maxHealth = definition.power,
+            modelPath = definition.modelPath ?: levelModels.boss,
             speed = GameConfig.BOSS_SPEED,
             active = true,
             alive = true

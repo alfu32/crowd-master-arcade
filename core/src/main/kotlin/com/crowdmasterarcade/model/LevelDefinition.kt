@@ -27,7 +27,8 @@ data class CardDefinition(
     val target: CardTarget,
     val value: Float,
     val x: Float,
-    val z: Float
+    val z: Float,
+    val modelPath: String?
 )
 
 data class EnemyBrigadeDefinition(
@@ -35,7 +36,8 @@ data class EnemyBrigadeDefinition(
     val unitStrength: Float,
     val name: String?,
     val x: Float,
-    val z: Float
+    val z: Float,
+    val modelPath: String?
 )
 
 data class DecorationDefinition(
@@ -50,5 +52,6 @@ data class BossDefinition(
     val power: Float,
     val name: String?,
     val x: Float,
-    val z: Float
+    val z: Float,
+    val modelPath: String?
 )
