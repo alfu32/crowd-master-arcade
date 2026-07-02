@@ -3,6 +3,7 @@ package com.crowdmasterarcade.desktop
 import com.badlogic.gdx.backends.lwjgl3.Lwjgl3Application
 import com.badlogic.gdx.backends.lwjgl3.Lwjgl3ApplicationConfiguration
 import com.crowdmasterarcade.CrowdDefenseGame
+import com.crowdmasterarcade.model.ResourceHome
 import java.io.File
 import java.io.PrintWriter
 
@@ -39,6 +40,7 @@ private fun writeCrashLog(throwable: Throwable) {
                 writer.println("user.home=${System.getProperty("user.home")}")
                 writer.println("crowdmaster.home=${System.getProperty("crowdmaster.home")}")
                 writer.println("CROWD_MASTER_ARCADE_HOME=${System.getenv("CROWD_MASTER_ARCADE_HOME")}")
+                runCatching { writer.println("resolved.resource.home=${ResourceHome.root.file().absolutePath}") }
                 throwable.printStackTrace(writer)
             }
             return

@@ -4,11 +4,14 @@ import com.crowdmasterarcade.model.CardOperation
 import com.crowdmasterarcade.model.CardTarget
 import com.crowdmasterarcade.model.DefaultLevels
 import com.crowdmasterarcade.model.LevelCatalog
+import com.crowdmasterarcade.model.LevelParseException
 import com.crowdmasterarcade.model.LevelTextParser
 import com.crowdmasterarcade.model.AppModelFactory
 import java.nio.file.Files
 import kotlin.test.Test
 import kotlin.test.assertEquals
+import kotlin.test.assertFailsWith
+import kotlin.test.assertTrue
 
 class LevelTextParserTest {
     @Test
@@ -58,6 +61,14 @@ class LevelTextParserTest {
     }
 
     @Test
+    fun parsesCrlfLevelText() {
+        val level = LevelTextParser.parse(DefaultLevels.ravenBendText.replace("\n", "\r\n"))
+
+        assertEquals("The Raven's Bend", level.name)
+        assertEquals(2, level.bosses.size)
+    }
+
+    @Test
     fun parsesPerObjectModelOverridesAndFactoryFallsBackToLevelModels() {
         val level = LevelTextParser.parse(
             """
@@ -98,6 +109,7 @@ class LevelTextParserTest {
     fun loadsLevelsFromFolderInFilenameOrder() {
         val folder = Files.createTempDirectory("crowd-master-levels").toFile()
         folder.resolve("index.txt").writeText("001-first.level")
+        folder.resolve("notes.txt").writeText("this is not a level")
         folder.resolve("002-second.level").writeText(DefaultLevels.ravenBendText.replace("The Raven's Bend", "Second"))
         folder.resolve("001-first.level").writeText(DefaultLevels.ravenBendText.replace("The Raven's Bend", "First"))
         folder.resolve("003-third.cma-level").writeText(DefaultLevels.ravenBendText.replace("The Raven's Bend", "Third"))
@@ -105,5 +117,38 @@ class LevelTextParserTest {
         val levels = LevelCatalog.loadFromFolder(folder.absolutePath)
 
         assertEquals(listOf("First", "Second", "Third"), levels.map { it.name })
+    }
+
+    @Test
+    fun skipsMalformedUserLevelFiles() {
+        val folder = Files.createTempDirectory("crowd-master-levels-bad").toFile()
+        folder.resolve("001-good.level").writeText(DefaultLevels.ravenBendText.replace("The Raven's Bend", "Good"))
+        folder.resolve("002-bad.level").writeText(
+            """
+            name: Bad
+            enemy_brigades:
+              - name: missing effective, strength: 10, x: 0, z: 10
+            """.trimIndent()
+        )
+
+        val levels = LevelCatalog.loadFromFolder(folder.absolutePath)
+
+        assertEquals(listOf("Good"), levels.map { it.name })
+    }
+
+    @Test
+    fun malformedInlineItemsReportLineAndText() {
+        val exception = assertFailsWith<LevelParseException> {
+            LevelTextParser.parse(
+                """
+                name: Bad
+                enemy_brigades:
+                  - name: missing effective, strength: 10, x: 0, z: 10
+                """.trimIndent()
+            )
+        }
+
+        assertTrue(exception.message.orEmpty().contains("Line 3"))
+        assertTrue(exception.message.orEmpty().contains("missing effective"))
     }
 }

@@ -12,9 +12,11 @@ object LevelTextParser {
         var section = ""
 
         text.lineSequence()
-            .map { it.substringBefore("#").trim() }
-            .filter { it.isNotBlank() }
-            .forEach { line ->
+            .withIndex()
+            .map { (index, rawLine) -> ParsedLine(index + 1, rawLine, rawLine.substringBefore("#").trim()) }
+            .filter { it.text.isNotBlank() }
+            .forEach { parsed ->
+                val line = parsed.text
                 if (line.endsWith(":") && !line.startsWith("-")) {
                     section = line.dropLast(1).trim().canonical()
                     return@forEach
@@ -22,36 +24,43 @@ object LevelTextParser {
 
                 if (line.startsWith("-")) {
                     val item = parseInlineMap(line.removePrefix("-").trim())
-                    when (section) {
-                        "cards" -> cards += CardDefinition(
-                            operation = parseOperation(item.required("op")),
-                            target = parseTarget(item.required("param")),
-                            value = item.float("val"),
-                            x = item.float("x", 0f),
-                            z = item.float("z"),
-                            modelPath = item["model"]
-                        )
-                        "decorations" -> decorations += DecorationDefinition(
-                            name = item["name"] ?: "decoration ${decorations.size + 1}",
-                            power = item.float("power", 1f),
-                            x = item.float("x", 0f),
-                            z = item.float("z"),
-                            modelPath = item["model"] ?: "assets/default-decoration.obj"
-                        )
-                        "enemy_brigades", "enemies" -> enemies += EnemyBrigadeDefinition(
-                            effective = item.int("effective"),
-                            unitStrength = item.float("strength", 10f),
-                            name = item["name"],
-                            x = item.float("x", 0f),
-                            z = item.float("z"),
-                            modelPath = item["model"]
-                        )
-                        "bosses", "boss" -> bosses += BossDefinition(
-                            power = item.float("power"),
-                            name = item["name"],
-                            x = item.float("x", 0f),
-                            z = item.float("z"),
-                            modelPath = item["model"]
+                    try {
+                        when (section) {
+                            "cards" -> cards += CardDefinition(
+                                operation = parseOperation(item.required("op")),
+                                target = parseTarget(item.required("param")),
+                                value = item.float("val"),
+                                x = item.float("x", 0f),
+                                z = item.float("z"),
+                                modelPath = item["model"]
+                            )
+                            "decorations" -> decorations += DecorationDefinition(
+                                name = item["name"] ?: "decoration ${decorations.size + 1}",
+                                power = item.float("power", 1f),
+                                x = item.float("x", 0f),
+                                z = item.float("z"),
+                                modelPath = item["model"] ?: "assets/default-decoration.obj"
+                            )
+                            "enemy_brigades", "enemies" -> enemies += EnemyBrigadeDefinition(
+                                effective = item.int("effective"),
+                                unitStrength = item.float("strength", 10f),
+                                name = item["name"],
+                                x = item.float("x", 0f),
+                                z = item.float("z"),
+                                modelPath = item["model"]
+                            )
+                            "bosses", "boss" -> bosses += BossDefinition(
+                                power = item.float("power"),
+                                name = item["name"],
+                                x = item.float("x", 0f),
+                                z = item.float("z"),
+                                modelPath = item["model"]
+                            )
+                        }
+                    } catch (exception: RuntimeException) {
+                        throw LevelParseException(
+                            "Line ${parsed.number} in section '$section': ${exception.message}. Text: ${parsed.raw.trim()}",
+                            exception
                         )
                     }
                     return@forEach
@@ -129,5 +138,13 @@ object LevelTextParser {
         this[key]?.toInt() ?: default ?: error("Missing required int level field: $key")
 
     private fun String.canonical(): String =
-        lowercase().replace("-", "_").replace(" ", "_")
+        trimStart('\uFEFF').lowercase().replace("-", "_").replace(" ", "_")
+
+    private data class ParsedLine(
+        val number: Int,
+        val raw: String,
+        val text: String
+    )
 }
+
+class LevelParseException(message: String, cause: Throwable? = null) : IllegalStateException(message, cause)

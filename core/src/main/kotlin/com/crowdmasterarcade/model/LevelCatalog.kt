@@ -4,7 +4,7 @@ import com.badlogic.gdx.Gdx
 import java.io.File
 
 object LevelCatalog {
-    private val supportedExtensions = setOf("level", "cma-level", "txt", "yaml", "yml")
+    private val supportedExtensions = setOf("level", "cma-level")
 
     fun load(folderPath: String? = System.getProperty("levels.dir")): List<LevelDefinition> {
         val externalLevels = folderPath
@@ -28,7 +28,9 @@ object LevelCatalog {
             .asSequence()
             .filter { it.isFile && isSupportedLevelFile(it.name, it.extension) }
             .sortedBy { it.name }
-            .map { LevelTextParser.parse(it.readText()) }
+            .mapNotNull { file ->
+                parseUserLevel(file.name) { file.readText() }
+            }
             .toList()
     }
 
@@ -40,7 +42,9 @@ object LevelCatalog {
             .asSequence()
             .filter { !it.isDirectory && isSupportedLevelFile(it.name(), it.extension()) }
             .sortedBy { it.name() }
-            .map { LevelTextParser.parse(it.readString("UTF-8")) }
+            .mapNotNull { file ->
+                parseUserLevel(file.name()) { file.readString("UTF-8") }
+            }
             .toList()
     }
 
@@ -60,4 +64,25 @@ object LevelCatalog {
 
     private fun isSupportedLevelFile(name: String, extension: String): Boolean =
         name != "index.txt" && extension.lowercase() in supportedExtensions
+
+    private fun parseUserLevel(fileName: String, readText: () -> String): LevelDefinition? =
+        try {
+            LevelTextParser.parse(readText())
+        } catch (exception: RuntimeException) {
+            logLevelLoadError(fileName, exception)
+            null
+        }
+
+    private fun logLevelLoadError(fileName: String, exception: RuntimeException) {
+        runCatching {
+            val log = ResourceHome.root.child("level-load-errors.log")
+            log.parent().mkdirs()
+            log.writeString(
+                "Skipped $fileName: ${exception.message ?: exception::class.simpleName}\n",
+                true,
+                "UTF-8"
+            )
+        }
+        Gdx.app?.error("LevelCatalog", "Skipped $fileName", exception)
+    }
 }
