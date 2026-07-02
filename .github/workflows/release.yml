@@ -40,7 +40,10 @@ jobs:
       - name: Build Linux bundles
         env:
           APPIMAGETOOL: ${{ runner.temp }}/appimagetool.AppImage
-        run: ./gradlew :lwjgl3:bundleLinuxTar :lwjgl3:bundleLinuxAppImage :lwjgl3:jar -PreleaseNumber="${{ inputs.tag }}"
+        run: |
+          ./gradlew :lwjgl3:bundleLinuxTar :lwjgl3:bundleLinuxAppImage :lwjgl3:jar -PreleaseNumber="${{ inputs.tag }}"
+          mkdir -p dist
+          cp "lwjgl3/build/libs/crowd-master-arcade-${{ inputs.tag }}.jar" "dist/crowd-master-arcade-${{ inputs.tag }}-fat.jar"
       - uses: snapcore/action-build@v1
         id: snapcraft
         env:
@@ -56,7 +59,7 @@ jobs:
             dist/*.tar.gz
             dist/*.AppImage
             dist/*.snap
-            lwjgl3/build/libs/*.jar
+            dist/*-fat.jar
 
   build-windows:
     runs-on: windows-latest
