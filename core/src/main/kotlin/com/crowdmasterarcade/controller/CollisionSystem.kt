@@ -67,7 +67,7 @@ object CollisionSystem {
         appModel.enemyBrigades.filter { it.alive }.forEach { enemy ->
             if (overlaps(appModel.player.position, enemy.position, GameConfig.PLAYER_COLLISION_RADIUS + 1f)) {
                 val losses = minOf(enemy.soldiers.size, appModel.player.soldiers.size)
-                repeat(losses) { appModel.player.soldiers.removeLast() }
+                repeat(losses) { appModel.player.soldiers.removeAt(appModel.player.soldiers.lastIndex) }
                 enemy.soldiers.clear()
                 enemy.alive = false
                 FormationSystem.recalculatePlayerFormation(appModel.player, appModel.road)

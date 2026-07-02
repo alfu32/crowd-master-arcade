@@ -80,7 +80,7 @@ jobs:
           $jarDir = "lwjgl3\build\libs"
           $jarName = "crowd-master-arcade-$version.jar"
           $jpackage = Join-Path $env:JAVA_HOME "bin\jpackage.exe"
-          & $jpackage --type app-image --name $appName --app-version $version --vendor "K3D0" `
+          & $jpackage --type app-image --name $appName --app-version $version --vendor "K3D0" --win-console `
             --input $jarDir --main-jar $jarName --dest "dist\jpackage" `
             --icon "assets\appicon.ico" --java-options "-Xms256m" --java-options "-Xmx1g"
           & $jpackage --type msi --name $appName --app-version $version --vendor "K3D0" `
@@ -139,6 +139,18 @@ jobs:
           $manifest = $manifest.Replace("__DISPLAY_NAME__", $displayName)
           $manifest = $manifest.Replace("__APP_EXE__", $exe.Name)
           $manifest | Out-File -Encoding utf8 (Join-Path $msixRoot "AppxManifest.xml")
+      - name: Debug MSIX layout
+        shell: powershell
+        run: |
+          $ErrorActionPreference = "Stop"
+          Write-Host "MSIX staging root:"
+          Get-ChildItem -Path dist\msix -Recurse | ForEach-Object {
+            if ($_.PSIsContainer) {
+              Write-Host ("[DIR]  " + $_.FullName)
+            } else {
+              Write-Host ("[FILE] " + $_.FullName)
+            }
+          }
       - name: Build MSIX
         id: msix-build
         uses: BHznJNs/msix-build@v0.9

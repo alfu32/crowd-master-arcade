@@ -44,7 +44,7 @@ object CardEffectSystem {
 
     fun removeSoldiers(player: PlayerBrigade, count: Int) {
         repeat(count.coerceAtMost(player.soldiers.size).coerceAtLeast(0)) {
-            player.soldiers.removeLast()
+            player.soldiers.removeAt(player.soldiers.lastIndex)
         }
         if (player.soldiers.isEmpty()) player.alive = false
     }
