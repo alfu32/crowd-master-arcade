@@ -37,7 +37,7 @@ enemy_brigades:
   - effective: 80, strength: 12, x: -1.5, z: 120
   - effective: 100, strength: 12, x: 1.4, z: 130
   - effective: 100, strength: 14, x: -2, z: 140
-  - name: boss guard, effective: 1000, strength: 14, x: 2, z: 150
+  - name: Moloch, power: 15000, x: 0, z: 180,model: assets/bigbot.obj
 
 bosses:
   - name: General Raven, power: 800, x: 0, z: 102
