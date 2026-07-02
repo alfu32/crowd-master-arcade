@@ -20,7 +20,7 @@ object CollisionSystem {
     private fun handleCards(appModel: AppModel) {
         appModel.cards.filter { it.active }.forEach { card ->
             if (playerFormationOverlapsCard(appModel, card.position)) {
-                CardEffectSystem.applyCard(appModel.player, card, appModel.runtimeConfig.maxFireRate, appModel.road.width)
+                CardEffectSystem.applyCard(appModel, card)
             }
         }
     }

@@ -89,7 +89,9 @@ object LevelTextParser {
                 soldier = values["soldier_model"] ?: "assets/default-soldier.obj",
                 boss = values["boss_model"] ?: "assets/default-boss.obj",
                 manpowerCard = values["manpower_card_model"] ?: "assets/default-manpower-card.obj",
-                firepowerCard = values["firepower_card_model"] ?: "assets/default-firepower-card.obj"
+                firepowerCard = values["firepower_card_model"] ?: "assets/default-firepower-card.obj",
+                bulletPowerCard = values["bulletpower_card_model"] ?: "assets/default-bulletpower-card.obj",
+                soldierLifeCard = values["soldierlife_card_model"] ?: "assets/default-soldierlife-card.obj"
             ),
             colors = LevelColors(
                 player = values.color("player_color") ?: LevelColor.PLAYER,
@@ -140,6 +142,8 @@ object LevelTextParser {
         when (value.canonical()) {
             "manpower", "soldiers", "soldier" -> CardTarget.MANPOWER
             "firepower", "fire_rate", "firerate" -> CardTarget.FIREPOWER
+            "bulletpower", "bullet_power", "projectile_power", "projectile_damage", "bullet_damage" -> CardTarget.BULLET_POWER
+            "soldierlife", "soldier_life", "player_life", "health", "soldier_health" -> CardTarget.SOLDIER_LIFE
             else -> error("Unknown card target: $value")
         }
 

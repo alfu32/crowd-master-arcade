@@ -22,6 +22,7 @@ object AppModelFactory {
             position = Vector3(0f, GameConfig.PLAYER_Y, GameConfig.PLAYER_Z),
             lateralSpeed = GameConfig.PLAYER_LATERAL_SPEED,
             soldiers = createSoldiers(levelDefinition.startingSoldiers),
+            soldierHealth = GameConfig.SOLDIER_HEALTH,
             fireRate = levelDefinition.fireRate,
             fireCooldown = 0f,
             alive = true,
@@ -76,13 +77,13 @@ object AppModelFactory {
         )
     }
 
-    fun createSoldiers(count: Int): MutableList<RegularSoldier> =
+    fun createSoldiers(count: Int, health: Float = GameConfig.SOLDIER_HEALTH): MutableList<RegularSoldier> =
         MutableList(count.coerceAtLeast(0)) {
             RegularSoldier(
                 id = nextId++,
                 localOffset = Vector3(),
                 worldPosition = Vector3(),
-                health = GameConfig.SOLDIER_HEALTH,
+                health = health,
                 alive = true
             )
         }
@@ -96,6 +97,8 @@ object AppModelFactory {
             modelPath = definition.modelPath ?: when (definition.target) {
                 CardTarget.MANPOWER -> levelModels.manpowerCard
                 CardTarget.FIREPOWER -> levelModels.firepowerCard
+                CardTarget.BULLET_POWER -> levelModels.bulletPowerCard
+                CardTarget.SOLDIER_LIFE -> levelModels.soldierLifeCard
             },
             position = Vector3(definition.x, 0.7f, definition.z + zOffset),
             speed = GameConfig.CARD_SPEED,

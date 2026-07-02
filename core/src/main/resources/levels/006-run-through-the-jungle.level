@@ -10,6 +10,8 @@ soldier_model: assets/default-soldier.obj
 boss_model: assets/default-boss.obj
 manpower_card_model: assets/default-manpower-card.obj
 firepower_card_model: assets/default-firepower-card.obj
+bulletpower_card_model: assets/default-bulletpower-card.obj
+soldierlife_card_model: assets/default-soldierlife-card.obj
 player_color: #1FB8EBFF
 enemy_color: #317B3DFF
 boss_color: #6B3B87FF
@@ -19,10 +21,12 @@ cards:
   - op: plus, param: manpower, val: 22, x: -3.8, z: 12
   - op: times, param: firepower, val: 3, x: 3.4, z: 26
   - op: plus, param: manpower, val: 35, x: 0, z: 44
+  - op: plus, param: soldierlife, val: 10, x: -3.2, z: 54
   - op: minus, param: manpower, val: 14, x: 3.6, z: 64
   - op: div, param: firepower, val: 2, x: -3.4, z: 84
   - op: times, param: manpower, val: 3, x: -1.2, z: 106
   - op: times, param: firepower, val: 4, x: 2.0, z: 130
+  - op: plus, param: bulletpower, val: 15, x: -2.0, z: 140
   - op: plus, param: manpower, val: 45, x: 3.8, z: 154
   - op: minus, param: firepower, val: 6, x: -3.8, z: 178
   - op: times, param: firepower, val: 5, x: 0.6, z: 204
@@ -52,4 +56,3 @@ bosses:
   - name: Colonel Vine, power: 3000, x: -2.5, z: 170, color: #4A7A2DFF
   - name: River Mother, power: 5200, x: 2.5, z: 222, color: #315B91FF
   - name: The Green Thunder, power: 15000, x: 0, z: 306, color: #5F2B80FF
-

@@ -34,12 +34,16 @@ name: The Raven's Bend
 road_length: 220
 road_width: 16
 soldier_model: assets/default-soldier.obj
+bulletpower_card_model: assets/default-bulletpower-card.obj
+soldierlife_card_model: assets/default-soldierlife-card.obj
 player_color: #1FB8EBFF
 enemy_color: #D6292EFF
 
 cards:
   - op: plus, param: manpower, val: 15, x: -2, z: 10
   - op: times, param: firepower, val: 5, x: -1.5, z: 20
+  - op: plus, param: bulletpower, val: 10, x: 1.5, z: 30
+  - op: times, param: soldierlife, val: 2, x: 0, z: 40
 
 decorations:
   - name: triumphal arch, power: 999999, x: 0, z: 95, model: assets/triumphal-arch.obj, color: #8C8578FF

@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.Texture
 import com.badlogic.gdx.graphics.g2d.BitmapFont
 import com.badlogic.gdx.graphics.g2d.GlyphLayout
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
+import com.badlogic.gdx.math.Matrix4
 import com.crowdmasterarcade.model.AppModel
 import com.crowdmasterarcade.model.GameState
 
@@ -15,6 +16,7 @@ class UiRenderer {
     private val font = BitmapFont()
     private val layout = GlyphLayout()
     private val panelTexture = createPanelTexture()
+    private val projection = Matrix4()
 
     init {
         font.color = Color.WHITE
@@ -22,17 +24,22 @@ class UiRenderer {
     }
 
     fun render(appModel: AppModel) {
+        val width = Gdx.graphics.width.toFloat()
+        val height = Gdx.graphics.height.toFloat()
+        batch.projectionMatrix = projection.setToOrtho2D(0f, 0f, width, height)
         batch.begin()
         batch.setColor(1f, 1f, 1f, 1f)
-        val height = Gdx.graphics.height.toFloat()
-        drawPanel(12f, height - 116f, 520f, 104f)
-        drawPanel(12f, 12f, 500f, 36f)
+        drawPanel(12f, height - 144f, 560f, 132f)
+        drawPanel(12f, 12f, 630f, 36f)
         drawText("Level ${appModel.levelData.levelNumber}/${appModel.levelData.totalLevels}: ${appModel.levelData.name}", 24f, height - 28f, 1.08f)
         drawText("Soldiers ${appModel.player.soldiers.size}", 24f, height - 56f, 1.0f)
         drawText("Fire ${"%.1f".format(appModel.player.fireRate)}/s", 184f, height - 56f, 1.0f)
+        drawText("Bullet ${"%.0f".format(appModel.runtimeConfig.projectileDamage)}", 314f, height - 56f, 1.0f)
+        drawText("Life ${"%.0f".format(appModel.player.soldierHealth)}", 434f, height - 56f, 1.0f)
         drawText("Score ${points(appModel.scoreData.levelPoints)}/${points(appModel.scoreData.levelPossiblePoints)}", 24f, height - 84f, 1.0f)
         drawText("Total ${points(appModel.scoreData.totalPlayerPoints)}/${points(appModel.scoreData.totalPossiblePointsSoFar)}", 246f, height - 84f, 1.0f)
-        drawText("A/D or arrows move | drag to steer | R restart | Esc quit", 24f, 36f, 0.95f)
+        drawText("Speed ${"%.1f".format(appModel.runtimeConfig.gameSpeed)}x", 24f, height - 112f, 1.0f)
+        drawText("A/D left/right | W/S speed | drag to steer/speed | R restart | Esc quit", 24f, 36f, 0.95f)
 
         if (appModel.gameState == GameState.RUNNING && appModel.introRoadPosition >= -5f && appModel.introRoadPosition < 0f) {
             drawCentered(

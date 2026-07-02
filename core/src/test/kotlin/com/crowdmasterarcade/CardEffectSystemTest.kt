@@ -51,10 +51,29 @@ class CardEffectSystemTest {
         assertEquals(3f, player.fireRate)
     }
 
+    @Test
+    fun soldierLifeUpdatesCurrentAndFutureSoldiers() {
+        val player = player(2)
+        CardEffectSystem.applyCard(player, card(CardOperation.PLUS, CardTarget.SOLDIER_LIFE, 5f), GameConfig.MAX_FIRE_RATE)
+        CardEffectSystem.applyCard(player, card(CardOperation.PLUS, CardTarget.MANPOWER, 1f), GameConfig.MAX_FIRE_RATE)
+
+        assertEquals(15f, player.soldierHealth)
+        assertEquals(listOf(15f, 15f, 15f), player.soldiers.map { it.health })
+    }
+
+    @Test
+    fun bulletPowerUpdatesProjectileDamage() {
+        val appModel = AppModelFactory.initAppModel()
+        CardEffectSystem.applyCard(appModel, card(CardOperation.TIMES, CardTarget.BULLET_POWER, 3f))
+
+        assertEquals(GameConfig.PROJECTILE_DAMAGE * 3f, appModel.runtimeConfig.projectileDamage)
+    }
+
     private fun player(count: Int) = PlayerBrigade(
         position = Vector3(),
         lateralSpeed = GameConfig.PLAYER_LATERAL_SPEED,
         soldiers = AppModelFactory.createSoldiers(count),
+        soldierHealth = GameConfig.SOLDIER_HEALTH,
         fireRate = 1f,
         fireCooldown = 0f,
         alive = true,

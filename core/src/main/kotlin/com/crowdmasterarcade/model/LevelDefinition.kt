@@ -21,7 +21,9 @@ data class LevelModelPaths(
     val soldier: String,
     val boss: String,
     val manpowerCard: String,
-    val firepowerCard: String
+    val firepowerCard: String,
+    val bulletPowerCard: String,
+    val soldierLifeCard: String
 )
 
 data class LevelColors(

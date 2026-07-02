@@ -9,5 +9,7 @@ enum class CardOperation {
 
 enum class CardTarget {
     MANPOWER,
-    FIREPOWER
+    FIREPOWER,
+    BULLET_POWER,
+    SOLDIER_LIFE
 }

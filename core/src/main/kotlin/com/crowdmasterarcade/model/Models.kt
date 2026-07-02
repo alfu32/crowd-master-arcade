@@ -29,6 +29,7 @@ data class PlayerBrigade(
     var position: Vector3,
     var lateralSpeed: Float,
     var soldiers: MutableList<RegularSoldier>,
+    var soldierHealth: Float,
     var fireRate: Float,
     var fireCooldown: Float,
     var alive: Boolean,
@@ -112,8 +113,9 @@ data class Boss(
 data class RuntimeConfig(
     val maxFireRate: Float,
     val projectileSpeed: Float,
-    val projectileDamage: Float,
-    val projectileLifeSeconds: Float
+    var projectileDamage: Float,
+    val projectileLifeSeconds: Float,
+    var gameSpeed: Float = 1f
 )
 
 data class LevelData(
@@ -139,6 +141,8 @@ data class ScoreData(
 
 data class InputState(
     var moveX: Float = 0f,
+    var speedDelta: Float = 0f,
     var dragging: Boolean = false,
-    var dragDeltaX: Float = 0f
+    var dragDeltaX: Float = 0f,
+    var dragDeltaY: Float = 0f
 )

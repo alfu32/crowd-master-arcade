@@ -157,7 +157,7 @@ class WorldRenderer {
     }
 
     private fun renderCard(card: Card) {
-        val color = if (card.target == CardTarget.FIREPOWER) Color(0.95f, 0.38f, 0.82f, 1f) else cardColor(card)
+        val color = cardColor(card)
         val instance = assets.card(card, color)
         instance.transform.setToTranslation(card.position)
         activeBatch.render(instance, environment)
@@ -215,9 +215,17 @@ class WorldRenderer {
             private set
         var firepowerCard = instance(box(1.2f, 1.2f, 0.22f, Color.WHITE))
             private set
+        var bulletPowerCard = instance(box(1.2f, 1.2f, 0.22f, Color.WHITE))
+            private set
+        var soldierLifeCard = instance(box(1.2f, 1.2f, 0.22f, Color.WHITE))
+            private set
         var manpowerCardTopY = modelTopY(manpowerCard.model)
             private set
         var firepowerCardTopY = modelTopY(firepowerCard.model)
+            private set
+        var bulletPowerCardTopY = modelTopY(bulletPowerCard.model)
+            private set
+        var soldierLifeCardTopY = modelTopY(soldierLifeCard.model)
             private set
         var bossTopY = modelTopY(boss.model)
             private set
@@ -229,8 +237,12 @@ class WorldRenderer {
             boss = instance(loadObj(paths.boss, fallback = { box(2.4f, 2.6f, 2.4f, Color.WHITE) }))
             manpowerCard = instance(loadObj(paths.manpowerCard, fallback = { box(1.2f, 1.2f, 0.22f, Color.WHITE) }))
             firepowerCard = instance(loadObj(paths.firepowerCard, fallback = { box(1.2f, 1.2f, 0.22f, Color.WHITE) }))
+            bulletPowerCard = instance(loadObj(paths.bulletPowerCard, fallback = { box(1.2f, 1.2f, 0.22f, Color.WHITE) }))
+            soldierLifeCard = instance(loadObj(paths.soldierLifeCard, fallback = { box(1.2f, 1.2f, 0.22f, Color.WHITE) }))
             manpowerCardTopY = modelTopY(manpowerCard.model)
             firepowerCardTopY = modelTopY(firepowerCard.model)
+            bulletPowerCardTopY = modelTopY(bulletPowerCard.model)
+            soldierLifeCardTopY = modelTopY(soldierLifeCard.model)
             bossTopY = modelTopY(boss.model)
         }
 
@@ -262,9 +274,9 @@ class WorldRenderer {
             coloredInstance(ColoredInstanceKey(card.modelPath, colorKey(color)), cardBase(card), coloredCardInstances, color)
 
         private fun cardBase(card: Card): ModelInstance {
-            val defaultPath = if (card.target == CardTarget.FIREPOWER) currentPaths?.firepowerCard else currentPaths?.manpowerCard
+            val defaultPath = cardDefaultPath(card.target)
             if (defaultPath == card.modelPath) {
-                return if (card.target == CardTarget.FIREPOWER) firepowerCard else manpowerCard
+                return defaultCardInstance(card.target)
             }
             return cardInstances.getOrPut(card.modelPath) {
                 instance(loadObj(card.modelPath, fallback = { box(1.2f, 1.2f, 0.22f, Color.WHITE) }))
@@ -272,12 +284,34 @@ class WorldRenderer {
         }
 
         fun cardTopY(card: Card): Float =
-            if (card.target == CardTarget.FIREPOWER && currentPaths?.firepowerCard == card.modelPath) {
-                firepowerCardTopY
-            } else if (card.target == CardTarget.MANPOWER && currentPaths?.manpowerCard == card.modelPath) {
-                manpowerCardTopY
+            if (cardDefaultPath(card.target) == card.modelPath) {
+                defaultCardTopY(card.target)
             } else {
                 modelTopY(cardBase(card).model)
+            }
+
+        private fun cardDefaultPath(target: CardTarget): String? =
+            when (target) {
+                CardTarget.MANPOWER -> currentPaths?.manpowerCard
+                CardTarget.FIREPOWER -> currentPaths?.firepowerCard
+                CardTarget.BULLET_POWER -> currentPaths?.bulletPowerCard
+                CardTarget.SOLDIER_LIFE -> currentPaths?.soldierLifeCard
+            }
+
+        private fun defaultCardInstance(target: CardTarget): ModelInstance =
+            when (target) {
+                CardTarget.MANPOWER -> manpowerCard
+                CardTarget.FIREPOWER -> firepowerCard
+                CardTarget.BULLET_POWER -> bulletPowerCard
+                CardTarget.SOLDIER_LIFE -> soldierLifeCard
+            }
+
+        private fun defaultCardTopY(target: CardTarget): Float =
+            when (target) {
+                CardTarget.MANPOWER -> manpowerCardTopY
+                CardTarget.FIREPOWER -> firepowerCardTopY
+                CardTarget.BULLET_POWER -> bulletPowerCardTopY
+                CardTarget.SOLDIER_LIFE -> soldierLifeCardTopY
             }
 
         fun bossTopY(path: String): Float =
@@ -516,24 +550,24 @@ class WorldRenderer {
         fun renderCardText(modelBatch: ModelBatch, environment: Environment, card: Card) {
             val cardTopOffset = assets.cardTopY(card)
             val cardTopY = card.position.y + cardTopOffset
-            val labelBottomY = cardTopY + 0.36f
+            val labelY = cardTopY + 0.42f
             val smallCell = 0.08f
             val largeCell = 0.14f
-            renderLine(modelBatch, environment, operationLabel(card), card.position.x, labelBottomY + 0.34f, card.position.z - 0.14f, largeCell)
-            renderLine(modelBatch, environment, targetTop(card), card.position.x, labelBottomY, card.position.z - 0.14f, smallCell)
+            renderLine(modelBatch, environment, operationLabel(card), card.position.x, labelY, card.position.z + 0.42f, largeCell)
+            renderLine(modelBatch, environment, targetTop(card), card.position.x, labelY, card.position.z - 0.12f, smallCell)
         }
 
         fun renderBossText(modelBatch: ModelBatch, environment: Environment, boss: Boss) {
-            val baseY = boss.position.y + assets.bossTopY(boss.modelPath) + 0.55f
+            val baseY = boss.position.y + assets.bossTopY(boss.modelPath) + 0.65f
             val z = boss.position.z - 0.22f
-            renderLine(modelBatch, environment, boss.name, boss.position.x, baseY + 0.34f, z, 0.1f)
+            renderLine(modelBatch, environment, boss.name, boss.position.x, baseY, z + 0.42f, 0.1f)
             renderLine(
                 modelBatch,
                 environment,
                 "${boss.health.coerceAtLeast(0f).toInt()}/${boss.maxHealth.toInt()}",
                 boss.position.x,
                 baseY,
-                z,
+                z - 0.08f,
                 0.095f
             )
         }
@@ -543,8 +577,8 @@ class WorldRenderer {
             environment: Environment,
             text: String,
             centerX: Float,
-            baselineY: Float,
-            z: Float,
+            y: Float,
+            baselineZ: Float,
             cell: Float
         ) {
             val upper = text.uppercase()
@@ -558,10 +592,10 @@ class WorldRenderer {
                         if (bit == '1') {
                             assets.textBlock.transform.setToTranslation(
                                 cursorX - col * cell,
-                                baselineY - row * cell,
-                                z
+                                y,
+                                baselineZ - row * cell
                             )
-                            assets.textBlock.transform.scale(cell / 0.055f, cell / 0.055f, 1f)
+                            assets.textBlock.transform.scale(cell / 0.055f, 1f, cell / 0.055f)
                             modelBatch.render(assets.textBlock, environment)
                         }
                     }
@@ -582,6 +616,8 @@ class WorldRenderer {
             when (card.target) {
                 CardTarget.MANPOWER -> "MAN"
                 CardTarget.FIREPOWER -> "FIRE"
+                CardTarget.BULLET_POWER -> "BUL"
+                CardTarget.SOLDIER_LIFE -> "LIFE"
             }
 
         private fun glyph(char: Char): List<String> =

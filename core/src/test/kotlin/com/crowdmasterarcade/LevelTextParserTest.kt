@@ -28,6 +28,8 @@ class LevelTextParserTest {
         assertEquals("assets/default-boss.obj", level.modelPaths.boss)
         assertEquals("assets/default-manpower-card.obj", level.modelPaths.manpowerCard)
         assertEquals("assets/default-firepower-card.obj", level.modelPaths.firepowerCard)
+        assertEquals("assets/default-bulletpower-card.obj", level.modelPaths.bulletPowerCard)
+        assertEquals("assets/default-soldierlife-card.obj", level.modelPaths.soldierLifeCard)
         assertEquals(5, level.cards.size)
         assertEquals(CardOperation.PLUS, level.cards[0].operation)
         assertEquals(CardTarget.MANPOWER, level.cards[0].target)

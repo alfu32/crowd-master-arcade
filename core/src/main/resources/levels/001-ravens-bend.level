@@ -10,6 +10,8 @@ soldier_model: assets/default-soldier.obj
 boss_model: assets/default-boss.obj
 manpower_card_model: assets/default-manpower-card.obj
 firepower_card_model: assets/default-firepower-card.obj
+bulletpower_card_model: assets/default-bulletpower-card.obj
+soldierlife_card_model: assets/default-soldierlife-card.obj
 player_color: #1FB8EBFF
 enemy_color: #D6292EFF
 boss_color: #5C248FFF

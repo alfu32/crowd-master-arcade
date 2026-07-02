@@ -156,7 +156,7 @@ class CmaLevelLexer : LexerBase() {
 
     companion object {
         private val operations = setOf("plus", "minus", "div", "times")
-        private val params = setOf("manpower", "firepower")
+        private val params = setOf("manpower", "firepower", "bulletpower", "bullet_power", "soldierlife", "soldier_life")
         private val categories = setOf("cards", "decorations", "enemy_brigades", "bosses", "enemies", "boss")
     }
 }

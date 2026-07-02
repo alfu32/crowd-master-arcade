@@ -10,6 +10,8 @@ soldier_model: assets/default-soldier.obj
 boss_model: assets/default-boss.obj
 manpower_card_model: assets/default-manpower-card.obj
 firepower_card_model: assets/default-firepower-card.obj
+bulletpower_card_model: assets/default-bulletpower-card.obj
+soldierlife_card_model: assets/default-soldierlife-card.obj
 player_color: #1FB8EBFF
 enemy_color: #E0442EFF
 boss_color: #6622AAFF
@@ -19,8 +21,10 @@ cards:
   - op: times, param: firepower, val: 3, x: -2.6, z: 8
   - op: plus, param: manpower, val: 20, x: 2.5, z: 16
   - op: times, param: firepower, val: 4, x: 0, z: 28
+  - op: plus, param: bulletpower, val: 10, x: 2.8, z: 36
   - op: minus, param: manpower, val: 10, x: -2.2, z: 42
   - op: plus, param: manpower, val: 35, x: 2.8, z: 58
+  - op: times, param: soldierlife, val: 2, x: 0, z: 68
   - op: div, param: firepower, val: 2, x: -2.8, z: 74
   - op: times, param: manpower, val: 3, x: 0.8, z: 92
   - op: times, param: firepower, val: 5, x: -1.8, z: 112
@@ -42,4 +46,3 @@ enemy_brigades:
 bosses:
   - name: Captain Flashpoint, power: 2200, x: 1.8, z: 96, color: #8F2D1FFF
   - name: The Furnace Duke, power: 9000, x: 0, z: 164, color: #50106EFF
-

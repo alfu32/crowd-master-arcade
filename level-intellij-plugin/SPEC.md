@@ -19,9 +19,9 @@ The highlighter recognizes the lightweight level format parsed by `LevelTextPars
 
 Highlighted token classes:
 
-- Key names: field names before `:`, including `name`, `road_length`, `road_width`, `starting_soldiers`, `fire_rate`, `max_fire_rate`, `projectile_pool`, `projectile_length`, `soldier_model`, `boss_model`, `manpower_card_model`, `firepower_card_model`, `player_color`, `enemy_color`, `boss_color`, `decoration_color`, `op`, `param`, `val`, `x`, `z`, `model`, `color`, `power`, `effective`, and `strength`.
+- Key names: field names before `:`, including `name`, `road_length`, `road_width`, `starting_soldiers`, `fire_rate`, `max_fire_rate`, `projectile_pool`, `projectile_length`, `soldier_model`, `boss_model`, `manpower_card_model`, `firepower_card_model`, `bulletpower_card_model`, `soldierlife_card_model`, `player_color`, `enemy_color`, `boss_color`, `decoration_color`, `op`, `param`, `val`, `x`, `z`, `model`, `color`, `power`, `effective`, and `strength`.
 - Operation enum values: `plus`, `minus`, `div`, `times`.
-- Param enum values: `manpower`, `firepower`.
+- Param enum values: `manpower`, `firepower`, `bulletpower`, `soldierlife`.
 - Number values: signed integer and decimal values, with optional `f`/`F` suffix.
 - Hex color values: `#RRGGBB` and `#RRGGBBAA`.
 - Path reference values: values that look like asset or model paths, including slash-separated paths and `.obj` files.

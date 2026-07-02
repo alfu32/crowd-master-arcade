@@ -10,6 +10,8 @@ soldier_model: assets/default-soldier.obj
 boss_model: assets/default-boss.obj
 manpower_card_model: assets/default-manpower-card.obj
 firepower_card_model: assets/default-firepower-card.obj
+bulletpower_card_model: assets/default-bulletpower-card.obj
+soldierlife_card_model: assets/default-soldierlife-card.obj
 player_color: #1FB8EBFF
 enemy_color: #9C2735FF
 boss_color: #302E7DFF
@@ -20,10 +22,12 @@ cards:
   - op: times, param: firepower, val: 3, x: -3.2, z: 24
   - op: minus, param: manpower, val: 12, x: 3.2, z: 38
   - op: plus, param: manpower, val: 30, x: -2.6, z: 54
+  - op: plus, param: soldierlife, val: 8, x: 0, z: 62
   - op: div, param: firepower, val: 2, x: 2.4, z: 70
   - op: times, param: manpower, val: 3, x: 0.4, z: 88
   - op: plus, param: manpower, val: 40, x: 3.4, z: 110
   - op: times, param: firepower, val: 4, x: -3.4, z: 132
+  - op: times, param: bulletpower, val: 2, x: 0, z: 142
   - op: minus, param: firepower, val: 5, x: 0, z: 154
   - op: times, param: firepower, val: 5, x: 2.8, z: 176
   - op: plus, param: manpower, val: 35, x: -2.8, z: 198
@@ -48,4 +52,3 @@ bosses:
   - name: Lady Snare, power: 2600, x: -2.8, z: 118, color: #2C327EFF
   - name: Baron Crossfire, power: 3600, x: 2.8, z: 142, color: #383C96FF
   - name: The Netmaker, power: 11000, x: 0, z: 228, color: #251F62FF
-
