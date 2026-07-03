@@ -11,13 +11,17 @@ import com.kotcrab.vis.ui.widget.VisTable
 
 class UiRenderer {
     val stage = Stage(ScreenViewport())
-    private val root = VisTable()
-    private val hudLabel = VisLabel("")
-    private val footerLabel = VisLabel("A/D left/right | W/S speed | drag to steer/speed | R restart | Esc quit")
-    private val overlayLabel = VisLabel("")
+    private lateinit var root: VisTable
+    private lateinit var hudLabel: VisLabel
+    private lateinit var footerLabel: VisLabel
+    private lateinit var overlayLabel: VisLabel
 
     init {
         ensureVisUiLoaded()
+        root = VisTable()
+        hudLabel = VisLabel("")
+        footerLabel = VisLabel("A/D left/right | W/S speed | drag to steer/speed | R restart | Esc quit")
+        overlayLabel = VisLabel("")
         root.setFillParent(true)
         root.top().left()
         stage.addActor(root)

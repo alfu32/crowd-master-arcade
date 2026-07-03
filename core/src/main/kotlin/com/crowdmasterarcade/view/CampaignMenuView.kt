@@ -22,19 +22,28 @@ class CampaignMenuView(
     private val onResetHome: () -> Unit
 ) {
     val stage = Stage(ScreenViewport())
-    private val root = VisTable(true)
-    private val rowsTable = VisTable(true)
-    private val statusLabel = VisLabel("")
-    private val playButton = VisTextButton("Play")
-    private val testButton = VisTextButton("Test")
-    private val editButton = VisTextButton("Edit")
-    private val createButton = VisTextButton("Create")
-    private val deleteButton = VisTextButton("Delete")
-    private val resetButton = VisTextButton("Reset Data Home")
+    private lateinit var root: VisTable
+    private lateinit var rowsTable: VisTable
+    private lateinit var statusLabel: VisLabel
+    private lateinit var playButton: VisTextButton
+    private lateinit var testButton: VisTextButton
+    private lateinit var editButton: VisTextButton
+    private lateinit var createButton: VisTextButton
+    private lateinit var deleteButton: VisTextButton
+    private lateinit var resetButton: VisTextButton
     private var selectedIndex = initialSelection.coerceIn(0, (levels.size - 1).coerceAtLeast(0))
 
     init {
         UiRenderer.ensureVisUiLoaded()
+        root = VisTable(true)
+        rowsTable = VisTable(true)
+        statusLabel = VisLabel("")
+        playButton = VisTextButton("Play")
+        testButton = VisTextButton("Test")
+        editButton = VisTextButton("Edit")
+        createButton = VisTextButton("Create")
+        deleteButton = VisTextButton("Delete")
+        resetButton = VisTextButton("Reset Data Home")
         root.setFillParent(true)
         root.top().left().pad(16f)
         stage.addActor(root)
