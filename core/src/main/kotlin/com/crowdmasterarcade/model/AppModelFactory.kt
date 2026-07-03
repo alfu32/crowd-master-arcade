@@ -150,17 +150,22 @@ object AppModelFactory {
         levelColors: LevelColors,
         zOffset: Float
     ): Boss =
-        Boss(
-            name = definition.name ?: "General $index",
-            position = Vector3(definition.x, 1.2f, definition.z + zOffset),
-            health = definition.power,
-            maxHealth = definition.power,
-            modelPath = definition.modelPath ?: levelModels.boss,
-            color = definition.color ?: levelColors.boss,
-            speed = GameConfig.BOSS_SPEED,
-            active = true,
-            alive = true
-        )
+        (definition.modelPath ?: levelModels.boss).let { modelPath ->
+            val footprint = ModelFootprintCatalog.footprint(modelPath)
+            Boss(
+                name = definition.name ?: "General $index",
+                position = Vector3(definition.x, 1.2f, definition.z + zOffset),
+                health = definition.power,
+                maxHealth = definition.power,
+                modelPath = modelPath,
+                color = definition.color ?: levelColors.boss,
+                hitHalfWidth = footprint.halfWidth,
+                hitHalfDepth = footprint.halfDepth,
+                speed = GameConfig.BOSS_SPEED,
+                active = true,
+                alive = true
+            )
+        }
 
     private fun projectile(active: Boolean): Projectile =
         Projectile(nextId++, Vector3(), Vector3(), GameConfig.PROJECTILE_DAMAGE, remainingLife = 0f, active)

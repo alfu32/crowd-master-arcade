@@ -29,16 +29,9 @@ class UiRenderer {
         batch.projectionMatrix = projection.setToOrtho2D(0f, 0f, width, height)
         batch.begin()
         batch.setColor(1f, 1f, 1f, 1f)
-        drawPanel(12f, height - 144f, 560f, 132f)
+        drawPanel(12f, height - 48f, width - 24f, 36f)
         drawPanel(12f, 12f, 630f, 36f)
-        drawText("Level ${appModel.levelData.levelNumber}/${appModel.levelData.totalLevels}: ${appModel.levelData.name}", 24f, height - 28f, 1.08f)
-        drawText("Soldiers ${appModel.player.soldiers.size}", 24f, height - 56f, 1.0f)
-        drawText("Fire ${"%.1f".format(appModel.player.fireRate)}/s", 184f, height - 56f, 1.0f)
-        drawText("Bullet ${"%.0f".format(appModel.runtimeConfig.projectileDamage)}", 314f, height - 56f, 1.0f)
-        drawText("Life ${"%.0f".format(appModel.player.soldierHealth)}", 434f, height - 56f, 1.0f)
-        drawText("Score ${points(appModel.scoreData.levelPoints)}/${points(appModel.scoreData.levelPossiblePoints)}", 24f, height - 84f, 1.0f)
-        drawText("Total ${points(appModel.scoreData.totalPlayerPoints)}/${points(appModel.scoreData.totalPossiblePointsSoFar)}", 246f, height - 84f, 1.0f)
-        drawText("Speed ${"%.1f".format(appModel.runtimeConfig.gameSpeed)}x", 24f, height - 112f, 1.0f)
+        drawText(hudLine(appModel), 24f, height - 25f, 0.95f)
         drawText("A/D left/right | W/S speed | drag to steer/speed | R restart | Esc quit", 24f, 36f, 0.95f)
 
         if (appModel.gameState == GameState.RUNNING && appModel.introRoadPosition >= -5f && appModel.introRoadPosition < 0f) {
@@ -97,6 +90,15 @@ class UiRenderer {
 
     private fun points(value: Float): String =
         value.toInt().toString()
+
+    private fun hudLine(appModel: AppModel): String =
+        "level ${appModel.levelData.levelNumber} ${appModel.levelData.name} " +
+            "soldiers:${appModel.player.soldiers.size} " +
+            "fire:${"%.1f".format(appModel.player.fireRate)} " +
+            "bullet caliber:${points(appModel.runtimeConfig.projectileDamage)} " +
+            "life:${points(appModel.player.soldierHealth)} " +
+            "speed:${"%.1f".format(appModel.runtimeConfig.gameSpeed)} " +
+            "score:${points(appModel.scoreData.levelPoints)}/${points(appModel.scoreData.levelPossiblePoints)}"
 
     fun dispose() {
         batch.dispose()

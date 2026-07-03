@@ -105,6 +105,8 @@ data class Boss(
     val maxHealth: Float,
     val modelPath: String,
     val color: LevelColor,
+    val hitHalfWidth: Float,
+    val hitHalfDepth: Float,
     var speed: Float,
     var active: Boolean,
     var alive: Boolean

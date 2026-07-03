@@ -30,6 +30,7 @@ class CrowdDefenseGame : ApplicationAdapter() {
         ResourceHome.initialize()
         levels = LevelCatalog.load()
         campaignStats = CampaignStats()
+        levelIndex = campaignStats.lastSelectedLevel(levels.size) - 1
         appModel = loadLevel(levelIndex)
         controller = GameController()
         inputController = InputController()
@@ -39,12 +40,14 @@ class CrowdDefenseGame : ApplicationAdapter() {
 
     override fun render() {
         if (Gdx.input.isKeyJustPressed(Input.Keys.R)) {
+            campaignStats.recordSelectedLevel(levelIndex + 1)
             appModel = loadLevel(levelIndex)
         }
         if (Gdx.input.isKeyJustPressed(Input.Keys.C) && appModel.gameState == GameState.WON) {
             recordCompletionIfNeeded()
             if (levelIndex + 1 < levels.size) {
                 levelIndex += 1
+                campaignStats.recordSelectedLevel(levelIndex + 1)
                 appModel = loadLevel(levelIndex)
             } else {
                 appModel.gameState = GameState.EXIT
@@ -54,6 +57,7 @@ class CrowdDefenseGame : ApplicationAdapter() {
         }
         if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) {
             recordCompletionIfNeeded()
+            campaignStats.recordSelectedLevel(levelIndex + 1)
             appModel.gameState = GameState.EXIT
             Gdx.app.exit()
             return
@@ -73,6 +77,7 @@ class CrowdDefenseGame : ApplicationAdapter() {
     }
 
     private fun loadLevel(index: Int): AppModel {
+        campaignStats.recordSelectedLevel(index + 1)
         val level = levels[index]
         val levelNumber = index + 1
         val previousTotals = campaignStats.totalsBefore(levelNumber)

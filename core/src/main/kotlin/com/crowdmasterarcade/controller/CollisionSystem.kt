@@ -3,6 +3,7 @@ package com.crowdmasterarcade.controller
 import com.badlogic.gdx.math.Vector3
 import com.crowdmasterarcade.config.GameConfig
 import com.crowdmasterarcade.model.AppModel
+import com.crowdmasterarcade.model.Boss
 import com.crowdmasterarcade.model.GameState
 
 object CollisionSystem {
@@ -51,7 +52,11 @@ object CollisionSystem {
             }
             if (!consumed) {
                 appModel.bosses.firstOrNull { boss ->
-                    boss.active && boss.alive && overlaps(projectile.position, boss.position, GameConfig.BOSS_COLLISION_RADIUS)
+                    boss.active && boss.alive && overlapsBossFootprint(
+                        projectile.position,
+                        boss,
+                        GameConfig.PROJECTILE_COLLISION_RADIUS
+                    )
                 }?.let { boss ->
                     val scored = minOf(projectile.damage, boss.health.coerceAtLeast(0f))
                     boss.health -= projectile.damage
@@ -77,7 +82,7 @@ object CollisionSystem {
 
     private fun handleBossContact(appModel: AppModel) {
         appModel.bosses.filter { it.active && it.alive }.forEach { boss ->
-            if (overlaps(appModel.player.position, boss.position, GameConfig.PLAYER_COLLISION_RADIUS + GameConfig.BOSS_COLLISION_RADIUS)) {
+            if (overlapsBossFootprint(appModel.player.position, boss, GameConfig.PLAYER_COLLISION_RADIUS)) {
                 appModel.player.soldiers.clear()
                 appModel.player.alive = false
                 appModel.gameState = GameState.LOST
@@ -86,4 +91,10 @@ object CollisionSystem {
     }
 
     fun overlaps(a: Vector3, b: Vector3, radius: Float): Boolean = a.dst2(b) <= radius * radius
+
+    private fun overlapsBossFootprint(point: Vector3, boss: Boss, padding: Float): Boolean =
+        point.x >= boss.position.x - boss.hitHalfWidth - padding &&
+            point.x <= boss.position.x + boss.hitHalfWidth + padding &&
+            point.z >= boss.position.z - boss.hitHalfDepth - padding &&
+            point.z <= boss.position.z + boss.hitHalfDepth + padding
 }

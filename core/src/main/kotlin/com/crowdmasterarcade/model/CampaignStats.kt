@@ -3,11 +3,16 @@ package com.crowdmasterarcade.model
 import com.badlogic.gdx.files.FileHandle
 import java.util.Locale
 
-class CampaignStats(private val file: FileHandle = ResourceHome.root.child("campaign-stats.tsv")) {
+class CampaignStats(
+    private val file: FileHandle = ResourceHome.root.child("campaign-stats.tsv"),
+    private val stateFile: FileHandle = ResourceHome.root.child("campaign-state.properties")
+) {
     private val records = linkedMapOf<Int, LevelScoreRecord>()
+    private var lastSelectedLevel = 1
 
     init {
         load()
+        loadState()
     }
 
     fun totalsBefore(levelNumber: Int): ScoreTotals {
@@ -32,6 +37,14 @@ class CampaignStats(private val file: FileHandle = ResourceHome.root.child("camp
         )
         save()
     }
+
+    fun recordSelectedLevel(levelNumber: Int) {
+        lastSelectedLevel = levelNumber.coerceAtLeast(1)
+        saveState()
+    }
+
+    fun lastSelectedLevel(totalLevels: Int): Int =
+        lastSelectedLevel.coerceIn(1, totalLevels.coerceAtLeast(1))
 
     private fun load() {
         if (!file.exists()) return
@@ -77,6 +90,25 @@ class CampaignStats(private val file: FileHandle = ResourceHome.root.child("camp
 
     private fun format(value: Float): String =
         String.format(Locale.US, "%.2f", value)
+
+    private fun loadState() {
+        if (!stateFile.exists()) return
+        stateFile.readString("UTF-8")
+            .lineSequence()
+            .mapNotNull { line ->
+                val separator = line.indexOf('=')
+                if (separator <= 0) null else line.substring(0, separator).trim() to line.substring(separator + 1).trim()
+            }
+            .firstOrNull { it.first == "last_selected_level" }
+            ?.second
+            ?.toIntOrNull()
+            ?.let { lastSelectedLevel = it }
+    }
+
+    private fun saveState() {
+        stateFile.parent().mkdirs()
+        stateFile.writeString("last_selected_level=$lastSelectedLevel\n", false, "UTF-8")
+    }
 }
 
 data class ScoreTotals(

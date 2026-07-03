@@ -249,3 +249,35 @@ GRADLE_USER_HOME=.gradle-user gradle test :lwjgl3:compileKotlin
 ## Current Summary
 
 The project has moved from specification-only to a working desktop libGDX prototype. The implemented version covers the minimum gameplay loop with placeholder 3D rendering, player movement, card effects, enemy waves, per-soldier projectile volleys, boss state, and win/loss outcomes. The next best step is to tighten tests around movement/collision/win-loss behavior, then improve mobile controls and visual fidelity.
+
+## 2026-07-04 Follow-Up Implementation Notes
+
+Implemented in this pass:
+
+- Boss hit areas now use per-model X/Z OBJ vertex footprints instead of the fixed `BOSS_COLLISION_RADIUS`.
+- Runtime `Boss` instances now store `hitHalfWidth` and `hitHalfDepth`.
+- Projectile/boss and player/boss collision checks use footprint rectangle overlap expanded by projectile/player collision padding.
+- Missing or malformed boss models fall back to the legacy radius-sized footprint.
+- HUD text now follows the requested single-line contract:
+  - `level <number> <name> soldiers:<soldiers> fire:<fire> bullet caliber:<bullet power> life:<life value> speed:<speed> score:<hits>/<total possible hits>`
+- Campaign state now persists the last selected/active level in `.crowdmaster/campaign-state.properties`.
+- Startup resumes from the last selected/active level when possible.
+
+Partially implemented / documented for staged follow-up:
+
+- VisUI campaign menu, HUD migration, and level editor are specified in `SPEC.md` and staged in `PLAN.md`.
+- Existing HUD still uses `SpriteBatch`/`BitmapFont`; it now matches the requested text contract, but the full VisUI replacement remains pending.
+- Campaign stats already persist per-level scores and last selected level, but still need completion/access policy, best-score display, and menu integration.
+
+New key files:
+
+- `core/src/main/kotlin/com/crowdmasterarcade/model/ModelFootprint.kt`
+
+Updated key files:
+
+- `core/src/main/kotlin/com/crowdmasterarcade/model/Models.kt`
+- `core/src/main/kotlin/com/crowdmasterarcade/model/AppModelFactory.kt`
+- `core/src/main/kotlin/com/crowdmasterarcade/controller/CollisionSystem.kt`
+- `core/src/main/kotlin/com/crowdmasterarcade/model/CampaignStats.kt`
+- `core/src/main/kotlin/com/crowdmasterarcade/CrowdDefenseGame.kt`
+- `core/src/main/kotlin/com/crowdmasterarcade/view/UiRenderer.kt`

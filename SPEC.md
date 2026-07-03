@@ -24,6 +24,93 @@ The objective is to survive incoming waves, grow or upgrade the brigade, defeat 
 
 ---
 
+# 2026-07-04 Functional Addendum
+
+## Boss Collision Bounds
+
+Boss projectile and player-contact hit areas must be proportional to the rendered model footprint, not a fixed radius. The model footprint is derived from OBJ vertex extents on the X/Z plane after applying the same anchoring convention used by rendering: X/Z centered, Y placed on the model minimum. Missing or malformed models fall back to the legacy boss collision radius.
+
+## HUD
+
+The in-game HUD should be a single top line:
+
+```text
+level <number> <name> soldiers:<soldiers> fire:<fire> bullet caliber:<bullet power> life:<life value> speed:<speed> score:<hits>/<total possible hits>
+```
+
+The HUD will ultimately be implemented with VisUI. Until the full VisUI screen migration is complete, the same textual contract is rendered by the existing HUD renderer.
+
+## Campaign Menu
+
+On startup the app should show a VisUI menu before entering gameplay. The menu lists accessible levels in alphabetical campaign order and shows:
+
+- level number
+- level name
+- user points
+- level total possible points
+- completion percentage
+- completion/unlocked status
+
+The selected level supports:
+
+- `Play`: continue the campaign from the selected level.
+- `Test`: run only the selected level.
+- `Edit`: open the level editor.
+- `Create`: create a new level file in the data home folder.
+- `Delete`: delete the selected user level after confirmation.
+- `Reset Data Home`: delete and recreate `.crowdmaster` from internal packaged assets.
+
+The app remembers the last selected/played level on exit and restores it on next launch.
+
+## Campaign Progress
+
+The app persists per-level records in the resource home folder:
+
+- completed/won flag
+- best user points
+- total possible points
+- percentage achieved
+- last selected level
+
+Totals remain derivable from the per-level records.
+
+## Level Editor
+
+The level editor uses VisUI for all controls and an orthographic libGDX 3D scene view for the level preview.
+
+Required layout:
+
+- center: orthographic 3D editor scene
+- right: prototype palette for `enemy_brigades`, `cards`, `decorations`, and `bosses`
+- left: property panel for the selected object or scene
+- bottom/top command bar: save, undo, redo, delete selected, exit
+
+Interactions:
+
+- drag prototypes from the right palette into the scene
+- select one object at a time
+- selected object is highlighted with a bounding box
+- clicking empty scene selects scene-level properties
+- delete selected object with a button or the Delete key
+- save writes the `.level` file
+- exit prompts if there are unsaved changes
+
+Property editing:
+
+- fields are shown as a two-column table: parameter name and editor
+- colors use VisUI color picker
+- OBJ model references use the system file picker
+- paths under `.crowdmaster` are saved relative to `.crowdmaster`; other paths remain absolute
+- number/text fields use VisUI inputs
+- changes are applied to preview with an 800 ms debounce
+- crowd/unit layout uses the same formation logic as gameplay
+
+## UI Framework
+
+All menus, HUD, dialogs, and editor panels should be migrated to VisUI. Existing `SpriteBatch`/`BitmapFont` UI is considered temporary after this addendum.
+
+---
+
 # 2. Main Application Loop
 
 The application follows this model lifecycle:
@@ -810,4 +897,3 @@ Recommended implementation order:
 14. Replace placeholders with low-poly models
 15. Optimize
 ```
-
