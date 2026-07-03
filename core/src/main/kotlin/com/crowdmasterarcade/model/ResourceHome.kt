@@ -36,6 +36,13 @@ object ResourceHome {
         return root
     }
 
+    fun resetFromPackagedAssets() {
+        val root = root
+        if (root.exists()) root.deleteDirectory()
+        initialized = false
+        initialize()
+    }
+
     internal fun useRootForTests(root: FileHandle?) {
         rootOverride = root
         initialized = false

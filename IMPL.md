@@ -262,12 +262,22 @@ Implemented in this pass:
   - `level <number> <name> soldiers:<soldiers> fire:<fire> bullet caliber:<bullet power> life:<life value> speed:<speed> score:<hits>/<total possible hits>`
 - Campaign state now persists the last selected/active level in `.crowdmaster/campaign-state.properties`.
 - Startup resumes from the last selected/active level when possible.
+- Issue #3 first stage implemented:
+  - VisUI dependency added.
+  - HUD migrated from temporary `SpriteBatch`/`BitmapFont` renderer to a VisUI `Stage`.
+  - Startup now opens a VisUI campaign menu.
+  - Campaign menu lists levels with name, points, possible points, percentage, and state.
+  - Keyboard selection supports up/down arrows and Enter.
+  - Mouse/touch selection and buttons are handled by VisUI.
+  - `Play` continues campaign from the selected level.
+  - `Test` runs the selected level as a standalone run.
+  - `Reset Data Home` reseeds `.crowdmaster` from packaged assets.
+  - `Edit`, `Create`, and `Delete` buttons are present but disabled/staged for issue #4.
 
 Partially implemented / documented for staged follow-up:
 
-- VisUI campaign menu, HUD migration, and level editor are specified in `SPEC.md` and staged in `PLAN.md`.
-- Existing HUD still uses `SpriteBatch`/`BitmapFont`; it now matches the requested text contract, but the full VisUI replacement remains pending.
-- Campaign stats already persist per-level scores and last selected level, but still need completion/access policy, best-score display, and menu integration.
+- Level editor is specified in `SPEC.md` and staged in `PLAN.md`.
+- Campaign stats already persist per-level scores and last selected level; menu display is implemented. Remaining campaign work is mainly completion/access policy refinement and issue #4 editor integration.
 
 New key files:
 
@@ -281,3 +291,4 @@ Updated key files:
 - `core/src/main/kotlin/com/crowdmasterarcade/model/CampaignStats.kt`
 - `core/src/main/kotlin/com/crowdmasterarcade/CrowdDefenseGame.kt`
 - `core/src/main/kotlin/com/crowdmasterarcade/view/UiRenderer.kt`
+- `core/src/main/kotlin/com/crowdmasterarcade/view/CampaignMenuView.kt`

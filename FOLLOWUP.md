@@ -2,23 +2,26 @@
 
 This file tracks the larger follow-up work requested after the 2026-07-04 gameplay fixes.
 
-## Immediate Next Milestone
+## Issue #3: VisUI Campaign Menu
 
-1. Add VisUI dependency and initialize VisUI skin safely on desktop and Android.
-2. Introduce app-level screens/states:
-   - main menu
-   - gameplay
-   - level editor
-3. Replace the temporary HUD renderer with a VisUI stage overlay while preserving the single-line HUD content.
-4. Extend `CampaignStats` to persist:
-   - completion/won flag
-   - best points per level
-   - possible points per level
-   - percentage achieved
+Status: implemented for menu/HUD foundation.
 
-Already implemented:
+Implemented:
 
-- last selected/active level is persisted in `.crowdmaster/campaign-state.properties`
+- VisUI dependency and skin initialization.
+- VisUI HUD stage with the required single-line HUD content.
+- VisUI startup campaign menu.
+- Level table with name, points, total possible points, percentage, and state.
+- Arrow-key selection and Enter-to-play.
+- Mouse/touch row selection and action buttons.
+- Play, Test, and Reset Data Home actions.
+- Last selected/active level persistence in `.crowdmaster/campaign-state.properties`.
+- Edit, Create, and Delete buttons are present but disabled until issue #4.
+
+Remaining refinements:
+
+- refine campaign unlock/access policy if needed
+- improve visual layout polish after editor UI is introduced
 
 ## Campaign Menu
 
@@ -47,6 +50,8 @@ Input:
 - mouse/touch selects rows and buttons
 
 ## Level Editor
+
+Status: issue #4, pending.
 
 Scene:
 

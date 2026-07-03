@@ -3,6 +3,7 @@ package com.crowdmasterarcade
 import com.badlogic.gdx.ApplicationAdapter
 import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.Input
+import com.badlogic.gdx.graphics.GL20
 import com.crowdmasterarcade.controller.GameController
 import com.crowdmasterarcade.controller.InputController
 import com.crowdmasterarcade.model.AppModel
@@ -14,6 +15,7 @@ import com.crowdmasterarcade.model.InputState
 import com.crowdmasterarcade.model.LevelCatalog
 import com.crowdmasterarcade.model.LevelDefinition
 import com.crowdmasterarcade.model.ResourceHome
+import com.crowdmasterarcade.view.CampaignMenuView
 import com.crowdmasterarcade.view.GameView
 
 class CrowdDefenseGame : ApplicationAdapter() {
@@ -22,29 +24,59 @@ class CrowdDefenseGame : ApplicationAdapter() {
     private lateinit var controller: GameController
     private lateinit var inputController: InputController
     private lateinit var inputState: InputState
-    private lateinit var view: GameView
+    private var view: GameView? = null
+    private lateinit var menuView: CampaignMenuView
     private lateinit var campaignStats: CampaignStats
     private var levelIndex = 0
+    private var screen = AppScreen.MENU
+    private var campaignMode = true
 
     override fun create() {
         ResourceHome.initialize()
         levels = LevelCatalog.load()
         campaignStats = CampaignStats()
         levelIndex = campaignStats.lastSelectedLevel(levels.size) - 1
-        appModel = loadLevel(levelIndex)
         controller = GameController()
         inputController = InputController()
         inputState = InputState()
-        view = GameView()
+        menuView = createMenuView()
+        Gdx.input.inputProcessor = menuView.stage
     }
 
     override fun render() {
+        when (screen) {
+            AppScreen.MENU -> renderMenu()
+            AppScreen.GAME -> renderGame()
+        }
+    }
+
+    override fun dispose() {
+        view?.dispose()
+        menuView.dispose()
+    }
+
+    private fun renderMenu() {
+        Gdx.gl.glViewport(0, 0, Gdx.graphics.width, Gdx.graphics.height)
+        Gdx.gl.glClearColor(0.08f, 0.1f, 0.11f, 1f)
+        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT or GL20.GL_DEPTH_BUFFER_BIT)
+        if (Gdx.input.isKeyJustPressed(Input.Keys.UP)) menuView.moveSelection(-1)
+        if (Gdx.input.isKeyJustPressed(Input.Keys.DOWN)) menuView.moveSelection(1)
+        if (Gdx.input.isKeyJustPressed(Input.Keys.ENTER)) menuView.activatePlay()
+        if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) Gdx.app.exit()
+        menuView.render()
+    }
+
+    private fun renderGame() {
         if (Gdx.input.isKeyJustPressed(Input.Keys.R)) {
             campaignStats.recordSelectedLevel(levelIndex + 1)
             appModel = loadLevel(levelIndex)
         }
         if (Gdx.input.isKeyJustPressed(Input.Keys.C) && appModel.gameState == GameState.WON) {
             recordCompletionIfNeeded()
+            if (!campaignMode) {
+                showMenu()
+                return
+            }
             if (levelIndex + 1 < levels.size) {
                 levelIndex += 1
                 campaignStats.recordSelectedLevel(levelIndex + 1)
@@ -69,11 +101,7 @@ class CrowdDefenseGame : ApplicationAdapter() {
         if (previousState == GameState.RUNNING && appModel.gameState != GameState.RUNNING) {
             recordCompletionIfNeeded()
         }
-        view.presentAppModel(appModel)
-    }
-
-    override fun dispose() {
-        view.dispose()
+        view?.presentAppModel(appModel)
     }
 
     private fun loadLevel(index: Int): AppModel {
@@ -97,5 +125,43 @@ class CrowdDefenseGame : ApplicationAdapter() {
         if (appModel.completionRecorded || appModel.gameState !in setOf(GameState.WON, GameState.LOST)) return
         campaignStats.record(appModel)
         appModel.completionRecorded = true
+    }
+
+    private fun createMenuView(): CampaignMenuView =
+        CampaignMenuView(
+            levels = levels,
+            stats = campaignStats,
+            initialSelection = levelIndex,
+            onPlay = { index -> startGame(index, campaign = true) },
+            onTest = { index -> startGame(index, campaign = false) },
+            onResetHome = {
+                ResourceHome.resetFromPackagedAssets()
+                levels = LevelCatalog.load()
+                campaignStats = CampaignStats()
+                levelIndex = campaignStats.lastSelectedLevel(levels.size) - 1
+                menuView.refresh(levels, campaignStats)
+            }
+        )
+
+    private fun startGame(index: Int, campaign: Boolean) {
+        levelIndex = index.coerceIn(0, levels.lastIndex)
+        campaignMode = campaign
+        appModel = loadLevel(levelIndex)
+        if (view == null) view = GameView()
+        Gdx.input.inputProcessor = view?.uiStage
+        screen = AppScreen.GAME
+    }
+
+    private fun showMenu() {
+        campaignStats.recordSelectedLevel(levelIndex + 1)
+        campaignStats = CampaignStats()
+        menuView.refresh(levels, campaignStats)
+        Gdx.input.inputProcessor = menuView.stage
+        screen = AppScreen.MENU
+    }
+
+    private enum class AppScreen {
+        MENU,
+        GAME
     }
 }

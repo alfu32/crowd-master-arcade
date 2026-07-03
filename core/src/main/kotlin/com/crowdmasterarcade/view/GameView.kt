@@ -7,6 +7,7 @@ import com.crowdmasterarcade.model.AppModel
 class GameView {
     private val worldRenderer = WorldRenderer()
     private val uiRenderer = UiRenderer()
+    val uiStage = uiRenderer.stage
 
     fun presentAppModel(appModel: AppModel) {
         Gdx.gl.glViewport(0, 0, Gdx.graphics.width, Gdx.graphics.height)

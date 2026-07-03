@@ -23,14 +23,23 @@ class CampaignStats(
         )
     }
 
+    fun recordForLevel(levelNumber: Int): LevelScoreRecord? =
+        records[levelNumber]
+
+    fun allRecords(): List<LevelScoreRecord> =
+        records.values.sortedBy { it.levelNumber }
+
     fun record(appModel: AppModel) {
         val levelData = appModel.levelData
+        val previous = records[levelData.levelNumber]
+        val playerPoints = maxOf(previous?.playerPoints ?: 0f, appModel.scoreData.levelPoints)
+        val won = previous?.won == true || appModel.gameState == GameState.WON
         records[levelData.levelNumber] = LevelScoreRecord(
             levelNumber = levelData.levelNumber,
             totalLevels = levelData.totalLevels,
             levelName = levelData.name,
-            won = appModel.gameState == GameState.WON,
-            playerPoints = appModel.scoreData.levelPoints,
+            won = won,
+            playerPoints = playerPoints,
             possiblePoints = appModel.scoreData.levelPossiblePoints,
             totalPlayerPoints = appModel.scoreData.totalPlayerPoints,
             totalPossiblePointsSoFar = appModel.scoreData.totalPossiblePointsSoFar
