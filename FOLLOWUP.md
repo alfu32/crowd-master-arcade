@@ -16,7 +16,7 @@ Implemented:
 - Mouse/touch row selection and action buttons.
 - Play, Test, and Reset Data Home actions.
 - Last selected/active level persistence in `.crowdmaster/campaign-state.properties`.
-- Edit, Create, and Delete buttons are present but disabled until issue #4.
+- Edit, Create, and Delete are wired to the issue #4 editor flow.
 
 Remaining refinements:
 
@@ -51,7 +51,34 @@ Input:
 
 ## Level Editor
 
-Status: issue #4, pending.
+Status: issue #4, first implementation complete.
+
+Implemented:
+
+- `Edit` opens the selected `.crowdmaster` level file.
+- `Create` creates a new user level file in `.crowdmaster` and opens it.
+- `Delete` confirms and deletes the selected user level file.
+- Editor screen uses VisUI command, property, and prototype panels.
+- Right prototype palette supports cards, enemy brigades, decorations, and bosses.
+- Left property table supports scene and selected object properties.
+- Text/number fields write through to the editable level draft.
+- Color fields support `#RRGGBBAA` text plus VisUI color picker.
+- Model fields support text plus VisUI file chooser.
+- Paths under `.crowdmaster` are saved relative to `.crowdmaster`.
+- Save writes the `.level` file through `LevelTextWriter`.
+- Undo/redo works through serialized level snapshots.
+- Delete key and Delete Selected remove the selected object.
+- Unsaved exit prompts before leaving the editor.
+- The preview rebuilds through `AppModelFactory`, reusing gameplay model loading and formation layout.
+- Selected objects are marked with a lightweight yellow editor overlay rectangle.
+
+Remaining refinements:
+
+- Replace the current screen-space X/Z click mapping with a true orthographic camera ray picker.
+- Replace the lightweight overlay selection marker with a true model-space bounding box.
+- Add a dedicated editor orthographic renderer; the current preview reuses the gameplay renderer.
+- Add the requested 800 ms debounce; the current implementation applies changes immediately.
+- Improve row/table sizing and visual polish.
 
 Scene:
 

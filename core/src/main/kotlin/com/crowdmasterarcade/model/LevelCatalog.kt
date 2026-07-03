@@ -1,6 +1,7 @@
 package com.crowdmasterarcade.model
 
 import com.badlogic.gdx.Gdx
+import com.badlogic.gdx.files.FileHandle
 import java.io.File
 
 object LevelCatalog {
@@ -35,6 +36,14 @@ object LevelCatalog {
     }
 
     fun loadFromResourceHome(): List<LevelDefinition> {
+        return resourceHomeLevelFiles()
+            .mapNotNull { file ->
+                parseUserLevel(file.name()) { file.readString("UTF-8") }
+            }
+            .toList()
+    }
+
+    fun resourceHomeLevelFiles(): List<FileHandle> {
         val folder = ResourceHome.levelsFolder()
         if (!folder.exists()) return emptyList()
 
@@ -42,10 +51,22 @@ object LevelCatalog {
             .asSequence()
             .filter { !it.isDirectory && isSupportedLevelFile(it.name(), it.extension()) }
             .sortedBy { it.name() }
-            .mapNotNull { file ->
-                parseUserLevel(file.name()) { file.readString("UTF-8") }
-            }
             .toList()
+    }
+
+    fun createResourceHomeLevelFile(level: LevelDefinition): FileHandle {
+        val folder = ResourceHome.levelsFolder()
+        folder.mkdirs()
+        val existing = resourceHomeLevelFiles().map { it.name() }.toSet()
+        var index = existing.size + 1
+        var name: String
+        do {
+            name = "${index.toString().padStart(3, '0')}-${slug(level.name)}.level"
+            index += 1
+        } while (name in existing)
+        return folder.child(name).also {
+            it.writeString(LevelTextWriter.write(level), false, "UTF-8")
+        }
     }
 
     fun loadFromAssets(assetFolder: String = "levels"): List<LevelDefinition> {
@@ -64,6 +85,12 @@ object LevelCatalog {
 
     private fun isSupportedLevelFile(name: String, extension: String): Boolean =
         name != "index.txt" && extension.lowercase() in supportedExtensions
+
+    private fun slug(value: String): String =
+        value.lowercase()
+            .replace(Regex("[^a-z0-9]+"), "-")
+            .trim('-')
+            .ifBlank { "level" }
 
     private fun parseUserLevel(fileName: String, readText: () -> String): LevelDefinition? =
         try {

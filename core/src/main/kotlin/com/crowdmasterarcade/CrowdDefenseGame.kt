@@ -17,6 +17,7 @@ import com.crowdmasterarcade.model.LevelDefinition
 import com.crowdmasterarcade.model.ResourceHome
 import com.crowdmasterarcade.view.CampaignMenuView
 import com.crowdmasterarcade.view.GameView
+import com.crowdmasterarcade.view.LevelEditorView
 
 class CrowdDefenseGame : ApplicationAdapter() {
     private lateinit var appModel: AppModel
@@ -25,6 +26,7 @@ class CrowdDefenseGame : ApplicationAdapter() {
     private lateinit var inputController: InputController
     private lateinit var inputState: InputState
     private var view: GameView? = null
+    private var editorView: LevelEditorView? = null
     private lateinit var menuView: CampaignMenuView
     private lateinit var campaignStats: CampaignStats
     private var levelIndex = 0
@@ -47,10 +49,12 @@ class CrowdDefenseGame : ApplicationAdapter() {
         when (screen) {
             AppScreen.MENU -> renderMenu()
             AppScreen.GAME -> renderGame()
+            AppScreen.EDITOR -> renderEditor()
         }
     }
 
     override fun dispose() {
+        editorView?.dispose()
         view?.dispose()
         menuView.dispose()
     }
@@ -64,6 +68,13 @@ class CrowdDefenseGame : ApplicationAdapter() {
         if (Gdx.input.isKeyJustPressed(Input.Keys.ENTER)) menuView.activatePlay()
         if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) Gdx.app.exit()
         menuView.render()
+    }
+
+    private fun renderEditor() {
+        if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) {
+            editorView?.let { /* let the editor exit button handle dirty confirmations */ }
+        }
+        editorView?.render()
     }
 
     private fun renderGame() {
@@ -134,6 +145,9 @@ class CrowdDefenseGame : ApplicationAdapter() {
             initialSelection = levelIndex,
             onPlay = { index -> startGame(index, campaign = true) },
             onTest = { index -> startGame(index, campaign = false) },
+            onEdit = { index -> openEditor(index) },
+            onCreate = { createLevel() },
+            onDelete = { index -> deleteLevel(index) },
             onResetHome = {
                 ResourceHome.resetFromPackagedAssets()
                 levels = LevelCatalog.load()
@@ -142,6 +156,52 @@ class CrowdDefenseGame : ApplicationAdapter() {
                 menuView.refresh(levels, campaignStats)
             }
         )
+
+    private fun openEditor(index: Int) {
+        val files = LevelCatalog.resourceHomeLevelFiles()
+        if (levels.isEmpty() || index !in levels.indices) return
+        val target = files.getOrNull(index) ?: LevelCatalog.createResourceHomeLevelFile(levels[index])
+        editorView?.dispose()
+        editorView = LevelEditorView(
+            level = levels[index],
+            targetFile = target,
+            onExit = { closeEditor() },
+            onSaved = { reloadLevels(index) }
+        )
+        Gdx.input.inputProcessor = editorView?.inputProcessor
+        screen = AppScreen.EDITOR
+    }
+
+    private fun createLevel() {
+        val base = levels.getOrNull(levelIndex) ?: return
+        val newLevel = base.copy(name = "New Level ${levels.size + 1}", cards = emptyList(), decorations = emptyList(), enemyBrigades = emptyList(), bosses = emptyList())
+        val file = LevelCatalog.createResourceHomeLevelFile(newLevel)
+        levels = LevelCatalog.load()
+        levelIndex = LevelCatalog.resourceHomeLevelFiles().indexOfFirst { it.path() == file.path() }.coerceAtLeast(0)
+        menuView.refresh(levels, campaignStats)
+        openEditor(levelIndex)
+    }
+
+    private fun deleteLevel(index: Int) {
+        val file = LevelCatalog.resourceHomeLevelFiles().getOrNull(index) ?: return
+        file.delete()
+        reloadLevels((index - 1).coerceAtLeast(0))
+    }
+
+    private fun closeEditor() {
+        editorView?.dispose()
+        editorView = null
+        reloadLevels(levelIndex)
+        Gdx.input.inputProcessor = menuView.stage
+        screen = AppScreen.MENU
+    }
+
+    private fun reloadLevels(preferredIndex: Int) {
+        levels = LevelCatalog.load()
+        levelIndex = preferredIndex.coerceIn(0, (levels.size - 1).coerceAtLeast(0))
+        campaignStats.recordSelectedLevel(levelIndex + 1)
+        menuView.refresh(levels, campaignStats)
+    }
 
     private fun startGame(index: Int, campaign: Boolean) {
         levelIndex = index.coerceIn(0, levels.lastIndex)
@@ -162,6 +222,7 @@ class CrowdDefenseGame : ApplicationAdapter() {
 
     private enum class AppScreen {
         MENU,
-        GAME
+        GAME,
+        EDITOR
     }
 }

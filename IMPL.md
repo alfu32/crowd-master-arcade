@@ -272,11 +272,28 @@ Implemented in this pass:
   - `Play` continues campaign from the selected level.
   - `Test` runs the selected level as a standalone run.
   - `Reset Data Home` reseeds `.crowdmaster` from packaged assets.
-  - `Edit`, `Create`, and `Delete` buttons are present but disabled/staged for issue #4.
+  - `Edit`, `Create`, and `Delete` buttons now enter the issue #4 editor flow.
+- Issue #4 first stage implemented:
+  - Added `LevelTextWriter` for saving parsed level definitions back to `.level` text.
+  - Added sorted `.crowdmaster` level file helpers to `LevelCatalog`.
+  - Added `LevelEditorView` as a third app screen.
+  - Edit opens the selected user level file.
+  - Create writes a new level file into `.crowdmaster` and opens it.
+  - Delete confirms and removes the selected user level file.
+  - Editor command bar supports Save, Undo, Redo, Delete Selected, and Exit.
+  - Editor right panel provides prototypes for cards, enemy brigades, decorations, and bosses.
+  - Editor left panel exposes scene/object property fields.
+  - Text and number fields update the level draft.
+  - Color fields support `#RRGGBBAA` text and VisUI color picker.
+  - Model path fields support VisUI file chooser and relative path conversion under `.crowdmaster`.
+  - Save writes UTF-8 level files and reloads the campaign menu data.
+  - Undo/redo stores serialized level snapshots.
+  - Preview rebuilds through `AppModelFactory`, reusing gameplay model loading and formation layout.
+  - Selected objects render a lightweight yellow overlay selection rectangle.
 
 Partially implemented / documented for staged follow-up:
 
-- Level editor is specified in `SPEC.md` and staged in `PLAN.md`.
+- Level editor still needs the higher-fidelity follow-up pieces: true orthographic editor camera, ray-based picking, model-space selection bounding box, and 800 ms debounced preview rebuilds.
 - Campaign stats already persist per-level scores and last selected level; menu display is implemented. Remaining campaign work is mainly completion/access policy refinement and issue #4 editor integration.
 
 New key files:

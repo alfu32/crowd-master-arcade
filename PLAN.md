@@ -92,13 +92,16 @@
       - Keep gameplay overlays for level intro and win/loss prompts in VisUI dialogs/labels.
 
   12. Level Editor
-      - Build an orthographic 3D editor scene using the same renderer assets and formation layout logic as gameplay.
+      - Build an editor app screen reachable from the campaign menu.
+      - Add a `LevelTextWriter` so parsed levels can be saved back to `.level` files.
+      - Edit real sorted `.crowdmaster` level files, and make Create/Delete operate on those files.
       - Add right-side prototype palette for cards, enemy brigades, decorations, and bosses.
       - Add left-side property editor table for scene/object fields.
-      - Add single selection, bounding-box highlight, delete selected, undo, redo, save, and guarded exit.
+      - Add single selection, delete selected, undo, redo, save, and guarded exit.
       - Implement file picker integration for OBJ paths and relative path conversion under `.crowdmaster`.
       - Implement color picker integration for `#RRGGBBAA` fields.
-      - Debounce property changes by 800 ms before rebuilding the preview model.
+      - Rebuild the preview through `AppModelFactory` so gameplay model loading and formation layout stay shared.
+      - Follow-up: replace current gameplay-camera preview with an orthographic editor renderer, add ray picking, visible bounding-box selection, and 800 ms debounced preview rebuilds.
 
   13. Campaign Progress
       - Extend campaign stats with completed/won state, best score, possible score, percentage, and last selected level.

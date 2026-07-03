@@ -19,6 +19,9 @@ class CampaignMenuView(
     initialSelection: Int,
     private val onPlay: (Int) -> Unit,
     private val onTest: (Int) -> Unit,
+    private val onEdit: (Int) -> Unit,
+    private val onCreate: () -> Unit,
+    private val onDelete: (Int) -> Unit,
     private val onResetHome: () -> Unit
 ) {
     val stage = Stage(ScreenViewport())
@@ -103,9 +106,9 @@ class CampaignMenuView(
 
         playButton.addClickListener { activatePlay() }
         testButton.addClickListener { activateTest() }
-        editButton.addClickListener { showStatus("Editor opens in issue #4") }
-        createButton.addClickListener { showStatus("Create opens in issue #4") }
-        deleteButton.addClickListener { showStatus("Delete opens in issue #4") }
+        editButton.addClickListener { if (selectedLevelAccessible()) onEdit(selectedIndex) else showStatus("Level is locked") }
+        createButton.addClickListener { onCreate() }
+        deleteButton.addClickListener { confirmDelete() }
         resetButton.addClickListener { confirmReset() }
     }
 
@@ -139,9 +142,9 @@ class CampaignMenuView(
         val accessible = selectedLevelAccessible()
         playButton.isDisabled = !accessible
         testButton.isDisabled = !accessible
-        editButton.isDisabled = true
-        createButton.isDisabled = true
-        deleteButton.isDisabled = true
+        editButton.isDisabled = !accessible
+        createButton.isDisabled = false
+        deleteButton.isDisabled = !accessible || levels.isEmpty()
     }
 
     private fun rowState(index: Int, accessible: Boolean): String =
@@ -171,6 +174,20 @@ class CampaignMenuView(
 
             override fun result(obj: Any?) {
                 if (obj == true) onResetHome()
+            }
+        }.show(stage)
+    }
+
+    private fun confirmDelete() {
+        object : VisDialog("Delete Level") {
+            init {
+                text("Delete selected level file?")
+                button("Cancel")
+                button("Delete", true)
+            }
+
+            override fun result(obj: Any?) {
+                if (obj == true) onDelete(selectedIndex)
             }
         }.show(stage)
     }
