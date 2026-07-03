@@ -20,16 +20,20 @@ decoration_color: #77736AFF
 cards:
   - op: plus, param: manpower, val: 20, x: -2.6, z: 12
   - op: times, param: firepower, val: 3, x: 2.2, z: 22
+  - op: plus, param: soldierlife, val: 6, x: 0.4, z: 30
   - op: minus, param: manpower, val: 8, x: 0, z: 34
   - op: plus, param: manpower, val: 25, x: 2.8, z: 46
   - op: div, param: firepower, val: 2, x: -2.2, z: 58
   - op: times, param: manpower, val: 3, x: -1.2, z: 72
   - op: times, param: firepower, val: 4, x: 1.5, z: 86
+  - op: plus, param: bulletpower, val: 8, x: -2.6, z: 94
   - op: minus, param: firepower, val: 5, x: 3.0, z: 102
   - op: plus, param: manpower, val: 30, x: -3.0, z: 118
   - op: div, param: manpower, val: 2, x: 0.8, z: 136
   - op: times, param: firepower, val: 5, x: -1.8, z: 154
   - op: plus, param: manpower, val: 20, x: 2.4, z: 174
+  - op: plus, param: soldierlife, val: 8, x: -2.2, z: 188
+  - op: times, param: bulletpower, val: 2, x: 0.5, z: 198
 
 decorations:
   - name: warning arch, power: 999999, x: 0, z: 68, model: assets/triumphal-arch.obj

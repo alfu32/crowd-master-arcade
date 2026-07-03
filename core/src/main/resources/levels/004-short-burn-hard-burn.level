@@ -28,7 +28,9 @@ cards:
   - op: div, param: firepower, val: 2, x: -2.8, z: 74
   - op: times, param: manpower, val: 3, x: 0.8, z: 92
   - op: times, param: firepower, val: 5, x: -1.8, z: 112
+  - op: plus, param: bulletpower, val: 12, x: 1.8, z: 122
   - op: plus, param: manpower, val: 25, x: 2.4, z: 132
+  - op: plus, param: soldierlife, val: 10, x: -1.8, z: 144
 
 decorations:
   - name: burnt gate, power: 999999, x: 0, z: 52, model: assets/triumphal-arch.obj, color: #6E6558FF

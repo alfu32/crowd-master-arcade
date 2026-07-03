@@ -30,7 +30,9 @@ cards:
   - op: times, param: bulletpower, val: 2, x: 0, z: 142
   - op: minus, param: firepower, val: 5, x: 0, z: 154
   - op: times, param: firepower, val: 5, x: 2.8, z: 176
+  - op: plus, param: soldierlife, val: 12, x: 0.6, z: 186
   - op: plus, param: manpower, val: 35, x: -2.8, z: 198
+  - op: plus, param: bulletpower, val: 14, x: 2.2, z: 208
 
 decorations:
   - name: blind left arch, power: 999999, x: -2.8, z: 78, model: assets/triumphal-arch.obj, color: #4E555AFF

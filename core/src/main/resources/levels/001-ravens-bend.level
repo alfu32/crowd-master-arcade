@@ -20,8 +20,10 @@ decoration_color: #8C8578FF
 cards:
   - op: plus, param: manpower, val: 15, x: -2, z: 10
   - op: minus, param: manpower, val: 5, x: 2, z: 30
+  - op: plus, param: bulletpower, val: 5, x: 0, z: 35
   - op: times, param: manpower, val: 7, x: -1.5, z: 50
   - op: div, param: manpower, val: 2, x: 1.5, z: 70
+  - op: plus, param: soldierlife, val: 5, x: -0.5, z: 75
   - op: times, param: firepower, val: 5, x: -1.5, z: 20
   - op: times, param: firepower, val: 7, x: 0, z: 40
   - op: div, param: firepower, val: 2, x: 1.5, z: 60
@@ -29,6 +31,8 @@ cards:
   - op: plus, param: manpower, val: 15, x: -2, z: 90
   - op: minus, param: manpower, val: 5, x: 2, z: 110
   - op: times, param: firepower, val: 5, x: -1.5, z: 100
+  - op: plus, param: bulletpower, val: 5, x: 0.8, z: 118
+  - op: plus, param: soldierlife, val: 4, x: -0.8, z: 128
 
 decorations:
   - name: triumphal arch, power: 999999, x: 0, z: 95, model: assets/triumphal-arch.obj
