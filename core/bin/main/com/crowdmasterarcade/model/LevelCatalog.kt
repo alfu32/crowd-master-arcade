@@ -1,0 +1,115 @@
+package com.crowdmasterarcade.model
+
+import com.badlogic.gdx.Gdx
+import com.badlogic.gdx.files.FileHandle
+import java.io.File
+
+object LevelCatalog {
+    private val supportedExtensions = setOf("level", "cma-level")
+
+    fun load(folderPath: String? = System.getProperty("levels.dir")): List<LevelDefinition> {
+        val externalLevels = folderPath
+            ?.takeIf { it.isNotBlank() }
+            ?.let(::loadFromFolder)
+            .orEmpty()
+        if (externalLevels.isNotEmpty()) return externalLevels
+
+        val resourceHomeLevels = loadFromResourceHome()
+        if (resourceHomeLevels.isNotEmpty()) return resourceHomeLevels
+
+        return loadFromAssets().ifEmpty { listOf(DefaultLevels.ravenBend()) }
+    }
+
+    fun loadFromFolder(folderPath: String): List<LevelDefinition> {
+        val folder = File(folderPath)
+        if (!folder.isDirectory) return emptyList()
+
+        return folder.listFiles()
+            .orEmpty()
+            .asSequence()
+            .filter { it.isFile && isSupportedLevelFile(it.name, it.extension) }
+            .sortedBy { it.name }
+            .mapNotNull { file ->
+                parseUserLevel(file.name) { file.readText() }
+            }
+            .toList()
+    }
+
+    fun loadFromResourceHome(): List<LevelDefinition> {
+        return resourceHomeLevelFiles()
+            .mapNotNull { file ->
+                parseUserLevel(file.name()) { file.readString("UTF-8") }
+            }
+            .toList()
+    }
+
+    fun resourceHomeLevelFiles(): List<FileHandle> {
+        val folder = ResourceHome.levelsFolder()
+        if (!folder.exists()) return emptyList()
+
+        return folder.list()
+            .asSequence()
+            .filter { !it.isDirectory && isSupportedLevelFile(it.name(), it.extension()) }
+            .sortedBy { it.name() }
+            .toList()
+    }
+
+    fun createResourceHomeLevelFile(level: LevelDefinition): FileHandle {
+        val folder = ResourceHome.levelsFolder()
+        folder.mkdirs()
+        val existing = resourceHomeLevelFiles().map { it.name() }.toSet()
+        var index = existing.size + 1
+        var name: String
+        do {
+            name = "${index.toString().padStart(3, '0')}-${slug(level.name)}.level"
+            index += 1
+        } while (name in existing)
+        return folder.child(name).also {
+            it.writeString(LevelTextWriter.write(level), false, "UTF-8")
+        }
+    }
+
+    fun loadFromAssets(assetFolder: String = "levels"): List<LevelDefinition> {
+        val index = Gdx.files.internal("$assetFolder/index.txt")
+        if (!index.exists()) return emptyList()
+
+        return index.readString()
+            .lineSequence()
+            .map { it.substringBefore("#").trim() }
+            .filter { it.isNotBlank() }
+            .map { Gdx.files.internal("$assetFolder/$it") }
+            .filter { it.exists() }
+            .map { LevelTextParser.parse(it.readString()) }
+            .toList()
+    }
+
+    private fun isSupportedLevelFile(name: String, extension: String): Boolean =
+        name != "index.txt" && extension.lowercase() in supportedExtensions
+
+    private fun slug(value: String): String =
+        value.lowercase()
+            .replace(Regex("[^a-z0-9]+"), "-")
+            .trim('-')
+            .ifBlank { "level" }
+
+    private fun parseUserLevel(fileName: String, readText: () -> String): LevelDefinition? =
+        try {
+            LevelTextParser.parse(readText())
+        } catch (exception: RuntimeException) {
+            logLevelLoadError(fileName, exception)
+            null
+        }
+
+    private fun logLevelLoadError(fileName: String, exception: RuntimeException) {
+        runCatching {
+            val log = ResourceHome.root.child("level-load-errors.log")
+            log.parent().mkdirs()
+            log.writeString(
+                "Skipped $fileName: ${exception.message ?: exception::class.simpleName}\n",
+                true,
+                "UTF-8"
+            )
+        }
+        Gdx.app?.error("LevelCatalog", "Skipped $fileName", exception)
+    }
+}

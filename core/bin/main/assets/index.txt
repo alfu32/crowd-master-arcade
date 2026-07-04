@@ -1,0 +1,10 @@
+bigpill.obj
+default-bulletpower-card.obj
+default-boss.obj
+default-decoration.obj
+default-firepower-card.obj
+default-manpower-card.obj
+default-soldierlife-card.obj
+default-set.octd
+default-soldier.obj
+triumphal-arch.obj
