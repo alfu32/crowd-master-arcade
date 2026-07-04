@@ -86,8 +86,10 @@ class EditorOrthoCameraController(
         upAxis.set(camera.up).nor()
 
         delta.set(right).scl(-dx * worldPerPixelX).mulAdd(upAxis, dy * worldPerPixelY)
+        delta.y = 0f
         camera.position.add(delta)
         target.add(delta)
+        target.y = 0f
         camera.update()
     }
 
@@ -112,6 +114,7 @@ class EditorOrthoCameraController(
         }
 
         camera.position.set(target).add(toCamera)
+        target.y = 0f
         camera.direction.set(target).sub(camera.position).nor()
         right.set(camera.direction).crs(worldUp)
         if (right.len2() > 1e-8f) {

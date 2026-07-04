@@ -73,8 +73,10 @@ class WorldRenderer {
     private val shadowDirection = Vector3(-0.5f, -1.8f, 1.2f)
     private val roadPlane = Plane(Vector3.Y, 0f)
     private val pickOut = Vector3()
+    private val projectTmp = Vector3()
     private val editorTarget = Vector3()
     private var editorCameraInitialized = false
+    private var editorRoadExtensionEndZ: Float? = null
 
     val editorCameraController = EditorOrthoCameraController(editorCamera, editorTarget)
 
@@ -94,6 +96,7 @@ class WorldRenderer {
 
     fun render(appModel: AppModel) {
         assets.useModelPaths(appModel.levelData.modelPaths)
+        editorRoadExtensionEndZ = null
 
         camera.viewportWidth = Gdx.graphics.width.toFloat()
         camera.viewportHeight = Gdx.graphics.height.toFloat()
@@ -133,6 +136,7 @@ class WorldRenderer {
     ) {
         assets.useModelPaths(appModel.levelData.modelPaths)
         setupEditorCamera(appModel, viewportWidth, viewportHeight)
+        editorRoadExtensionEndZ = maxSceneZ(appModel) + 6f
 
         activeBatch = shadowBatch
         shadowCenter.set(editorTarget)
@@ -149,6 +153,7 @@ class WorldRenderer {
         modelBatch.end()
 
         selection?.let { renderSelectionBox(it) }
+        editorRoadExtensionEndZ = null
     }
 
     fun editorWorldAt(
@@ -172,6 +177,35 @@ class WorldRenderer {
         return if (Intersector.intersectRayPlane(ray, roadPlane, pickOut)) pickOut.cpy() else null
     }
 
+    fun editorBoxContains(
+        screenX: Int,
+        screenY: Int,
+        box: EditorSelectionBox,
+        appModel: AppModel,
+        viewportX: Int,
+        viewportY: Int,
+        viewportWidth: Int,
+        viewportHeight: Int,
+        padding: Float = 8f
+    ): Boolean {
+        setupEditorCamera(appModel, viewportWidth, viewportHeight)
+        var minX = Float.POSITIVE_INFINITY
+        var minY = Float.POSITIVE_INFINITY
+        var maxX = Float.NEGATIVE_INFINITY
+        var maxY = Float.NEGATIVE_INFINITY
+        box.corners().forEach { corner ->
+            projectTmp.set(corner)
+            editorCamera.project(projectTmp, viewportX.toFloat(), viewportY.toFloat(), viewportWidth.toFloat(), viewportHeight.toFloat())
+            minX = min(minX, projectTmp.x)
+            minY = min(minY, projectTmp.y)
+            maxX = max(maxX, projectTmp.x)
+            maxY = max(maxY, projectTmp.y)
+        }
+        val clickY = Gdx.graphics.height - screenY.toFloat()
+        return screenX.toFloat() in (minX - padding)..(maxX + padding) &&
+            clickY in (minY - padding)..(maxY + padding)
+    }
+
     private fun setupEditorCamera(appModel: AppModel, viewportWidth: Int, viewportHeight: Int) {
         val aspect = viewportWidth.toFloat() / viewportHeight.coerceAtLeast(1).toFloat()
         val roadCenterZ = appModel.road.length * 0.5f
@@ -185,9 +219,18 @@ class WorldRenderer {
             editorCamera.zoom = 1f
             editorCameraInitialized = true
         }
+        constrainEditorTarget(appModel)
         editorCamera.near = 0.1f
         editorCamera.far = 400f
         editorCamera.update()
+    }
+
+    private fun constrainEditorTarget(appModel: AppModel) {
+        val before = Vector3(editorTarget)
+        editorTarget.x = editorTarget.x.coerceIn(appModel.road.leftBoundary, appModel.road.rightBoundary)
+        editorTarget.y = 0f
+        editorTarget.z = editorTarget.z.coerceIn(ROAD_START_Z, maxSceneZ(appModel) + 6f)
+        editorCamera.position.add(editorTarget.x - before.x, editorTarget.y - before.y, editorTarget.z - before.z)
     }
 
     private fun renderSelectionBox(selection: EditorSelectionBox) {
@@ -198,10 +241,10 @@ class WorldRenderer {
         selectionRenderer.box(
             selection.minX,
             selection.minY,
-            selection.minZ,
+            selection.maxZ,
             selection.maxX - selection.minX,
             selection.maxY - selection.minY,
-            selection.maxZ - selection.minZ
+            selection.minZ - selection.maxZ
         )
         selectionRenderer.end()
         Gdx.gl.glLineWidth(1f)
@@ -234,12 +277,32 @@ class WorldRenderer {
         assets.road.transform.setToTranslation(0f, -0.08f, centerZ)
         assets.road.transform.scale(appModel.road.width, 1f, appModel.road.length)
         activeBatch.render(assets.road, environment)
+        editorRoadExtensionEndZ?.let { endZ ->
+            val roadEndZ = ROAD_START_Z + appModel.road.length
+            if (endZ > roadEndZ + 0.5f) {
+                val extensionLength = endZ - roadEndZ
+                assets.roadExtension.transform.setToTranslation(0f, -0.09f, roadEndZ + extensionLength * 0.5f)
+                assets.roadExtension.transform.scale(appModel.road.width, 1f, extensionLength)
+                activeBatch.render(assets.roadExtension, environment)
+            }
+        }
         assets.leftRail.transform.setToTranslation(appModel.road.leftBoundary - 0.15f, 0.05f, centerZ)
         assets.leftRail.transform.scale(1f, 1f, appModel.road.length)
         assets.rightRail.transform.setToTranslation(appModel.road.rightBoundary + 0.15f, 0.05f, centerZ)
         assets.rightRail.transform.scale(1f, 1f, appModel.road.length)
         activeBatch.render(assets.leftRail, environment)
         activeBatch.render(assets.rightRail, environment)
+    }
+
+    private fun maxSceneZ(appModel: AppModel): Float {
+        var maxZ = ROAD_START_Z + appModel.road.length
+        appModel.cards.filter { it.active }.forEach { maxZ = max(maxZ, it.position.z + 1f) }
+        appModel.decorations.filter { it.active }.forEach { maxZ = max(maxZ, it.position.z + 2f) }
+        appModel.bosses.filter { it.active && it.alive }.forEach { maxZ = max(maxZ, it.position.z + it.hitHalfDepth) }
+        appModel.enemyBrigades.filter { it.alive }.forEach { brigade ->
+            brigade.soldiers.filter { it.alive }.forEach { maxZ = max(maxZ, it.worldPosition.z + 0.4f) }
+        }
+        return maxZ
     }
 
     private fun renderSoldiers(
@@ -291,7 +354,19 @@ class WorldRenderer {
         val maxX: Float,
         val maxY: Float,
         val maxZ: Float
-    )
+    ) {
+        fun corners(): List<Vector3> =
+            listOf(
+                Vector3(minX, minY, minZ),
+                Vector3(minX, minY, maxZ),
+                Vector3(minX, maxY, minZ),
+                Vector3(minX, maxY, maxZ),
+                Vector3(maxX, minY, minZ),
+                Vector3(maxX, minY, maxZ),
+                Vector3(maxX, maxY, minZ),
+                Vector3(maxX, maxY, maxZ)
+            )
+    }
 
     private class RenderAssets {
         private val builder = ModelBuilder()
@@ -300,6 +375,7 @@ class WorldRenderer {
         private var currentPaths: LevelModelPaths? = null
 
         val road = instance(box(1f, 0.12f, 1f, Color(0.24f, 0.27f, 0.28f, 1f)))
+        val roadExtension = instance(box(1f, 0.1f, 1f, Color(0.24f, 0.27f, 0.28f, 0.6f)))
         val leftRail = instance(box(0.12f, 0.16f, 1f, Color(0.92f, 0.86f, 0.42f, 1f)))
         val rightRail = instance(box(0.12f, 0.16f, 1f, Color(0.92f, 0.86f, 0.42f, 1f)))
         val projectile = instance(sphere(0.18f, Color(1f, 0.9f, 0.2f, 1f)))
@@ -538,11 +614,15 @@ class WorldRenderer {
         }
 
         private fun box(width: Float, height: Float, depth: Float, color: Color): Model {
+            val material = Material(ColorAttribute.createDiffuse(color))
+            if (color.a < 0.999f) {
+                material.set(BlendingAttribute(true, GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA, color.a))
+            }
             val model = builder.createBox(
                 width,
                 height,
                 depth,
-                Material(ColorAttribute.createDiffuse(color)),
+                material,
                 (Usage.Position or Usage.Normal).toLong()
             )
             ownedModels.add(model)

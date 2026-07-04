@@ -1,9 +1,12 @@
 package com.crowdmasterarcade.view
 
 import com.badlogic.gdx.Gdx
+import com.badlogic.gdx.graphics.Color
 import com.badlogic.gdx.scenes.scene2d.Stage
+import com.badlogic.gdx.scenes.scene2d.Touchable
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener
 import com.badlogic.gdx.scenes.scene2d.InputEvent
+import com.badlogic.gdx.scenes.scene2d.ui.Stack
 import com.badlogic.gdx.utils.viewport.ScreenViewport
 import com.crowdmasterarcade.model.CampaignStats
 import com.crowdmasterarcade.model.LevelDefinition
@@ -90,7 +93,7 @@ class CampaignMenuView(
     private fun build() {
         root.clearChildren()
         root.add(VisLabel("Crowd Master Arcade")).left().colspan(2).padBottom(12f).row()
-        root.add(VisLabel("Level    Name                              Points   Total    %   State")).left().colspan(2).row()
+        root.add(headerRow()).left().colspan(2).row()
 
         buildRows()
         val scroll = VisScrollPane(rowsTable)
@@ -121,13 +124,15 @@ class CampaignMenuView(
             val points = record?.playerPoints ?: 0f
             val percent = if (possible > 0f) points / possible * 100f else 0f
             val accessible = isAccessible(index)
-            val row = VisTextButton(rowText(index, level, points, possible, percent, accessible))
-            row.isChecked = index == selectedIndex
-            row.addClickListener {
+            val rowButton = VisTextButton("")
+            rowButton.isChecked = index == selectedIndex
+            rowButton.addClickListener {
                 selectedIndex = index
                 buildRows()
             }
-            rowsTable.add(row).left().width(860f).padBottom(3f).row()
+            val rowContent = rowContent(index, level, points, possible, percent, accessible)
+            rowContent.touchable = Touchable.disabled
+            rowsTable.add(Stack(rowButton, rowContent)).left().width(860f).height(28f).padBottom(3f).row()
         }
         updateActionState()
     }
@@ -141,23 +146,40 @@ class CampaignMenuView(
         deleteButton.isDisabled = levels.isEmpty()
     }
 
-    private fun rowText(
+    private fun headerRow(): VisTable =
+        VisTable().also {
+            it.add(VisLabel("")).width(24f)
+            it.add(VisLabel("Level")).left().width(64f)
+            it.add(VisLabel("Name")).left().width(350f)
+            it.add(VisLabel("Points")).right().width(90f)
+            it.add(VisLabel("Total")).right().width(90f)
+            it.add(VisLabel("%")).right().width(55f)
+            it.add(VisLabel("State")).left().width(130f)
+        }
+
+    private fun rowContent(
         index: Int,
         level: LevelDefinition,
         points: Float,
         possible: Float,
         percent: Float,
         accessible: Boolean
-    ): String =
-        "%s %3d  %-32s %7d %7d %4d%%  %s".format(
-            if (index == selectedIndex) ">" else " ",
-            index + 1,
-            level.name.take(32),
-            points.toInt(),
-            possible.toInt(),
-            percent.toInt(),
-            rowState(index, accessible)
-        )
+    ): VisTable =
+        VisTable().also { row ->
+            val selected = index == selectedIndex
+            row.add(label(if (selected) ">" else "", selected)).center().width(24f)
+            row.add(label("${index + 1}", selected)).right().width(64f)
+            row.add(label(level.name, selected)).left().width(350f)
+            row.add(label(points.toInt().toString(), selected)).right().width(90f)
+            row.add(label(possible.toInt().toString(), selected)).right().width(90f)
+            row.add(label("${percent.toInt()}%", selected)).right().width(55f)
+            row.add(label(rowState(index, accessible), selected)).left().width(130f)
+        }
+
+    private fun label(text: String, selected: Boolean): VisLabel =
+        VisLabel(text).also {
+            if (selected) it.color = Color.WHITE
+        }
 
     private fun rowState(index: Int, accessible: Boolean): String =
         when {

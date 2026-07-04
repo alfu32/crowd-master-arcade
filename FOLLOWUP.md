@@ -20,6 +20,7 @@ Implemented:
 - Edit, Create, and Delete are wired to the issue #4 editor flow.
 - Gameplay `Esc` returns to the main screen; main-screen `Esc` exits.
 - Level rows are selectable across their full width and highlighted when selected.
+- Level rows use a tabular multi-column layout rather than proportional formatted text.
 - Locked levels remain selectable while `Play` is disabled.
 
 Remaining refinements:
@@ -80,7 +81,11 @@ Implemented:
 - Selected objects are highlighted with model-space yellow bounding boxes.
 - Property changes rebuild the preview after the requested 800 ms debounce.
 - Editor camera supports pan, zoom, and rotate controls.
+- Editor camera target is constrained to the ground/causeway area.
 - Editor render path includes the same shadow-map lighting pass as gameplay.
+- Editor renders a translucent road extension past the declared road length when placed content extends beyond it.
+- Editor picking uses the projected 3D selection boxes, improving selection of cards, bosses, and compact formations.
+- Selection box depth is drawn around the selected object instead of offset in front of it.
 - Delete-key object deletion is suppressed while a VisUI text field has keyboard focus.
 
 Remaining refinements:

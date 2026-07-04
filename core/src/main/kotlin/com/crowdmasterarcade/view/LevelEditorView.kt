@@ -398,7 +398,7 @@ class LevelEditorView(
             sceneViewportHeight()
         ) ?: return
         val x = world.x.coerceIn(-draft.roadWidth * 0.5f, draft.roadWidth * 0.5f)
-        val z = (world.z - GameConfig.LEVEL_INTRO_DISTANCE).coerceIn(0f, draft.roadLength)
+        val z = (world.z - GameConfig.LEVEL_INTRO_DISTANCE).coerceAtLeast(0f)
 
         pendingPrototype?.let {
             insertPrototype(it, x, z)
@@ -406,7 +406,7 @@ class LevelEditorView(
             return
         }
 
-        selected = nearestSelection(x, z)
+        selected = nearestSelection(screenX, screenY, x, z)
         rebuildProperties()
         updateButtons()
     }
@@ -429,11 +429,12 @@ class LevelEditorView(
         rebuildProperties()
     }
 
-    private fun nearestSelection(x: Float, z: Float): EditorSelection {
+    private fun nearestSelection(screenX: Int, screenY: Int, x: Float, z: Float): EditorSelection {
         var best: EditorSelection = EditorSelection.Scene
         var bestDistance = Float.POSITIVE_INFINITY
         draft.cards.forEachIndexed { index, item ->
-            if (!contains(x, z, item.x, item.z, 0.75f, 0.55f)) return@forEachIndexed
+            val box = cardBox(index) ?: return@forEachIndexed
+            if (!boxHit(screenX, screenY, box)) return@forEachIndexed
             val distance = abs(item.x - x) + abs(item.z - z)
             if (distance < bestDistance) {
                 best = EditorSelection.Card(index)
@@ -441,15 +442,10 @@ class LevelEditorView(
             }
         }
         previewModel.enemyBrigades.forEachIndexed { index, brigade ->
-            val positions = brigade.soldiers.filter { it.alive }.map { it.worldPosition }
-            if (positions.isEmpty()) return@forEachIndexed
-            val minX = positions.minOf { it.x } - 0.28f
-            val maxX = positions.maxOf { it.x } + 0.28f
-            val minZ = positions.minOf { it.z } - GameConfig.LEVEL_INTRO_DISTANCE - 0.28f
-            val maxZ = positions.maxOf { it.z } - GameConfig.LEVEL_INTRO_DISTANCE + 0.28f
-            if (x !in minX..maxX || z !in minZ..maxZ) return@forEachIndexed
-            val centerX = (minX + maxX) * 0.5f
-            val centerZ = (minZ + maxZ) * 0.5f
+            val box = enemyBox(index) ?: return@forEachIndexed
+            if (!boxHit(screenX, screenY, box)) return@forEachIndexed
+            val centerX = (box.minX + box.maxX) * 0.5f
+            val centerZ = (box.minZ + box.maxZ) * 0.5f - GameConfig.LEVEL_INTRO_DISTANCE
             val distance = abs(centerX - x) + abs(centerZ - z)
             if (distance < bestDistance) {
                 best = EditorSelection.Enemy(index)
@@ -457,8 +453,8 @@ class LevelEditorView(
             }
         }
         draft.decorations.forEachIndexed { index, item ->
-            val footprint = ModelFootprintCatalog.footprint(item.modelPath, 1f)
-            if (!contains(x, z, item.x, item.z, footprint.halfWidth, footprint.halfDepth)) return@forEachIndexed
+            val box = decorationBox(index) ?: return@forEachIndexed
+            if (!boxHit(screenX, screenY, box)) return@forEachIndexed
             val distance = abs(item.x - x) + abs(item.z - z)
             if (distance < bestDistance) {
                 best = EditorSelection.Decoration(index)
@@ -466,8 +462,9 @@ class LevelEditorView(
             }
         }
         previewModel.bosses.forEachIndexed { index, item ->
+            val box = bossBox(index) ?: return@forEachIndexed
+            if (!boxHit(screenX, screenY, box)) return@forEachIndexed
             val levelZ = item.position.z - GameConfig.LEVEL_INTRO_DISTANCE
-            if (!contains(x, z, item.position.x, levelZ, item.hitHalfWidth, item.hitHalfDepth)) return@forEachIndexed
             val distance = abs(item.position.x - x) + abs(levelZ - z)
             if (distance < bestDistance) {
                 best = EditorSelection.Boss(index)
@@ -477,11 +474,17 @@ class LevelEditorView(
         return best
     }
 
-    private fun contains(x: Float, z: Float, centerX: Float, centerZ: Float, halfWidth: Float, halfDepth: Float): Boolean =
-        x >= centerX - halfWidth &&
-            x <= centerX + halfWidth &&
-            z >= centerZ - halfDepth &&
-            z <= centerZ + halfDepth
+    private fun boxHit(screenX: Int, screenY: Int, box: WorldRenderer.EditorSelectionBox): Boolean =
+        worldRenderer.editorBoxContains(
+            screenX,
+            screenY,
+            box,
+            previewModel,
+            sceneViewportX(),
+            sceneViewportY(),
+            sceneViewportWidth(),
+            sceneViewportHeight()
+        )
 
     private fun rebuildPreview() {
         previewModel = preview()
@@ -510,30 +513,42 @@ class LevelEditorView(
     private fun selectedBox(): WorldRenderer.EditorSelectionBox? =
         when (val current = selected) {
             EditorSelection.Scene -> null
-            is EditorSelection.Card -> previewModel.cards.getOrNull(current.index)?.let {
-                boxAt(it.position.x, it.position.y, it.position.z, 0.75f, 0.75f, 0.45f)
+            is EditorSelection.Card -> cardBox(current.index)
+            is EditorSelection.Enemy -> enemyBox(current.index)
+            is EditorSelection.Decoration -> decorationBox(current.index)
+            is EditorSelection.Boss -> bossBox(current.index)
+        }
+
+    private fun cardBox(index: Int): WorldRenderer.EditorSelectionBox? =
+        previewModel.cards.getOrNull(index)?.let {
+            boxAt(it.position.x, it.position.y, it.position.z, 0.75f, 0.75f, 0.45f)
+        }
+
+    private fun enemyBox(index: Int): WorldRenderer.EditorSelectionBox? =
+        previewModel.enemyBrigades.getOrNull(index)?.soldiers
+            ?.filter { it.alive }
+            ?.map { it.worldPosition }
+            ?.takeIf { it.isNotEmpty() }
+            ?.let { positions ->
+                WorldRenderer.EditorSelectionBox(
+                    positions.minOf { it.x } - 0.24f,
+                    0f,
+                    positions.minOf { it.z } - 0.24f,
+                    positions.maxOf { it.x } + 0.24f,
+                    1.15f,
+                    positions.maxOf { it.z } + 0.24f
+                )
             }
-            is EditorSelection.Enemy -> previewModel.enemyBrigades.getOrNull(current.index)?.soldiers
-                ?.filter { it.alive }
-                ?.map { it.worldPosition }
-                ?.takeIf { it.isNotEmpty() }
-                ?.let { positions ->
-                    WorldRenderer.EditorSelectionBox(
-                        positions.minOf { it.x } - 0.24f,
-                        0f,
-                        positions.minOf { it.z } - 0.24f,
-                        positions.maxOf { it.x } + 0.24f,
-                        1.15f,
-                        positions.maxOf { it.z } + 0.24f
-                    )
-                }
-            is EditorSelection.Decoration -> previewModel.decorations.getOrNull(current.index)?.let {
-                val footprint = ModelFootprintCatalog.footprint(it.modelPath, 1f)
-                boxAt(it.position.x, it.position.y, it.position.z, footprint.halfWidth, 1.25f, footprint.halfDepth)
-            }
-            is EditorSelection.Boss -> previewModel.bosses.getOrNull(current.index)?.let {
-                boxAt(it.position.x, it.position.y, it.position.z, it.hitHalfWidth, 3.2f, it.hitHalfDepth)
-            }
+
+    private fun decorationBox(index: Int): WorldRenderer.EditorSelectionBox? =
+        previewModel.decorations.getOrNull(index)?.let {
+            val footprint = ModelFootprintCatalog.footprint(it.modelPath, 1f)
+            boxAt(it.position.x, it.position.y, it.position.z, footprint.halfWidth, 1.25f, footprint.halfDepth)
+        }
+
+    private fun bossBox(index: Int): WorldRenderer.EditorSelectionBox? =
+        previewModel.bosses.getOrNull(index)?.let {
+            boxAt(it.position.x, it.position.y, it.position.z, it.hitHalfWidth, 3.2f, it.hitHalfDepth)
         }
 
     private fun boxAt(x: Float, y: Float, z: Float, halfWidth: Float, height: Float, halfDepth: Float): WorldRenderer.EditorSelectionBox =

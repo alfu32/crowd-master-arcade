@@ -299,9 +299,14 @@ Implemented in this pass:
   - Gameplay `Esc` now returns to the campaign menu instead of exiting.
   - Campaign menu has an Exit button and still exits with `Esc`.
   - Campaign level rows are full-width selectable buttons with selected-row highlighting.
+  - Campaign rows were restored to a true multi-column table layout.
   - Locked levels remain selectable while `Play` is disabled.
   - VisUI HUD text is scaled up for better readability.
   - Delete-selected is ignored while a level-editor text field has keyboard focus.
+  - Editor camera target is constrained to the ground/causeway.
+  - Editor road rendering adds a 60% opacity extension when content lies beyond the declared road length.
+  - Editor object picking now uses projected 3D selection boxes rather than only road-plane footprints.
+  - Selection box depth rendering was corrected so boxes wrap selected objects instead of appearing in front of them.
 
 Partially implemented / documented for staged follow-up:
 

@@ -66,6 +66,7 @@ The app remembers the last selected/played level on exit and restores it on next
 Menu behavior:
 
 - the level list has a fixed visible height and scrolls vertically when it overflows
+- level rows are rendered as aligned table rows, not as proportional preformatted strings
 - clicking anywhere on a level row selects it
 - the selected row is highlighted
 - any level can be selected, including locked levels
@@ -107,7 +108,10 @@ Interactions:
 - save writes the `.level` file
 - exit prompts if there are unsaved changes
 - the orthographic editor camera supports panning, zooming, and rotation
+- the orthographic editor camera target remains on the ground/causeway
 - the editor scene uses the same shadow-map lighting path as the gameplay camera
+- the editor road preview extends beyond the declared road length when placed content exceeds it; the extension is visually distinct and about 60% opaque
+- picking uses the projected 3D selection bounds so small or vertically visible objects can be selected reliably
 
 Property editing:
 
