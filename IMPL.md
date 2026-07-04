@@ -289,11 +289,15 @@ Implemented in this pass:
   - Save writes UTF-8 level files and reloads the campaign menu data.
   - Undo/redo stores serialized level snapshots.
   - Preview rebuilds through `AppModelFactory`, reusing gameplay model loading and formation layout.
-  - Selected objects render a lightweight yellow overlay selection rectangle.
+  - `WorldRenderer` now has a dedicated orthographic editor render mode.
+  - Editor clicks use an orthographic camera ray projected onto the road plane.
+  - Object picking tests that ray-plane point against model/formation footprints.
+  - Selected objects render model-space yellow bounding boxes.
+  - Property edits schedule preview rebuilds with an 800 ms debounce.
 
 Partially implemented / documented for staged follow-up:
 
-- Level editor still needs the higher-fidelity follow-up pieces: true orthographic editor camera, ray-based picking, model-space selection bounding box, and 800 ms debounced preview rebuilds.
+- Level editor follow-up polish remains: editor camera pan/zoom controls, more exact Y bounds for all custom models, and tighter panel layout.
 - Campaign stats already persist per-level scores and last selected level; menu display is implemented. Remaining campaign work is mainly completion/access policy refinement and issue #4 editor integration.
 
 New key files:

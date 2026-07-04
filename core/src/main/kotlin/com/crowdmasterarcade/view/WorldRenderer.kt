@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.files.FileHandle
 import com.badlogic.gdx.graphics.Color
 import com.badlogic.gdx.graphics.GL20
+import com.badlogic.gdx.graphics.OrthographicCamera
 import com.badlogic.gdx.graphics.PerspectiveCamera
 import com.badlogic.gdx.graphics.VertexAttributes.Usage
 import com.badlogic.gdx.graphics.g3d.Environment
@@ -18,6 +19,9 @@ import com.badlogic.gdx.graphics.g3d.environment.DirectionalShadowLight
 import com.badlogic.gdx.graphics.g3d.loader.ObjLoader
 import com.badlogic.gdx.graphics.g3d.utils.DepthShaderProvider
 import com.badlogic.gdx.graphics.g3d.utils.ModelBuilder
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer
+import com.badlogic.gdx.math.Intersector
+import com.badlogic.gdx.math.Plane
 import com.badlogic.gdx.math.Vector3
 import com.crowdmasterarcade.model.AppModel
 import com.crowdmasterarcade.model.Boss
@@ -44,6 +48,7 @@ class WorldRenderer {
     }
 
     private val camera = PerspectiveCamera(50f, Gdx.graphics.width.toFloat(), Gdx.graphics.height.toFloat())
+    private val editorCamera = OrthographicCamera()
     private val environment = Environment()
     private val shadowSettings = ShadowSettings()
     private val shadowLight = DirectionalShadowLight(
@@ -60,11 +65,14 @@ class WorldRenderer {
         .setColor(Color(0.005f, 0.005f, 0.005f, 0.15f))
     private val modelBatch = ModelBatch(SketchShaderProvider({ shadowSettings }, { shadowLight }))
     private val shadowBatch = ModelBatch(DepthShaderProvider())
+    private val selectionRenderer = ShapeRenderer()
     private val assets = RenderAssets()
     private val text3d = Text3dRenderer(assets)
     private var activeBatch = modelBatch
     private val shadowCenter = Vector3()
     private val shadowDirection = Vector3(-0.5f, -1.8f, 1.2f)
+    private val roadPlane = Plane(Vector3.Y, 0f)
+    private val pickOut = Vector3()
 
     init {
         shadowLight.set(0.62f, 0.62f, 0.62f, -0.5f, -1.8f, 1.2f)
@@ -109,6 +117,77 @@ class WorldRenderer {
             text3d.renderBossText(modelBatch, environment, boss)
         }
         modelBatch.end()
+    }
+
+    fun renderEditor(
+        appModel: AppModel,
+        viewportX: Int,
+        viewportY: Int,
+        viewportWidth: Int,
+        viewportHeight: Int,
+        selection: EditorSelectionBox?
+    ) {
+        assets.useModelPaths(appModel.levelData.modelPaths)
+        Gdx.gl.glViewport(viewportX, viewportY, viewportWidth, viewportHeight)
+        setupEditorCamera(appModel, viewportWidth, viewportHeight)
+
+        activeBatch = modelBatch
+        modelBatch.begin(editorCamera)
+        renderSceneModels(appModel)
+        modelBatch.end()
+
+        selection?.let { renderSelectionBox(it) }
+    }
+
+    fun editorWorldAt(
+        screenX: Int,
+        screenY: Int,
+        appModel: AppModel,
+        viewportX: Int,
+        viewportY: Int,
+        viewportWidth: Int,
+        viewportHeight: Int
+    ): Vector3? {
+        setupEditorCamera(appModel, viewportWidth, viewportHeight)
+        val ray = editorCamera.getPickRay(
+            screenX.toFloat(),
+            screenY.toFloat(),
+            viewportX.toFloat(),
+            viewportY.toFloat(),
+            viewportWidth.toFloat(),
+            viewportHeight.toFloat()
+        )
+        return if (Intersector.intersectRayPlane(ray, roadPlane, pickOut)) pickOut.cpy() else null
+    }
+
+    private fun setupEditorCamera(appModel: AppModel, viewportWidth: Int, viewportHeight: Int) {
+        val aspect = viewportWidth.toFloat() / viewportHeight.coerceAtLeast(1).toFloat()
+        val roadCenterZ = appModel.road.length * 0.5f
+        editorCamera.viewportHeight = (appModel.road.length * 1.25f).coerceAtLeast(24f)
+        editorCamera.viewportWidth = max(editorCamera.viewportHeight * aspect, appModel.road.width * 3f)
+        editorCamera.position.set(0f, 130f, roadCenterZ - appModel.road.length * 0.62f)
+        editorCamera.up.set(Vector3.Y)
+        editorCamera.lookAt(0f, 0f, roadCenterZ)
+        editorCamera.near = 0.1f
+        editorCamera.far = 400f
+        editorCamera.update()
+    }
+
+    private fun renderSelectionBox(selection: EditorSelectionBox) {
+        Gdx.gl.glLineWidth(2f)
+        selectionRenderer.projectionMatrix = editorCamera.combined
+        selectionRenderer.begin(ShapeRenderer.ShapeType.Line)
+        selectionRenderer.color = Color.YELLOW
+        selectionRenderer.box(
+            selection.minX,
+            selection.minY,
+            selection.minZ,
+            selection.maxX - selection.minX,
+            selection.maxY - selection.minY,
+            selection.maxZ - selection.minZ
+        )
+        selectionRenderer.end()
+        Gdx.gl.glLineWidth(1f)
     }
 
     private fun renderSceneModels(appModel: AppModel) {
@@ -184,8 +263,18 @@ class WorldRenderer {
         assets.dispose()
         modelBatch.dispose()
         shadowBatch.dispose()
+        selectionRenderer.dispose()
         shadowLight.dispose()
     }
+
+    data class EditorSelectionBox(
+        val minX: Float,
+        val minY: Float,
+        val minZ: Float,
+        val maxX: Float,
+        val maxY: Float,
+        val maxZ: Float
+    )
 
     private class RenderAssets {
         private val builder = ModelBuilder()

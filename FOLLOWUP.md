@@ -70,14 +70,16 @@ Implemented:
 - Delete key and Delete Selected remove the selected object.
 - Unsaved exit prompts before leaving the editor.
 - The preview rebuilds through `AppModelFactory`, reusing gameplay model loading and formation layout.
-- Selected objects are marked with a lightweight yellow editor overlay rectangle.
+- Editor preview renders through a dedicated orthographic `WorldRenderer` mode.
+- Scene clicks use a camera ray projected onto the road plane.
+- Object picking tests the ray-plane point against card, brigade, decoration, and boss footprints.
+- Selected objects are highlighted with model-space yellow bounding boxes.
+- Property changes rebuild the preview after the requested 800 ms debounce.
 
 Remaining refinements:
 
-- Replace the current screen-space X/Z click mapping with a true orthographic camera ray picker.
-- Replace the lightweight overlay selection marker with a true model-space bounding box.
-- Add a dedicated editor orthographic renderer; the current preview reuses the gameplay renderer.
-- Add the requested 800 ms debounce; the current implementation applies changes immediately.
+- Add editor camera pan/zoom controls.
+- Improve model-space box height by reading full model Y bounds for all custom model types.
 - Improve row/table sizing and visual polish.
 
 Scene:

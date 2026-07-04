@@ -101,7 +101,11 @@
       - Implement file picker integration for OBJ paths and relative path conversion under `.crowdmaster`.
       - Implement color picker integration for `#RRGGBBAA` fields.
       - Rebuild the preview through `AppModelFactory` so gameplay model loading and formation layout stay shared.
-      - Follow-up: replace current gameplay-camera preview with an orthographic editor renderer, add ray picking, visible bounding-box selection, and 800 ms debounced preview rebuilds.
+      - Render the editor scene with a dedicated orthographic renderer.
+      - Use camera ray picking against the road plane and object footprints.
+      - Draw selected objects with model-space bounding boxes.
+      - Debounce preview rebuilds by 800 ms after property edits.
+      - Follow-up: add editor camera pan/zoom controls and improve exact Y bounds for all custom models.
 
   13. Campaign Progress
       - Extend campaign stats with completed/won state, best score, possible score, percentage, and last selected level.

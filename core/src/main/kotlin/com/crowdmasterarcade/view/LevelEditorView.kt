@@ -7,7 +7,6 @@ import com.badlogic.gdx.InputMultiplexer
 import com.badlogic.gdx.files.FileHandle
 import com.badlogic.gdx.graphics.Color
 import com.badlogic.gdx.graphics.GL20
-import com.badlogic.gdx.graphics.glutils.ShapeRenderer
 import com.badlogic.gdx.scenes.scene2d.InputEvent
 import com.badlogic.gdx.scenes.scene2d.Stage
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener
@@ -28,7 +27,9 @@ import com.crowdmasterarcade.model.LevelDefinition
 import com.crowdmasterarcade.model.LevelModelPaths
 import com.crowdmasterarcade.model.LevelTextParser
 import com.crowdmasterarcade.model.LevelTextWriter
+import com.crowdmasterarcade.model.ModelFootprintCatalog
 import com.crowdmasterarcade.model.ResourceHome
+import com.crowdmasterarcade.config.GameConfig
 import com.kotcrab.vis.ui.widget.VisDialog
 import com.kotcrab.vis.ui.widget.VisLabel
 import com.kotcrab.vis.ui.widget.VisScrollPane
@@ -50,8 +51,7 @@ class LevelEditorView(
 ) {
     val stage = Stage(ScreenViewport())
     val inputProcessor = InputMultiplexer(stage, EditorInput())
-    private val gameView = GameView()
-    private val selectionRenderer = ShapeRenderer()
+    private val worldRenderer = WorldRenderer()
     private val root = VisTable()
     private val properties = VisTable(true)
     private val statusLabel = VisLabel("")
@@ -64,6 +64,7 @@ class LevelEditorView(
     private var selected: EditorSelection = EditorSelection.Scene
     private var pendingPrototype: EditorPrototype? = null
     private var previewModel: AppModel = preview()
+    private var previewRebuildDelay = -1f
     private var dirty = false
     private val undo = mutableListOf<String>()
     private val redo = mutableListOf<String>()
@@ -78,8 +79,18 @@ class LevelEditorView(
     }
 
     fun render() {
-        gameView.presentAppModel(previewModel)
-        renderSelection()
+        applyPendingPreviewRebuild()
+        Gdx.gl.glViewport(0, 0, Gdx.graphics.width, Gdx.graphics.height)
+        Gdx.gl.glClearColor(0.13f, 0.15f, 0.16f, 1f)
+        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT or GL20.GL_DEPTH_BUFFER_BIT)
+        worldRenderer.renderEditor(
+            previewModel,
+            sceneViewportX(),
+            sceneViewportY(),
+            sceneViewportWidth(),
+            sceneViewportHeight(),
+            selectedBox()
+        )
         if (Gdx.input.isKeyJustPressed(Input.Keys.DEL) || Gdx.input.isKeyJustPressed(Input.Keys.FORWARD_DEL)) {
             deleteSelected()
         }
@@ -89,8 +100,7 @@ class LevelEditorView(
     }
 
     fun dispose() {
-        selectionRenderer.dispose()
-        gameView.dispose()
+        worldRenderer.dispose()
         stage.dispose()
     }
 
@@ -321,7 +331,7 @@ class LevelEditorView(
             undo += before
             redo.clear()
             dirty = true
-            rebuildPreview()
+            schedulePreviewRebuild()
             updateButtons()
         }
     }
@@ -377,10 +387,18 @@ class LevelEditorView(
     }
 
     private fun sceneClick(screenX: Int, screenY: Int) {
-        if (screenX < LEFT_PANEL || screenX > Gdx.graphics.width - RIGHT_PANEL || screenY < TOP_BAR) return
-        val x = ((screenX - LEFT_PANEL).toFloat() / (Gdx.graphics.width - LEFT_PANEL - RIGHT_PANEL).coerceAtLeast(1)) *
-            draft.roadWidth - draft.roadWidth / 2f
-        val z = ((Gdx.graphics.height - screenY).toFloat() / Gdx.graphics.height.coerceAtLeast(1)) * draft.roadLength
+        if (screenX < sceneViewportX() || screenX > sceneViewportX() + sceneViewportWidth() || screenY < TOP_BAR) return
+        val world = worldRenderer.editorWorldAt(
+            screenX,
+            screenY,
+            previewModel,
+            sceneViewportX(),
+            sceneViewportY(),
+            sceneViewportWidth(),
+            sceneViewportHeight()
+        ) ?: return
+        val x = world.x.coerceIn(-draft.roadWidth * 0.5f, draft.roadWidth * 0.5f)
+        val z = (world.z - GameConfig.LEVEL_INTRO_DISTANCE).coerceIn(0f, draft.roadLength)
 
         pendingPrototype?.let {
             insertPrototype(it, x, z)
@@ -413,30 +431,44 @@ class LevelEditorView(
 
     private fun nearestSelection(x: Float, z: Float): EditorSelection {
         var best: EditorSelection = EditorSelection.Scene
-        var bestDistance = 1.1f
+        var bestDistance = Float.POSITIVE_INFINITY
         draft.cards.forEachIndexed { index, item ->
-            val distance = abs(item.x - x) + abs(item.z - z) / 4f
+            if (!contains(x, z, item.x, item.z, 0.75f, 0.55f)) return@forEachIndexed
+            val distance = abs(item.x - x) + abs(item.z - z)
             if (distance < bestDistance) {
                 best = EditorSelection.Card(index)
                 bestDistance = distance
             }
         }
-        draft.enemies.forEachIndexed { index, item ->
-            val distance = abs(item.x - x) + abs(item.z - z) / 4f
+        previewModel.enemyBrigades.forEachIndexed { index, brigade ->
+            val positions = brigade.soldiers.filter { it.alive }.map { it.worldPosition }
+            if (positions.isEmpty()) return@forEachIndexed
+            val minX = positions.minOf { it.x } - 0.28f
+            val maxX = positions.maxOf { it.x } + 0.28f
+            val minZ = positions.minOf { it.z } - GameConfig.LEVEL_INTRO_DISTANCE - 0.28f
+            val maxZ = positions.maxOf { it.z } - GameConfig.LEVEL_INTRO_DISTANCE + 0.28f
+            if (x !in minX..maxX || z !in minZ..maxZ) return@forEachIndexed
+            val centerX = (minX + maxX) * 0.5f
+            val centerZ = (minZ + maxZ) * 0.5f
+            val distance = abs(centerX - x) + abs(centerZ - z)
             if (distance < bestDistance) {
                 best = EditorSelection.Enemy(index)
                 bestDistance = distance
             }
         }
         draft.decorations.forEachIndexed { index, item ->
-            val distance = abs(item.x - x) + abs(item.z - z) / 4f
+            val footprint = ModelFootprintCatalog.footprint(item.modelPath, 1f)
+            if (!contains(x, z, item.x, item.z, footprint.halfWidth, footprint.halfDepth)) return@forEachIndexed
+            val distance = abs(item.x - x) + abs(item.z - z)
             if (distance < bestDistance) {
                 best = EditorSelection.Decoration(index)
                 bestDistance = distance
             }
         }
-        draft.bosses.forEachIndexed { index, item ->
-            val distance = abs(item.x - x) + abs(item.z - z) / 4f
+        previewModel.bosses.forEachIndexed { index, item ->
+            val levelZ = item.position.z - GameConfig.LEVEL_INTRO_DISTANCE
+            if (!contains(x, z, item.position.x, levelZ, item.hitHalfWidth, item.hitHalfDepth)) return@forEachIndexed
+            val distance = abs(item.position.x - x) + abs(levelZ - z)
             if (distance < bestDistance) {
                 best = EditorSelection.Boss(index)
                 bestDistance = distance
@@ -445,8 +477,25 @@ class LevelEditorView(
         return best
     }
 
+    private fun contains(x: Float, z: Float, centerX: Float, centerZ: Float, halfWidth: Float, halfDepth: Float): Boolean =
+        x >= centerX - halfWidth &&
+            x <= centerX + halfWidth &&
+            z >= centerZ - halfDepth &&
+            z <= centerZ + halfDepth
+
     private fun rebuildPreview() {
         previewModel = preview()
+        previewRebuildDelay = -1f
+    }
+
+    private fun schedulePreviewRebuild() {
+        previewRebuildDelay = PREVIEW_REBUILD_DELAY_SECONDS
+    }
+
+    private fun applyPendingPreviewRebuild() {
+        if (previewRebuildDelay < 0f) return
+        previewRebuildDelay -= Gdx.graphics.deltaTime
+        if (previewRebuildDelay <= 0f) rebuildPreview()
     }
 
     private fun preview(): AppModel =
@@ -458,26 +507,54 @@ class LevelEditorView(
         deleteButton.isDisabled = selected == EditorSelection.Scene
     }
 
-    private fun renderSelection() {
-        val position = selectedPosition() ?: return
-        val sceneWidth = (Gdx.graphics.width - LEFT_PANEL - RIGHT_PANEL).coerceAtLeast(1)
-        val screenX = LEFT_PANEL + ((position.first + draft.roadWidth / 2f) / draft.roadWidth.coerceAtLeast(0.1f)) * sceneWidth
-        val screenY = Gdx.graphics.height - (position.second / draft.roadLength.coerceAtLeast(0.1f)) * Gdx.graphics.height
-        selectionRenderer.projectionMatrix.setToOrtho2D(0f, 0f, Gdx.graphics.width.toFloat(), Gdx.graphics.height.toFloat())
-        selectionRenderer.begin(ShapeRenderer.ShapeType.Line)
-        selectionRenderer.color = Color.YELLOW
-        selectionRenderer.rect(screenX - 18f, screenY - 18f, 36f, 36f)
-        selectionRenderer.end()
-    }
-
-    private fun selectedPosition(): Pair<Float, Float>? =
+    private fun selectedBox(): WorldRenderer.EditorSelectionBox? =
         when (val current = selected) {
             EditorSelection.Scene -> null
-            is EditorSelection.Card -> draft.cards.getOrNull(current.index)?.let { it.x to it.z }
-            is EditorSelection.Enemy -> draft.enemies.getOrNull(current.index)?.let { it.x to it.z }
-            is EditorSelection.Decoration -> draft.decorations.getOrNull(current.index)?.let { it.x to it.z }
-            is EditorSelection.Boss -> draft.bosses.getOrNull(current.index)?.let { it.x to it.z }
+            is EditorSelection.Card -> previewModel.cards.getOrNull(current.index)?.let {
+                boxAt(it.position.x, it.position.y, it.position.z, 0.75f, 0.75f, 0.45f)
+            }
+            is EditorSelection.Enemy -> previewModel.enemyBrigades.getOrNull(current.index)?.soldiers
+                ?.filter { it.alive }
+                ?.map { it.worldPosition }
+                ?.takeIf { it.isNotEmpty() }
+                ?.let { positions ->
+                    WorldRenderer.EditorSelectionBox(
+                        positions.minOf { it.x } - 0.24f,
+                        0f,
+                        positions.minOf { it.z } - 0.24f,
+                        positions.maxOf { it.x } + 0.24f,
+                        1.15f,
+                        positions.maxOf { it.z } + 0.24f
+                    )
+                }
+            is EditorSelection.Decoration -> previewModel.decorations.getOrNull(current.index)?.let {
+                val footprint = ModelFootprintCatalog.footprint(it.modelPath, 1f)
+                boxAt(it.position.x, it.position.y, it.position.z, footprint.halfWidth, 1.25f, footprint.halfDepth)
+            }
+            is EditorSelection.Boss -> previewModel.bosses.getOrNull(current.index)?.let {
+                boxAt(it.position.x, it.position.y, it.position.z, it.hitHalfWidth, 3.2f, it.hitHalfDepth)
+            }
         }
+
+    private fun boxAt(x: Float, y: Float, z: Float, halfWidth: Float, height: Float, halfDepth: Float): WorldRenderer.EditorSelectionBox =
+        WorldRenderer.EditorSelectionBox(
+            minX = x - halfWidth,
+            minY = y,
+            minZ = z - halfDepth,
+            maxX = x + halfWidth,
+            maxY = y + height,
+            maxZ = z + halfDepth
+        )
+
+    private fun sceneViewportX(): Int = LEFT_PANEL
+
+    private fun sceneViewportY(): Int = 0
+
+    private fun sceneViewportWidth(): Int =
+        (Gdx.graphics.width - LEFT_PANEL - RIGHT_PANEL).coerceAtLeast(1)
+
+    private fun sceneViewportHeight(): Int =
+        Gdx.graphics.height.coerceAtLeast(1)
 
     private fun status(text: String) {
         statusLabel.setText(text)
@@ -618,5 +695,6 @@ class LevelEditorView(
         private const val LEFT_PANEL = 350
         private const val RIGHT_PANEL = 280
         private const val TOP_BAR = 48
+        private const val PREVIEW_REBUILD_DELAY_SECONDS = 0.8f
     }
 }
