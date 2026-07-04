@@ -73,6 +73,10 @@ class WorldRenderer {
     private val shadowDirection = Vector3(-0.5f, -1.8f, 1.2f)
     private val roadPlane = Plane(Vector3.Y, 0f)
     private val pickOut = Vector3()
+    private val editorTarget = Vector3()
+    private var editorCameraInitialized = false
+
+    val editorCameraController = EditorOrthoCameraController(editorCamera, editorTarget)
 
     init {
         shadowLight.set(0.62f, 0.62f, 0.62f, -0.5f, -1.8f, 1.2f)
@@ -128,10 +132,18 @@ class WorldRenderer {
         selection: EditorSelectionBox?
     ) {
         assets.useModelPaths(appModel.levelData.modelPaths)
-        Gdx.gl.glViewport(viewportX, viewportY, viewportWidth, viewportHeight)
         setupEditorCamera(appModel, viewportWidth, viewportHeight)
 
+        activeBatch = shadowBatch
+        shadowCenter.set(editorTarget)
+        shadowLight.begin(shadowCenter, shadowDirection)
+        shadowBatch.begin(shadowLight.camera)
+        renderSceneModels(appModel)
+        shadowBatch.end()
+        shadowLight.end()
+
         activeBatch = modelBatch
+        Gdx.gl.glViewport(viewportX, viewportY, viewportWidth, viewportHeight)
         modelBatch.begin(editorCamera)
         renderSceneModels(appModel)
         modelBatch.end()
@@ -165,9 +177,14 @@ class WorldRenderer {
         val roadCenterZ = appModel.road.length * 0.5f
         editorCamera.viewportHeight = (appModel.road.length * 1.25f).coerceAtLeast(24f)
         editorCamera.viewportWidth = max(editorCamera.viewportHeight * aspect, appModel.road.width * 3f)
-        editorCamera.position.set(0f, 130f, roadCenterZ - appModel.road.length * 0.62f)
-        editorCamera.up.set(Vector3.Y)
-        editorCamera.lookAt(0f, 0f, roadCenterZ)
+        if (!editorCameraInitialized) {
+            editorTarget.set(0f, 0f, roadCenterZ)
+            editorCamera.position.set(0f, 130f, roadCenterZ - appModel.road.length * 0.62f)
+            editorCamera.up.set(Vector3.Y)
+            editorCamera.lookAt(editorTarget)
+            editorCamera.zoom = 1f
+            editorCameraInitialized = true
+        }
         editorCamera.near = 0.1f
         editorCamera.far = 400f
         editorCamera.update()

@@ -22,7 +22,8 @@ class CampaignMenuView(
     private val onEdit: (Int) -> Unit,
     private val onCreate: () -> Unit,
     private val onDelete: (Int) -> Unit,
-    private val onResetHome: () -> Unit
+    private val onResetHome: () -> Unit,
+    private val onExit: () -> Unit
 ) {
     val stage = Stage(ScreenViewport())
     private lateinit var root: VisTable
@@ -34,6 +35,7 @@ class CampaignMenuView(
     private lateinit var createButton: VisTextButton
     private lateinit var deleteButton: VisTextButton
     private lateinit var resetButton: VisTextButton
+    private lateinit var exitButton: VisTextButton
     private var selectedIndex = initialSelection.coerceIn(0, (levels.size - 1).coerceAtLeast(0))
 
     init {
@@ -47,6 +49,7 @@ class CampaignMenuView(
         createButton = VisTextButton("Create")
         deleteButton = VisTextButton("Delete")
         resetButton = VisTextButton("Reset Data Home")
+        exitButton = VisTextButton("Exit")
         root.setFillParent(true)
         root.top().left().pad(16f)
         stage.addActor(root)
@@ -77,7 +80,7 @@ class CampaignMenuView(
     }
 
     fun activateTest() {
-        if (selectedLevelAccessible()) onTest(selectedIndex) else showStatus("Level is locked")
+        if (levels.isNotEmpty()) onTest(selectedIndex)
     }
 
     fun dispose() {
@@ -86,30 +89,28 @@ class CampaignMenuView(
 
     private fun build() {
         root.clearChildren()
-        root.add(VisLabel("Crowd Master Arcade")).left().colspan(6).padBottom(12f).row()
-        root.add(VisLabel("Level")).left().padRight(12f)
-        root.add(VisLabel("Name")).left().padRight(220f)
-        root.add(VisLabel("Points")).right().padRight(18f)
-        root.add(VisLabel("Total")).right().padRight(18f)
-        root.add(VisLabel("%")).right().padRight(18f)
-        root.add(VisLabel("State")).left().row()
+        root.add(VisLabel("Crowd Master Arcade")).left().colspan(2).padBottom(12f).row()
+        root.add(VisLabel("Level    Name                              Points   Total    %   State")).left().colspan(2).row()
 
         buildRows()
-        root.add(VisScrollPane(rowsTable)).colspan(6).left().width(900f).height(360f).padBottom(12f).row()
+        val scroll = VisScrollPane(rowsTable)
+        scroll.setScrollingDisabled(true, false)
+        root.add(scroll).colspan(2).left().width(900f).height(320f).padBottom(12f).row()
 
         val actions = VisTable(true)
-        listOf(playButton, testButton, editButton, createButton, deleteButton, resetButton).forEach {
+        listOf(playButton, testButton, editButton, createButton, deleteButton, resetButton, exitButton).forEach {
             actions.add(it).padRight(8f)
         }
-        root.add(actions).left().colspan(6).row()
-        root.add(statusLabel).left().colspan(6).padTop(10f)
+        root.add(actions).left().colspan(2).row()
+        root.add(statusLabel).left().colspan(2).padTop(10f)
 
         playButton.addClickListener { activatePlay() }
         testButton.addClickListener { activateTest() }
-        editButton.addClickListener { if (selectedLevelAccessible()) onEdit(selectedIndex) else showStatus("Level is locked") }
+        editButton.addClickListener { if (levels.isNotEmpty()) onEdit(selectedIndex) }
         createButton.addClickListener { onCreate() }
         deleteButton.addClickListener { confirmDelete() }
         resetButton.addClickListener { confirmReset() }
+        exitButton.addClickListener { onExit() }
     }
 
     private fun buildRows() {
@@ -120,20 +121,13 @@ class CampaignMenuView(
             val points = record?.playerPoints ?: 0f
             val percent = if (possible > 0f) points / possible * 100f else 0f
             val accessible = isAccessible(index)
-            val selector = VisTextButton(if (index == selectedIndex) ">" else " ")
-            selector.isDisabled = !accessible
-            selector.addClickListener {
+            val row = VisTextButton(rowText(index, level, points, possible, percent, accessible))
+            row.isChecked = index == selectedIndex
+            row.addClickListener {
                 selectedIndex = index
                 buildRows()
             }
-
-            rowsTable.add(selector).width(36f).padRight(8f)
-            rowsTable.add(VisLabel("${index + 1}")).left().width(48f)
-            rowsTable.add(VisLabel(level.name)).left().width(320f)
-            rowsTable.add(VisLabel(points.toInt().toString())).right().width(90f)
-            rowsTable.add(VisLabel(possible.toInt().toString())).right().width(90f)
-            rowsTable.add(VisLabel("${percent.toInt()}%")).right().width(70f)
-            rowsTable.add(VisLabel(rowState(index, accessible))).left().width(120f).row()
+            rowsTable.add(row).left().width(860f).padBottom(3f).row()
         }
         updateActionState()
     }
@@ -141,11 +135,29 @@ class CampaignMenuView(
     private fun updateActionState() {
         val accessible = selectedLevelAccessible()
         playButton.isDisabled = !accessible
-        testButton.isDisabled = !accessible
-        editButton.isDisabled = !accessible
+        testButton.isDisabled = levels.isEmpty()
+        editButton.isDisabled = levels.isEmpty()
         createButton.isDisabled = false
-        deleteButton.isDisabled = !accessible || levels.isEmpty()
+        deleteButton.isDisabled = levels.isEmpty()
     }
+
+    private fun rowText(
+        index: Int,
+        level: LevelDefinition,
+        points: Float,
+        possible: Float,
+        percent: Float,
+        accessible: Boolean
+    ): String =
+        "%s %3d  %-32s %7d %7d %4d%%  %s".format(
+            if (index == selectedIndex) ">" else " ",
+            index + 1,
+            level.name.take(32),
+            points.toInt(),
+            possible.toInt(),
+            percent.toInt(),
+            rowState(index, accessible)
+        )
 
     private fun rowState(index: Int, accessible: Boolean): String =
         when {

@@ -1,6 +1,7 @@
 package com.crowdmasterarcade.view
 
 import com.badlogic.gdx.Gdx
+import com.badlogic.gdx.graphics.Color
 import com.badlogic.gdx.scenes.scene2d.Stage
 import com.badlogic.gdx.utils.viewport.ScreenViewport
 import com.crowdmasterarcade.model.AppModel
@@ -20,8 +21,14 @@ class UiRenderer {
         ensureVisUiLoaded()
         root = VisTable()
         hudLabel = VisLabel("")
-        footerLabel = VisLabel("A/D left/right | W/S speed | drag to steer/speed | R restart | Esc quit")
+        footerLabel = VisLabel("A/D left/right | W/S speed | drag to steer/speed | R restart | Esc menu")
         overlayLabel = VisLabel("")
+        hudLabel.setFontScale(1.35f)
+        footerLabel.setFontScale(1.1f)
+        overlayLabel.setFontScale(1.65f)
+        hudLabel.color = Color.WHITE
+        footerLabel.color = Color.WHITE
+        overlayLabel.color = Color.WHITE
         root.setFillParent(true)
         root.top().left()
         stage.addActor(root)

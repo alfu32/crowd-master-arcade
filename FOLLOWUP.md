@@ -15,8 +15,12 @@ Implemented:
 - Arrow-key selection and Enter-to-play.
 - Mouse/touch row selection and action buttons.
 - Play, Test, and Reset Data Home actions.
+- Exit action.
 - Last selected/active level persistence in `.crowdmaster/campaign-state.properties`.
 - Edit, Create, and Delete are wired to the issue #4 editor flow.
+- Gameplay `Esc` returns to the main screen; main-screen `Esc` exits.
+- Level rows are selectable across their full width and highlighted when selected.
+- Locked levels remain selectable while `Play` is disabled.
 
 Remaining refinements:
 
@@ -75,10 +79,12 @@ Implemented:
 - Object picking tests the ray-plane point against card, brigade, decoration, and boss footprints.
 - Selected objects are highlighted with model-space yellow bounding boxes.
 - Property changes rebuild the preview after the requested 800 ms debounce.
+- Editor camera supports pan, zoom, and rotate controls.
+- Editor render path includes the same shadow-map lighting pass as gameplay.
+- Delete-key object deletion is suppressed while a VisUI text field has keyboard focus.
 
 Remaining refinements:
 
-- Add editor camera pan/zoom controls.
 - Improve model-space box height by reading full model Y bounds for all custom model types.
 - Improve row/table sizing and visual polish.
 

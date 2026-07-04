@@ -38,7 +38,7 @@ The in-game HUD should be a single top line:
 level <number> <name> soldiers:<soldiers> fire:<fire> bullet caliber:<bullet power> life:<life value> speed:<speed> score:<hits>/<total possible hits>
 ```
 
-The HUD will ultimately be implemented with VisUI. Until the full VisUI screen migration is complete, the same textual contract is rendered by the existing HUD renderer.
+The HUD is rendered with VisUI. It must use larger, high-contrast text than the default skin size so the single-line statistics remain readable during gameplay.
 
 ## Campaign Menu
 
@@ -59,8 +59,19 @@ The selected level supports:
 - `Create`: create a new level file in the data home folder.
 - `Delete`: delete the selected user level after confirmation.
 - `Reset Data Home`: delete and recreate `.crowdmaster` from internal packaged assets.
+- `Exit`: close the application.
 
 The app remembers the last selected/played level on exit and restores it on next launch.
+
+Menu behavior:
+
+- the level list has a fixed visible height and scrolls vertically when it overflows
+- clicking anywhere on a level row selects it
+- the selected row is highlighted
+- any level can be selected, including locked levels
+- locked levels disable `Play`, but still allow management actions such as edit/test/delete
+- pressing `Esc` on the main menu exits the app
+- pressing `Esc` during gameplay returns to the main menu instead of exiting the app
 
 ## Campaign Progress
 
@@ -92,8 +103,11 @@ Interactions:
 - selected object is highlighted with a bounding box
 - clicking empty scene selects scene-level properties
 - delete selected object with a button or the Delete key
+- Delete/Backspace while a property text field is focused must edit the field only and must not delete the selected scene object
 - save writes the `.level` file
 - exit prompts if there are unsaved changes
+- the orthographic editor camera supports panning, zooming, and rotation
+- the editor scene uses the same shadow-map lighting path as the gameplay camera
 
 Property editing:
 

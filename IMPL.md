@@ -294,10 +294,18 @@ Implemented in this pass:
   - Object picking tests that ray-plane point against model/formation footprints.
   - Selected objects render model-space yellow bounding boxes.
   - Property edits schedule preview rebuilds with an 800 ms debounce.
+  - Editor orthographic camera now supports pan, zoom, and rotate controls.
+  - Editor rendering now runs a shadow-map pass before the orthographic draw.
+  - Gameplay `Esc` now returns to the campaign menu instead of exiting.
+  - Campaign menu has an Exit button and still exits with `Esc`.
+  - Campaign level rows are full-width selectable buttons with selected-row highlighting.
+  - Locked levels remain selectable while `Play` is disabled.
+  - VisUI HUD text is scaled up for better readability.
+  - Delete-selected is ignored while a level-editor text field has keyboard focus.
 
 Partially implemented / documented for staged follow-up:
 
-- Level editor follow-up polish remains: editor camera pan/zoom controls, more exact Y bounds for all custom models, and tighter panel layout.
+- Level editor follow-up polish remains: more exact Y bounds for all custom models and tighter panel layout.
 - Campaign stats already persist per-level scores and last selected level; menu display is implemented. Remaining campaign work is mainly completion/access policy refinement and issue #4 editor integration.
 
 New key files:

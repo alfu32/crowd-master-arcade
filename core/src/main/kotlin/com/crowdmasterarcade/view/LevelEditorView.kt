@@ -50,8 +50,8 @@ class LevelEditorView(
     private val onSaved: () -> Unit
 ) {
     val stage = Stage(ScreenViewport())
-    val inputProcessor = InputMultiplexer(stage, EditorInput())
     private val worldRenderer = WorldRenderer()
+    val inputProcessor = InputMultiplexer(stage, EditorInput(), worldRenderer.editorCameraController)
     private val root = VisTable()
     private val properties = VisTable(true)
     private val statusLabel = VisLabel("")
@@ -91,7 +91,7 @@ class LevelEditorView(
             sceneViewportHeight(),
             selectedBox()
         )
-        if (Gdx.input.isKeyJustPressed(Input.Keys.DEL) || Gdx.input.isKeyJustPressed(Input.Keys.FORWARD_DEL)) {
+        if (!textFieldFocused() && (Gdx.input.isKeyJustPressed(Input.Keys.DEL) || Gdx.input.isKeyJustPressed(Input.Keys.FORWARD_DEL))) {
             deleteSelected()
         }
         stage.viewport.update(Gdx.graphics.width, Gdx.graphics.height, true)
@@ -585,6 +585,9 @@ class LevelEditorView(
     private fun textNumber(value: Float): String =
         if (value % 1f == 0f) value.toInt().toString() else value.toString()
 
+    private fun textFieldFocused(): Boolean =
+        stage.keyboardFocus is VisTextField
+
     private fun VisTextButton.addClickListener(action: () -> Unit) {
         addListener(object : ClickListener() {
             override fun clicked(event: InputEvent?, x: Float, y: Float) {
@@ -595,6 +598,7 @@ class LevelEditorView(
 
     private inner class EditorInput : InputAdapter() {
         override fun touchDown(screenX: Int, screenY: Int, pointer: Int, button: Int): Boolean {
+            if (button != Input.Buttons.LEFT) return false
             sceneClick(screenX, screenY)
             return false
         }

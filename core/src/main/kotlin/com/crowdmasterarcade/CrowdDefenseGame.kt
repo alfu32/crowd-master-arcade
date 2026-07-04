@@ -102,7 +102,7 @@ class CrowdDefenseGame : ApplicationAdapter() {
             recordCompletionIfNeeded()
             campaignStats.recordSelectedLevel(levelIndex + 1)
             appModel.gameState = GameState.EXIT
-            Gdx.app.exit()
+            showMenu()
             return
         }
 
@@ -154,7 +154,8 @@ class CrowdDefenseGame : ApplicationAdapter() {
                 campaignStats = CampaignStats()
                 levelIndex = campaignStats.lastSelectedLevel(levels.size) - 1
                 menuView.refresh(levels, campaignStats)
-            }
+            },
+            onExit = { Gdx.app.exit() }
         )
 
     private fun openEditor(index: Int) {

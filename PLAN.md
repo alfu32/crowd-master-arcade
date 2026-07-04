@@ -105,7 +105,10 @@
       - Use camera ray picking against the road plane and object footprints.
       - Draw selected objects with model-space bounding boxes.
       - Debounce preview rebuilds by 800 ms after property edits.
-      - Follow-up: add editor camera pan/zoom controls and improve exact Y bounds for all custom models.
+      - Add editor camera pan, zoom, and rotate controls.
+      - Render the editor scene through the same shadow-map lighting path as gameplay.
+      - Prevent Delete-key object deletion while property text fields have keyboard focus.
+      - Follow-up: improve exact Y bounds for all custom models.
 
   13. Campaign Progress
       - Extend campaign stats with completed/won state, best score, possible score, percentage, and last selected level.
