@@ -7,6 +7,8 @@ import com.badlogic.gdx.InputMultiplexer
 import com.badlogic.gdx.files.FileHandle
 import com.badlogic.gdx.graphics.Color
 import com.badlogic.gdx.graphics.GL20
+import com.badlogic.gdx.math.Vector2
+import com.badlogic.gdx.scenes.scene2d.Actor
 import com.badlogic.gdx.scenes.scene2d.InputEvent
 import com.badlogic.gdx.scenes.scene2d.Stage
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener
@@ -603,6 +605,22 @@ class LevelEditorView(
     private fun textFieldFocused(): Boolean =
         stage.keyboardFocus is VisTextField
 
+    private fun uiWantsPointer(screenX: Int, screenY: Int): Boolean {
+        if (stageHasModalUi()) return true
+        val stagePoint = stage.screenToStageCoordinates(Vector2(screenX.toFloat(), screenY.toFloat()))
+        val hit = stage.hit(stagePoint.x, stagePoint.y, true) ?: return false
+        return hit != root
+    }
+
+    private fun stageHasModalUi(): Boolean =
+        stage.actors.any { actor -> actor.containsModalUi() }
+
+    private fun Actor.containsModalUi(): Boolean {
+        if (this is VisDialog || this is FileChooser || this is ColorPicker) return true
+        if (this !is com.badlogic.gdx.scenes.scene2d.Group) return false
+        return children.any { child -> child.containsModalUi() }
+    }
+
     private fun VisTextButton.addClickListener(action: () -> Unit) {
         addListener(object : ClickListener() {
             override fun clicked(event: InputEvent?, x: Float, y: Float) {
@@ -615,6 +633,7 @@ class LevelEditorView(
         private var cameraDrag = false
 
         override fun touchDown(screenX: Int, screenY: Int, pointer: Int, button: Int): Boolean {
+            if (uiWantsPointer(screenX, screenY)) return false
             if (!inScene(screenX, screenY)) return false
             if (button == Input.Buttons.RIGHT || button == Input.Buttons.MIDDLE) {
                 cameraDrag = worldRenderer.editorCameraController.touchDown(screenX, screenY, pointer, button)
@@ -637,7 +656,7 @@ class LevelEditorView(
         }
 
         override fun scrolled(amountX: Float, amountY: Float): Boolean {
-            return if (inScene(Gdx.input.x, Gdx.input.y)) {
+            return if (!uiWantsPointer(Gdx.input.x, Gdx.input.y) && inScene(Gdx.input.x, Gdx.input.y)) {
                 worldRenderer.editorCameraController.scrolled(amountX, amountY)
             } else {
                 false

@@ -252,7 +252,7 @@ class WorldRenderer {
             assets.soldier(appModel.levelData.modelPaths.soldier, appModel.player.color.toGdxColor())
         )
         appModel.enemyBrigades.filter { it.alive }.forEach {
-            renderSoldiers(it.soldiers, assets.soldier(it.modelPath, it.color.toGdxColor()))
+            renderSoldiers(it.soldiers, assets.soldier(it.modelPath, it.color.toGdxColor()), flipped = true)
         }
         appModel.cards.filter { it.active }.forEach(::renderCard)
         appModel.decorations.filter { it.active }.forEach(::renderDecoration)
@@ -302,10 +302,12 @@ class WorldRenderer {
 
     private fun renderSoldiers(
         soldiers: Iterable<com.crowdmasterarcade.model.RegularSoldier>,
-        instance: ModelInstance
+        instance: ModelInstance,
+        flipped: Boolean = false
     ) {
         soldiers.filter { it.alive }.forEach { soldier ->
             instance.transform.setToTranslation(soldier.worldPosition)
+            if (flipped) instance.transform.rotate(Vector3.Y, 180f)
             activeBatch.render(instance, environment)
         }
     }
