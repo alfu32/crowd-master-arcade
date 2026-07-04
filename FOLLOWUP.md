@@ -86,6 +86,8 @@ Implemented:
 - Editor renders a translucent road extension past the declared road length when placed content extends beyond it.
 - Editor picking uses the projected 3D selection boxes, improving selection of cards, bosses, and compact formations.
 - Selection box depth is drawn around the selected object instead of offset in front of it.
+- Selection boxes are drawn as explicit 3D edges.
+- Editor camera scroll/drag input is routed before VisUI scene focus, preserving zoom after text-field edits.
 - Delete-key object deletion is suppressed while a VisUI text field has keyboard focus.
 
 Remaining refinements:

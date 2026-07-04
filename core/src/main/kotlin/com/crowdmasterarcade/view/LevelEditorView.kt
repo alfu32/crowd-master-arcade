@@ -51,7 +51,7 @@ class LevelEditorView(
 ) {
     val stage = Stage(ScreenViewport())
     private val worldRenderer = WorldRenderer()
-    val inputProcessor = InputMultiplexer(stage, EditorInput(), worldRenderer.editorCameraController)
+    val inputProcessor = InputMultiplexer(EditorInput(), stage)
     private val root = VisTable()
     private val properties = VisTable(true)
     private val statusLabel = VisLabel("")
@@ -612,12 +612,43 @@ class LevelEditorView(
     }
 
     private inner class EditorInput : InputAdapter() {
+        private var cameraDrag = false
+
         override fun touchDown(screenX: Int, screenY: Int, pointer: Int, button: Int): Boolean {
+            if (!inScene(screenX, screenY)) return false
+            if (button == Input.Buttons.RIGHT || button == Input.Buttons.MIDDLE) {
+                cameraDrag = worldRenderer.editorCameraController.touchDown(screenX, screenY, pointer, button)
+                return cameraDrag
+            }
             if (button != Input.Buttons.LEFT) return false
             sceneClick(screenX, screenY)
-            return false
+            return true
+        }
+
+        override fun touchDragged(screenX: Int, screenY: Int, pointer: Int): Boolean {
+            if (!cameraDrag) return false
+            return worldRenderer.editorCameraController.touchDragged(screenX, screenY, pointer)
+        }
+
+        override fun touchUp(screenX: Int, screenY: Int, pointer: Int, button: Int): Boolean {
+            if (!cameraDrag) return false
+            cameraDrag = false
+            return worldRenderer.editorCameraController.touchUp(screenX, screenY, pointer, button)
+        }
+
+        override fun scrolled(amountX: Float, amountY: Float): Boolean {
+            return if (inScene(Gdx.input.x, Gdx.input.y)) {
+                worldRenderer.editorCameraController.scrolled(amountX, amountY)
+            } else {
+                false
+            }
         }
     }
+
+    private fun inScene(screenX: Int, screenY: Int): Boolean =
+        screenX >= sceneViewportX() &&
+            screenX <= sceneViewportX() + sceneViewportWidth() &&
+            screenY >= TOP_BAR
 
     private data class EditableLevel(
         var name: String,

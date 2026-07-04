@@ -307,6 +307,8 @@ Implemented in this pass:
   - Editor road rendering adds a 60% opacity extension when content lies beyond the declared road length.
   - Editor object picking now uses projected 3D selection boxes rather than only road-plane footprints.
   - Selection box depth rendering was corrected so boxes wrap selected objects instead of appearing in front of them.
+  - Selection boxes are now drawn as explicit 3D edges to avoid depth-direction ambiguity.
+  - Editor scene-area scroll and camera drags bypass VisUI focus, so camera zoom keeps working after property-field edits debounce.
 
 Partially implemented / documented for staged follow-up:
 

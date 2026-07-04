@@ -238,14 +238,9 @@ class WorldRenderer {
         selectionRenderer.projectionMatrix = editorCamera.combined
         selectionRenderer.begin(ShapeRenderer.ShapeType.Line)
         selectionRenderer.color = Color.YELLOW
-        selectionRenderer.box(
-            selection.minX,
-            selection.minY,
-            selection.maxZ,
-            selection.maxX - selection.minX,
-            selection.maxY - selection.minY,
-            selection.minZ - selection.maxZ
-        )
+        selection.edges().forEach { edge ->
+            selectionRenderer.line(edge.first, edge.second)
+        }
         selectionRenderer.end()
         Gdx.gl.glLineWidth(1f)
     }
@@ -366,6 +361,24 @@ class WorldRenderer {
                 Vector3(maxX, maxY, minZ),
                 Vector3(maxX, maxY, maxZ)
             )
+
+        fun edges(): List<Pair<Vector3, Vector3>> {
+            val c = corners()
+            return listOf(
+                c[0] to c[1],
+                c[0] to c[2],
+                c[0] to c[4],
+                c[3] to c[1],
+                c[3] to c[2],
+                c[3] to c[7],
+                c[5] to c[1],
+                c[5] to c[4],
+                c[5] to c[7],
+                c[6] to c[2],
+                c[6] to c[4],
+                c[6] to c[7]
+            )
+        }
     }
 
     private class RenderAssets {
