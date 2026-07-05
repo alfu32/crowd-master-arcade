@@ -42,6 +42,15 @@ object LevelTextWriter {
         }
         appendLine()
 
+        appendLine("background_decorations:")
+        level.backgroundDecorations.forEach { decoration ->
+            append("  - name: ${decoration.name}, power: ${number(decoration.power)}, ")
+            append("x: ${number(decoration.x)}, z: ${number(decoration.z)}, model: ${decoration.modelPath}")
+            decoration.color?.let { append(", color: ${color(it)}") }
+            appendLine()
+        }
+        appendLine()
+
         appendLine("enemy_brigades:")
         level.enemyBrigades.forEach { enemy ->
             enemy.name?.takeIf { it.isNotBlank() }?.let { append("  - name: $it, ") } ?: append("  - ")

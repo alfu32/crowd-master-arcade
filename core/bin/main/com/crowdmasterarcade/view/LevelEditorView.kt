@@ -17,6 +17,7 @@ import com.badlogic.gdx.utils.Array
 import com.badlogic.gdx.utils.viewport.ScreenViewport
 import com.crowdmasterarcade.model.AppModel
 import com.crowdmasterarcade.model.AppModelFactory
+import com.crowdmasterarcade.model.BackgroundDecorationDefinition
 import com.crowdmasterarcade.model.BossDefinition
 import com.crowdmasterarcade.model.CardDefinition
 import com.crowdmasterarcade.model.CardOperation
@@ -134,6 +135,7 @@ class LevelEditorView(
         prototypeButton(table, "Bullet power card", EditorPrototype.Card(CardTarget.BULLET_POWER))
         prototypeButton(table, "Soldier life card", EditorPrototype.Card(CardTarget.SOLDIER_LIFE))
         prototypeButton(table, "Decoration", EditorPrototype.Decoration)
+        prototypeButton(table, "Background decoration", EditorPrototype.BackgroundDecoration)
         prototypeButton(table, "Boss", EditorPrototype.Boss)
         table.add(VisLabel("Pick a prototype, then click the road preview.")).left().width(240f).padTop(16f)
         return table
@@ -155,6 +157,7 @@ class LevelEditorView(
             is EditorSelection.Card -> cardProperties(current.index)
             is EditorSelection.Enemy -> enemyProperties(current.index)
             is EditorSelection.Decoration -> decorationProperties(current.index)
+            is EditorSelection.BackgroundDecoration -> backgroundDecorationProperties(current.index)
             is EditorSelection.Boss -> bossProperties(current.index)
         }
     }
@@ -207,6 +210,17 @@ class LevelEditorView(
     private fun decorationProperties(index: Int) {
         val decoration = draft.decorations[index]
         properties.add(VisLabel("Decoration ${index + 1}")).left().colspan(2).row()
+        text("name", decoration.name) { decoration.name = it }
+        float("power", decoration.power) { decoration.power = it }
+        float("x", decoration.x) { decoration.x = it }
+        float("z", decoration.z) { decoration.z = it }
+        path("model", decoration.modelPath) { decoration.modelPath = it }
+        nullableColor("color", decoration.color) { decoration.color = it }
+    }
+
+    private fun backgroundDecorationProperties(index: Int) {
+        val decoration = draft.backgroundDecorations[index]
+        properties.add(VisLabel("Background decoration ${index + 1}")).left().colspan(2).row()
         text("name", decoration.name) { decoration.name = it }
         float("power", decoration.power) { decoration.power = it }
         float("x", decoration.x) { decoration.x = it }
@@ -381,6 +395,7 @@ class LevelEditorView(
             is EditorSelection.Card -> mutate { draft.cards.removeAt(current.index) }
             is EditorSelection.Enemy -> mutate { draft.enemies.removeAt(current.index) }
             is EditorSelection.Decoration -> mutate { draft.decorations.removeAt(current.index) }
+            is EditorSelection.BackgroundDecoration -> mutate { draft.backgroundDecorations.removeAt(current.index) }
             is EditorSelection.Boss -> mutate { draft.bosses.removeAt(current.index) }
         }
         selected = EditorSelection.Scene
@@ -419,6 +434,7 @@ class LevelEditorView(
                 is EditorPrototype.Card -> draft.cards += EditableCard(CardOperation.PLUS, prototype.target, 10f, x, z, null)
                 EditorPrototype.Enemy -> draft.enemies += EditableEnemy(25, 10f, null, x, z, null, null)
                 EditorPrototype.Decoration -> draft.decorations += EditableDecoration("decoration ${draft.decorations.size + 1}", 1f, x, z, "assets/default-decoration.obj", null)
+                EditorPrototype.BackgroundDecoration -> draft.backgroundDecorations += EditableDecoration("background decoration ${draft.backgroundDecorations.size + 1}", 1f, x, z, "assets/default-decoration.obj", null)
                 EditorPrototype.Boss -> draft.bosses += EditableBoss(400f, null, x, z, null, null)
             }
         }
@@ -426,6 +442,7 @@ class LevelEditorView(
             is EditorPrototype.Card -> EditorSelection.Card(draft.cards.lastIndex)
             EditorPrototype.Enemy -> EditorSelection.Enemy(draft.enemies.lastIndex)
             EditorPrototype.Decoration -> EditorSelection.Decoration(draft.decorations.lastIndex)
+            EditorPrototype.BackgroundDecoration -> EditorSelection.BackgroundDecoration(draft.backgroundDecorations.lastIndex)
             EditorPrototype.Boss -> EditorSelection.Boss(draft.bosses.lastIndex)
         }
         rebuildProperties()
@@ -460,6 +477,15 @@ class LevelEditorView(
             val distance = abs(item.x - x) + abs(item.z - z)
             if (distance < bestDistance) {
                 best = EditorSelection.Decoration(index)
+                bestDistance = distance
+            }
+        }
+        draft.backgroundDecorations.forEachIndexed { index, item ->
+            val box = backgroundDecorationBox(index) ?: return@forEachIndexed
+            if (!boxHit(screenX, screenY, box)) return@forEachIndexed
+            val distance = abs(item.x - x) + abs(item.z - z)
+            if (distance < bestDistance) {
+                best = EditorSelection.BackgroundDecoration(index)
                 bestDistance = distance
             }
         }
@@ -518,6 +544,7 @@ class LevelEditorView(
             is EditorSelection.Card -> cardBox(current.index)
             is EditorSelection.Enemy -> enemyBox(current.index)
             is EditorSelection.Decoration -> decorationBox(current.index)
+            is EditorSelection.BackgroundDecoration -> backgroundDecorationBox(current.index)
             is EditorSelection.Boss -> bossBox(current.index)
         }
 
@@ -544,6 +571,12 @@ class LevelEditorView(
 
     private fun decorationBox(index: Int): WorldRenderer.EditorSelectionBox? =
         previewModel.decorations.getOrNull(index)?.let {
+            val footprint = ModelFootprintCatalog.footprint(it.modelPath, 1f)
+            boxAt(it.position.x, it.position.y, it.position.z, footprint.halfWidth, 1.25f, footprint.halfDepth)
+        }
+
+    private fun backgroundDecorationBox(index: Int): WorldRenderer.EditorSelectionBox? =
+        previewModel.backgroundDecorations.getOrNull(index)?.let {
             val footprint = ModelFootprintCatalog.footprint(it.modelPath, 1f)
             boxAt(it.position.x, it.position.y, it.position.z, footprint.halfWidth, 1.25f, footprint.halfDepth)
         }
@@ -690,6 +723,7 @@ class LevelEditorView(
         var decorationColor: LevelColor,
         val cards: MutableList<EditableCard>,
         val decorations: MutableList<EditableDecoration>,
+        val backgroundDecorations: MutableList<EditableDecoration>,
         val enemies: MutableList<EditableEnemy>,
         val bosses: MutableList<EditableBoss>
     ) {
@@ -707,6 +741,7 @@ class LevelEditorView(
                 colors = LevelColors(playerColor, enemyColor, bossColor, decorationColor),
                 cards = cards.map { CardDefinition(it.operation, it.target, it.value, it.x, it.z, it.modelPath) },
                 decorations = decorations.map { DecorationDefinition(it.name, it.power, it.x, it.z, it.modelPath, it.color) },
+                backgroundDecorations = backgroundDecorations.map { BackgroundDecorationDefinition(it.name, it.power, it.x, it.z, it.modelPath, it.color) },
                 enemyBrigades = enemies.map { EnemyBrigadeDefinition(it.effective, it.unitStrength, it.name, it.x, it.z, it.modelPath, it.color) },
                 bosses = bosses.map { BossDefinition(it.power, it.name, it.x, it.z, it.modelPath, it.color) }
             )
@@ -734,6 +769,7 @@ class LevelEditorView(
                     decorationColor = level.colors.decoration,
                     cards = level.cards.map { EditableCard(it.operation, it.target, it.value, it.x, it.z, it.modelPath) }.toMutableList(),
                     decorations = level.decorations.map { EditableDecoration(it.name, it.power, it.x, it.z, it.modelPath, it.color) }.toMutableList(),
+                    backgroundDecorations = level.backgroundDecorations.map { EditableDecoration(it.name, it.power, it.x, it.z, it.modelPath, it.color) }.toMutableList(),
                     enemies = level.enemyBrigades.map { EditableEnemy(it.effective, it.unitStrength, it.name, it.x, it.z, it.modelPath, it.color) }.toMutableList(),
                     bosses = level.bosses.map { EditableBoss(it.power, it.name, it.x, it.z, it.modelPath, it.color) }.toMutableList()
                 )
@@ -750,6 +786,7 @@ class LevelEditorView(
         data class Card(val index: Int) : EditorSelection
         data class Enemy(val index: Int) : EditorSelection
         data class Decoration(val index: Int) : EditorSelection
+        data class BackgroundDecoration(val index: Int) : EditorSelection
         data class Boss(val index: Int) : EditorSelection
     }
 
@@ -757,6 +794,7 @@ class LevelEditorView(
         data class Card(val target: CardTarget) : EditorPrototype
         data object Enemy : EditorPrototype
         data object Decoration : EditorPrototype
+        data object BackgroundDecoration : EditorPrototype
         data object Boss : EditorPrototype
     }
 

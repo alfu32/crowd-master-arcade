@@ -7,6 +7,7 @@ object LevelTextParser {
         val values = mutableMapOf<String, String>()
         val cards = mutableListOf<CardDefinition>()
         val decorations = mutableListOf<DecorationDefinition>()
+        val backgroundDecorations = mutableListOf<BackgroundDecorationDefinition>()
         val enemies = mutableListOf<EnemyBrigadeDefinition>()
         val bosses = mutableListOf<BossDefinition>()
         var section = ""
@@ -36,6 +37,14 @@ object LevelTextParser {
                             )
                             "decorations" -> decorations += DecorationDefinition(
                                 name = item["name"] ?: "decoration ${decorations.size + 1}",
+                                power = item.float("power", 1f),
+                                x = item.float("x", 0f),
+                                z = item.float("z"),
+                                modelPath = item["model"] ?: "assets/default-decoration.obj",
+                                color = item.color("color")
+                            )
+                            "background_decorations" -> backgroundDecorations += BackgroundDecorationDefinition(
+                                name = item["name"] ?: "background decoration ${backgroundDecorations.size + 1}",
                                 power = item.float("power", 1f),
                                 x = item.float("x", 0f),
                                 z = item.float("z"),
@@ -101,6 +110,7 @@ object LevelTextParser {
             ),
             cards = cards,
             decorations = decorations,
+            backgroundDecorations = backgroundDecorations,
             enemyBrigades = enemies,
             bosses = bosses.ifEmpty { listOf(BossDefinition(400f, null, 0f, 190f, null, null)) }
         )

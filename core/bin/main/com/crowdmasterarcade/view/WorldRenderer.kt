@@ -247,6 +247,7 @@ class WorldRenderer {
 
     private fun renderSceneModels(appModel: AppModel) {
         renderRoad(appModel)
+        appModel.backgroundDecorations.filter { it.active }.forEach(::renderDecoration)
         renderSoldiers(
             appModel.player.soldiers,
             assets.soldier(appModel.levelData.modelPaths.soldier, appModel.player.color.toGdxColor())
@@ -293,6 +294,7 @@ class WorldRenderer {
         var maxZ = ROAD_START_Z + appModel.road.length
         appModel.cards.filter { it.active }.forEach { maxZ = max(maxZ, it.position.z + 1f) }
         appModel.decorations.filter { it.active }.forEach { maxZ = max(maxZ, it.position.z + 2f) }
+        appModel.backgroundDecorations.filter { it.active }.forEach { maxZ = max(maxZ, it.position.z + 2f) }
         appModel.bosses.filter { it.active && it.alive }.forEach { maxZ = max(maxZ, it.position.z + it.hitHalfDepth) }
         appModel.enemyBrigades.filter { it.alive }.forEach { brigade ->
             brigade.soldiers.filter { it.alive }.forEach { maxZ = max(maxZ, it.worldPosition.z + 0.4f) }

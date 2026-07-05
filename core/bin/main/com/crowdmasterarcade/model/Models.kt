@@ -9,6 +9,7 @@ data class AppModel(
     val cards: MutableList<Card>,
     val projectiles: MutableList<Projectile>,
     val decorations: MutableList<Decoration>,
+    val backgroundDecorations: MutableList<Decoration>,
     val road: Road,
     val background: Background,
     val bosses: MutableList<Boss>,

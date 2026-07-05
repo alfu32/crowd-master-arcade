@@ -13,6 +13,7 @@ data class LevelDefinition(
     val colors: LevelColors,
     val cards: List<CardDefinition>,
     val decorations: List<DecorationDefinition>,
+    val backgroundDecorations: List<BackgroundDecorationDefinition>,
     val enemyBrigades: List<EnemyBrigadeDefinition>,
     val bosses: List<BossDefinition>
 )
@@ -67,6 +68,15 @@ data class EnemyBrigadeDefinition(
 )
 
 data class DecorationDefinition(
+    val name: String,
+    val power: Float,
+    val x: Float,
+    val z: Float,
+    val modelPath: String,
+    val color: LevelColor?
+)
+
+data class BackgroundDecorationDefinition(
     val name: String,
     val power: Float,
     val x: Float,

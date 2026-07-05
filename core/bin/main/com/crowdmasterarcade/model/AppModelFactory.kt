@@ -37,6 +37,9 @@ object AppModelFactory {
         val decorations = levelDefinition.decorations.mapTo(mutableListOf()) {
             decoration(it, levelDefinition.colors, GameConfig.LEVEL_INTRO_DISTANCE)
         }
+        val backgroundDecorations = levelDefinition.backgroundDecorations.mapTo(mutableListOf()) {
+            backgroundDecoration(it, levelDefinition.colors, GameConfig.LEVEL_INTRO_DISTANCE)
+        }
         val enemies = levelDefinition.enemyBrigades.mapIndexedTo(mutableListOf()) { index, definition ->
             enemy(definition, index + 1, road, levelDefinition.modelPaths, levelDefinition.colors, GameConfig.LEVEL_INTRO_DISTANCE)
         }
@@ -52,6 +55,7 @@ object AppModelFactory {
             cards = cards,
             projectiles = MutableList(levelDefinition.projectilePool) { projectile(active = false) },
             decorations = decorations,
+            backgroundDecorations = backgroundDecorations,
             road = road,
             background = Background(theme = "training-ground"),
             bosses = bosses,
@@ -132,6 +136,22 @@ object AppModelFactory {
     }
 
     private fun decoration(definition: DecorationDefinition, levelColors: LevelColors, zOffset: Float): Decoration =
+        Decoration(
+            id = nextId++,
+            name = definition.name,
+            position = Vector3(definition.x, 0.7f, definition.z + zOffset),
+            health = definition.power,
+            maxHealth = definition.power,
+            modelPath = definition.modelPath,
+            color = definition.color ?: levelColors.decoration,
+            active = true
+        )
+
+    private fun backgroundDecoration(
+        definition: BackgroundDecorationDefinition,
+        levelColors: LevelColors,
+        zOffset: Float
+    ): Decoration =
         Decoration(
             id = nextId++,
             name = definition.name,

@@ -175,7 +175,14 @@ class CrowdDefenseGame : ApplicationAdapter() {
 
     private fun createLevel() {
         val base = levels.getOrNull(levelIndex) ?: return
-        val newLevel = base.copy(name = "New Level ${levels.size + 1}", cards = emptyList(), decorations = emptyList(), enemyBrigades = emptyList(), bosses = emptyList())
+        val newLevel = base.copy(
+            name = "New Level ${levels.size + 1}",
+            cards = emptyList(),
+            decorations = emptyList(),
+            backgroundDecorations = emptyList(),
+            enemyBrigades = emptyList(),
+            bosses = emptyList()
+        )
         val file = LevelCatalog.createResourceHomeLevelFile(newLevel)
         levels = LevelCatalog.load()
         levelIndex = LevelCatalog.resourceHomeLevelFiles().indexOfFirst { it.path() == file.path() }.coerceAtLeast(0)
