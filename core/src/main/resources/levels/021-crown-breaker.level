@@ -1,5 +1,5 @@
 name: Crown Breaker
-road_length: 2411.584
+road_length: 385.05
 road_width: 18
 starting_soldiers: 34
 fire_rate: 4.2
@@ -17,43 +17,42 @@ enemy_color: #8A2F4BFF
 boss_color: #51368EFF
 decoration_color: #6C665DFF
 
-
 background_decorations:
-  - name: Crown Breaker archway, power: 999999, x: -3.24, z: 1187.484, model: assets/triumphal-arch.obj, color: #588098FF
-  - name: Crown Breaker tunnel, power: 999999, x: 2.16, z: 1440.022, model: assets/tunnel_section.obj, color: #333C27FF
-  - name: Crown Breaker banner, power: 999999, x: -1.8, z: 1642.842, model: assets/bannner.obj, color: #DD95C2FF
-  - name: Crown Breaker monument, power: 999999, x: 3.96, z: 1845.662, model: assets/triumphal-arch.obj, color: #DFCC72FF
-  - name: Crown Breaker sentinel, power: 999999, x: -4.32, z: 2048.482, model: assets/bigpill.obj, color: #7B8A7AFF
+  - name: Crown Breaker archway, power: 999999, x: -3.24, z: 28, model: assets/triumphal-arch.obj, color: #588098FF
+  - name: Crown Breaker tunnel, power: 999999, x: 2.16, z: 66, model: assets/tunnel_section.obj, color: #333C27FF
+  - name: Crown Breaker banner, power: 999999, x: -1.8, z: 104, model: assets/bannner.obj, color: #DD95C2FF
+  - name: Crown Breaker monument, power: 999999, x: 3.96, z: 142, model: assets/triumphal-arch.obj, color: #DFCC72FF
+  - name: Crown Breaker sentinel, power: 999999, x: -4.32, z: 180, model: assets/bigpill.obj, color: #7B8A7AFF
 
 cards:
-  - op: plus, param: manpower, val: 34, x: -2.694, z: 1261.484
-  - op: times, param: firepower, val: 2, x: 2.694, z: 1325.484
-  - op: plus, param: soldierlife, val: 12, x: 0.25, z: 1365.484
-  - op: minus, param: manpower, val: 18, x: -2.826, z: 1409.484
-  - op: plus, param: bulletpower, val: 14, x: 2.642, z: 1425.484
-  - op: times, param: manpower, val: 3, x: -2.274, z: 1505.484
-  - op: div, param: firepower, val: 2, x: 0.802, z: 1561.484
-  - op: plus, param: manpower, val: 58, x: 2.326, z: 1617.484
-  - op: times, param: firepower, val: 4, x: -1.406, z: 1649.484
-  - op: plus, param: soldierlife, val: 16, x: 0.486, z: 1733.484
-  - op: times, param: bulletpower, val: 2, x: -0.486, z: 1785.484
-  - op: minus, param: manpower, val: 20, x: 1.59, z: 1829.484
-  - op: plus, param: firepower, val: 5, x: 0.25, z: 1837.484
+  - op: plus, param: manpower, val: 34, x: -2.694, z: 20
+  - op: times, param: firepower, val: 2, x: 2.694, z: 30
+  - op: plus, param: soldierlife, val: 12, x: 0.25, z: 42
+  - op: minus, param: manpower, val: 18, x: -2.826, z: 56
+  - op: plus, param: bulletpower, val: 14, x: 2.642, z: 72
+  - op: times, param: manpower, val: 3, x: -2.274, z: 82
+  - op: div, param: firepower, val: 2, x: 0.802, z: 94
+  - op: plus, param: manpower, val: 58, x: 2.326, z: 108
+  - op: times, param: firepower, val: 4, x: -1.406, z: 124
+  - op: plus, param: soldierlife, val: 16, x: 0.486, z: 134
+  - op: times, param: bulletpower, val: 2, x: -0.486, z: 146
+  - op: minus, param: manpower, val: 20, x: 1.59, z: 160
+  - op: plus, param: firepower, val: 5, x: 0.25, z: 176
 
 enemy_brigades:
-  - name: crown scouts, effective: 271, strength: 15, x: -2.66, z: 1357.484, model: assets/triumphal-arch.obj, color: #333C27FF
-  - name: breaker flank, effective: 346, strength: 16, x: 2.48, z: 1421.484, color: #DD95C2FF
-  - name: crown wall, effective: 434, strength: 17, x: 0.22, z: 1481.484, color: #DFCC72FF
-  - name: breaker line, effective: 567, strength: 18, x: -2.56, z: 1549.484, model: assets/bigpill.obj, color: #7B8A7AFF
-  - name: iron court, effective: 743, strength: 19, x: 2.38, z: 1617.484, color: #985880FF
-  - name: crown core, effective: 962, strength: 20, x: -0.22, z: 1685.484, color: #27333CFF
-  - name: breaker guard, effective: 1269, strength: 21, x: -1.4, z: 1753.484, model: assets/bannner.obj, color: #C2DD95FF
-  - name: final court, effective: 1677, strength: 22, x: 1.4, z: 1817.484, color: #72DFCCFF
-  - name: crown tomb, effective: 2230, strength: 23, x: 0.22, z: 1889.484, color: #7A7B8AFF
-  - name: last breaker, effective: 2928, strength: 24, x: -0.22, z: 1929.484, model: assets/tunnel_section.obj, color: #809858FF
+  - name: crown scouts, effective: 271, strength: 15, x: -2.66, z: 35, model: assets/triumphal-arch.obj, color: #333C27FF
+  - name: breaker flank, effective: 346, strength: 16, x: 2.48, z: 50, color: #DD95C2FF
+  - name: crown wall, effective: 434, strength: 17, x: 0.22, z: 65, color: #DFCC72FF
+  - name: breaker line, effective: 567, strength: 18, x: -2.56, z: 71, model: assets/bigpill.obj, color: #7B8A7AFF
+  - name: iron court, effective: 743, strength: 19, x: 2.38, z: 86, color: #985880FF
+  - name: crown core, effective: 962, strength: 20, x: -0.22, z: 101, color: #27333CFF
+  - name: breaker guard, effective: 1269, strength: 21, x: -1.4, z: 107, model: assets/bannner.obj, color: #C2DD95FF
+  - name: final court, effective: 1677, strength: 22, x: 1.4, z: 122, color: #72DFCCFF
+  - name: crown tomb, effective: 2230, strength: 23, x: 0.22, z: 137, color: #7A7B8AFF
+  - name: last breaker, effective: 2928, strength: 24, x: -0.22, z: 143, model: assets/tunnel_section.obj, color: #809858FF
 
 bosses:
-  - name: Crown Guard, power: 70540.65, x: -1.28, z: 2007.584, model: assets/bigbot.obj, color: #95C2DDFF
-  - name: Break King, power: 165648.6, x: 1.28, z: 2075.584, model: assets/clown-head.obj, color: #CC72DFFF
-  - name: Iron Regent, power: 243972.9, x: 0.25, z: 2143.584, model: assets/bigbot.obj, color: #8A7A7BFF
-  - name: Broken Crown, power: 342000, x: -0.25, z: 2211.584, model: assets/clown-head.obj, color: #588098FF
+  - name: Crown Guard, power: 70540.65, x: -1.28, z: 225.05, model: assets/bigbot.obj, color: #95C2DDFF
+  - name: Break King, power: 165648.6, x: 1.28, z: 255.05, model: assets/clown-head.obj, color: #CC72DFFF
+  - name: Iron Regent, power: 243972.9, x: 0.25, z: 285.05, model: assets/bigbot.obj, color: #8A7A7BFF
+  - name: Broken Crown, power: 342000, x: -0.25, z: 315.05, model: assets/clown-head.obj, color: #588098FF

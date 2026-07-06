@@ -1,5 +1,5 @@
 name: Badlands Zombie March
-road_length: 4650.509
+road_length: 389.75
 road_width: 18
 starting_soldiers: 14
 fire_rate: 4.8
@@ -17,50 +17,48 @@ enemy_color: #6DAA3DFF
 boss_color: #7A3D21FF
 decoration_color: #9A805FFF
 
-
-
 background_decorations:
-  - name: Badlands Zombie March archway, power: 999999, x: -3.24, z: 2426.889, model: assets/triumphal-arch.obj, color: #C46533FF
-  - name: Badlands Zombie March tunnel, power: 999999, x: 2.16, z: 2859.34, model: assets/tunnel_section.obj, color: #2B1F65FF
-  - name: Badlands Zombie March banner, power: 999999, x: -1.8, z: 3262.064, model: assets/bannner.obj, color: #48D699FF
-  - name: Badlands Zombie March monument, power: 999999, x: 3.96, z: 3664.788, model: assets/thorn.obj, color: #987757FF
-  - name: Badlands Zombie March sentinel, power: 999999, x: -4.32, z: 4067.512, model: assets/triumphal-arch.obj, color: #5757ECFF
+  - name: Badlands Zombie March archway, power: 999999, x: -3.24, z: 28, model: assets/triumphal-arch.obj, color: #C46533FF
+  - name: Badlands Zombie March tunnel, power: 999999, x: 2.16, z: 66, model: assets/tunnel_section.obj, color: #2B1F65FF
+  - name: Badlands Zombie March banner, power: 999999, x: -1.8, z: 104, model: assets/bannner.obj, color: #48D699FF
+  - name: Badlands Zombie March monument, power: 999999, x: 3.96, z: 142, model: assets/thorn.obj, color: #987757FF
+  - name: Badlands Zombie March sentinel, power: 999999, x: -4.32, z: 180, model: assets/triumphal-arch.obj, color: #5757ECFF
 
 cards:
-  - op: plus, param: manpower, val: 25, x: -2.228, z: 3531.509
-  - op: times, param: firepower, val: 3, x: 1.89, z: 3611.509
-  - op: plus, param: soldierlife, val: 7, x: 0.141, z: 3627.509
-  - op: minus, param: manpower, val: 10, x: -0.48, z: 3639.509
-  - op: plus, param: manpower, val: 35, x: 3.358, z: 3615.509
-  - op: div, param: firepower, val: 2, x: -2.85, z: 3703.509
-  - op: times, param: manpower, val: 3, x: -0.705, z: 3739.509
-  - op: times, param: firepower, val: 4, x: 1.044, z: 3775.509
-  - op: plus, param: bulletpower, val: 10, x: -2.059, z: 3739.509
-  - op: minus, param: firepower, val: 5, x: 2.398, z: 3811.509
-  - op: plus, param: manpower, val: 30, x: -2.567, z: 3851.509
-  - op: times, param: firepower, val: 5, x: 0.028, z: 3891.509
-  - op: div, param: manpower, val: 2, x: -0.197, z: 3879.509
-  - op: plus, param: manpower, val: 40, x: 2.059, z: 3979.509
-  - op: times, param: firepower, val: 6, x: -1.551, z: 4027.509
-  - op: plus, param: soldierlife, val: 10, x: 0.028, z: 4051.509
-  - op: times, param: bulletpower, val: 2, x: -1.044, z: 4019.509
+  - op: plus, param: manpower, val: 25, x: -2.228, z: 20
+  - op: times, param: firepower, val: 3, x: 1.89, z: 30
+  - op: plus, param: soldierlife, val: 7, x: 0.141, z: 42
+  - op: minus, param: manpower, val: 10, x: -0.48, z: 56
+  - op: plus, param: manpower, val: 35, x: 3.358, z: 72
+  - op: div, param: firepower, val: 2, x: -2.85, z: 82
+  - op: times, param: manpower, val: 3, x: -0.705, z: 94
+  - op: times, param: firepower, val: 4, x: 1.044, z: 108
+  - op: plus, param: bulletpower, val: 10, x: -2.059, z: 124
+  - op: minus, param: firepower, val: 5, x: 2.398, z: 134
+  - op: plus, param: manpower, val: 30, x: -2.567, z: 146
+  - op: times, param: firepower, val: 5, x: 0.028, z: 160
+  - op: div, param: manpower, val: 2, x: -0.197, z: 176
+  - op: plus, param: manpower, val: 40, x: 2.059, z: 186
+  - op: times, param: firepower, val: 6, x: -1.551, z: 198
+  - op: plus, param: soldierlife, val: 10, x: 0.028, z: 212
+  - op: times, param: bulletpower, val: 2, x: -1.044, z: 228
 
 enemy_brigades:
-  - name: badlands shamblers, effective: 172, strength: 14, x: -2.205, z: 3679.509, model: assets/thorn.obj, color: #2B1F65FF
-  - name: dust zombies, effective: 230, strength: 15, x: 2.122, z: 3707.509, color: #48D699FF
-  - name: canyon biters, effective: 287, strength: 16, x: 0.445, z: 3739.509, color: #987757FF
-  - name: sunken dead, effective: 344, strength: 17, x: -2.763, z: 3775.509, model: assets/triumphal-arch.obj, color: #5757ECFF
-  - name: ash walkers, effective: 401, strength: 18, x: 2.763, z: 3811.509, color: #33C465FF
-  - name: badlands horde, effective: 512, strength: 18, x: -0.445, z: 3851.509, color: #652B1FFF
-  - name: grave dust swarm, effective: 432, strength: 19, x: -2.37, z: 3891.509, model: assets/bannner.obj, color: #9948D6FF
-  - name: ridge zombies, effective: 500, strength: 19, x: 2.205, z: 3931.509, color: #579877FF
-  - name: bone field, effective: 610, strength: 20, x: -0.797, z: 3975.509, color: #EC5757FF
-  - name: dead river crossing, effective: 741, strength: 21, x: 0.88, z: 4019.509, model: assets/bigpill.obj, color: #6533C4FF
-  - name: badlands zombie wall, effective: 1083, strength: 22, x: 0.445, z: 4063.509, color: #1F652BFF
-  - name: last infected legion, effective: 1444, strength: 23, x: 1.211, z: 4111.509, color: #D69948FF
+  - name: badlands shamblers, effective: 172, strength: 14, x: -2.205, z: 35, model: assets/thorn.obj, color: #2B1F65FF
+  - name: dust zombies, effective: 230, strength: 15, x: 2.122, z: 50, color: #48D699FF
+  - name: canyon biters, effective: 287, strength: 16, x: 0.445, z: 65, color: #987757FF
+  - name: sunken dead, effective: 344, strength: 17, x: -2.763, z: 71, model: assets/triumphal-arch.obj, color: #5757ECFF
+  - name: ash walkers, effective: 401, strength: 18, x: 2.763, z: 86, color: #33C465FF
+  - name: badlands horde, effective: 512, strength: 18, x: -0.445, z: 101, color: #652B1FFF
+  - name: grave dust swarm, effective: 432, strength: 19, x: -2.37, z: 107, model: assets/bannner.obj, color: #9948D6FF
+  - name: ridge zombies, effective: 500, strength: 19, x: 2.205, z: 122, color: #579877FF
+  - name: bone field, effective: 610, strength: 20, x: -0.797, z: 137, color: #EC5757FF
+  - name: dead river crossing, effective: 741, strength: 21, x: 0.88, z: 143, model: assets/bigpill.obj, color: #6533C4FF
+  - name: badlands zombie wall, effective: 1083, strength: 22, x: 0.445, z: 158, color: #1F652BFF
+  - name: last infected legion, effective: 1444, strength: 23, x: 1.211, z: 173, color: #D69948FF
 
 bosses:
-  - name: Sheriff Rotjaw, power: 155700, x: -1.101, z: 4166.509, model: assets/bigbot.obj, color: #D69948FF
-  - name: Mother Badlands, power: 257850, x: 1.101, z: 4234.509, model: assets/clown-head.obj, color: #775798FF
-  - name: The Zombie Baron, power: 441000, x: 0.463, z: 4302.509, model: assets/bigbot.obj, color: #57EC57FF
-  - name: Dead Mesa Colossus, power: 814500, x: -0.463, z: 4370.509, model: assets/clown-head.obj, color: #C46533FF
+  - name: Sheriff Rotjaw, power: 155700, x: -1.101, z: 229.75, model: assets/bigbot.obj, color: #D69948FF
+  - name: Mother Badlands, power: 257850, x: 1.101, z: 259.75, model: assets/clown-head.obj, color: #775798FF
+  - name: The Zombie Baron, power: 441000, x: 0.463, z: 289.75, model: assets/bigbot.obj, color: #57EC57FF
+  - name: Dead Mesa Colossus, power: 814500, x: -0.463, z: 319.75, model: assets/clown-head.obj, color: #C46533FF

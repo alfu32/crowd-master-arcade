@@ -1,5 +1,5 @@
 name: The Iron Causeway
-road_length: 4125.132
+road_length: 370.9
 road_width: 16
 starting_soldiers: 12
 fire_rate: 4.4
@@ -17,48 +17,46 @@ enemy_color: #B72E2EFF
 boss_color: #3D3F8FFF
 decoration_color: #77736AFF
 
-
-
 background_decorations:
-  - name: The Iron Causeway archway, power: 999999, x: -2.88, z: 2136.055, model: assets/triumphal-arch.obj, color: #588098FF
-  - name: The Iron Causeway tunnel, power: 999999, x: 1.92, z: 2526.289, model: assets/tunnel_section.obj, color: #333C27FF
-  - name: The Iron Causeway banner, power: 999999, x: -1.6, z: 2882.105, model: assets/bannner.obj, color: #DD95C2FF
-  - name: The Iron Causeway monument, power: 999999, x: 3.52, z: 3237.92, model: assets/triumphal-arch.obj, color: #DFCC72FF
-  - name: The Iron Causeway sentinel, power: 999999, x: -3.84, z: 3593.736, model: assets/bigpill.obj, color: #7B8A7AFF
+  - name: The Iron Causeway archway, power: 999999, x: -2.88, z: 28, model: assets/triumphal-arch.obj, color: #588098FF
+  - name: The Iron Causeway tunnel, power: 999999, x: 1.92, z: 66, model: assets/tunnel_section.obj, color: #333C27FF
+  - name: The Iron Causeway banner, power: 999999, x: -1.6, z: 104, model: assets/bannner.obj, color: #DD95C2FF
+  - name: The Iron Causeway monument, power: 999999, x: 3.52, z: 142, model: assets/triumphal-arch.obj, color: #DFCC72FF
+  - name: The Iron Causeway sentinel, power: 999999, x: -3.84, z: 180, model: assets/bigpill.obj, color: #7B8A7AFF
 
 cards:
-  - op: plus, param: manpower, val: 20, x: -1.721, z: 3107.782
-  - op: times, param: firepower, val: 3, x: 1.382, z: 3183.782
-  - op: plus, param: soldierlife, val: 6, x: 0.819, z: 3199.782
-  - op: minus, param: manpower, val: 8, x: -0.48, z: 3207.782
-  - op: plus, param: manpower, val: 25, x: 2.85, z: 3175.782
-  - op: div, param: firepower, val: 2, x: -2.342, z: 3255.782
-  - op: times, param: manpower, val: 3, x: -0.536, z: 3283.782
-  - op: times, param: firepower, val: 4, x: 0.79, z: 3311.782
-  - op: plus, param: bulletpower, val: 8, x: -1.721, z: 3271.782
-  - op: minus, param: firepower, val: 5, x: 2.059, z: 3343.782
-  - op: plus, param: manpower, val: 30, x: -2.059, z: 3375.782
-  - op: div, param: manpower, val: 2, x: 0.197, z: 3411.782
-  - op: times, param: firepower, val: 5, x: -1.044, z: 3391.782
-  - op: plus, param: manpower, val: 20, x: 1.551, z: 3487.782
-  - op: plus, param: soldierlife, val: 8, x: -1.382, z: 3515.782
-  - op: times, param: bulletpower, val: 2, x: -0.057, z: 3535.782
+  - op: plus, param: manpower, val: 20, x: -1.721, z: 20
+  - op: times, param: firepower, val: 3, x: 1.382, z: 30
+  - op: plus, param: soldierlife, val: 6, x: 0.819, z: 42
+  - op: minus, param: manpower, val: 8, x: -0.48, z: 56
+  - op: plus, param: manpower, val: 25, x: 2.85, z: 72
+  - op: div, param: firepower, val: 2, x: -2.342, z: 82
+  - op: times, param: manpower, val: 3, x: -0.536, z: 94
+  - op: times, param: firepower, val: 4, x: 0.79, z: 108
+  - op: plus, param: bulletpower, val: 8, x: -1.721, z: 124
+  - op: minus, param: firepower, val: 5, x: 2.059, z: 134
+  - op: plus, param: manpower, val: 30, x: -2.059, z: 146
+  - op: div, param: manpower, val: 2, x: 0.197, z: 160
+  - op: times, param: firepower, val: 5, x: -1.044, z: 176
+  - op: plus, param: manpower, val: 20, x: 1.551, z: 186
+  - op: plus, param: soldierlife, val: 8, x: -1.382, z: 198
+  - op: times, param: bulletpower, val: 2, x: -0.057, z: 212
 
 enemy_brigades:
-  - name: bridge picket, effective: 140, strength: 14, x: -1.873, z: 3247.782, model: assets/triumphal-arch.obj, color: #333C27FF
-  - name: right column, effective: 187, strength: 15, x: 1.708, z: 3271.782, color: #DD95C2FF
-  - name: center wall, effective: 234, strength: 16, x: 0.445, z: 3299.782, color: #DFCC72FF
-  - name: left hooks, effective: 292, strength: 16, x: -2.432, z: 3331.782, model: assets/bigpill.obj, color: #7B8A7AFF
-  - name: steel reserve, effective: 360, strength: 17, x: 2.267, z: 3363.782, color: #985880FF
-  - name: causeway block, effective: 427, strength: 18, x: -0.445, z: 3399.782, color: #27333CFF
-  - name: gate watch, effective: 306, strength: 19, x: -2.039, z: 3439.782, model: assets/bannner.obj, color: #C2DD95FF
-  - name: hammer flank, effective: 375, strength: 19, x: 2.039, z: 3471.782, color: #72DFCCFF
-  - name: redoubt, effective: 526, strength: 20, x: 0.445, z: 3507.782, color: #7A7B8AFF
-  - name: black standard, effective: 741, strength: 22, x: -1.935, z: 3547.782, model: assets/tunnel_section.obj, color: #809858FF
-  - name: final shield, effective: 1125, strength: 22, x: 2.101, z: 3587.782, color: #3C2733FF
+  - name: bridge picket, effective: 140, strength: 14, x: -1.873, z: 35, model: assets/triumphal-arch.obj, color: #333C27FF
+  - name: right column, effective: 187, strength: 15, x: 1.708, z: 50, color: #DD95C2FF
+  - name: center wall, effective: 234, strength: 16, x: 0.445, z: 65, color: #DFCC72FF
+  - name: left hooks, effective: 292, strength: 16, x: -2.432, z: 71, model: assets/bigpill.obj, color: #7B8A7AFF
+  - name: steel reserve, effective: 360, strength: 17, x: 2.267, z: 86, color: #985880FF
+  - name: causeway block, effective: 427, strength: 18, x: -0.445, z: 101, color: #27333CFF
+  - name: gate watch, effective: 306, strength: 19, x: -2.039, z: 107, model: assets/bannner.obj, color: #C2DD95FF
+  - name: hammer flank, effective: 375, strength: 19, x: 2.039, z: 122, color: #72DFCCFF
+  - name: redoubt, effective: 526, strength: 20, x: 0.445, z: 137, color: #7A7B8AFF
+  - name: black standard, effective: 741, strength: 22, x: -1.935, z: 143, model: assets/tunnel_section.obj, color: #809858FF
+  - name: final shield, effective: 1125, strength: 22, x: 2.101, z: 158, color: #3C2733FF
 
 bosses:
-  - name: Marshal Ferrum, power: 149625, x: -0.789, z: 3641.132, model: assets/bigbot.obj, color: #95C2DDFF
-  - name: Duchess Vanta, power: 249750, x: 0.945, z: 3709.132, model: assets/clown-head.obj, color: #CC72DFFF
-  - name: The Gate Engine, power: 471375, x: 0.463, z: 3777.132, model: assets/bigbot.obj, color: #8A7A7BFF
-  - name: Iron Crown, power: 814500, x: -0.463, z: 3845.132, model: assets/clown-head.obj, color: #588098FF
+  - name: Marshal Ferrum, power: 149625, x: -0.789, z: 210.9, model: assets/bigbot.obj, color: #95C2DDFF
+  - name: Duchess Vanta, power: 249750, x: 0.945, z: 240.9, model: assets/clown-head.obj, color: #CC72DFFF
+  - name: The Gate Engine, power: 471375, x: 0.463, z: 270.9, model: assets/bigbot.obj, color: #8A7A7BFF
+  - name: Iron Crown, power: 814500, x: -0.463, z: 300.9, model: assets/clown-head.obj, color: #588098FF

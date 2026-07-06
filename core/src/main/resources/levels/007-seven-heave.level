@@ -1,5 +1,5 @@
 name: seven heaven
-road_length: 4844.795
+road_length: 394.4
 road_width: 16
 starting_soldiers: 40
 fire_rate: 4.0
@@ -17,42 +17,40 @@ enemy_color: #D6292EFF
 boss_color: #5C248FFF
 decoration_color: #8C8578FF
 
-
-
 background_decorations:
-  - name: seven heaven archway, power: 999999, x: -2.88, z: 2534.44, model: assets/triumphal-arch.obj, color: #588098FF
-  - name: seven heaven tunnel, power: 999999, x: 1.92, z: 2982.504, model: assets/tunnel_section.obj, color: #333C27FF
-  - name: seven heaven banner, power: 999999, x: -1.6, z: 3402.575, model: assets/bannner.obj, color: #DD95C2FF
-  - name: seven heaven monument, power: 999999, x: 3.52, z: 3822.646, model: assets/triumphal-arch.obj, color: #DFCC72FF
-  - name: seven heaven sentinel, power: 999999, x: -3.84, z: 4242.717, model: assets/bigpill.obj, color: #7B8A7AFF
+  - name: seven heaven archway, power: 999999, x: -2.88, z: 28, model: assets/triumphal-arch.obj, color: #588098FF
+  - name: seven heaven tunnel, power: 999999, x: 1.92, z: 66, model: assets/tunnel_section.obj, color: #333C27FF
+  - name: seven heaven banner, power: 999999, x: -1.6, z: 104, model: assets/bannner.obj, color: #DD95C2FF
+  - name: seven heaven monument, power: 999999, x: 3.52, z: 142, model: assets/triumphal-arch.obj, color: #DFCC72FF
+  - name: seven heaven sentinel, power: 999999, x: -3.84, z: 180, model: assets/bigpill.obj, color: #7B8A7AFF
 
 cards:
-  - op: times, param: manpower, val: 2, x: 0.48, z: 3660.725
-  - op: plus, param: firepower, val: 10, x: -5.978, z: 3973.573
-  - op: times, param: firepower, val: 10, x: 2.542, z: 3767.213
-  - op: times, param: soldierlife, val: 3, x: 2.269, z: 3819.783
-  - op: times, param: firepower, val: 2, x: -0.224, z: 3671.181
-  - op: times, param: manpower, val: 5, x: -1.581, z: 3773.737
-  - op: times, param: bulletpower, val: 3, x: -0.225, z: 3833.629
+  - op: times, param: manpower, val: 2, x: 0.48, z: 20
+  - op: plus, param: firepower, val: 10, x: -5.978, z: 30
+  - op: times, param: firepower, val: 10, x: 2.542, z: 42
+  - op: times, param: soldierlife, val: 3, x: 2.269, z: 56
+  - op: times, param: firepower, val: 2, x: -0.224, z: 72
+  - op: times, param: manpower, val: 5, x: -1.581, z: 82
+  - op: times, param: bulletpower, val: 3, x: -0.225, z: 94
 
 enemy_brigades:
-  - name: whites, effective: 866, strength: 14, x: -0.37, z: 3735.447, model: assets/triumphal-arch.obj, color: #333C27FF
-  - name: strongmen, effective: 450, strength: 54, x: -0.954, z: 3794.725, color: #DD95C2FF
-  - effective: 86, strength: 14, x: 2.238, z: 4065.375, color: #DFCC72FF
-  - effective: 564, strength: 14, x: -3.757, z: 4023.005, model: assets/bigpill.obj, color: #7B8A7AFF
-  - effective: 569, strength: 14, x: 3.757, z: 3979.851, color: #985880FF
-  - name: coucou, effective: 101, strength: 14, x: -5.151, z: 3840.185, color: #27333CFF
-  - name: sanitary, effective: 106, strength: 14, x: 5.376, z: 3852.739, model: assets/bannner.obj, color: #C2DD95FF
-  - effective: 111, strength: 14, x: -4.479, z: 3876.277, color: #72DFCCFF
-  - effective: 484, strength: 14, x: 4.032, z: 3913.941, color: #7A7B8AFF
-  - effective: 489, strength: 14, x: -5.376, z: 3941.403, model: assets/tunnel_section.obj, color: #809858FF
-  - name: bosses, effective: 598, strength: 104, x: -3.695, z: 4154.725, color: #3C2733FF
-  - name: bosses' bosses, effective: 289, strength: 104, x: 2.867, z: 4154.725, color: #95C2DDFF
-  - effective: 608, strength: 14, x: -2.692, z: 4204.725, model: assets/triumphal-arch.obj, color: #CC72DFFF
-  - name: doubleguard, effective: 613, strength: 29, x: -6.259, z: 4236.087, color: #8A7A7BFF
-  - effective: 830, strength: 104, x: 0.445, z: 4378.195, color: #588098FF
+  - name: whites, effective: 866, strength: 14, x: -0.37, z: 35, model: assets/triumphal-arch.obj, color: #333C27FF
+  - name: strongmen, effective: 450, strength: 54, x: -0.954, z: 50, color: #DD95C2FF
+  - effective: 86, strength: 14, x: 2.238, z: 65, color: #DFCC72FF
+  - effective: 564, strength: 14, x: -3.757, z: 71, model: assets/bigpill.obj, color: #7B8A7AFF
+  - effective: 569, strength: 14, x: 3.757, z: 86, color: #985880FF
+  - name: coucou, effective: 101, strength: 14, x: -5.151, z: 101, color: #27333CFF
+  - name: sanitary, effective: 106, strength: 14, x: 5.376, z: 107, model: assets/bannner.obj, color: #C2DD95FF
+  - effective: 111, strength: 14, x: -4.479, z: 122, color: #72DFCCFF
+  - effective: 484, strength: 14, x: 4.032, z: 137, color: #7A7B8AFF
+  - effective: 489, strength: 14, x: -5.376, z: 143, model: assets/tunnel_section.obj, color: #809858FF
+  - name: bosses, effective: 598, strength: 104, x: -3.695, z: 158, color: #3C2733FF
+  - name: bosses' bosses, effective: 289, strength: 104, x: 2.867, z: 173, color: #95C2DDFF
+  - effective: 608, strength: 14, x: -2.692, z: 179, model: assets/triumphal-arch.obj, color: #CC72DFFF
+  - name: doubleguard, effective: 613, strength: 29, x: -6.259, z: 194, color: #8A7A7BFF
+  - effective: 830, strength: 104, x: 0.445, z: 209, color: #588098FF
 
 bosses:
-  - name: Arrrrah, power: 134437.5, x: 0.463, z: 4428.795, model: assets/bigbot.obj, color: #95C2DDFF
-  - power: 93825, x: -0.886, z: 4496.795, model: assets/clown-head.obj, color: #CC72DFFF
-  - name: ARCHENEMY, power: 5432625, x: 0.463, z: 4564.795, model: assets/bigbot.obj, color: #8A7A7BFF
+  - name: Arrrrah, power: 134437.5, x: 0.463, z: 256.4, model: assets/bigbot.obj, color: #95C2DDFF
+  - power: 93825, x: -0.886, z: 290.4, model: assets/clown-head.obj, color: #CC72DFFF
+  - name: ARCHENEMY, power: 5432625, x: 0.463, z: 324.4, model: assets/bigbot.obj, color: #8A7A7BFF

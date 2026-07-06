@@ -1,5 +1,5 @@
 name: Glass Canyon
-road_length: 3884.946
+road_length: 344.4
 road_width: 17
 starting_soldiers: 24
 fire_rate: 5.4
@@ -17,41 +17,39 @@ enemy_color: #2E8A56FF
 boss_color: #5C3C99FF
 decoration_color: #7F7468FF
 
-
-
 background_decorations:
-  - name: Glass Canyon archway, power: 999999, x: -3.06, z: 2003.095, model: assets/triumphal-arch.obj, color: #588098FF
-  - name: Glass Canyon tunnel, power: 999999, x: 2.04, z: 2374.028, model: assets/tunnel_section.obj, color: #333C27FF
-  - name: Glass Canyon banner, power: 999999, x: -1.7, z: 2708.399, model: assets/bannner.obj, color: #DD95C2FF
-  - name: Glass Canyon monument, power: 999999, x: 3.74, z: 3042.769, model: assets/triumphal-arch.obj, color: #DFCC72FF
-  - name: Glass Canyon sentinel, power: 999999, x: -4.08, z: 3377.139, model: assets/bigpill.obj, color: #7B8A7AFF
+  - name: Glass Canyon archway, power: 999999, x: -3.06, z: 28, model: assets/triumphal-arch.obj, color: #588098FF
+  - name: Glass Canyon tunnel, power: 999999, x: 2.04, z: 66, model: assets/tunnel_section.obj, color: #333C27FF
+  - name: Glass Canyon banner, power: 999999, x: -1.7, z: 104, model: assets/bannner.obj, color: #DD95C2FF
+  - name: Glass Canyon monument, power: 999999, x: 3.74, z: 142, model: assets/triumphal-arch.obj, color: #DFCC72FF
+  - name: Glass Canyon sentinel, power: 999999, x: -4.08, z: 180, model: assets/bigpill.obj, color: #7B8A7AFF
 
 cards:
-  - op: plus, param: manpower, val: 24, x: -2.228, z: 2915.896
-  - op: times, param: firepower, val: 2, x: 2.059, z: 2999.896
-  - op: plus, param: soldierlife, val: 8, x: 0.48, z: 3027.896
-  - op: minus, param: manpower, val: 12, x: -2.85, z: 3059.896
-  - op: plus, param: bulletpower, val: 10, x: 2.681, z: 3039.896
-  - op: times, param: manpower, val: 3, x: -2.342, z: 3135.896
-  - op: div, param: firepower, val: 2, x: 0.988, z: 3175.896
-  - op: plus, param: manpower, val: 40, x: 1.89, z: 3219.896
-  - op: times, param: firepower, val: 4, x: -1.044, z: 3207.896
-  - op: plus, param: soldierlife, val: 12, x: 0.197, z: 3303.896
-  - op: times, param: bulletpower, val: 2, x: -0.197, z: 3343.896
-  - op: minus, param: manpower, val: 16, x: 1.213, z: 3379.896
+  - op: plus, param: manpower, val: 24, x: -2.228, z: 20
+  - op: times, param: firepower, val: 2, x: 2.059, z: 30
+  - op: plus, param: soldierlife, val: 8, x: 0.48, z: 42
+  - op: minus, param: manpower, val: 12, x: -2.85, z: 56
+  - op: plus, param: bulletpower, val: 10, x: 2.681, z: 72
+  - op: times, param: manpower, val: 3, x: -2.342, z: 82
+  - op: div, param: firepower, val: 2, x: 0.988, z: 94
+  - op: plus, param: manpower, val: 40, x: 1.89, z: 108
+  - op: times, param: firepower, val: 4, x: -1.044, z: 124
+  - op: plus, param: soldierlife, val: 12, x: 0.197, z: 134
+  - op: times, param: bulletpower, val: 2, x: -0.197, z: 146
+  - op: minus, param: manpower, val: 16, x: 1.213, z: 160
 
 enemy_brigades:
-  - name: crystal scouts, effective: 235, strength: 16, x: -2.205, z: 3023.896, model: assets/triumphal-arch.obj, color: #333C27FF
-  - name: canyon split, effective: 302, strength: 17, x: 2.039, z: 3063.896, color: #DD95C2FF
-  - name: glass wall, effective: 371, strength: 18, x: 0.445, z: 3103.896, color: #DFCC72FF
-  - name: shard flank, effective: 480, strength: 19, x: -2.598, z: 3147.896, model: assets/bigpill.obj, color: #7B8A7AFF
-  - name: fracture line, effective: 633, strength: 20, x: 2.432, z: 3195.896, color: #985880FF
-  - name: canyon break, effective: 806, strength: 21, x: -0.445, z: 3243.896, color: #27333CFF
-  - name: last shard, effective: 1105, strength: 22, x: -0.88, z: 3291.896, model: assets/bannner.obj, color: #C2DD95FF
-  - name: glass crown, effective: 1573, strength: 23, x: 1.045, z: 3343.896, color: #72DFCCFF
-  - name: canyon throat, effective: 2062, strength: 24, x: 0.445, z: 3407.896, color: #7A7B8AFF
+  - name: crystal scouts, effective: 235, strength: 16, x: -2.205, z: 35, model: assets/triumphal-arch.obj, color: #333C27FF
+  - name: canyon split, effective: 302, strength: 17, x: 2.039, z: 50, color: #DD95C2FF
+  - name: glass wall, effective: 371, strength: 18, x: 0.445, z: 65, color: #DFCC72FF
+  - name: shard flank, effective: 480, strength: 19, x: -2.598, z: 71, model: assets/bigpill.obj, color: #7B8A7AFF
+  - name: fracture line, effective: 633, strength: 20, x: 2.432, z: 86, color: #985880FF
+  - name: canyon break, effective: 806, strength: 21, x: -0.445, z: 101, color: #27333CFF
+  - name: last shard, effective: 1105, strength: 22, x: -0.88, z: 107, model: assets/bannner.obj, color: #C2DD95FF
+  - name: glass crown, effective: 1573, strength: 23, x: 1.045, z: 122, color: #72DFCCFF
+  - name: canyon throat, effective: 2062, strength: 24, x: 0.445, z: 137, color: #7A7B8AFF
 
 bosses:
-  - name: Shard Marshal, power: 192714.975, x: -0.945, z: 3468.946, model: assets/bigbot.obj, color: #95C2DDFF
-  - name: Canyon Prism, power: 469203.3, x: 0.945, z: 3536.946, model: assets/clown-head.obj, color: #CC72DFFF
-  - name: The Glass King, power: 805500, x: 0.463, z: 3604.946, model: assets/bigbot.obj, color: #8A7A7BFF
+  - name: Shard Marshal, power: 192714.975, x: -0.945, z: 206.4, model: assets/bigbot.obj, color: #95C2DDFF
+  - name: Canyon Prism, power: 469203.3, x: 0.945, z: 240.4, model: assets/clown-head.obj, color: #CC72DFFF
+  - name: The Glass King, power: 805500, x: 0.463, z: 274.4, model: assets/bigbot.obj, color: #8A7A7BFF

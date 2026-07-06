@@ -1,5 +1,5 @@
 name: Long Road to Ruin
-road_length: 3612.685
+road_length: 338.35
 road_width: 16
 starting_soldiers: 22
 fire_rate: 5.8
@@ -17,41 +17,39 @@ enemy_color: #B93B2DFF
 boss_color: #5830AAFF
 decoration_color: #6D665CFF
 
-
-
 background_decorations:
-  - name: Long Road to Ruin archway, power: 999999, x: -2.88, z: 1852.379, model: assets/triumphal-arch.obj, color: #64889BFF
-  - name: Long Road to Ruin tunnel, power: 999999, x: 1.92, z: 2201.435, model: assets/tunnel_section.obj, color: #3B432EFF
-  - name: Long Road to Ruin banner, power: 999999, x: -1.6, z: 2511.496, model: assets/bannner.obj, color: #EAAAD1FF
-  - name: Long Road to Ruin monument, power: 999999, x: 3.52, z: 2821.557, model: assets/triumphal-arch.obj, color: #DDC778FF
-  - name: Long Road to Ruin sentinel, power: 999999, x: -3.84, z: 3131.618, model: assets/bigbot.obj, color: #8C9687FF
+  - name: Long Road to Ruin archway, power: 999999, x: -2.88, z: 28, model: assets/triumphal-arch.obj, color: #64889BFF
+  - name: Long Road to Ruin tunnel, power: 999999, x: 1.92, z: 66, model: assets/tunnel_section.obj, color: #3B432EFF
+  - name: Long Road to Ruin banner, power: 999999, x: -1.6, z: 104, model: assets/bannner.obj, color: #EAAAD1FF
+  - name: Long Road to Ruin monument, power: 999999, x: 3.52, z: 142, model: assets/triumphal-arch.obj, color: #DDC778FF
+  - name: Long Road to Ruin sentinel, power: 999999, x: -3.84, z: 180, model: assets/bigbot.obj, color: #8C9687FF
 
 cards:
-  - op: plus, param: manpower, val: 24, x: -1.89, z: 2698.385
-  - op: times, param: firepower, val: 2, x: 1.721, z: 2778.385
-  - op: plus, param: soldierlife, val: 7, x: 0.48, z: 2806.385
-  - op: minus, param: manpower, val: 12, x: -2.511, z: 2834.385
-  - op: plus, param: bulletpower, val: 8, x: 2.342, z: 2806.385
-  - op: times, param: manpower, val: 3, x: -2.681, z: 2894.385
-  - op: div, param: firepower, val: 2, x: 1.157, z: 2926.385
-  - op: plus, param: manpower, val: 36, x: 1.89, z: 2966.385
-  - op: times, param: firepower, val: 4, x: -1.044, z: 2950.385
-  - op: plus, param: soldierlife, val: 10, x: 0.197, z: 3046.385
-  - op: plus, param: bulletpower, val: 12, x: -0.197, z: 3086.385
-  - op: minus, param: manpower, val: 16, x: 1.213, z: 3122.385
+  - op: plus, param: manpower, val: 24, x: -1.89, z: 20
+  - op: times, param: firepower, val: 2, x: 1.721, z: 30
+  - op: plus, param: soldierlife, val: 7, x: 0.48, z: 42
+  - op: minus, param: manpower, val: 12, x: -2.511, z: 56
+  - op: plus, param: bulletpower, val: 8, x: 2.342, z: 72
+  - op: times, param: manpower, val: 3, x: -2.681, z: 82
+  - op: div, param: firepower, val: 2, x: 1.157, z: 94
+  - op: plus, param: manpower, val: 36, x: 1.89, z: 108
+  - op: times, param: firepower, val: 4, x: -1.044, z: 124
+  - op: plus, param: soldierlife, val: 10, x: 0.197, z: 134
+  - op: plus, param: bulletpower, val: 12, x: -0.197, z: 146
+  - op: minus, param: manpower, val: 16, x: 1.213, z: 160
 
 enemy_brigades:
-  - name: first ruin line, effective: 213, strength: 16, x: -1.873, z: 2806.385, model: assets/triumphal-arch.obj, color: #3B432EFF
-  - name: split flank, effective: 261, strength: 17, x: 1.708, z: 2842.385, color: #EAAAD1FF
-  - name: ruin wall, effective: 329, strength: 18, x: 0.445, z: 2878.385, color: #DDC778FF
-  - name: hard pack, effective: 439, strength: 19, x: -2.432, z: 2914.385, model: assets/bigbot.obj, color: #8C9687FF
-  - name: grind line, effective: 549, strength: 20, x: 2.267, z: 2954.385, color: #9B6488FF
-  - name: push wedge, effective: 722, strength: 21, x: -0.445, z: 2994.385, color: #2E3B43FF
-  - name: deep ruin, effective: 937, strength: 22, x: -1.045, z: 3038.385, model: assets/bannner.obj, color: #D1EAAAFF
-  - name: end ridge, effective: 1278, strength: 23, x: 1.045, z: 3082.385, color: #78DDC7FF
-  - name: ruin gate, effective: 1662, strength: 24, x: 0.445, z: 3138.385, color: #878C96FF
+  - name: first ruin line, effective: 213, strength: 16, x: -1.873, z: 35, model: assets/triumphal-arch.obj, color: #3B432EFF
+  - name: split flank, effective: 261, strength: 17, x: 1.708, z: 50, color: #EAAAD1FF
+  - name: ruin wall, effective: 329, strength: 18, x: 0.445, z: 65, color: #DDC778FF
+  - name: hard pack, effective: 439, strength: 19, x: -2.432, z: 71, model: assets/bigbot.obj, color: #8C9687FF
+  - name: grind line, effective: 549, strength: 20, x: 2.267, z: 86, color: #9B6488FF
+  - name: push wedge, effective: 722, strength: 21, x: -0.445, z: 101, color: #2E3B43FF
+  - name: deep ruin, effective: 937, strength: 22, x: -1.045, z: 107, model: assets/bannner.obj, color: #D1EAAAFF
+  - name: end ridge, effective: 1278, strength: 23, x: 1.045, z: 122, color: #78DDC7FF
+  - name: ruin gate, effective: 1662, strength: 24, x: 0.445, z: 137, color: #878C96FF
 
 bosses:
-  - name: Ruin Marshal, power: 191758.163, x: -0.945, z: 3196.685, model: assets/bigbot.obj, color: #AAD1EAFF
-  - name: The Long Scar, power: 471846.938, x: 0.945, z: 3264.685, model: assets/clown-head.obj, color: #C778DDFF
-  - name: Breakline Titan, power: 805500, x: 0.463, z: 3332.685, model: assets/bigbot.obj, color: #96878CFF
+  - name: Ruin Marshal, power: 191758.163, x: -0.945, z: 200.35, model: assets/bigbot.obj, color: #AAD1EAFF
+  - name: The Long Scar, power: 471846.938, x: 0.945, z: 234.35, model: assets/clown-head.obj, color: #C778DDFF
+  - name: Breakline Titan, power: 805500, x: 0.463, z: 268.35, model: assets/bigbot.obj, color: #96878CFF

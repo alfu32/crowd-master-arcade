@@ -1,5 +1,5 @@
 name: Needlepoint Ridge
-road_length: 2852.096
+road_length: 293.45
 road_width: 15
 starting_soldiers: 20
 fire_rate: 6.4
@@ -17,37 +17,35 @@ enemy_color: #C73D31FF
 boss_color: #4B4E9BFF
 decoration_color: #7C7367FF
 
-
-
 background_decorations:
-  - name: Needlepoint Ridge archway, power: 999999, x: -2.7, z: 1431.339, model: assets/triumphal-arch.obj, color: #588098FF
-  - name: Needlepoint Ridge tunnel, power: 999999, x: 1.8, z: 1719.275, model: assets/tunnel_section.obj, color: #333C27FF
-  - name: Needlepoint Ridge banner, power: 999999, x: -1.5, z: 1961.426, model: assets/bannner.obj, color: #DD95C2FF
-  - name: Needlepoint Ridge monument, power: 999999, x: 3.3, z: 2203.578, model: assets/triumphal-arch.obj, color: #DFCC72FF
-  - name: Needlepoint Ridge sentinel, power: 999999, x: -3.6, z: 2445.729, model: assets/bigpill.obj, color: #7B8A7AFF
+  - name: Needlepoint Ridge archway, power: 999999, x: -2.7, z: 28, model: assets/triumphal-arch.obj, color: #588098FF
+  - name: Needlepoint Ridge tunnel, power: 999999, x: 1.8, z: 66, model: assets/tunnel_section.obj, color: #333C27FF
+  - name: Needlepoint Ridge banner, power: 999999, x: -1.5, z: 104, model: assets/bannner.obj, color: #DD95C2FF
+  - name: Needlepoint Ridge monument, power: 999999, x: 3.3, z: 142, model: assets/triumphal-arch.obj, color: #DFCC72FF
+  - name: Needlepoint Ridge sentinel, power: 999999, x: -3.6, z: 180, model: assets/bigpill.obj, color: #7B8A7AFF
 
 cards:
-  - op: plus, param: manpower, val: 20, x: -2.059, z: 2090.746
-  - op: times, param: firepower, val: 2, x: 1.89, z: 2170.746
-  - op: minus, param: manpower, val: 10, x: 0.48, z: 2194.746
-  - op: plus, param: soldierlife, val: 6, x: -2.342, z: 2218.746
-  - op: plus, param: bulletpower, val: 8, x: 2.511, z: 2186.746
-  - op: times, param: manpower, val: 3, x: -2.681, z: 2274.746
-  - op: div, param: firepower, val: 2, x: 1.157, z: 2306.746
-  - op: plus, param: manpower, val: 30, x: -1.157, z: 2338.746
-  - op: times, param: firepower, val: 4, x: 2.342, z: 2318.746
-  - op: plus, param: soldierlife, val: 10, x: -2.173, z: 2410.746
+  - op: plus, param: manpower, val: 20, x: -2.059, z: 20
+  - op: times, param: firepower, val: 2, x: 1.89, z: 30
+  - op: minus, param: manpower, val: 10, x: 0.48, z: 42
+  - op: plus, param: soldierlife, val: 6, x: -2.342, z: 56
+  - op: plus, param: bulletpower, val: 8, x: 2.511, z: 72
+  - op: times, param: manpower, val: 3, x: -2.681, z: 82
+  - op: div, param: firepower, val: 2, x: 1.157, z: 94
+  - op: plus, param: manpower, val: 30, x: -1.157, z: 108
+  - op: times, param: firepower, val: 4, x: 2.342, z: 124
+  - op: plus, param: soldierlife, val: 10, x: -2.173, z: 134
 
 enemy_brigades:
-  - name: front needle, effective: 172, strength: 15, x: -2.039, z: 2194.746, model: assets/triumphal-arch.obj, color: #333C27FF
-  - name: right spike, effective: 230, strength: 16, x: 1.873, z: 2226.746, color: #DD95C2FF
-  - name: center spike, effective: 287, strength: 17, x: 0.445, z: 2258.746, color: #DFCC72FF
-  - name: left spike, effective: 355, strength: 18, x: -2.598, z: 2294.746, model: assets/bigpill.obj, color: #7B8A7AFF
-  - name: ridge guards, effective: 444, strength: 19, x: 2.267, z: 2330.746, color: #985880FF
-  - name: split wall, effective: 554, strength: 20, x: -0.445, z: 2370.746, color: #27333CFF
-  - name: pressure pin, effective: 747, strength: 21, x: -0.88, z: 2410.746, model: assets/bannner.obj, color: #C2DD95FF
-  - name: ridge seal, effective: 1068, strength: 22, x: 1.045, z: 2450.746, color: #72DFCCFF
+  - name: front needle, effective: 172, strength: 15, x: -2.039, z: 35, model: assets/triumphal-arch.obj, color: #333C27FF
+  - name: right spike, effective: 230, strength: 16, x: 1.873, z: 52, color: #DD95C2FF
+  - name: center spike, effective: 287, strength: 17, x: 0.445, z: 69, color: #DFCC72FF
+  - name: left spike, effective: 355, strength: 18, x: -2.598, z: 77, model: assets/bigpill.obj, color: #7B8A7AFF
+  - name: ridge guards, effective: 444, strength: 19, x: 2.267, z: 94, color: #985880FF
+  - name: split wall, effective: 554, strength: 20, x: -0.445, z: 111, color: #27333CFF
+  - name: pressure pin, effective: 747, strength: 21, x: -0.88, z: 119, model: assets/bannner.obj, color: #C2DD95FF
+  - name: ridge seal, effective: 1068, strength: 22, x: 1.045, z: 136, color: #72DFCCFF
 
 bosses:
-  - name: Needle Baron, power: 265938.975, x: -0.945, z: 2504.096, model: assets/bigbot.obj, color: #95C2DDFF
-  - name: Ridge Suture, power: 796500, x: 0.945, z: 2572.096, model: assets/clown-head.obj, color: #CC72DFFF
+  - name: Needle Baron, power: 265938.975, x: -0.945, z: 189.45, model: assets/bigbot.obj, color: #95C2DDFF
+  - name: Ridge Suture, power: 796500, x: 0.945, z: 223.45, model: assets/clown-head.obj, color: #CC72DFFF

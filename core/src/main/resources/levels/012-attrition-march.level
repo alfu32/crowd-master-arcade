@@ -1,5 +1,5 @@
 name: Attrition March
-road_length: 3777.285
+road_length: 341.1
 road_width: 17
 starting_soldiers: 24
 fire_rate: 5.6
@@ -17,40 +17,38 @@ enemy_color: #8E2D31FF
 boss_color: #43358FFF
 decoration_color: #6E6255FF
 
-
-
 background_decorations:
-  - name: Attrition March archway, power: 999999, x: -3.06, z: 1943.497, model: assets/triumphal-arch.obj, color: #588098FF
-  - name: Attrition March tunnel, power: 999999, x: 2.04, z: 2305.779, model: assets/tunnel_section.obj, color: #333C27FF
-  - name: Attrition March banner, power: 999999, x: -1.7, z: 2630.537, model: assets/bannner.obj, color: #DD95C2FF
-  - name: Attrition March monument, power: 999999, x: 3.74, z: 2955.294, model: assets/triumphal-arch.obj, color: #DFCC72FF
-  - name: Attrition March sentinel, power: 999999, x: -4.08, z: 3280.052, model: assets/bigpill.obj, color: #7B8A7AFF
+  - name: Attrition March archway, power: 999999, x: -3.06, z: 28, model: assets/triumphal-arch.obj, color: #588098FF
+  - name: Attrition March tunnel, power: 999999, x: 2.04, z: 66, model: assets/tunnel_section.obj, color: #333C27FF
+  - name: Attrition March banner, power: 999999, x: -1.7, z: 104, model: assets/bannner.obj, color: #DD95C2FF
+  - name: Attrition March monument, power: 999999, x: 3.74, z: 142, model: assets/triumphal-arch.obj, color: #DFCC72FF
+  - name: Attrition March sentinel, power: 999999, x: -4.08, z: 180, model: assets/bigpill.obj, color: #7B8A7AFF
 
 cards:
-  - op: plus, param: manpower, val: 24, x: -2.059, z: 2833.885
-  - op: times, param: firepower, val: 2, x: 1.89, z: 2917.885
-  - op: plus, param: soldierlife, val: 8, x: 0.48, z: 2945.885
-  - op: minus, param: manpower, val: 12, x: -2.681, z: 2973.885
-  - op: plus, param: bulletpower, val: 8, x: 2.511, z: 2949.885
-  - op: times, param: manpower, val: 3, x: -2.173, z: 3041.885
-  - op: div, param: firepower, val: 2, x: 1.157, z: 3081.885
-  - op: plus, param: manpower, val: 36, x: 1.89, z: 3121.885
-  - op: times, param: firepower, val: 4, x: -0.874, z: 3109.885
-  - op: plus, param: soldierlife, val: 12, x: 0.197, z: 3201.885
-  - op: minus, param: firepower, val: 4, x: -0.197, z: 3237.885
+  - op: plus, param: manpower, val: 24, x: -2.059, z: 20
+  - op: times, param: firepower, val: 2, x: 1.89, z: 30
+  - op: plus, param: soldierlife, val: 8, x: 0.48, z: 42
+  - op: minus, param: manpower, val: 12, x: -2.681, z: 56
+  - op: plus, param: bulletpower, val: 8, x: 2.511, z: 72
+  - op: times, param: manpower, val: 3, x: -2.173, z: 82
+  - op: div, param: firepower, val: 2, x: 1.157, z: 94
+  - op: plus, param: manpower, val: 36, x: 1.89, z: 108
+  - op: times, param: firepower, val: 4, x: -0.874, z: 124
+  - op: plus, param: soldierlife, val: 12, x: 0.197, z: 134
+  - op: minus, param: firepower, val: 4, x: -0.197, z: 146
 
 enemy_brigades:
-  - name: opening fire, effective: 213, strength: 16, x: -2.039, z: 2945.885, model: assets/triumphal-arch.obj, color: #333C27FF
-  - name: left wear, effective: 282, strength: 17, x: 1.873, z: 2985.885, color: #DD95C2FF
-  - name: right wear, effective: 350, strength: 18, x: 0.445, z: 3025.885, color: #DFCC72FF
-  - name: grind lock, effective: 460, strength: 19, x: -2.432, z: 3069.885, model: assets/bigpill.obj, color: #7B8A7AFF
-  - name: attrition line, effective: 591, strength: 20, x: 2.267, z: 3113.885, color: #985880FF
-  - name: thinning wall, effective: 764, strength: 21, x: -0.445, z: 3161.885, color: #27333CFF
-  - name: last reserve, effective: 1063, strength: 22, x: -0.88, z: 3205.885, model: assets/bannner.obj, color: #C2DD95FF
-  - name: broken spine, effective: 1362, strength: 23, x: 1.045, z: 3253.885, color: #72DFCCFF
-  - name: attrition crest, effective: 1872, strength: 24, x: 0.445, z: 3301.885, color: #7A7B8AFF
+  - name: opening fire, effective: 213, strength: 16, x: -2.039, z: 35, model: assets/triumphal-arch.obj, color: #333C27FF
+  - name: left wear, effective: 282, strength: 17, x: 1.873, z: 50, color: #DD95C2FF
+  - name: right wear, effective: 350, strength: 18, x: 0.445, z: 65, color: #DFCC72FF
+  - name: grind lock, effective: 460, strength: 19, x: -2.432, z: 71, model: assets/bigpill.obj, color: #7B8A7AFF
+  - name: attrition line, effective: 591, strength: 20, x: 2.267, z: 86, color: #985880FF
+  - name: thinning wall, effective: 764, strength: 21, x: -0.445, z: 101, color: #27333CFF
+  - name: last reserve, effective: 1063, strength: 22, x: -0.88, z: 107, model: assets/bannner.obj, color: #C2DD95FF
+  - name: broken spine, effective: 1362, strength: 23, x: 1.045, z: 122, color: #72DFCCFF
+  - name: attrition crest, effective: 1872, strength: 24, x: 0.445, z: 137, color: #7A7B8AFF
 
 bosses:
-  - name: Colonel Wear, power: 195187.5, x: -0.945, z: 3361.285, model: assets/bigbot.obj, color: #95C2DDFF
-  - name: General Fray, power: 467437.5, x: 0.945, z: 3429.285, model: assets/clown-head.obj, color: #CC72DFFF
-  - name: The Dry End, power: 805500, x: 0.463, z: 3497.285, model: assets/bigbot.obj, color: #8A7A7BFF
+  - name: Colonel Wear, power: 195187.5, x: -0.945, z: 203.1, model: assets/bigbot.obj, color: #95C2DDFF
+  - name: General Fray, power: 467437.5, x: 0.945, z: 237.1, model: assets/clown-head.obj, color: #CC72DFFF
+  - name: The Dry End, power: 805500, x: 0.463, z: 271.1, model: assets/bigbot.obj, color: #8A7A7BFF

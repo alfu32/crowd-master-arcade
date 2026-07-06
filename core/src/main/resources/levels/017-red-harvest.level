@@ -1,5 +1,5 @@
 name: Red Harvest
-road_length: 1980.048
+road_length: 338.9
 road_width: 18
 starting_soldiers: 28
 fire_rate: 4.8
@@ -17,40 +17,39 @@ enemy_color: #A12D2DFF
 boss_color: #512B8BFF
 decoration_color: #725F56FF
 
-
 background_decorations:
-  - name: Red Harvest archway, power: 999999, x: -3.24, z: 948.598, model: assets/triumphal-arch.obj, color: #B37633FF
-  - name: Red Harvest tunnel, power: 999999, x: 2.16, z: 1166.459, model: assets/tunnel_section.obj, color: #3B1B55FF
-  - name: Red Harvest banner, power: 999999, x: -1.8, z: 1330.749, model: assets/bannner.obj, color: #55E8C1FF
-  - name: Red Harvest monument, power: 999999, x: 3.96, z: 1495.039, model: assets/bannner.obj, color: #876741FF
-  - name: Red Harvest sentinel, power: 999999, x: -4.32, z: 1659.329, model: assets/triumphal-arch.obj, color: #5757ECFF
+  - name: Red Harvest archway, power: 999999, x: -3.24, z: 28, model: assets/triumphal-arch.obj, color: #B37633FF
+  - name: Red Harvest tunnel, power: 999999, x: 2.16, z: 66, model: assets/tunnel_section.obj, color: #3B1B55FF
+  - name: Red Harvest banner, power: 999999, x: -1.8, z: 104, model: assets/bannner.obj, color: #55E8C1FF
+  - name: Red Harvest monument, power: 999999, x: 3.96, z: 142, model: assets/bannner.obj, color: #876741FF
+  - name: Red Harvest sentinel, power: 999999, x: -4.32, z: 180, model: assets/triumphal-arch.obj, color: #5757ECFF
 
 cards:
-  - op: plus, param: manpower, val: 30, x: -2.694, z: 1018.598
-  - op: times, param: firepower, val: 2, x: 2.51, z: 1078.598
-  - op: plus, param: soldierlife, val: 10, x: 0.25, z: 1110.598
-  - op: minus, param: manpower, val: 16, x: -2.826, z: 1146.598
-  - op: plus, param: bulletpower, val: 12, x: 2.642, z: 1158.598
-  - op: times, param: manpower, val: 3, x: -2.274, z: 1234.598
-  - op: div, param: firepower, val: 2, x: 0.802, z: 1282.598
-  - op: plus, param: manpower, val: 52, x: 2.326, z: 1330.598
-  - op: times, param: firepower, val: 4, x: -1.406, z: 1354.598
-  - op: plus, param: soldierlife, val: 14, x: 0.486, z: 1434.598
-  - op: times, param: bulletpower, val: 2, x: -0.486, z: 1482.598
-  - op: minus, param: manpower, val: 18, x: 1.59, z: 1522.598
+  - op: plus, param: manpower, val: 30, x: -2.694, z: 20
+  - op: times, param: firepower, val: 2, x: 2.51, z: 30
+  - op: plus, param: soldierlife, val: 10, x: 0.25, z: 42
+  - op: minus, param: manpower, val: 16, x: -2.826, z: 56
+  - op: plus, param: bulletpower, val: 12, x: 2.642, z: 72
+  - op: times, param: manpower, val: 3, x: -2.274, z: 82
+  - op: div, param: firepower, val: 2, x: 0.802, z: 94
+  - op: plus, param: manpower, val: 52, x: 2.326, z: 108
+  - op: times, param: firepower, val: 4, x: -1.406, z: 124
+  - op: plus, param: soldierlife, val: 14, x: 0.486, z: 134
+  - op: times, param: bulletpower, val: 2, x: -0.486, z: 146
+  - op: minus, param: manpower, val: 18, x: 1.59, z: 160
 
 enemy_brigades:
-  - name: red stalkers, effective: 213, strength: 14, x: -2.66, z: 1106.598, model: assets/bannner.obj, color: #3B1B55FF
-  - name: right reapers, effective: 258, strength: 15, x: 2.48, z: 1158.598, color: #55E8C1FF
-  - name: left reapers, effective: 333, strength: 16, x: 0.22, z: 1210.598, color: #876741FF
-  - name: harvest line, effective: 451, strength: 17, x: -2.56, z: 1266.598, model: assets/triumphal-arch.obj, color: #5757ECFF
-  - name: sickle pack, effective: 584, strength: 18, x: 2.38, z: 1322.598, color: #33B376FF
-  - name: red core, effective: 760, strength: 19, x: -0.22, z: 1382.598, color: #553B1BFF
-  - name: last cut, effective: 1037, strength: 20, x: -1.4, z: 1446.598, model: assets/bigpill.obj, color: #C155E8FF
-  - name: harvest crown, effective: 1416, strength: 21, x: 1.4, z: 1510.598, color: #418767FF
-  - name: final crop, effective: 1882, strength: 22, x: 0.22, z: 1578.598, color: #EC5757FF
+  - name: red stalkers, effective: 213, strength: 14, x: -2.66, z: 35, model: assets/bannner.obj, color: #3B1B55FF
+  - name: right reapers, effective: 258, strength: 15, x: 2.48, z: 50, color: #55E8C1FF
+  - name: left reapers, effective: 333, strength: 16, x: 0.22, z: 65, color: #876741FF
+  - name: harvest line, effective: 451, strength: 17, x: -2.56, z: 71, model: assets/triumphal-arch.obj, color: #5757ECFF
+  - name: sickle pack, effective: 584, strength: 18, x: 2.38, z: 86, color: #33B376FF
+  - name: red core, effective: 760, strength: 19, x: -0.22, z: 101, color: #553B1BFF
+  - name: last cut, effective: 1037, strength: 20, x: -1.4, z: 107, model: assets/bigpill.obj, color: #C155E8FF
+  - name: harvest crown, effective: 1416, strength: 21, x: 1.4, z: 122, color: #418767FF
+  - name: final crop, effective: 1882, strength: 22, x: 0.22, z: 137, color: #EC5757FF
 
 bosses:
-  - name: Reaper Hal, power: 84857.175, x: -1.28, z: 1644.048, model: assets/bigbot.obj, color: #E8C155FF
-  - name: Crimson Binder, power: 207000, x: 1.28, z: 1712.048, model: assets/clown-head.obj, color: #674187FF
-  - name: The Harvest King, power: 342000, x: 0.25, z: 1780.048, model: assets/bigbot.obj, color: #57EC57FF
+  - name: Reaper Hal, power: 84857.175, x: -1.28, z: 200.9, model: assets/bigbot.obj, color: #E8C155FF
+  - name: Crimson Binder, power: 207000, x: 1.28, z: 234.9, model: assets/clown-head.obj, color: #674187FF
+  - name: The Harvest King, power: 342000, x: 0.25, z: 268.9, model: assets/bigbot.obj, color: #57EC57FF

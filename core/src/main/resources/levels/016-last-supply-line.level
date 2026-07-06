@@ -1,5 +1,5 @@
 name: Last Supply Line
-road_length: 1904.672
+road_length: 336.15
 road_width: 18
 starting_soldiers: 28
 fire_rate: 4.8
@@ -17,40 +17,39 @@ enemy_color: #5F2D43FF
 boss_color: #46349AFF
 decoration_color: #69615BFF
 
-
 background_decorations:
-  - name: Last Supply Line archway, power: 999999, x: -3.24, z: 906.872, model: assets/triumphal-arch.obj, color: #6736ADFF
-  - name: Last Supply Line tunnel, power: 999999, x: 2.16, z: 1118.676, model: assets/tunnel_section.obj, color: #2B362BFF
-  - name: Last Supply Line banner, power: 999999, x: -1.8, z: 1276.236, model: assets/bannner.obj, color: #FFAE89FF
-  - name: Last Supply Line monument, power: 999999, x: 3.96, z: 1433.796, model: assets/clown-head.obj, color: #5886DAFF
-  - name: Last Supply Line sentinel, power: 999999, x: -4.32, z: 1591.356, model: assets/bannner.obj, color: #D468E9FF
+  - name: Last Supply Line archway, power: 999999, x: -3.24, z: 28, model: assets/triumphal-arch.obj, color: #6736ADFF
+  - name: Last Supply Line tunnel, power: 999999, x: 2.16, z: 66, model: assets/tunnel_section.obj, color: #2B362BFF
+  - name: Last Supply Line banner, power: 999999, x: -1.8, z: 104, model: assets/bannner.obj, color: #FFAE89FF
+  - name: Last Supply Line monument, power: 999999, x: 3.96, z: 142, model: assets/clown-head.obj, color: #5886DAFF
+  - name: Last Supply Line sentinel, power: 999999, x: -4.32, z: 180, model: assets/bannner.obj, color: #D468E9FF
 
 cards:
-  - op: plus, param: manpower, val: 28, x: -2.694, z: 976.872
-  - op: times, param: firepower, val: 2, x: 2.51, z: 1036.872
-  - op: plus, param: soldierlife, val: 10, x: 0.25, z: 1068.872
-  - op: minus, param: manpower, val: 16, x: -2.826, z: 1104.872
-  - op: plus, param: bulletpower, val: 12, x: 2.642, z: 1112.872
-  - op: times, param: manpower, val: 3, x: -2.274, z: 1184.872
-  - op: div, param: firepower, val: 2, x: 0.802, z: 1232.872
-  - op: plus, param: manpower, val: 48, x: 2.326, z: 1280.872
-  - op: times, param: firepower, val: 4, x: -1.406, z: 1300.872
-  - op: plus, param: soldierlife, val: 14, x: 0.486, z: 1380.872
-  - op: times, param: bulletpower, val: 2, x: -0.486, z: 1424.872
-  - op: minus, param: firepower, val: 5, x: 1.59, z: 1468.872
+  - op: plus, param: manpower, val: 28, x: -2.694, z: 20
+  - op: times, param: firepower, val: 2, x: 2.51, z: 30
+  - op: plus, param: soldierlife, val: 10, x: 0.25, z: 42
+  - op: minus, param: manpower, val: 16, x: -2.826, z: 56
+  - op: plus, param: bulletpower, val: 12, x: 2.642, z: 72
+  - op: times, param: manpower, val: 3, x: -2.274, z: 82
+  - op: div, param: firepower, val: 2, x: 0.802, z: 94
+  - op: plus, param: manpower, val: 48, x: 2.326, z: 108
+  - op: times, param: firepower, val: 4, x: -1.406, z: 124
+  - op: plus, param: soldierlife, val: 14, x: 0.486, z: 134
+  - op: times, param: bulletpower, val: 2, x: -0.486, z: 146
+  - op: minus, param: firepower, val: 5, x: 1.59, z: 160
 
 enemy_brigades:
-  - name: broken convoy, effective: 198, strength: 14, x: -2.66, z: 1060.872, model: assets/clown-head.obj, color: #2B362BFF
-  - name: flank haul, effective: 244, strength: 15, x: 2.48, z: 1108.872, color: #FFAE89FF
-  - name: road block, effective: 304, strength: 16, x: 0.22, z: 1156.872, color: #5886DAFF
-  - name: ammo line, effective: 408, strength: 17, x: -2.56, z: 1212.872, model: assets/bannner.obj, color: #D468E9FF
-  - name: ration line, effective: 526, strength: 18, x: 2.38, z: 1268.872, color: #AD6736FF
-  - name: supply core, effective: 672, strength: 19, x: -0.22, z: 1324.872, color: #2B2B36FF
-  - name: convoy lock, effective: 921, strength: 20, x: -1.4, z: 1388.872, model: assets/triumphal-arch.obj, color: #89FFAEFF
-  - name: final haul, effective: 1271, strength: 21, x: 1.4, z: 1444.872, color: #DA5886FF
-  - name: last convoy, effective: 1708, strength: 22, x: 0.22, z: 1504.872, color: #E9D468FF
+  - name: broken convoy, effective: 198, strength: 14, x: -2.66, z: 35, model: assets/clown-head.obj, color: #2B362BFF
+  - name: flank haul, effective: 244, strength: 15, x: 2.48, z: 50, color: #FFAE89FF
+  - name: road block, effective: 304, strength: 16, x: 0.22, z: 65, color: #5886DAFF
+  - name: ammo line, effective: 408, strength: 17, x: -2.56, z: 71, model: assets/bannner.obj, color: #D468E9FF
+  - name: ration line, effective: 526, strength: 18, x: 2.38, z: 86, color: #AD6736FF
+  - name: supply core, effective: 672, strength: 19, x: -0.22, z: 101, color: #2B2B36FF
+  - name: convoy lock, effective: 921, strength: 20, x: -1.4, z: 107, model: assets/triumphal-arch.obj, color: #89FFAEFF
+  - name: final haul, effective: 1271, strength: 21, x: 1.4, z: 122, color: #DA5886FF
+  - name: last convoy, effective: 1708, strength: 22, x: 0.22, z: 137, color: #E9D468FF
 
 bosses:
-  - name: Quartermaster Voss, power: 83454.525, x: -1.28, z: 1568.672, model: assets/bigbot.obj, color: #AE89FFFF
-  - name: Supply Tyrant, power: 207000, x: 1.28, z: 1636.672, model: assets/clown-head.obj, color: #86DA58FF
-  - name: The Last Wagon, power: 342000, x: 0.25, z: 1704.672, model: assets/bigbot.obj, color: #68E9D4FF
+  - name: Quartermaster Voss, power: 83454.525, x: -1.28, z: 198.15, model: assets/bigbot.obj, color: #AE89FFFF
+  - name: Supply Tyrant, power: 207000, x: 1.28, z: 232.15, model: assets/clown-head.obj, color: #86DA58FF
+  - name: The Last Wagon, power: 342000, x: 0.25, z: 266.15, model: assets/bigbot.obj, color: #68E9D4FF
