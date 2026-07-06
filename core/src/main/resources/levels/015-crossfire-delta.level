@@ -1,0 +1,57 @@
+name: Crossfire Delta
+road_length: 4171.628
+road_width: 18
+starting_soldiers: 26
+fire_rate: 5.0
+max_fire_rate: 100.0
+projectile_pool: 1750
+projectile_length: 66
+soldier_model: assets/default-soldier.obj
+boss_model: assets/default-boss.obj
+manpower_card_model: assets/default-manpower-card.obj
+firepower_card_model: assets/default-firepower-card.obj
+bulletpower_card_model: assets/default-bulletpower-card.obj
+soldierlife_card_model: assets/default-soldierlife-card.obj
+player_color: #1FB8EBFF
+enemy_color: #7C2A52FF
+boss_color: #433A9EFF
+decoration_color: #64716DFF
+
+
+
+background_decorations:
+  - name: Crossfire Delta archway, power: 999999, x: -3.24, z: 2161.794, model: assets/triumphal-arch.obj, color: #588098FF
+  - name: Crossfire Delta tunnel, power: 999999, x: 2.16, z: 2555.764, model: assets/tunnel_section.obj, color: #333C27FF
+  - name: Crossfire Delta banner, power: 999999, x: -1.8, z: 2915.731, model: assets/bannner.obj, color: #DD95C2FF
+  - name: Crossfire Delta monument, power: 999999, x: 3.96, z: 3275.698, model: assets/triumphal-arch.obj, color: #DFCC72FF
+  - name: Crossfire Delta sentinel, power: 999999, x: -4.32, z: 3635.665, model: assets/bigpill.obj, color: #7B8A7AFF
+
+cards:
+  - op: plus, param: manpower, val: 28, x: -2.398, z: 3148.928
+  - op: times, param: firepower, val: 2, x: 2.228, z: 3232.928
+  - op: plus, param: soldierlife, val: 8, x: 0.48, z: 3264.928
+  - op: minus, param: manpower, val: 14, x: -2.85, z: 3296.928
+  - op: plus, param: bulletpower, val: 10, x: 2.681, z: 3276.928
+  - op: times, param: manpower, val: 3, x: -2.342, z: 3376.928
+  - op: div, param: firepower, val: 2, x: 0.988, z: 3420.928
+  - op: plus, param: manpower, val: 44, x: 1.89, z: 3468.928
+  - op: times, param: firepower, val: 4, x: -1.044, z: 3460.928
+  - op: plus, param: soldierlife, val: 14, x: 0.197, z: 3564.928
+  - op: times, param: bulletpower, val: 2, x: -0.197, z: 3608.928
+  - op: minus, param: manpower, val: 18, x: 1.213, z: 3648.928
+
+enemy_brigades:
+  - name: front delta, effective: 277, strength: 16, x: -2.37, z: 3256.928, model: assets/triumphal-arch.obj, color: #333C27FF
+  - name: right delta, effective: 346, strength: 17, x: 2.205, z: 3304.928, color: #DD95C2FF
+  - name: left delta, effective: 434, strength: 18, x: 0.445, z: 3352.928, color: #DFCC72FF
+  - name: delta brace, effective: 564, strength: 19, x: -2.598, z: 3404.928, model: assets/bigpill.obj, color: #7B8A7AFF
+  - name: delta fold, effective: 737, strength: 20, x: 2.432, z: 3456.928, color: #985880FF
+  - name: delta core, effective: 954, strength: 21, x: -0.445, z: 3512.928, color: #27333CFF
+  - name: delta lock, effective: 1273, strength: 22, x: -1.045, z: 3572.928, model: assets/bannner.obj, color: #C2DD95FF
+  - name: delta final, effective: 1783, strength: 23, x: 1.045, z: 3632.928, color: #72DFCCFF
+  - name: delta crown, effective: 2376, strength: 24, x: 0.445, z: 3692.928, color: #7A7B8AFF
+
+bosses:
+  - name: Delta Commander, power: 199184.344, x: -0.945, z: 3755.628, model: assets/bigbot.obj, color: #95C2DDFF
+  - name: Crossfire Lord, power: 477828.788, x: 0.945, z: 3823.628, model: assets/clown-head.obj, color: #CC72DFFF
+  - name: The Delta Engine, power: 805500, x: 0.463, z: 3891.628, model: assets/bigbot.obj, color: #8A7A7BFF

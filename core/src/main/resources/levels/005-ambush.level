@@ -1,9 +1,9 @@
 name: Ambush
-road_length: 245
+road_length: 3738.249
 road_width: 18
 starting_soldiers: 16
-fire_rate: 2.6
-max_fire_rate: 30
+fire_rate: 5.2
+max_fire_rate: 60.0
 projectile_pool: 1300
 projectile_length: 62
 soldier_model: assets/default-soldier.obj
@@ -17,40 +17,45 @@ enemy_color: #9C2735FF
 boss_color: #302E7DFF
 decoration_color: #50585BFF
 
-cards:
-  - op: plus, param: manpower, val: 18, x: 0, z: 10
-  - op: times, param: firepower, val: 3, x: -3.2, z: 24
-  - op: minus, param: manpower, val: 12, x: 3.2, z: 38
-  - op: plus, param: manpower, val: 30, x: -2.6, z: 54
-  - op: plus, param: soldierlife, val: 8, x: 0, z: 62
-  - op: div, param: firepower, val: 2, x: 2.4, z: 70
-  - op: times, param: manpower, val: 3, x: 0.4, z: 88
-  - op: plus, param: manpower, val: 40, x: 3.4, z: 110
-  - op: times, param: firepower, val: 4, x: -3.4, z: 132
-  - op: times, param: bulletpower, val: 2, x: 0, z: 142
-  - op: minus, param: firepower, val: 5, x: 0, z: 154
-  - op: times, param: firepower, val: 5, x: 2.8, z: 176
-  - op: plus, param: soldierlife, val: 12, x: 0.6, z: 186
-  - op: plus, param: manpower, val: 35, x: -2.8, z: 198
-  - op: plus, param: bulletpower, val: 14, x: 2.2, z: 208
 
-decorations:
-  - name: blind left arch, power: 999999, x: -2.8, z: 78, model: assets/triumphal-arch.obj, color: #4E555AFF
-  - name: blind right arch, power: 999999, x: 2.8, z: 146, model: assets/triumphal-arch.obj, color: #4E555AFF
+
+background_decorations:
+  - name: Ambush archway, power: 999999, x: -3.24, z: 1921.888, model: assets/triumphal-arch.obj, color: #378B53FF
+  - name: Ambush tunnel, power: 999999, x: 2.16, z: 2281.033, model: assets/tunnel_section.obj, color: #43311BFF
+  - name: Ambush banner, power: 999999, x: -1.8, z: 2602.305, model: assets/bannner.obj, color: #5499D4FF
+  - name: Ambush monument, power: 999999, x: 3.96, z: 2923.577, model: assets/thorn.obj, color: #DAC666FF
+  - name: Ambush sentinel, power: 999999, x: -4.32, z: 3244.849, model: assets/bigpill.obj, color: #553076FF
+
+cards:
+  - op: plus, param: manpower, val: 18, x: 0.48, z: 2794.699
+  - op: times, param: firepower, val: 3, x: -3.188, z: 2878.699
+  - op: minus, param: manpower, val: 12, x: 3.188, z: 2906.699
+  - op: plus, param: manpower, val: 30, x: -2.681, z: 2938.699
+  - op: plus, param: soldierlife, val: 8, x: 0.48, z: 2898.699
+  - op: div, param: firepower, val: 2, x: 1.551, z: 2970.699
+  - op: times, param: manpower, val: 3, x: 0.819, z: 3006.699
+  - op: plus, param: manpower, val: 40, x: 2.398, z: 3050.699
+  - op: times, param: firepower, val: 4, x: -2.398, z: 3038.699
+  - op: times, param: bulletpower, val: 2, x: -0.48, z: 3114.699
+  - op: minus, param: firepower, val: 5, x: 0.48, z: 3138.699
+  - op: times, param: firepower, val: 5, x: 1.89, z: 3182.699
+  - op: plus, param: soldierlife, val: 12, x: 0.988, z: 3146.699
+  - op: plus, param: manpower, val: 35, x: -2.85, z: 3226.699
+  - op: plus, param: bulletpower, val: 14, x: 2.342, z: 3246.699
 
 enemy_brigades:
-  - name: hidden left, effective: 90, strength: 11, x: -3.6, z: 44, color: #7A1C28FF
-  - name: hidden right, effective: 90, strength: 11, x: 3.6, z: 48, color: #7A1C28FF
-  - name: center bait, effective: 110, strength: 12, x: 0, z: 66
-  - name: knife wing, effective: 160, strength: 13, x: -3.2, z: 88
-  - name: trap wing, effective: 180, strength: 13, x: 3.2, z: 96
-  - name: closing net, effective: 240, strength: 15, x: 0, z: 122
-  - name: rear left surge, effective: 300, strength: 16, x: -2.6, z: 152
-  - name: rear right surge, effective: 300, strength: 16, x: 2.6, z: 160
-  - name: ambush core, effective: 480, strength: 18, x: 0, z: 190, color: #C21F34FF
-  - name: no escape line, effective: 700, strength: 20, x: 1.4, z: 218
+  - name: hidden left, effective: 213, strength: 15, x: -2.536, z: 2918.699, model: assets/thorn.obj, color: #43311BFF
+  - name: hidden right, effective: 218, strength: 15, x: 2.536, z: 2926.699, color: #5499D4FF
+  - name: center bait, effective: 266, strength: 16, x: 0.445, z: 2962.699, color: #DAC666FF
+  - name: knife wing, effective: 376, strength: 17, x: -3.095, z: 3006.699, model: assets/bigpill.obj, color: #553076FF
+  - name: trap wing, effective: 423, strength: 17, x: 3.095, z: 3022.699, color: #53378BFF
+  - name: closing net, effective: 554, strength: 19, x: -0.445, z: 3074.699, color: #1B4331FF
+  - name: rear left surge, effective: 685, strength: 20, x: -1.708, z: 3134.699, model: assets/tunnel_section.obj, color: #D45499FF
+  - name: rear right surge, effective: 690, strength: 20, x: 1.708, z: 3150.699, color: #66DAC6FF
+  - name: ambush core, effective: 1073, strength: 22, x: 0.445, z: 3210.699, color: #765530FF
+  - name: no escape line, effective: 1540, strength: 24, x: 0.714, z: 3266.699, model: assets/bannner.obj, color: #8B5337FF
 
 bosses:
-  - name: Lady Snare, power: 2600, x: -2.8, z: 118, color: #2C327EFF
-  - name: Baron Crossfire, power: 3600, x: 2.8, z: 142, color: #383C96FF
-  - name: The Netmaker, power: 11000, x: 0, z: 228, color: #251F62FF
+  - name: Lady Snare, power: 202090.725, x: -1.727, z: 3322.249, model: assets/bigbot.obj, color: #99D454FF
+  - name: Baron Crossfire, power: 286568.044, x: 1.727, z: 3390.249, model: assets/clown-head.obj, color: #C666DAFF
+  - name: The Netmaker, power: 805500, x: 0.463, z: 3458.249, model: assets/bigbot.obj, color: #307655FF

@@ -1,0 +1,59 @@
+name: Nightfall Bastion
+road_length: 2467.808
+road_width: 18
+starting_soldiers: 34
+fire_rate: 4.0
+max_fire_rate: 124.0
+projectile_pool: 2100
+projectile_length: 80
+soldier_model: assets/default-soldier.obj
+boss_model: assets/default-boss.obj
+manpower_card_model: assets/default-manpower-card.obj
+firepower_card_model: assets/default-firepower-card.obj
+bulletpower_card_model: assets/default-bulletpower-card.obj
+soldierlife_card_model: assets/default-soldierlife-card.obj
+player_color: #1FB8EBFF
+enemy_color: #4D2A5BFF
+boss_color: #36409CFF
+decoration_color: #5F6A6DFF
+
+
+background_decorations:
+  - name: Nightfall Bastion archway, power: 999999, x: -3.24, z: 1218.608, model: assets/triumphal-arch.obj, color: #6736ADFF
+  - name: Nightfall Bastion tunnel, power: 999999, x: 2.16, z: 1475.664, model: assets/tunnel_section.obj, color: #2B362BFF
+  - name: Nightfall Bastion banner, power: 999999, x: -1.8, z: 1683.504, model: assets/bannner.obj, color: #FFAE89FF
+  - name: Nightfall Bastion monument, power: 999999, x: 3.96, z: 1891.344, model: assets/clown-head.obj, color: #5886DAFF
+  - name: Nightfall Bastion sentinel, power: 999999, x: -4.32, z: 2099.184, model: assets/bannner.obj, color: #D468E9FF
+
+cards:
+  - op: plus, param: manpower, val: 36, x: -2.694, z: 1292.608
+  - op: times, param: firepower, val: 2, x: 2.694, z: 1356.608
+  - op: plus, param: soldierlife, val: 12, x: 0.25, z: 1400.608
+  - op: minus, param: manpower, val: 20, x: -2.826, z: 1448.608
+  - op: plus, param: bulletpower, val: 14, x: 2.642, z: 1468.608
+  - op: times, param: manpower, val: 3, x: -2.274, z: 1552.608
+  - op: div, param: firepower, val: 2, x: 0.802, z: 1608.608
+  - op: plus, param: manpower, val: 60, x: 2.326, z: 1668.608
+  - op: times, param: firepower, val: 4, x: -1.406, z: 1700.608
+  - op: plus, param: soldierlife, val: 16, x: 0.486, z: 1792.608
+  - op: times, param: bulletpower, val: 2, x: -0.486, z: 1844.608
+  - op: minus, param: firepower, val: 5, x: 1.59, z: 1888.608
+  - op: plus, param: manpower, val: 24, x: 0.25, z: 1900.608
+
+enemy_brigades:
+  - name: night scouts, effective: 286, strength: 15, x: -2.66, z: 1396.608, model: assets/clown-head.obj, color: #2B362BFF
+  - name: shadow flank, effective: 360, strength: 16, x: 2.48, z: 1460.608, color: #FFAE89FF
+  - name: bastion wall, effective: 464, strength: 17, x: 0.22, z: 1524.608, color: #5886DAFF
+  - name: night line, effective: 610, strength: 18, x: -2.56, z: 1596.608, model: assets/bannner.obj, color: #D468E9FF
+  - name: shadow line, effective: 786, strength: 19, x: 2.38, z: 1672.608, color: #AD6736FF
+  - name: bastion core, effective: 1020, strength: 20, x: -0.22, z: 1752.608, color: #2B2B36FF
+  - name: night crown, effective: 1342, strength: 21, x: -1.4, z: 1824.608, model: assets/triumphal-arch.obj, color: #89FFAEFF
+  - name: shadow crown, effective: 1735, strength: 22, x: 1.4, z: 1888.608, color: #DA5886FF
+  - name: bastion tomb, effective: 2288, strength: 23, x: 0.22, z: 1956.608, color: #E9D468FF
+  - name: final bastion, effective: 3015, strength: 24, x: -0.22, z: 1984.608, model: assets/bigbot.obj, color: #36AD67FF
+
+bosses:
+  - name: Night Warden, power: 72000, x: -1.28, z: 2063.808, model: assets/bigbot.obj, color: #AE89FFFF
+  - name: Shadow Wall, power: 172384.65, x: 1.28, z: 2131.808, model: assets/clown-head.obj, color: #86DA58FF
+  - name: Bastion Heart, power: 243692.325, x: 0.25, z: 2199.808, model: assets/bigbot.obj, color: #68E9D4FF
+  - name: Dusk Emperor, power: 342000, x: -0.25, z: 2267.808, model: assets/clown-head.obj, color: #6736ADFF

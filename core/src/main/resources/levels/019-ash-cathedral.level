@@ -1,0 +1,58 @@
+name: Ash Cathedral
+road_length: 2267.328
+road_width: 18
+starting_soldiers: 30
+fire_rate: 4.4
+max_fire_rate: 112.0
+projectile_pool: 1950
+projectile_length: 74
+soldier_model: assets/default-soldier.obj
+boss_model: assets/default-boss.obj
+manpower_card_model: assets/default-manpower-card.obj
+firepower_card_model: assets/default-firepower-card.obj
+bulletpower_card_model: assets/default-bulletpower-card.obj
+soldierlife_card_model: assets/default-soldierlife-card.obj
+player_color: #1FB8EBFF
+enemy_color: #AB3D33FF
+boss_color: #4A49A2FF
+decoration_color: #71685DFF
+
+
+background_decorations:
+  - name: Ash Cathedral archway, power: 999999, x: -3.24, z: 1107.628, model: assets/triumphal-arch.obj, color: #E2652DFF
+  - name: Ash Cathedral tunnel, power: 999999, x: 2.16, z: 1348.574, model: assets/tunnel_section.obj, color: #2D1C77FF
+  - name: Ash Cathedral banner, power: 999999, x: -1.8, z: 1538.514, model: assets/bannner.obj, color: #46F39CFF
+  - name: Ash Cathedral monument, power: 999999, x: 3.96, z: 1728.454, model: assets/triumphal-arch.obj, color: #A93D2EFF
+  - name: Ash Cathedral sentinel, power: 999999, x: -4.32, z: 1918.394, model: assets/clown-head.obj, color: #D266FFFF
+
+cards:
+  - op: plus, param: manpower, val: 32, x: -2.694, z: 1177.628
+  - op: times, param: firepower, val: 2, x: 2.51, z: 1237.628
+  - op: plus, param: soldierlife, val: 10, x: 0.25, z: 1273.628
+  - op: minus, param: manpower, val: 18, x: -2.826, z: 1313.628
+  - op: plus, param: bulletpower, val: 12, x: 2.642, z: 1325.628
+  - op: times, param: manpower, val: 3, x: -2.274, z: 1401.628
+  - op: div, param: firepower, val: 2, x: 0.802, z: 1453.628
+  - op: plus, param: manpower, val: 52, x: 2.326, z: 1505.628
+  - op: times, param: firepower, val: 4, x: -1.406, z: 1529.628
+  - op: plus, param: soldierlife, val: 14, x: 0.486, z: 1609.628
+  - op: times, param: bulletpower, val: 2, x: -0.486, z: 1653.628
+  - op: minus, param: manpower, val: 18, x: 1.59, z: 1697.628
+
+enemy_brigades:
+  - name: ash sentries, effective: 242, strength: 15, x: -2.66, z: 1269.628, model: assets/triumphal-arch.obj, color: #2D1C77FF
+  - name: ash choir left, effective: 288, strength: 16, x: 2.48, z: 1321.628, color: #46F39CFF
+  - name: ash choir right, effective: 362, strength: 17, x: 0.22, z: 1377.628, color: #A93D2EFF
+  - name: ash nave, effective: 480, strength: 18, x: -2.56, z: 1433.628, model: assets/clown-head.obj, color: #D266FFFF
+  - name: ash transept, effective: 627, strength: 19, x: 2.38, z: 1493.628, color: #2DE265FF
+  - name: ash altar, effective: 803, strength: 20, x: -0.22, z: 1553.628, color: #772D1CFF
+  - name: ash reliquary, effective: 1066, strength: 21, x: -1.4, z: 1617.628, model: assets/bannner.obj, color: #9C46F3FF
+  - name: ash tower, effective: 1445, strength: 22, x: 1.4, z: 1677.628, color: #2EA93DFF
+  - name: ash crypt, effective: 1940, strength: 23, x: 0.22, z: 1761.628, color: #FFD266FF
+  - name: final choir, effective: 2580, strength: 24, x: -0.22, z: 1789.628, model: assets/bigpill.obj, color: #652DE2FF
+
+bosses:
+  - name: Ash Deacon, power: 70312.5, x: -1.28, z: 1863.328, model: assets/bigbot.obj, color: #F39C46FF
+  - name: Choir Engine, power: 162000, x: 1.28, z: 1931.328, model: assets/clown-head.obj, color: #3D2EA9FF
+  - name: Cathedral Heart, power: 246937.5, x: 0.25, z: 1999.328, model: assets/bigbot.obj, color: #66FFD2FF
+  - name: Fallen Bell, power: 342000, x: -0.25, z: 2067.328, model: assets/clown-head.obj, color: #E2652DFF

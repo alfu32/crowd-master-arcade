@@ -1,0 +1,55 @@
+name: Blackout Divide
+road_length: 3337.69
+road_width: 16
+starting_soldiers: 22
+fire_rate: 6.0
+max_fire_rate: 92.0
+projectile_pool: 1500
+projectile_length: 56
+soldier_model: assets/default-soldier.obj
+boss_model: assets/default-boss.obj
+manpower_card_model: assets/default-manpower-card.obj
+firepower_card_model: assets/default-firepower-card.obj
+bulletpower_card_model: assets/default-bulletpower-card.obj
+soldierlife_card_model: assets/default-soldierlife-card.obj
+player_color: #1FB8EBFF
+enemy_color: #9E2B49FF
+boss_color: #30459CFF
+decoration_color: #665F59FF
+
+
+
+background_decorations:
+  - name: Blackout Divide archway, power: 999999, x: -2.88, z: 1700.15, model: assets/triumphal-arch.obj, color: #588098FF
+  - name: Blackout Divide tunnel, power: 999999, x: 1.92, z: 2027.107, model: assets/tunnel_section.obj, color: #333C27FF
+  - name: Blackout Divide banner, power: 999999, x: -1.6, z: 2312.615, model: assets/bannner.obj, color: #DD95C2FF
+  - name: Blackout Divide monument, power: 999999, x: 3.52, z: 2598.123, model: assets/triumphal-arch.obj, color: #DFCC72FF
+  - name: Blackout Divide sentinel, power: 999999, x: -3.84, z: 2883.631, model: assets/bigpill.obj, color: #7B8A7AFF
+
+cards:
+  - op: plus, param: manpower, val: 22, x: -2.228, z: 2474.69
+  - op: times, param: firepower, val: 2, x: 2.059, z: 2554.69
+  - op: plus, param: soldierlife, val: 7, x: 0.48, z: 2578.69
+  - op: minus, param: manpower, val: 12, x: -2.85, z: 2602.69
+  - op: plus, param: bulletpower, val: 8, x: 2.681, z: 2570.69
+  - op: times, param: manpower, val: 3, x: -2.342, z: 2658.69
+  - op: div, param: firepower, val: 2, x: 0.988, z: 2690.69
+  - op: plus, param: manpower, val: 34, x: 1.89, z: 2730.69
+  - op: times, param: firepower, val: 4, x: -1.044, z: 2714.69
+  - op: plus, param: soldierlife, val: 10, x: 0.197, z: 2810.69
+  - op: times, param: bulletpower, val: 2, x: -0.197, z: 2850.69
+
+enemy_brigades:
+  - name: blackout vanguard, effective: 193, strength: 16, x: -2.205, z: 2578.69, model: assets/triumphal-arch.obj, color: #333C27FF
+  - name: right shell, effective: 240, strength: 16, x: 2.039, z: 2614.69, color: #DD95C2FF
+  - name: center shell, effective: 307, strength: 17, x: 0.445, z: 2646.69, color: #DFCC72FF
+  - name: left shell, effective: 396, strength: 18, x: -2.598, z: 2682.69, model: assets/bigpill.obj, color: #7B8A7AFF
+  - name: divide wall, effective: 507, strength: 19, x: 2.432, z: 2722.69, color: #985880FF
+  - name: cross line, effective: 680, strength: 20, x: -0.445, z: 2766.69, color: #27333CFF
+  - name: blind ridge, effective: 937, strength: 21, x: -1.045, z: 2810.69, model: assets/bannner.obj, color: #C2DD95FF
+  - name: last blackout, effective: 1320, strength: 22, x: 0.88, z: 2866.69, color: #72DFCCFF
+
+bosses:
+  - name: Divider General, power: 197357.288, x: 0.463, z: 2921.69, model: assets/bigbot.obj, color: #95C2DDFF
+  - name: Blackout Engine, power: 469607.288, x: -1.87, z: 2989.69, model: assets/clown-head.obj, color: #CC72DFFF
+  - name: Night Splitter, power: 805500, x: 1.87, z: 3057.69, model: assets/bigbot.obj, color: #8A7A7BFF
