@@ -5,6 +5,7 @@ import com.crowdmasterarcade.config.GameConfig
 import com.crowdmasterarcade.model.AppModel
 import com.crowdmasterarcade.model.Boss
 import com.crowdmasterarcade.model.GameState
+import com.crowdmasterarcade.model.RegularSoldier
 
 object CollisionSystem {
     fun update(appModel: AppModel) {
@@ -70,7 +71,7 @@ object CollisionSystem {
 
     private fun handleEnemyContact(appModel: AppModel) {
         appModel.enemyBrigades.filter { it.alive }.forEach { enemy ->
-            if (overlaps(appModel.player.position, enemy.position, GameConfig.PLAYER_COLLISION_RADIUS + 1f)) {
+            if (formationsTouch(appModel.player.soldiers, enemy.soldiers)) {
                 val losses = minOf(enemy.soldiers.size, appModel.player.soldiers.size)
                 repeat(losses) { appModel.player.soldiers.removeAt(appModel.player.soldiers.lastIndex) }
                 enemy.soldiers.clear()
@@ -91,6 +92,37 @@ object CollisionSystem {
     }
 
     fun overlaps(a: Vector3, b: Vector3, radius: Float): Boolean = a.dst2(b) <= radius * radius
+
+    private fun formationsTouch(playerSoldiers: List<RegularSoldier>, enemySoldiers: List<RegularSoldier>): Boolean {
+        val alivePlayers = playerSoldiers.filter { it.alive }
+        val aliveEnemies = enemySoldiers.filter { it.alive }
+        if (alivePlayers.isEmpty() || aliveEnemies.isEmpty()) return false
+        val padding = GameConfig.SOLDIER_SPACING * 0.75f
+        if (!boundsOverlap(alivePlayers, aliveEnemies, padding)) return false
+        val radius = GameConfig.SOLDIER_SPACING * 0.72f
+        return alivePlayers.any { player ->
+            aliveEnemies.any { enemy -> overlaps(player.worldPosition, enemy.worldPosition, radius) }
+        }
+    }
+
+    private fun boundsOverlap(
+        first: List<RegularSoldier>,
+        second: List<RegularSoldier>,
+        padding: Float
+    ): Boolean {
+        val firstMinX = first.minOf { it.worldPosition.x } - padding
+        val firstMaxX = first.maxOf { it.worldPosition.x } + padding
+        val firstMinZ = first.minOf { it.worldPosition.z } - padding
+        val firstMaxZ = first.maxOf { it.worldPosition.z } + padding
+        val secondMinX = second.minOf { it.worldPosition.x } - padding
+        val secondMaxX = second.maxOf { it.worldPosition.x } + padding
+        val secondMinZ = second.minOf { it.worldPosition.z } - padding
+        val secondMaxZ = second.maxOf { it.worldPosition.z } + padding
+        return firstMinX <= secondMaxX &&
+            firstMaxX >= secondMinX &&
+            firstMinZ <= secondMaxZ &&
+            firstMaxZ >= secondMinZ
+    }
 
     private fun overlapsBossFootprint(point: Vector3, boss: Boss, padding: Float): Boolean =
         point.x >= boss.position.x - boss.hitHalfWidth - padding &&

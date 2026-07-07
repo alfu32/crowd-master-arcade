@@ -9,6 +9,7 @@ import com.crowdmasterarcade.model.CardTarget
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertFalse
+import kotlin.test.assertTrue
 
 class CollisionSystemTest {
     @Test
@@ -50,5 +51,24 @@ class CollisionSystemTest {
         assertEquals(6f, appModel.scoreData.levelPoints)
         assertFalse(projectile.active)
         assertFalse(soldier.alive)
+    }
+
+    @Test
+    fun enemyCenterOverlapDoesNotDamagePlayerWhenSoldiersDoNotTouch() {
+        val appModel = AppModelFactory.initAppModel()
+        appModel.cards.clear()
+        appModel.bosses.clear()
+        appModel.projectiles.forEach { it.active = false }
+        val enemy = appModel.enemyBrigades.first()
+        val initialPlayerCount = appModel.player.soldiers.size
+        enemy.position.set(appModel.player.position)
+        enemy.soldiers.forEachIndexed { index, soldier ->
+            soldier.worldPosition.set(100f + index, soldier.worldPosition.y, 100f)
+        }
+
+        CollisionSystem.update(appModel)
+
+        assertEquals(initialPlayerCount, appModel.player.soldiers.size)
+        assertTrue(enemy.alive)
     }
 }

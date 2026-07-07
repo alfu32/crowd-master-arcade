@@ -67,4 +67,16 @@ class FormationSystemTest {
         val after = enemy.soldiers.map { it.localOffset }
         assertContentEquals(before, after)
     }
+
+    @Test
+    fun playerCenterClampKeepsWholeFormationInsideRoad() {
+        val appModel = AppModelFactory.initAppModel()
+        appModel.player.position.x = appModel.road.rightBoundary
+
+        appModel.player.position.x = FormationSystem.clampPlayerCenterX(appModel.player, appModel.road)
+        FormationSystem.updatePlayerFormation(appModel.player, appModel.road, 1f)
+
+        assertTrue(appModel.player.soldiers.maxOf { it.worldPosition.x } <= appModel.road.rightBoundary)
+        assertTrue(appModel.player.soldiers.minOf { it.worldPosition.x } >= appModel.road.leftBoundary)
+    }
 }

@@ -10,7 +10,7 @@ class DecorationCollisionTest {
     @Test
     fun projectilesIgnoreDecorations() {
         val appModel = AppModelFactory.initAppModel()
-        val decoration = appModel.decorations.first()
+        val decoration = appModel.backgroundDecorations.first()
         val projectile = appModel.projectiles.first()
         projectile.position.set(decoration.position)
         projectile.active = true

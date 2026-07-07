@@ -43,10 +43,10 @@ class LevelTextParserTest {
         assertEquals("General Raven", level.bosses[0].name)
         assertEquals(null, level.bosses[1].name)
         assertEquals(380f, level.bosses[1].z)
-        assertEquals(1, level.decorations.size)
-        assertEquals("triumphal arch", level.decorations[0].name)
-        assertEquals(999999f, level.decorations[0].power)
-        assertEquals("assets/triumphal-arch.obj", level.decorations[0].modelPath)
+        assertEquals(1, level.backgroundDecorations.size)
+        assertEquals("triumphal arch", level.backgroundDecorations[0].name)
+        assertEquals(999999f, level.backgroundDecorations[0].power)
+        assertEquals("assets/triumphal-arch.obj", level.backgroundDecorations[0].modelPath)
     }
 
     @Test

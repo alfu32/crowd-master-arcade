@@ -9,7 +9,7 @@ object MovementSystem {
         val player = appModel.player
         player.position.x += inputState.moveX.coerceIn(-1f, 1f) * player.lateralSpeed * deltaTime
         player.position.x += inputState.dragDeltaX * 0.025f
-        player.position.x = player.position.x.coerceIn(appModel.road.leftBoundary, appModel.road.rightBoundary)
+        player.position.x = FormationSystem.clampPlayerCenterX(player, appModel.road)
 
         val scrollDistance = GameConfig.WORLD_SCROLL_SPEED * deltaTime
         val dz = -scrollDistance

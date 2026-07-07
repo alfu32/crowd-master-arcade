@@ -77,7 +77,8 @@ class CardEffectSystemTest {
         fireRate = 1f,
         fireCooldown = 0f,
         alive = true,
-        color = LevelColor.PLAYER
+        color = LevelColor.PLAYER,
+        formationSpacing = GameConfig.SOLDIER_SPACING
     )
 
     private fun card(operation: CardOperation, target: CardTarget, value: Float) =

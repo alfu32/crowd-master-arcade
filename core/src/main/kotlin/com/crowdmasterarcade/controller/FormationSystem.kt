@@ -58,6 +58,20 @@ object FormationSystem {
         updateFormation(enemy.soldiers, enemy.position, alpha)
     }
 
+    fun clampPlayerCenterX(player: PlayerBrigade, road: Road): Float {
+        val aliveSoldiers = player.soldiers.filter { it.alive }
+        if (aliveSoldiers.isEmpty()) return player.position.x.coerceIn(road.leftBoundary, road.rightBoundary)
+        val minOffsetX = aliveSoldiers.minOf { it.localOffset.x }
+        val maxOffsetX = aliveSoldiers.maxOf { it.localOffset.x }
+        val minCenterX = road.leftBoundary - minOffsetX
+        val maxCenterX = road.rightBoundary - maxOffsetX
+        return if (minCenterX <= maxCenterX) {
+            player.position.x.coerceIn(minCenterX, maxCenterX)
+        } else {
+            ((road.leftBoundary + road.rightBoundary) * 0.5f)
+        }
+    }
+
     fun playerFormationWidth(centerX: Float, road: Road, minimumWidth: Float = GameConfig.SOLDIER_SPACING): Float =
         min(road.width / 2f, maxFormationWidthAt(centerX, road, minimumWidth))
 
