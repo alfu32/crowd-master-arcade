@@ -20,9 +20,10 @@ decoration_color: #6A645BFF
 background_decorations:
   - name: Dead Causeway archway, power: 999999, x: -3.24, z: 28, model: assets/triumphal-arch.obj, color: #588098FF
   - name: Dead Causeway tunnel, power: 999999, x: 2.16, z: 66, model: assets/tunnel_section.obj, color: #333C27FF
-  - name: Dead Causeway banner, power: 999999, x: -1.8, z: 104, model: assets/bannner.obj, color: #DD95C2FF
+  - name: Dead Causeway first banner, power: 999999, x: -1.8, z: 127.78, model: assets/bannner.obj, color: #6A645BFF
   - name: Dead Causeway monument, power: 999999, x: 3.96, z: 142, model: assets/triumphal-arch.obj, color: #DFCC72FF
   - name: Dead Causeway sentinel, power: 999999, x: -4.32, z: 180, model: assets/bigpill.obj, color: #7B8A7AFF
+  - name: Dead Causeway second banner, power: 999999, x: 1.8, z: 255.57, model: assets/bannner.obj, color: #6A645BFF
 
 cards:
   - op: plus, param: manpower, val: 30, x: -2.694, z: 20

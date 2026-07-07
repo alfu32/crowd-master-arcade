@@ -20,9 +20,9 @@ decoration_color: #5F6A6DFF
 background_decorations:
   - name: Nightfall Bastion archway, power: 999999, x: -3.24, z: 28, model: assets/triumphal-arch.obj, color: #6736ADFF
   - name: Nightfall Bastion tunnel, power: 999999, x: 2.16, z: 66, model: assets/tunnel_section.obj, color: #2B362BFF
-  - name: Nightfall Bastion banner, power: 999999, x: -1.8, z: 104, model: assets/bannner.obj, color: #FFAE89FF
   - name: Nightfall Bastion monument, power: 999999, x: 3.96, z: 142, model: assets/clown-head.obj, color: #5886DAFF
-  - name: Nightfall Bastion sentinel, power: 999999, x: -4.32, z: 180, model: assets/bannner.obj, color: #D468E9FF
+  - name: Nightfall Bastion first banner, power: 999999, x: -1.8, z: 145.9, model: assets/bannner.obj, color: #5F6A6DFF
+  - name: Nightfall Bastion second banner, power: 999999, x: 1.8, z: 291.8, model: assets/bannner.obj, color: #5F6A6DFF
 
 cards:
   - op: plus, param: manpower, val: 36, x: -2.694, z: 20

@@ -20,9 +20,10 @@ decoration_color: #50585BFF
 background_decorations:
   - name: Ambush archway, power: 999999, x: -3.24, z: 28, model: assets/triumphal-arch.obj, color: #378B53FF
   - name: Ambush tunnel, power: 999999, x: 2.16, z: 66, model: assets/tunnel_section.obj, color: #43311BFF
-  - name: Ambush banner, power: 999999, x: -1.8, z: 104, model: assets/bannner.obj, color: #5499D4FF
+  - name: Ambush first banner, power: 999999, x: -1.8, z: 122.47, model: assets/bannner.obj, color: #50585BFF
   - name: Ambush monument, power: 999999, x: 3.96, z: 142, model: assets/thorn.obj, color: #DAC666FF
   - name: Ambush sentinel, power: 999999, x: -4.32, z: 180, model: assets/bigpill.obj, color: #553076FF
+  - name: Ambush second banner, power: 999999, x: 1.8, z: 244.93, model: assets/bannner.obj, color: #50585BFF
 
 cards:
   - op: plus, param: manpower, val: 18, x: 0.48, z: 20

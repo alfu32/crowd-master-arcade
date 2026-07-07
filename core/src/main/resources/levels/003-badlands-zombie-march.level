@@ -20,9 +20,10 @@ decoration_color: #9A805FFF
 background_decorations:
   - name: Badlands Zombie March archway, power: 999999, x: -3.24, z: 28, model: assets/triumphal-arch.obj, color: #C46533FF
   - name: Badlands Zombie March tunnel, power: 999999, x: 2.16, z: 66, model: assets/tunnel_section.obj, color: #2B1F65FF
-  - name: Badlands Zombie March banner, power: 999999, x: -1.8, z: 104, model: assets/bannner.obj, color: #48D699FF
   - name: Badlands Zombie March monument, power: 999999, x: 3.96, z: 142, model: assets/thorn.obj, color: #987757FF
+  - name: Badlands Zombie March first banner, power: 999999, x: -1.8, z: 146.92, model: assets/bannner.obj, color: #9A805FFF
   - name: Badlands Zombie March sentinel, power: 999999, x: -4.32, z: 180, model: assets/triumphal-arch.obj, color: #5757ECFF
+  - name: Badlands Zombie March second banner, power: 999999, x: 1.8, z: 293.83, model: assets/bannner.obj, color: #9A805FFF
 
 cards:
   - op: plus, param: manpower, val: 25, x: -2.228, z: 20

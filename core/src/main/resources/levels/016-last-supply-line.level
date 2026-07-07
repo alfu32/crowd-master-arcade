@@ -20,9 +20,9 @@ decoration_color: #69615BFF
 background_decorations:
   - name: Last Supply Line archway, power: 999999, x: -3.24, z: 28, model: assets/triumphal-arch.obj, color: #6736ADFF
   - name: Last Supply Line tunnel, power: 999999, x: 2.16, z: 66, model: assets/tunnel_section.obj, color: #2B362BFF
-  - name: Last Supply Line banner, power: 999999, x: -1.8, z: 104, model: assets/bannner.obj, color: #FFAE89FF
+  - name: Last Supply Line first banner, power: 999999, x: -1.8, z: 121.38, model: assets/bannner.obj, color: #69615BFF
   - name: Last Supply Line monument, power: 999999, x: 3.96, z: 142, model: assets/clown-head.obj, color: #5886DAFF
-  - name: Last Supply Line sentinel, power: 999999, x: -4.32, z: 180, model: assets/bannner.obj, color: #D468E9FF
+  - name: Last Supply Line second banner, power: 999999, x: 1.8, z: 242.77, model: assets/bannner.obj, color: #69615BFF
 
 cards:
   - op: plus, param: manpower, val: 28, x: -2.694, z: 20

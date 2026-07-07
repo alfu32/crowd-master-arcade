@@ -20,9 +20,13 @@ decoration_color: #8C8578FF
 background_decorations:
   - name: The Raven's Bend archway, power: 999999, x: -2.88, z: 28, model: assets/triumphal-arch.obj, color: #588098FF
   - name: The Raven's Bend tunnel, power: 999999, x: 1.92, z: 66, model: assets/tunnel_section.obj, color: #333C27FF
-  - name: The Raven's Bend banner, power: 999999, x: -1.6, z: 104, model: assets/bannner.obj, color: #DD95C2FF
+  - name: The Raven's Bend first banner, power: 999999, x: -1.8, z: 130.32, model: assets/bannner.obj, color: #8C8578FF
   - name: The Raven's Bend monument, power: 999999, x: 3.52, z: 142, model: assets/triumphal-arch.obj, color: #DFCC72FF
   - name: The Raven's Bend sentinel, power: 999999, x: -3.84, z: 180, model: assets/bigpill.obj, color: #7B8A7AFF
+  - name: The Raven's Bend second banner, power: 999999, x: 1.8, z: 260.63, model: assets/bannner.obj, color: #8C8578FF
+
+decorations:
+  - name: Raven marker, power: 999999, x: 3.2, z: 88, model: assets/default-decoration.obj, color: #8C8578FF
 
 cards:
   - op: plus, param: manpower, val: 15, x: -1.213, z: 20

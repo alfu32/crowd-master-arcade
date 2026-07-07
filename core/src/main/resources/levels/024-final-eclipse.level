@@ -20,9 +20,9 @@ decoration_color: #5A666CFF
 background_decorations:
   - name: Final Eclipse archway, power: 999999, x: -3.6, z: 28, model: assets/triumphal-arch.obj, color: #6736ADFF
   - name: Final Eclipse tunnel, power: 999999, x: 2.4, z: 66, model: assets/tunnel_section.obj, color: #2B362BFF
-  - name: Final Eclipse banner, power: 999999, x: -2, z: 104, model: assets/bannner.obj, color: #FFAE89FF
   - name: Final Eclipse monument, power: 999999, x: 4.4, z: 142, model: assets/clown-head.obj, color: #5886DAFF
-  - name: Final Eclipse sentinel, power: 999999, x: -4.8, z: 180, model: assets/bannner.obj, color: #D468E9FF
+  - name: Final Eclipse first banner, power: 999999, x: -1.8, z: 161.45, model: assets/bannner.obj, color: #5A666CFF
+  - name: Final Eclipse second banner, power: 999999, x: 1.8, z: 322.9, model: assets/bannner.obj, color: #5A666CFF
 
 cards:
   - op: plus, param: manpower, val: 40, x: -2.878, z: 20

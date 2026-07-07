@@ -20,9 +20,10 @@ decoration_color: #8C8578FF
 background_decorations:
   - name: seven heaven archway, power: 999999, x: -2.88, z: 28, model: assets/triumphal-arch.obj, color: #588098FF
   - name: seven heaven tunnel, power: 999999, x: 1.92, z: 66, model: assets/tunnel_section.obj, color: #333C27FF
-  - name: seven heaven banner, power: 999999, x: -1.6, z: 104, model: assets/bannner.obj, color: #DD95C2FF
+  - name: seven heaven first banner, power: 999999, x: -1.8, z: 140.8, model: assets/bannner.obj, color: #8C8578FF
   - name: seven heaven monument, power: 999999, x: 3.52, z: 142, model: assets/triumphal-arch.obj, color: #DFCC72FF
   - name: seven heaven sentinel, power: 999999, x: -3.84, z: 180, model: assets/bigpill.obj, color: #7B8A7AFF
+  - name: seven heaven second banner, power: 999999, x: 1.8, z: 281.6, model: assets/bannner.obj, color: #8C8578FF
 
 cards:
   - op: times, param: manpower, val: 2, x: 0.48, z: 20

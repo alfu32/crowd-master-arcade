@@ -20,9 +20,10 @@ decoration_color: #6A6359FF
 background_decorations:
   - name: Relentless Ridge archway, power: 999999, x: -3.24, z: 28, model: assets/triumphal-arch.obj, color: #588098FF
   - name: Relentless Ridge tunnel, power: 999999, x: 2.16, z: 66, model: assets/tunnel_section.obj, color: #333C27FF
-  - name: Relentless Ridge banner, power: 999999, x: -1.8, z: 104, model: assets/bannner.obj, color: #DD95C2FF
+  - name: Relentless Ridge first banner, power: 999999, x: -1.8, z: 124.13, model: assets/bannner.obj, color: #6A6359FF
   - name: Relentless Ridge monument, power: 999999, x: 3.96, z: 142, model: assets/triumphal-arch.obj, color: #DFCC72FF
   - name: Relentless Ridge sentinel, power: 999999, x: -4.32, z: 180, model: assets/bigpill.obj, color: #7B8A7AFF
+  - name: Relentless Ridge second banner, power: 999999, x: 1.8, z: 248.27, model: assets/bannner.obj, color: #6A6359FF
 
 cards:
   - op: plus, param: manpower, val: 26, x: -2.228, z: 20

@@ -20,9 +20,10 @@ decoration_color: #715B52FF
 background_decorations:
   - name: Blood Meridian archway, power: 999999, x: -3.24, z: 28, model: assets/triumphal-arch.obj, color: #E2652DFF
   - name: Blood Meridian tunnel, power: 999999, x: 2.16, z: 66, model: assets/tunnel_section.obj, color: #2D1C77FF
-  - name: Blood Meridian banner, power: 999999, x: -1.8, z: 104, model: assets/bannner.obj, color: #46F39CFF
   - name: Blood Meridian monument, power: 999999, x: 3.96, z: 142, model: assets/triumphal-arch.obj, color: #A93D2EFF
+  - name: Blood Meridian first banner, power: 999999, x: -1.8, z: 144.07, model: assets/bannner.obj, color: #715B52FF
   - name: Blood Meridian sentinel, power: 999999, x: -4.32, z: 180, model: assets/clown-head.obj, color: #D266FFFF
+  - name: Blood Meridian second banner, power: 999999, x: 1.8, z: 288.13, model: assets/bannner.obj, color: #715B52FF
 
 cards:
   - op: plus, param: manpower, val: 32, x: -2.878, z: 20

@@ -20,9 +20,10 @@ decoration_color: #64605CFF
 background_decorations:
   - name: Siege of the Rift archway, power: 999999, x: -3.24, z: 28, model: assets/triumphal-arch.obj, color: #7646B5FF
   - name: Siege of the Rift tunnel, power: 999999, x: 2.16, z: 66, model: assets/tunnel_section.obj, color: #38582DFF
-  - name: Siege of the Rift banner, power: 999999, x: -1.8, z: 104, model: assets/bannner.obj, color: #FFB578FF
   - name: Siege of the Rift monument, power: 999999, x: 3.96, z: 142, model: assets/bigbot.obj, color: #5492E5FF
+  - name: Siege of the Rift first banner, power: 999999, x: -1.8, z: 147, model: assets/bannner.obj, color: #64605CFF
   - name: Siege of the Rift sentinel, power: 999999, x: -4.32, z: 180, model: assets/tunnel_section.obj, color: #B969DAFF
+  - name: Siege of the Rift second banner, power: 999999, x: 1.8, z: 294, model: assets/bannner.obj, color: #64605CFF
 
 cards:
   - op: plus, param: manpower, val: 38, x: -2.694, z: 20

@@ -20,9 +20,10 @@ decoration_color: #64716DFF
 background_decorations:
   - name: Crossfire Delta archway, power: 999999, x: -3.24, z: 28, model: assets/triumphal-arch.obj, color: #588098FF
   - name: Crossfire Delta tunnel, power: 999999, x: 2.16, z: 66, model: assets/tunnel_section.obj, color: #333C27FF
-  - name: Crossfire Delta banner, power: 999999, x: -1.8, z: 104, model: assets/bannner.obj, color: #DD95C2FF
+  - name: Crossfire Delta first banner, power: 999999, x: -1.8, z: 125.23, model: assets/bannner.obj, color: #64716DFF
   - name: Crossfire Delta monument, power: 999999, x: 3.96, z: 142, model: assets/triumphal-arch.obj, color: #DFCC72FF
   - name: Crossfire Delta sentinel, power: 999999, x: -4.32, z: 180, model: assets/bigpill.obj, color: #7B8A7AFF
+  - name: Crossfire Delta second banner, power: 999999, x: 1.8, z: 250.47, model: assets/bannner.obj, color: #64716DFF
 
 cards:
   - op: plus, param: manpower, val: 28, x: -2.398, z: 20

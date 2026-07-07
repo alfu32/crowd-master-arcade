@@ -20,9 +20,10 @@ decoration_color: #706B5DFF
 background_decorations:
   - name: Short Burn, power: 999999, x: -2.52, z: 28, model: assets/triumphal-arch.obj, color: #E2652DFF
   - name: Short Burn, power: 999999, x: 1.68, z: 66, model: assets/tunnel_section.obj, color: #2D1C77FF
-  - name: Short Burn, power: 999999, x: -1.4, z: 104, model: assets/bannner.obj, color: #46F39CFF
+  - name: Short Burn, Hard Burn first banner, power: 999999, x: -1.8, z: 98.92, model: assets/bannner.obj, color: #706B5DFF
   - name: Short Burn, power: 999999, x: 3.08, z: 142, model: assets/triumphal-arch.obj, color: #A93D2EFF
   - name: Short Burn, power: 999999, x: -3.36, z: 180, model: assets/clown-head.obj, color: #D266FFFF
+  - name: Short Burn, Hard Burn second banner, power: 999999, x: 1.8, z: 197.83, model: assets/bannner.obj, color: #706B5DFF
 
 cards:
   - op: times, param: firepower, val: 3, x: -1.721, z: 20

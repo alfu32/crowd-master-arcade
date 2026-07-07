@@ -20,9 +20,10 @@ decoration_color: #7C7367FF
 background_decorations:
   - name: Needlepoint Ridge archway, power: 999999, x: -2.7, z: 28, model: assets/triumphal-arch.obj, color: #588098FF
   - name: Needlepoint Ridge tunnel, power: 999999, x: 1.8, z: 66, model: assets/tunnel_section.obj, color: #333C27FF
-  - name: Needlepoint Ridge banner, power: 999999, x: -1.5, z: 104, model: assets/bannner.obj, color: #DD95C2FF
+  - name: Needlepoint Ridge first banner, power: 999999, x: -1.8, z: 103.48, model: assets/bannner.obj, color: #7C7367FF
   - name: Needlepoint Ridge monument, power: 999999, x: 3.3, z: 142, model: assets/triumphal-arch.obj, color: #DFCC72FF
   - name: Needlepoint Ridge sentinel, power: 999999, x: -3.6, z: 180, model: assets/bigpill.obj, color: #7B8A7AFF
+  - name: Needlepoint Ridge second banner, power: 999999, x: 1.8, z: 206.97, model: assets/bannner.obj, color: #7C7367FF
 
 cards:
   - op: plus, param: manpower, val: 20, x: -2.059, z: 20

@@ -20,9 +20,10 @@ decoration_color: #6D665CFF
 background_decorations:
   - name: Long Road to Ruin archway, power: 999999, x: -2.88, z: 28, model: assets/triumphal-arch.obj, color: #64889BFF
   - name: Long Road to Ruin tunnel, power: 999999, x: 1.92, z: 66, model: assets/tunnel_section.obj, color: #3B432EFF
-  - name: Long Road to Ruin banner, power: 999999, x: -1.6, z: 104, model: assets/bannner.obj, color: #EAAAD1FF
+  - name: Long Road to Ruin first banner, power: 999999, x: -1.8, z: 122.12, model: assets/bannner.obj, color: #6D665CFF
   - name: Long Road to Ruin monument, power: 999999, x: 3.52, z: 142, model: assets/triumphal-arch.obj, color: #DDC778FF
   - name: Long Road to Ruin sentinel, power: 999999, x: -3.84, z: 180, model: assets/bigbot.obj, color: #8C9687FF
+  - name: Long Road to Ruin second banner, power: 999999, x: 1.8, z: 244.23, model: assets/bannner.obj, color: #6D665CFF
 
 cards:
   - op: plus, param: manpower, val: 24, x: -1.89, z: 20

@@ -20,9 +20,9 @@ decoration_color: #725F56FF
 background_decorations:
   - name: Red Harvest archway, power: 999999, x: -3.24, z: 28, model: assets/triumphal-arch.obj, color: #B37633FF
   - name: Red Harvest tunnel, power: 999999, x: 2.16, z: 66, model: assets/tunnel_section.obj, color: #3B1B55FF
-  - name: Red Harvest banner, power: 999999, x: -1.8, z: 104, model: assets/bannner.obj, color: #55E8C1FF
-  - name: Red Harvest monument, power: 999999, x: 3.96, z: 142, model: assets/bannner.obj, color: #876741FF
+  - name: Red Harvest first banner, power: 999999, x: -1.8, z: 122.3, model: assets/bannner.obj, color: #725F56FF
   - name: Red Harvest sentinel, power: 999999, x: -4.32, z: 180, model: assets/triumphal-arch.obj, color: #5757ECFF
+  - name: Red Harvest second banner, power: 999999, x: 1.8, z: 244.6, model: assets/bannner.obj, color: #725F56FF
 
 cards:
   - op: plus, param: manpower, val: 30, x: -2.694, z: 20
