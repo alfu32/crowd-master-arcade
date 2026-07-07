@@ -71,4 +71,29 @@ class CollisionSystemTest {
         assertEquals(initialPlayerCount, appModel.player.soldiers.size)
         assertTrue(enemy.alive)
     }
+
+    @Test
+    fun enemyContactAppliesDamageOnlyToTouchingSoldiers() {
+        val appModel = AppModelFactory.initAppModel()
+        appModel.cards.clear()
+        appModel.bosses.clear()
+        appModel.projectiles.forEach { it.active = false }
+        val enemy = appModel.enemyBrigades.first()
+        val initialEnemyCount = enemy.soldiers.size
+        val initialPlayerCount = appModel.player.soldiers.size
+        val playerSoldier = appModel.player.soldiers.first()
+        val enemySoldier = enemy.soldiers.first()
+        playerSoldier.health = enemy.unitStrength
+        enemySoldier.health = appModel.player.soldierHealth
+        enemy.soldiers.drop(1).forEachIndexed { index, soldier ->
+            soldier.worldPosition.set(100f + index, soldier.worldPosition.y, 100f)
+        }
+        enemySoldier.worldPosition.set(playerSoldier.worldPosition)
+
+        CollisionSystem.update(appModel)
+
+        assertEquals(initialPlayerCount - 1, appModel.player.soldiers.size)
+        assertEquals(initialEnemyCount - 1, enemy.soldiers.size)
+        assertTrue(enemy.alive)
+    }
 }

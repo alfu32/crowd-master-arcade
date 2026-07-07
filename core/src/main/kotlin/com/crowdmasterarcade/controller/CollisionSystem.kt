@@ -70,14 +70,26 @@ object CollisionSystem {
     }
 
     private fun handleEnemyContact(appModel: AppModel) {
+        var playerDeaths = false
         appModel.enemyBrigades.filter { it.alive }.forEach { enemy ->
-            if (formationsTouch(appModel.player.soldiers, enemy.soldiers)) {
-                val losses = minOf(enemy.soldiers.size, appModel.player.soldiers.size)
-                repeat(losses) { appModel.player.soldiers.removeAt(appModel.player.soldiers.lastIndex) }
-                enemy.soldiers.clear()
-                enemy.alive = false
-                FormationSystem.recalculatePlayerFormation(appModel.player, appModel.road)
+            val contactPairs = contactPairs(appModel.player.soldiers, enemy.soldiers)
+            if (contactPairs.isNotEmpty()) {
+                contactPairs.forEach { (playerSoldier, enemySoldier) ->
+                    playerSoldier.health -= enemy.unitStrength
+                    enemySoldier.health -= appModel.player.soldierHealth
+                    if (playerSoldier.health <= 0f && playerSoldier.alive) {
+                        playerSoldier.alive = false
+                        playerDeaths = true
+                    }
+                    if (enemySoldier.health <= 0f) enemySoldier.alive = false
+                }
+                enemy.soldiers.removeAll { !it.alive }
+                if (enemy.soldiers.isEmpty()) enemy.alive = false
             }
+        }
+        if (playerDeaths) {
+            appModel.player.soldiers.removeAll { !it.alive }
+            FormationSystem.recalculatePlayerFormation(appModel.player, appModel.road)
         }
     }
 
@@ -93,16 +105,28 @@ object CollisionSystem {
 
     fun overlaps(a: Vector3, b: Vector3, radius: Float): Boolean = a.dst2(b) <= radius * radius
 
-    private fun formationsTouch(playerSoldiers: List<RegularSoldier>, enemySoldiers: List<RegularSoldier>): Boolean {
+    private fun contactPairs(
+        playerSoldiers: List<RegularSoldier>,
+        enemySoldiers: List<RegularSoldier>
+    ): List<Pair<RegularSoldier, RegularSoldier>> {
         val alivePlayers = playerSoldiers.filter { it.alive }
         val aliveEnemies = enemySoldiers.filter { it.alive }
-        if (alivePlayers.isEmpty() || aliveEnemies.isEmpty()) return false
+        if (alivePlayers.isEmpty() || aliveEnemies.isEmpty()) return emptyList()
         val padding = GameConfig.SOLDIER_SPACING * 0.75f
-        if (!boundsOverlap(alivePlayers, aliveEnemies, padding)) return false
+        if (!boundsOverlap(alivePlayers, aliveEnemies, padding)) return emptyList()
         val radius = GameConfig.SOLDIER_SPACING * 0.72f
-        return alivePlayers.any { player ->
-            aliveEnemies.any { enemy -> overlaps(player.worldPosition, enemy.worldPosition, radius) }
+        val pairs = mutableListOf<Pair<RegularSoldier, RegularSoldier>>()
+        val matchedEnemies = mutableSetOf<Long>()
+        alivePlayers.forEach { player ->
+            val enemy = aliveEnemies.firstOrNull { enemy ->
+                enemy.id !in matchedEnemies && overlaps(player.worldPosition, enemy.worldPosition, radius)
+            }
+            if (enemy != null) {
+                matchedEnemies += enemy.id
+                pairs += player to enemy
+            }
         }
+        return pairs
     }
 
     private fun boundsOverlap(
