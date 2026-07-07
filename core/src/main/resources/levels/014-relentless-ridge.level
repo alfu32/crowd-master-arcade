@@ -18,7 +18,6 @@ boss_color: #4D2D88FF
 decoration_color: #6A6359FF
 
 background_decorations:
-  - name: Relentless Ridge archway, power: 999999, x: 0, z: 36,  model: assets/triumphal-arch.obj,  color: #588098FF
   - name: Relentless Ridge tunnel, power: 999999, x: 0, z: 110,  model: assets/tunnel_section.obj,  color: #333C27FF
   - name: Relentless Ridge monument, power: 999999, x: 0, z: 210,  model: assets/triumphal-arch.obj,  color: #DFCC72FF
   - name: Relentless Ridge sentinel, power: 999999, x: 0, z: 314,  model: assets/bigpill.obj,  color: #7B8A7AFF

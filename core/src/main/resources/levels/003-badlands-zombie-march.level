@@ -18,8 +18,6 @@ boss_color: #7A3D21FF
 decoration_color: #9A805FFF
 
 background_decorations:
-  - name: Badlands Zombie March archway, power: 999999, x: 0, z: 18,  model: assets/triumphal-arch.obj,  color: #C46533FF
-  - name: Badlands Zombie March tunnel, power: 999999, x: 0, z: 56,  model: assets/tunnel_section.obj,  color: #2B1F65FF
   - name: Badlands Zombie March monument, power: 999999, x: 0, z: 170,  model: assets/thorn.obj,  color: #987757FF
   - name: Badlands Zombie March sentinel, power: 999999, x: 0, z: 246,  model: assets/triumphal-arch.obj,  color: #5757ECFF
 

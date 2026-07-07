@@ -18,8 +18,6 @@ boss_color: #46349AFF
 decoration_color: #69615BFF
 
 background_decorations:
-  - name: Last Supply Line archway, power: 999999, x: 0, z: 30,  model: assets/triumphal-arch.obj,  color: #6736ADFF
-  - name: Last Supply Line tunnel, power: 999999, x: 0, z: 96,  model: assets/tunnel_section.obj,  color: #2B362BFF
   - name: Last Supply Line monument, power: 999999, x: 0, z: 190,  model: assets/clown-head.obj,  color: #5886DAFF
 
 decorations:

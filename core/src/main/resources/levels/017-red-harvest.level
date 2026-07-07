@@ -18,8 +18,6 @@ boss_color: #512B8BFF
 decoration_color: #725F56FF
 
 background_decorations:
-  - name: Red Harvest archway, power: 999999, x: 0, z: 24,  model: assets/triumphal-arch.obj,  color: #B37633FF
-  - name: Red Harvest tunnel, power: 999999, x: 0, z: 72,  model: assets/tunnel_section.obj,  color: #3B1B55FF
   - name: Red Harvest sentinel, power: 999999, x: 0, z: 154,  model: assets/triumphal-arch.obj,  color: #5757ECFF
 
 decorations:

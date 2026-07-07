@@ -18,8 +18,6 @@ boss_color: #5830AAFF
 decoration_color: #6D665CFF
 
 background_decorations:
-  - name: Long Road to Ruin archway, power: 999999, x: 0, z: 18,  model: assets/triumphal-arch.obj,  color: #64889BFF
-  - name: Long Road to Ruin tunnel, power: 999999, x: 0, z: 56,  model: assets/tunnel_section.obj,  color: #3B432EFF
   - name: Long Road to Ruin monument, power: 999999, x: 0, z: 170,  model: assets/triumphal-arch.obj,  color: #DDC778FF
   - name: Long Road to Ruin sentinel, power: 999999, x: 0, z: 246,  model: assets/bigbot.obj,  color: #8C9687FF
 

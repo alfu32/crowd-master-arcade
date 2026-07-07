@@ -18,7 +18,6 @@ boss_color: #493C9CFF
 decoration_color: #64605CFF
 
 background_decorations:
-  - name: Siege of the Rift archway, power: 999999, x: 0, z: 20,  model: assets/triumphal-arch.obj,  color: #7646B5FF
   - name: Siege of the Rift tunnel, power: 999999, x: 0, z: 134,  model: assets/tunnel_section.obj,  color: #38582DFF
   - name: Siege of the Rift monument, power: 999999, x: 0, z: 178,  model: assets/bigbot.obj,  color: #5492E5FF
   - name: Siege of the Rift sentinel, power: 999999, x: 0, z: 292,  model: assets/tunnel_section.obj,  color: #B969DAFF

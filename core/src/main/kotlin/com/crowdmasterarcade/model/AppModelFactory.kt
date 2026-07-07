@@ -72,7 +72,8 @@ object AppModelFactory {
                 maxFireRate = levelDefinition.maxFireRate,
                 projectileSpeed = GameConfig.PROJECTILE_SPEED,
                 projectileDamage = GameConfig.PROJECTILE_DAMAGE,
-                projectileLifeSeconds = projectileLifeSeconds
+                projectileLifeSeconds = projectileLifeSeconds,
+                gameSpeed = GameConfig.INITIAL_GAME_SPEED
             ),
             scoreData = ScoreData(
                 levelPoints = 0f,

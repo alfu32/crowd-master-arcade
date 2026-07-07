@@ -18,7 +18,6 @@ boss_color: #5A379CFF
 decoration_color: #715B52FF
 
 background_decorations:
-  - name: Blood Meridian archway, power: 999999, x: 0, z: 42,  model: assets/triumphal-arch.obj,  color: #E2652DFF
   - name: Blood Meridian tunnel, power: 999999, x: 0, z: 116,  model: assets/tunnel_section.obj,  color: #2D1C77FF
   - name: Blood Meridian monument, power: 999999, x: 0, z: 198,  model: assets/triumphal-arch.obj,  color: #A93D2EFF
   - name: Blood Meridian sentinel, power: 999999, x: 0, z: 286,  model: assets/clown-head.obj,  color: #D266FFFF

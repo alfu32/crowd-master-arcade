@@ -18,8 +18,6 @@ boss_color: #3A3E9EFF
 decoration_color: #5A666CFF
 
 background_decorations:
-  - name: Final Eclipse archway, power: 999999, x: 0, z: 30,  model: assets/triumphal-arch.obj,  color: #6736ADFF
-  - name: Final Eclipse tunnel, power: 999999, x: 0, z: 96,  model: assets/tunnel_section.obj,  color: #2B362BFF
   - name: Final Eclipse monument, power: 999999, x: 0, z: 190,  model: assets/clown-head.obj,  color: #5886DAFF
 
 decorations:

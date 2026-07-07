@@ -93,37 +93,50 @@ object ResourceHome {
         packagedAssetEntries()
             .filter { it.endsWith(".octd", ignoreCase = true) }
             .forEach { name ->
-                copyMissing(Gdx.files.internal("assets/$name"), root.child(name.substringAfterLast('/')))
+                copyMissingPackagedResource("assets/$name", root.child(name.substringAfterLast('/')))
             }
     }
 
     private fun seedAssets(root: FileHandle) {
         val assetRoot = root.child("assets")
-        val packagedAssets = Gdx.files.internal("assets")
-        if (copyInternalDirectory(packagedAssets, assetRoot)) {
-            seedOctdSources(root)
-            return
-        }
-
         packagedAssetEntries().forEach { name ->
-            copyMissing(Gdx.files.internal("assets/$name"), assetRoot.child(name))
+            copyMissingPackagedResource("assets/$name", assetRoot.child(name))
         }
         seedOctdSources(root)
     }
 
     private fun packagedAssetEntries(): List<String> {
-        val assets = Gdx.files.internal("assets")
-        val listed = listFilesRecursive(assets)
-        if (listed.isNotEmpty()) return listed
+        val classpathIndex = readPackagedResourceText("assets/index.txt")
+        if (classpathIndex != null) return parseIndex(classpathIndex)
 
         val index = Gdx.files.internal("assets/index.txt")
-        if (!index.exists()) return emptyList()
-        return index.readString("UTF-8")
+        if (index.exists()) return parseIndex(index.readString("UTF-8"))
+
+        return listFilesRecursive(Gdx.files.internal("assets"))
+    }
+
+    private fun parseIndex(text: String): List<String> =
+        text
             .lineSequence()
             .map { it.substringBefore("#").trim() }
             .filter { it.isNotBlank() }
             .toList()
+
+    private fun readPackagedResourceText(path: String): String? =
+        packagedResourceStream(path)?.bufferedReader(Charsets.UTF_8)?.use { it.readText() }
+
+    private fun copyMissingPackagedResource(path: String, target: FileHandle) {
+        if (target.exists()) return
+        packagedResourceStream(path)?.use { input ->
+            target.parent().mkdirs()
+            target.write(false).use { output -> input.copyTo(output) }
+            return
+        }
+        copyMissing(Gdx.files.internal(path), target)
     }
+
+    private fun packagedResourceStream(path: String) =
+        ResourceHome::class.java.classLoader.getResourceAsStream(path)
 
     private fun listFilesRecursive(root: FileHandle): List<String> =
         runCatching {
@@ -137,18 +150,6 @@ object ResourceHome {
                     }
                 }
         }.getOrDefault(emptyList())
-
-    private fun copyInternalDirectory(source: FileHandle, target: FileHandle): Boolean =
-        runCatching {
-            if (!source.exists() || !source.isDirectory) return@runCatching false
-            val children = source.list()
-            if (children.isEmpty()) return@runCatching false
-            target.mkdirs()
-            children.forEach { child ->
-                copyMissing(child, target.child(child.name()))
-            }
-            true
-        }.getOrDefault(false)
 
     private fun copyMissing(source: FileHandle, target: FileHandle) {
         if (!source.exists()) return

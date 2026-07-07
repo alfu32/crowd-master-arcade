@@ -22,6 +22,7 @@ object GameConfig {
     const val MAX_DELTA_TIME = 1f / 20f
     const val LEVEL_INTRO_DISTANCE = 10f
     const val MIN_GAME_SPEED = 0.35f
-    const val MAX_GAME_SPEED = 3.5f
+    const val INITIAL_GAME_SPEED = 2f
+    const val MAX_GAME_SPEED = 10f
     const val GAME_SPEED_CHANGE_RATE = 1.8f
 }

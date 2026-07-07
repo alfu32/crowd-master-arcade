@@ -18,8 +18,6 @@ boss_color: #4A49A2FF
 decoration_color: #71685DFF
 
 background_decorations:
-  - name: Ash Cathedral archway, power: 999999, x: 0, z: 18,  model: assets/triumphal-arch.obj,  color: #E2652DFF
-  - name: Ash Cathedral tunnel, power: 999999, x: 0, z: 56,  model: assets/tunnel_section.obj,  color: #2D1C77FF
   - name: Ash Cathedral monument, power: 999999, x: 0, z: 170,  model: assets/triumphal-arch.obj,  color: #A93D2EFF
   - name: Ash Cathedral sentinel, power: 999999, x: 0, z: 246,  model: assets/clown-head.obj,  color: #D266FFFF
 

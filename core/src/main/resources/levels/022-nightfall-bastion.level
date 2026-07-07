@@ -18,7 +18,6 @@ boss_color: #36409CFF
 decoration_color: #5F6A6DFF
 
 background_decorations:
-  - name: Nightfall Bastion archway, power: 999999, x: 0, z: 36,  model: assets/triumphal-arch.obj,  color: #6736ADFF
   - name: Nightfall Bastion tunnel, power: 999999, x: 0, z: 110,  model: assets/tunnel_section.obj,  color: #2B362BFF
   - name: Nightfall Bastion monument, power: 999999, x: 0, z: 210,  model: assets/clown-head.obj,  color: #5886DAFF
 

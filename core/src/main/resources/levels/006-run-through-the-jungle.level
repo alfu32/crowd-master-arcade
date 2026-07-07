@@ -18,7 +18,6 @@ boss_color: #6B3B87FF
 decoration_color: #27664AFF
 
 background_decorations:
-  - name: Run Through the Jungle archway, power: 999999, x: 0, z: 36,  model: assets/triumphal-arch.obj,  color: #378B53FF
   - name: Run Through the Jungle tunnel, power: 999999, x: 0, z: 110,  model: assets/tunnel_section.obj,  color: #43311BFF
   - name: Run Through the Jungle monument, power: 999999, x: 0, z: 210,  model: assets/thorn.obj,  color: #DAC666FF
   - name: Run Through the Jungle sentinel, power: 999999, x: 0, z: 314,  model: assets/bigpill.obj,  color: #553076FF

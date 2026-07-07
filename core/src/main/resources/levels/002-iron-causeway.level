@@ -18,8 +18,6 @@ boss_color: #3D3F8FFF
 decoration_color: #77736AFF
 
 background_decorations:
-  - name: The Iron Causeway archway, power: 999999, x: 0, z: 30,  model: assets/triumphal-arch.obj,  color: #588098FF
-  - name: The Iron Causeway tunnel, power: 999999, x: 0, z: 88,  model: assets/tunnel_section.obj,  color: #333C27FF
   - name: The Iron Causeway monument, power: 999999, x: 0, z: 128,  model: assets/triumphal-arch.obj,  color: #DFCC72FF
   - name: The Iron Causeway sentinel, power: 999999, x: 0, z: 204,  model: assets/bigpill.obj,  color: #7B8A7AFF
 

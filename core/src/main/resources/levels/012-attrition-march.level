@@ -18,7 +18,6 @@ boss_color: #43358FFF
 decoration_color: #6E6255FF
 
 background_decorations:
-  - name: Attrition March archway, power: 999999, x: 0, z: 42,  model: assets/triumphal-arch.obj,  color: #588098FF
   - name: Attrition March tunnel, power: 999999, x: 0, z: 116,  model: assets/tunnel_section.obj,  color: #333C27FF
   - name: Attrition March monument, power: 999999, x: 0, z: 198,  model: assets/triumphal-arch.obj,  color: #DFCC72FF
   - name: Attrition March sentinel, power: 999999, x: 0, z: 286,  model: assets/bigpill.obj,  color: #7B8A7AFF
