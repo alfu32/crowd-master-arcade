@@ -119,6 +119,10 @@ tasks.matching { it.name == "preBuild" }.configureEach {
     dependsOn(copyAndroidNatives)
 }
 
+tasks.matching { it.name.startsWith("merge") && it.name.endsWith("Assets") }.configureEach {
+    dependsOn(":core:generateAssetIndex")
+}
+
 tasks.register<Copy>("bundleAndroidApk") {
     dependsOn("assembleRelease")
     from(layout.buildDirectory.dir("outputs/apk/release"))
