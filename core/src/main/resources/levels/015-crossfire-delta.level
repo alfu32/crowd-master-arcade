@@ -1,5 +1,5 @@
 name: Crossfire Delta
-road_length: 375.7
+road_length: 404.7
 road_width: 18
 starting_soldiers: 26
 fire_rate: 5.0
@@ -18,41 +18,41 @@ boss_color: #433A9EFF
 decoration_color: #64716DFF
 
 background_decorations:
-  - name: Crossfire Delta archway, power: 999999, x: -3.24, z: 28, model: assets/triumphal-arch.obj, color: #588098FF
-  - name: Crossfire Delta tunnel, power: 999999, x: 2.16, z: 66, model: assets/tunnel_section.obj, color: #333C27FF
-  - name: Crossfire Delta monument, power: 999999, x: 3.96, z: 142, model: assets/triumphal-arch.obj, color: #DFCC72FF
-  - name: Crossfire Delta sentinel, power: 999999, x: -4.32, z: 180, model: assets/bigpill.obj, color: #7B8A7AFF
+  - name: Crossfire Delta archway, power: 999999, x: 0, z: 20, model: assets/triumphal-arch.obj, color: #588098FF
+  - name: Crossfire Delta tunnel, power: 999999, x: -5.46, z: 134, model: assets/tunnel_section.obj, color: #333C27FF
+  - name: Crossfire Delta monument, power: 999999, x: -1.26, z: 178, model: assets/triumphal-arch.obj, color: #DFCC72FF
+  - name: Crossfire Delta sentinel, power: 999999, x: 6.89, z: 292, model: assets/bigpill.obj, color: #7B8A7AFF
 
 decorations:
-  - name: Crossfire Delta first banner, power: 999999, x: -1.8, z: 125.23, model: assets/bannner.obj, color: #64716DFF
-  - name: Crossfire Delta second banner, power: 999999, x: 1.8, z: 250.47, model: assets/bannner.obj, color: #64716DFF
+  - name: Crossfire Delta first banner, power: 999999, x: -1.8, z: 134.9, model: assets/bannner.obj, color: #64716DFF
+  - name: Crossfire Delta second banner, power: 999999, x: 1.8, z: 269.8, model: assets/bannner.obj, color: #64716DFF
 
 cards:
-  - op: plus, param: manpower, val: 28, x: -2.398, z: 20
-  - op: times, param: firepower, val: 2, x: 2.228, z: 30
-  - op: plus, param: soldierlife, val: 8, x: 0.48, z: 42
-  - op: minus, param: manpower, val: 14, x: -2.85, z: 56
-  - op: plus, param: bulletpower, val: 10, x: 2.681, z: 72
-  - op: times, param: manpower, val: 3, x: -2.342, z: 82
-  - op: div, param: firepower, val: 2, x: 0.988, z: 94
-  - op: plus, param: manpower, val: 44, x: 1.89, z: 108
-  - op: times, param: firepower, val: 4, x: -1.044, z: 124
-  - op: plus, param: soldierlife, val: 14, x: 0.197, z: 134
-  - op: times, param: bulletpower, val: 2, x: -0.197, z: 146
-  - op: minus, param: manpower, val: 18, x: 1.213, z: 160
+  - op: plus, param: manpower, val: 28, x: 0, z: 15
+  - op: times, param: firepower, val: 2, x: -4.85, z: 20
+  - op: plus, param: soldierlife, val: 8, x: -1.12, z: 44
+  - op: minus, param: manpower, val: 14, x: 6.11, z: 50
+  - op: plus, param: bulletpower, val: 10, x: 1.34, z: 72
+  - op: times, param: manpower, val: 3, x: -6.71, z: 80
+  - op: div, param: firepower, val: 2, x: 4.32, z: 106
+  - op: plus, param: manpower, val: 44, x: 0, z: 111
+  - op: times, param: firepower, val: 4, x: -4.85, z: 135
+  - op: plus, param: soldierlife, val: 14, x: -1.12, z: 141
+  - op: times, param: bulletpower, val: 2, x: 6.11, z: 163
+  - op: minus, param: manpower, val: 18, x: 1.34, z: 171
 
 enemy_brigades:
-  - name: front delta, effective: 277, strength: 16, x: -2.37, z: 35, color: #333C27FF
-  - name: right delta, effective: 346, strength: 17, x: 2.205, z: 50, color: #DD95C2FF
-  - name: left delta, effective: 434, strength: 18, x: 0.445, z: 65, color: #DFCC72FF
-  - name: delta brace, effective: 564, strength: 19, x: -2.598, z: 71, color: #7B8A7AFF
-  - name: delta fold, effective: 737, strength: 20, x: 2.432, z: 86, color: #985880FF
-  - name: delta core, effective: 954, strength: 21, x: -0.445, z: 101, color: #27333CFF
-  - name: delta lock, effective: 1273, strength: 22, x: -1.045, z: 107, color: #C2DD95FF
-  - name: delta final, effective: 1783, strength: 23, x: 1.045, z: 122, color: #72DFCCFF
-  - name: delta crown, effective: 2376, strength: 24, x: 0.445, z: 137, color: #7A7B8AFF
+  - name: front delta, effective: 277, strength: 16, x: 0, z: 28, color: #333C27FF
+  - name: right delta, effective: 346, strength: 17, x: -8.2, z: 34, color: #DD95C2FF
+  - name: left delta, effective: 434, strength: 18, x: -1.9, z: 61, color: #DFCC72FF
+  - name: delta brace, effective: 564, strength: 19, x: 8.2, z: 68, color: #7B8A7AFF
+  - name: delta fold, effective: 737, strength: 20, x: 2.28, z: 99, color: #985880FF
+  - name: delta core, effective: 954, strength: 21, x: -8.2, z: 107, color: #27333CFF
+  - name: delta lock, effective: 1273, strength: 22, x: 7.35, z: 136, color: #C2DD95FF
+  - name: delta final, effective: 1783, strength: 23, x: 0, z: 146, color: #72DFCCFF
+  - name: delta crown, effective: 2376, strength: 24, x: -8.2, z: 152, color: #7A7B8AFF
 
 bosses:
-  - name: Delta Commander, power: 65730.833, x: -0.945, z: 215.7, color: #95C2DDFF
-  - name: Crossfire Lord, power: 157683.5, x: 0.945, z: 260.7, color: #CC72DFFF
-  - name: The Delta Engine, power: 265815, x: 0.463, z: 305.7, model: assets/bigbot.obj, color: #8A7A7BFF
+  - name: Delta Commander, power: 65730.833, x: -0.61, z: 234.7, color: #95C2DDFF
+  - name: Crossfire Lord, power: 157683.5, x: 3.33, z: 269.7, color: #CC72DFFF
+  - name: The Delta Engine, power: 265815, x: 0.73, z: 334.7, model: assets/bigbot.obj, color: #8A7A7BFF

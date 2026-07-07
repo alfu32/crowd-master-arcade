@@ -1,5 +1,5 @@
 name: Run Through the Jungle
-road_length: 381.85
+road_length: 485.85
 road_width: 20
 starting_soldiers: 20
 fire_rate: 5.6
@@ -18,48 +18,48 @@ boss_color: #6B3B87FF
 decoration_color: #27664AFF
 
 background_decorations:
-  - name: Run Through the Jungle archway, power: 999999, x: -3.6, z: 28, model: assets/triumphal-arch.obj, color: #378B53FF
-  - name: Run Through the Jungle tunnel, power: 999999, x: 2.4, z: 66, model: assets/tunnel_section.obj, color: #43311BFF
-  - name: Run Through the Jungle monument, power: 999999, x: 4.4, z: 142, model: assets/thorn.obj, color: #DAC666FF
-  - name: Run Through the Jungle sentinel, power: 999999, x: -4.8, z: 180, model: assets/bigpill.obj, color: #553076FF
+  - name: Run Through the Jungle archway, power: 999999, x: -5.17, z: 36, model: assets/triumphal-arch.obj, color: #378B53FF
+  - name: Run Through the Jungle tunnel, power: 999999, x: -2.82, z: 110, model: assets/tunnel_section.obj, color: #43311BFF
+  - name: Run Through the Jungle monument, power: 999999, x: 0, z: 210, model: assets/thorn.obj, color: #DAC666FF
+  - name: Run Through the Jungle sentinel, power: 999999, x: 2.82, z: 314, model: assets/bigpill.obj, color: #553076FF
 
 decorations:
-  - name: Run Through the Jungle first banner, power: 999999, x: -1.8, z: 127.28, model: assets/bannner.obj, color: #27664AFF
-  - name: Run Through the Jungle second banner, power: 999999, x: 1.8, z: 254.57, model: assets/bannner.obj, color: #27664AFF
+  - name: Run Through the Jungle first banner, power: 999999, x: -1.8, z: 161.95, model: assets/bannner.obj, color: #27664AFF
+  - name: Run Through the Jungle second banner, power: 999999, x: 1.8, z: 323.9, model: assets/bannner.obj, color: #27664AFF
 
 cards:
-  - op: plus, param: manpower, val: 22, x: -2.736, z: 20
-  - op: times, param: firepower, val: 3, x: 2.398, z: 30
-  - op: plus, param: manpower, val: 35, x: 0.48, z: 42
-  - op: plus, param: soldierlife, val: 10, x: -3.188, z: 56
-  - op: minus, param: manpower, val: 14, x: 3.527, z: 72
-  - op: div, param: firepower, val: 2, x: -3.358, z: 82
-  - op: times, param: manpower, val: 3, x: -0.536, z: 94
-  - op: times, param: firepower, val: 4, x: 1.213, z: 108
-  - op: plus, param: bulletpower, val: 15, x: -1.213, z: 124
-  - op: plus, param: manpower, val: 45, x: 2.736, z: 134
-  - op: minus, param: firepower, val: 6, x: -2.736, z: 146
-  - op: times, param: firepower, val: 5, x: 0.028, z: 160
-  - op: div, param: manpower, val: 2, x: -1.044, z: 176
-  - op: plus, param: soldierlife, val: 14, x: 1.044, z: 186
-  - op: plus, param: manpower, val: 55, x: 3.019, z: 198
-  - op: times, param: bulletpower, val: 2, x: -3.019, z: 212
-  - op: times, param: firepower, val: 6, x: -1.551, z: 228
+  - op: plus, param: manpower, val: 22, x: -4.6, z: 22
+  - op: times, param: firepower, val: 3, x: -2.51, z: 33
+  - op: plus, param: manpower, val: 35, x: 0, z: 48
+  - op: plus, param: soldierlife, val: 10, x: 2.51, z: 67
+  - op: minus, param: manpower, val: 14, x: 4.6, z: 90
+  - op: div, param: firepower, val: 2, x: -0.84, z: 105
+  - op: times, param: manpower, val: 3, x: 0.84, z: 116
+  - op: times, param: firepower, val: 4, x: -4.6, z: 131
+  - op: plus, param: bulletpower, val: 15, x: -2.51, z: 150
+  - op: plus, param: manpower, val: 45, x: 0, z: 173
+  - op: minus, param: firepower, val: 6, x: 2.51, z: 188
+  - op: times, param: firepower, val: 5, x: 4.6, z: 199
+  - op: div, param: manpower, val: 2, x: -0.84, z: 214
+  - op: plus, param: soldierlife, val: 14, x: 0.84, z: 233
+  - op: plus, param: manpower, val: 55, x: -4.6, z: 256
+  - op: times, param: bulletpower, val: 2, x: -2.51, z: 271
+  - op: times, param: firepower, val: 6, x: 0, z: 282
 
 enemy_brigades:
-  - name: green scouts, effective: 193, strength: 15, x: -2.867, z: 35, color: #43311BFF
-  - name: river flank, effective: 261, strength: 16, x: 2.867, z: 50, color: #5499D4FF
-  - name: canopy rush, effective: 329, strength: 16, x: 0.445, z: 65, color: #DAC666FF
-  - name: thorn column, effective: 418, strength: 18, x: -3.26, z: 71, color: #553076FF
-  - name: fern wall, effective: 507, strength: 18, x: 3.095, z: 86, color: #53378BFF
-  - name: deep green horde, effective: 638, strength: 19, x: -0.445, z: 101, color: #1B4331FF
-  - name: river teeth, effective: 601, strength: 20, x: -2.701, z: 107, color: #D45499FF
-  - name: jungle drums, effective: 774, strength: 21, x: 2.536, z: 122, color: #66DAC6FF
-  - name: canopy guard, effective: 947, strength: 22, x: -1.045, z: 137, color: #765530FF
-  - name: root blockade, effective: 1162, strength: 23, x: 1.045, z: 143, color: #8B5337FF
-  - name: last jungle tide, effective: 1713, strength: 25, x: 0.445, z: 158, color: #311B43FF
+  - name: green scouts, effective: 193, strength: 15, x: -7.82, z: 40, color: #43311BFF
+  - name: river flank, effective: 261, strength: 16, x: -4.27, z: 52, color: #5499D4FF
+  - name: canopy rush, effective: 329, strength: 16, x: 0, z: 68, color: #DAC666FF
+  - name: thorn column, effective: 418, strength: 18, x: 4.27, z: 88, color: #553076FF
+  - name: fern wall, effective: 507, strength: 18, x: 7.82, z: 112, color: #53378BFF
+  - name: deep green horde, effective: 638, strength: 19, x: -1.42, z: 140, color: #1B4331FF
+  - name: river teeth, effective: 601, strength: 20, x: 1.42, z: 158, color: #D45499FF
+  - name: jungle drums, effective: 774, strength: 21, x: -7.82, z: 170, color: #66DAC6FF
+  - name: canopy guard, effective: 947, strength: 22, x: -4.27, z: 186, color: #765530FF
+  - name: root blockade, effective: 1162, strength: 23, x: 0, z: 206, color: #8B5337FF
+  - name: last jungle tide, effective: 1713, strength: 25, x: 4.27, z: 230, color: #311B43FF
 
 bosses:
-  - name: Colonel Vine, power: 59400, x: -1.492, z: 221.85, color: #99D454FF
-  - name: River Mother, power: 98455.5, x: 1.492, z: 266.85, color: #C666DAFF
-  - name: The Green Thunder, power: 265815, x: 0.463, z: 311.85, model: assets/bigbot.obj, color: #307655FF
+  - name: Colonel Vine, power: 59400, x: 0, z: 309.85, color: #99D454FF
+  - name: River Mother, power: 98455.5, x: 1.37, z: 369.85, color: #C666DAFF
+  - name: The Green Thunder, power: 265815, x: 2.52, z: 415.85, model: assets/bigbot.obj, color: #307655FF

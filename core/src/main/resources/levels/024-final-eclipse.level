@@ -1,5 +1,5 @@
 name: Final Eclipse
-road_length: 484.35
+road_length: 537.35
 road_width: 20
 starting_soldiers: 38
 fire_rate: 3.8
@@ -18,45 +18,45 @@ boss_color: #3A3E9EFF
 decoration_color: #5A666CFF
 
 background_decorations:
-  - name: Final Eclipse archway, power: 999999, x: -3.6, z: 28, model: assets/triumphal-arch.obj, color: #6736ADFF
-  - name: Final Eclipse tunnel, power: 999999, x: 2.4, z: 66, model: assets/tunnel_section.obj, color: #2B362BFF
-  - name: Final Eclipse monument, power: 999999, x: 4.4, z: 142, model: assets/clown-head.obj, color: #5886DAFF
+  - name: Final Eclipse archway, power: 999999, x: -3.29, z: 30, model: assets/triumphal-arch.obj, color: #6736ADFF
+  - name: Final Eclipse tunnel, power: 999999, x: 3.29, z: 96, model: assets/tunnel_section.obj, color: #2B362BFF
+  - name: Final Eclipse monument, power: 999999, x: -7.71, z: 190, model: assets/clown-head.obj, color: #5886DAFF
 
 decorations:
-  - name: Final Eclipse first banner, power: 999999, x: -1.8, z: 161.45, model: assets/bannner.obj, color: #5A666CFF
-  - name: Final Eclipse second banner, power: 999999, x: 1.8, z: 322.9, model: assets/bannner.obj, color: #5A666CFF
+  - name: Final Eclipse first banner, power: 999999, x: -1.8, z: 179.12, model: assets/bannner.obj, color: #5A666CFF
+  - name: Final Eclipse second banner, power: 999999, x: 1.8, z: 358.23, model: assets/bannner.obj, color: #5A666CFF
 
 cards:
-  - op: plus, param: manpower, val: 40, x: -2.878, z: 20
-  - op: times, param: firepower, val: 2, x: 2.878, z: 30
-  - op: plus, param: soldierlife, val: 14, x: 0.25, z: 42
-  - op: minus, param: manpower, val: 22, x: -3.01, z: 56
-  - op: plus, param: bulletpower, val: 16, x: 2.826, z: 72
-  - op: times, param: manpower, val: 3, x: -2.458, z: 82
-  - op: div, param: firepower, val: 2, x: 0.802, z: 94
-  - op: plus, param: manpower, val: 70, x: 2.51, z: 108
-  - op: times, param: firepower, val: 4, x: -1.406, z: 124
-  - op: plus, param: soldierlife, val: 18, x: 0.486, z: 134
-  - op: times, param: bulletpower, val: 2, x: -0.486, z: 146
-  - op: minus, param: firepower, val: 6, x: 1.59, z: 160
-  - op: plus, param: manpower, val: 36, x: -1.59, z: 176
-  - op: times, param: firepower, val: 5, x: -0.25, z: 186
+  - op: plus, param: manpower, val: 40, x: -2.93, z: 20
+  - op: times, param: firepower, val: 2, x: 2.93, z: 30
+  - op: plus, param: soldierlife, val: 14, x: -6.86, z: 48
+  - op: minus, param: manpower, val: 22, x: 6.86, z: 58
+  - op: plus, param: bulletpower, val: 16, x: 0, z: 76
+  - op: times, param: manpower, val: 3, x: -1.51, z: 104
+  - op: div, param: firepower, val: 2, x: 1.51, z: 116
+  - op: plus, param: manpower, val: 70, x: -2.93, z: 126
+  - op: times, param: firepower, val: 4, x: 2.93, z: 144
+  - op: plus, param: soldierlife, val: 18, x: -6.86, z: 154
+  - op: times, param: bulletpower, val: 2, x: 6.86, z: 172
+  - op: minus, param: firepower, val: 6, x: 0, z: 200
+  - op: plus, param: manpower, val: 36, x: -1.51, z: 212
+  - op: times, param: firepower, val: 5, x: 1.51, z: 222
 
 enemy_brigades:
-  - name: eclipse scouts, effective: 329, strength: 16, x: -2.84, z: 35, color: #2B362BFF
-  - name: eclipse flank, effective: 418, strength: 17, x: 2.66, z: 50, color: #FFAE89FF
-  - name: eclipse wall, effective: 536, strength: 18, x: 0.22, z: 65, color: #5886DAFF
-  - name: eclipse brace, effective: 698, strength: 19, x: -2.74, z: 71, color: #D468E9FF
-  - name: eclipse lock, effective: 917, strength: 20, x: 2.56, z: 86, color: #AD6736FF
-  - name: eclipse core, effective: 1180, strength: 21, x: -0.22, z: 101, color: #2B2B36FF
-  - name: eclipse crown, effective: 1530, strength: 22, x: -1.58, z: 107, color: #89FFAEFF
-  - name: eclipse tomb, effective: 1996, strength: 23, x: 1.58, z: 122, color: #DA5886FF
-  - name: eclipse final, effective: 2636, strength: 24, x: 0.22, z: 137, color: #E9D468FF
-  - name: the last eclipse, effective: 3508, strength: 25, x: -0.22, z: 143, color: #36AD67FF
+  - name: eclipse scouts, effective: 329, strength: 16, x: -4.98, z: 36, color: #2B362BFF
+  - name: eclipse flank, effective: 418, strength: 17, x: 4.98, z: 46, color: #FFAE89FF
+  - name: eclipse wall, effective: 536, strength: 18, x: -9.2, z: 64, color: #5886DAFF
+  - name: eclipse brace, effective: 698, strength: 19, x: 9.2, z: 74, color: #D468E9FF
+  - name: eclipse lock, effective: 917, strength: 20, x: 0, z: 92, color: #AD6736FF
+  - name: eclipse core, effective: 1180, strength: 21, x: -2.56, z: 102, color: #2B2B36FF
+  - name: eclipse crown, effective: 1530, strength: 22, x: 2.56, z: 128, color: #89FFAEFF
+  - name: eclipse tomb, effective: 1996, strength: 23, x: -4.98, z: 142, color: #DA5886FF
+  - name: eclipse final, effective: 2636, strength: 24, x: 4.98, z: 152, color: #E9D468FF
+  - name: the last eclipse, effective: 3508, strength: 25, x: -9.2, z: 170, color: #36AD67FF
 
 bosses:
-  - name: Eclipse Herald, power: 25987.5, x: -1.28, z: 234.35, color: #AE89FFFF
-  - name: Black Sun, power: 62370, x: 1.28, z: 279.35, color: #86DA58FF
-  - name: Eclipse Throne, power: 89842.5, x: 0.25, z: 324.35, color: #68E9D4FF
-  - name: World Breaker, power: 117315, x: -0.25, z: 369.35, color: #6736ADFF
-  - name: The Last Light, power: 142560, x: 0.25, z: 414.35, model: assets/bigbot.obj, color: #2B362BFF
+  - name: Eclipse Herald, power: 25987.5, x: -3.75, z: 267.35, color: #AE89FFFF
+  - name: Black Sun, power: 62370, x: 3.75, z: 317.35, color: #86DA58FF
+  - name: Eclipse Throne, power: 89842.5, x: 0, z: 367.35, color: #68E9D4FF
+  - name: World Breaker, power: 117315, x: -0.82, z: 417.35, color: #6736ADFF
+  - name: The Last Light, power: 142560, x: 0.82, z: 467.35, model: assets/bigbot.obj, color: #2B362BFF

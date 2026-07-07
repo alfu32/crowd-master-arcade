@@ -1,5 +1,5 @@
 name: Short Burn, Hard Burn
-road_length: 296.75
+road_length: 365.75
 road_width: 14
 starting_soldiers: 18
 fire_rate: 6.8
@@ -18,39 +18,39 @@ boss_color: #6622AAFF
 decoration_color: #706B5DFF
 
 background_decorations:
-  - name: Short Burn, power: 999999, x: -2.52, z: 28, model: assets/triumphal-arch.obj, color: #E2652DFF
-  - name: Short Burn, power: 999999, x: 1.68, z: 66, model: assets/tunnel_section.obj, color: #2D1C77FF
-  - name: Short Burn, power: 999999, x: 3.08, z: 142, model: assets/triumphal-arch.obj, color: #A93D2EFF
-  - name: Short Burn, power: 999999, x: -3.36, z: 180, model: assets/clown-head.obj, color: #D266FFFF
+  - name: Short Burn, power: 999999, x: -1.15, z: 42, model: assets/triumphal-arch.obj, color: #E2652DFF
+  - name: Short Burn, power: 999999, x: 1.15, z: 116, model: assets/tunnel_section.obj, color: #2D1C77FF
+  - name: Short Burn, power: 999999, x: -2.05, z: 198, model: assets/triumphal-arch.obj, color: #A93D2EFF
+  - name: Short Burn, power: 999999, x: 2.05, z: 286, model: assets/clown-head.obj, color: #D266FFFF
 
 decorations:
-  - name: Short Burn, Hard Burn first banner, power: 999999, x: -1.8, z: 98.92, model: assets/bannner.obj, color: #706B5DFF
-  - name: Short Burn, Hard Burn second banner, power: 999999, x: 1.8, z: 197.83, model: assets/bannner.obj, color: #706B5DFF
+  - name: Short Burn, power: 999999, x: -1.8, z: 98.92, model: assets/bannner.obj, color: #706B5DFF
+  - name: Short Burn, power: 999999, x: 1.8, z: 197.83, model: assets/bannner.obj, color: #706B5DFF
 
 cards:
-  - op: times, param: firepower, val: 3, x: -1.721, z: 20
-  - op: plus, param: manpower, val: 20, x: 1.636, z: 30
-  - op: times, param: firepower, val: 4, x: 0.48, z: 42
-  - op: plus, param: bulletpower, val: 10, x: 1.89, z: 56
-  - op: minus, param: manpower, val: 10, x: -1.382, z: 72
-  - op: plus, param: manpower, val: 35, x: 1.89, z: 82
-  - op: times, param: soldierlife, val: 2, x: 0.48, z: 94
-  - op: div, param: firepower, val: 2, x: -2.85, z: 108
-  - op: times, param: manpower, val: 3, x: 1.157, z: 124
-  - op: times, param: firepower, val: 5, x: -2.004, z: 134
-  - op: plus, param: bulletpower, val: 12, x: 2.004, z: 146
-  - op: plus, param: manpower, val: 25, x: 1.551, z: 160
-  - op: plus, param: soldierlife, val: 10, x: -1.044, z: 176
+  - op: times, param: firepower, val: 3, x: -1.01, z: 24
+  - op: plus, param: manpower, val: 20, x: 1.01, z: 40
+  - op: times, param: firepower, val: 4, x: -1.8, z: 58
+  - op: plus, param: bulletpower, val: 10, x: 1.8, z: 78
+  - op: minus, param: manpower, val: 10, x: 0, z: 92
+  - op: plus, param: manpower, val: 35, x: -2.48, z: 114
+  - op: times, param: soldierlife, val: 2, x: 2.48, z: 130
+  - op: div, param: firepower, val: 2, x: -1.01, z: 148
+  - op: times, param: manpower, val: 3, x: 1.01, z: 168
+  - op: times, param: firepower, val: 5, x: -1.8, z: 182
+  - op: plus, param: bulletpower, val: 12, x: 1.8, z: 204
+  - op: plus, param: manpower, val: 25, x: 0, z: 220
+  - op: plus, param: soldierlife, val: 10, x: -2.48, z: 238
 
 enemy_brigades:
-  - name: spark screen, effective: 193, strength: 16, x: -1.542, z: 35, color: #2D1C77FF
-  - name: right flare, effective: 240, strength: 16, x: 1.542, z: 52, color: #46F39CFF
-  - name: flash wall, effective: 329, strength: 18, x: 0.445, z: 69, color: #A93D2EFF
-  - name: hard burn line, effective: 480, strength: 20, x: -1.935, z: 77, color: #D266FFFF
-  - name: ember reserve, effective: 591, strength: 21, x: 2.101, z: 94, color: #2DE265FF
-  - name: furnace block, effective: 806, strength: 22, x: -0.445, z: 111, color: #772D1CFF
-  - name: final flame, effective: 1147, strength: 24, x: -0.714, z: 119, color: #9C46F3FF
+  - name: spark screen, effective: 193, strength: 16, x: -1.72, z: 46, color: #2D1C77FF
+  - name: right flare, effective: 240, strength: 16, x: 1.72, z: 64, color: #46F39CFF
+  - name: flash wall, effective: 329, strength: 18, x: -3.07, z: 84, color: #A93D2EFF
+  - name: hard burn line, effective: 480, strength: 20, x: 3.07, z: 106, color: #D266FFFF
+  - name: ember reserve, effective: 591, strength: 21, x: 0, z: 123, color: #2DE265FF
+  - name: furnace block, effective: 806, strength: 22, x: -4.22, z: 147, color: #772D1CFF
+  - name: final flame, effective: 1147, strength: 24, x: 4.22, z: 167, color: #9C46F3FF
 
 bosses:
-  - name: Captain Flashpoint, power: 68309.944, x: 1.87, z: 181.75, color: #F39C46FF
-  - name: The Furnace Duke, power: 262845, x: -0.463, z: 226.75, model: assets/clown-head.obj, color: #3D2EA9FF
+  - name: Captain Flashpoint, power: 68309.944, x: -0.97, z: 239.75, color: #F39C46FF
+  - name: The Furnace Duke, power: 262845, x: 0.97, z: 295.75, model: assets/clown-head.obj, color: #3D2EA9FF

@@ -1,5 +1,5 @@
 name: The Raven's Bend
-road_length: 390.95
+road_length: 404.95
 road_width: 16
 starting_soldiers: 10
 fire_rate: 4.0
@@ -18,47 +18,47 @@ boss_color: #5C248FFF
 decoration_color: #8C8578FF
 
 background_decorations:
-  - name: The Raven's Bend archway, power: 999999, x: -2.88, z: 28, model: assets/triumphal-arch.obj, color: #588098FF
-  - name: The Raven's Bend tunnel, power: 999999, x: 1.92, z: 66, model: assets/tunnel_section.obj, color: #333C27FF
-  - name: The Raven's Bend monument, power: 999999, x: 3.52, z: 142, model: assets/triumphal-arch.obj, color: #DFCC72FF
-  - name: The Raven's Bend sentinel, power: 999999, x: -3.84, z: 180, model: assets/bigpill.obj, color: #7B8A7AFF
+  - name: The Raven's Bend archway, power: 999999, x: -5.18, z: 24, model: assets/triumphal-arch.obj, color: #588098FF
+  - name: The Raven's Bend tunnel, power: 999999, x: 4.59, z: 72, model: assets/tunnel_section.obj, color: #333C27FF
+  - name: The Raven's Bend monument, power: 999999, x: -2.07, z: 154, model: assets/triumphal-arch.obj, color: #DFCC72FF
+  - name: The Raven's Bend sentinel, power: 999999, x: 2.66, z: 228, model: assets/bigpill.obj, color: #7B8A7AFF
 
 decorations:
   - name: Raven marker, power: 999999, x: 3.2, z: 88, model: assets/default-decoration.obj, color: #8C8578FF
-  - name: The Raven's Bend first banner, power: 999999, x: -1.8, z: 130.32, model: assets/bannner.obj, color: #8C8578FF
-  - name: The Raven's Bend second banner, power: 999999, x: 1.8, z: 260.63, model: assets/bannner.obj, color: #8C8578FF
+  - name: The Raven's Bend first banner, power: 999999, x: -1.8, z: 134.98, model: assets/bannner.obj, color: #8C8578FF
+  - name: The Raven's Bend second banner, power: 999999, x: 1.8, z: 269.97, model: assets/bannner.obj, color: #8C8578FF
 
 cards:
-  - op: plus, param: manpower, val: 15, x: -1.213, z: 20
-  - op: minus, param: manpower, val: 5, x: 1.213, z: 30
-  - op: plus, param: bulletpower, val: 5, x: 0.48, z: 42
-  - op: times, param: manpower, val: 7, x: -1.75, z: 56
-  - op: div, param: manpower, val: 2, x: 1.75, z: 72
-  - op: plus, param: soldierlife, val: 5, x: -0.903, z: 82
-  - op: times, param: firepower, val: 5, x: -0.79, z: 94
-  - op: times, param: firepower, val: 7, x: -0.48, z: 108
-  - op: div, param: firepower, val: 2, x: 1.75, z: 124
-  - op: minus, param: firepower, val: 5, x: 1.213, z: 134
-  - op: plus, param: manpower, val: 15, x: -1.213, z: 146
-  - op: minus, param: manpower, val: 5, x: 1.213, z: 160
-  - op: times, param: firepower, val: 5, x: -0.79, z: 176
-  - op: plus, param: bulletpower, val: 5, x: 0.197, z: 186
-  - op: plus, param: soldierlife, val: 4, x: -0.197, z: 198
+  - op: plus, param: manpower, val: 15, x: -4.58, z: 18
+  - op: minus, param: manpower, val: 5, x: 4.06, z: 27
+  - op: plus, param: bulletpower, val: 5, x: -1.83, z: 40
+  - op: times, param: manpower, val: 7, x: 2.36, z: 58
+  - op: div, param: manpower, val: 2, x: -3.8, z: 69
+  - op: plus, param: soldierlife, val: 5, x: 4.84, z: 85
+  - op: times, param: firepower, val: 5, x: 0, z: 94
+  - op: times, param: firepower, val: 7, x: -4.58, z: 107
+  - op: div, param: firepower, val: 2, x: 4.06, z: 125
+  - op: minus, param: firepower, val: 5, x: -1.83, z: 136
+  - op: plus, param: manpower, val: 15, x: 2.36, z: 152
+  - op: minus, param: manpower, val: 5, x: -3.8, z: 161
+  - op: times, param: firepower, val: 5, x: 4.84, z: 174
+  - op: plus, param: bulletpower, val: 5, x: 0, z: 192
+  - op: plus, param: soldierlife, val: 4, x: -4.58, z: 203
 
 enemy_brigades:
-  - name: vanguard, effective: 109, strength: 14, x: 2.101, z: 35, color: #333C27FF
-  - effective: 156, strength: 14, x: -2.101, z: 50, color: #DD95C2FF
-  - effective: 202, strength: 16, x: -0.797, z: 65, color: #DFCC72FF
-  - effective: 249, strength: 16, x: 0.714, z: 71, color: #7B8A7AFF
-  - effective: 254, strength: 18, x: -1.211, z: 86, color: #985880FF
-  - effective: 343, strength: 18, x: 1.211, z: 101, color: #27333CFF
-  - effective: 180, strength: 14, x: -1.211, z: 107, color: #C2DD95FF
-  - effective: 227, strength: 16, x: -1.687, z: 122, color: #72DFCCFF
-  - effective: 274, strength: 16, x: 1.604, z: 137, color: #7A7B8AFF
-  - effective: 279, strength: 18, x: -2.101, z: 143, color: #809858FF
+  - name: vanguard, effective: 109, strength: 14, x: -7.2, z: 32, color: #333C27FF
+  - effective: 156, strength: 14, x: 6.9, z: 43, color: #DD95C2FF
+  - effective: 202, strength: 16, x: -3.12, z: 62, color: #DFCC72FF
+  - effective: 249, strength: 16, x: 4.01, z: 71, color: #7B8A7AFF
+  - effective: 254, strength: 18, x: -6.45, z: 94, color: #985880FF
+  - effective: 343, strength: 18, x: 7.2, z: 108, color: #27333CFF
+  - effective: 180, strength: 14, x: 0, z: 125, color: #C2DD95FF
+  - effective: 227, strength: 16, x: -7.2, z: 136, color: #72DFCCFF
+  - effective: 274, strength: 16, x: 6.9, z: 155, color: #7A7B8AFF
+  - effective: 279, strength: 18, x: -3.12, z: 164, color: #809858FF
 
 bosses:
-  - name: General Raven, power: 29997, x: 0.463, z: 185.95, color: #95C2DDFF
-  - name: Darth Putin, power: 62370, x: -0.463, z: 230.95, color: #CC72DFFF
-  - name: Moloch, power: 239085, x: 0.463, z: 275.95, color: #8A7A7BFF
-  - name: Moloch, power: 268785, x: -0.463, z: 320.95, model: assets/clown-head.obj, color: #588098FF
+  - name: General Raven, power: 29997, x: -0.99, z: 198.95, color: #95C2DDFF
+  - name: Darth Putin, power: 62370, x: 1.27, z: 238.95, color: #CC72DFFF
+  - name: Moloch, power: 239085, x: -2.05, z: 290.95, color: #8A7A7BFF
+  - name: Moloch, power: 268785, x: 2.62, z: 334.95, model: assets/clown-head.obj, color: #588098FF

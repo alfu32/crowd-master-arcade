@@ -1,5 +1,5 @@
 name: Frontline Furnace
-road_length: 314.3
+road_length: 390
 road_width: 14
 starting_soldiers: 20
 fire_rate: 7.2
@@ -18,37 +18,37 @@ boss_color: #6B2B8EFF
 decoration_color: #7A6A57FF
 
 background_decorations:
-  - name: Frontline Furnace archway, power: 999999, x: -2.52, z: 28, model: assets/triumphal-arch.obj, color: #DE6833FF
-  - name: Frontline Furnace tunnel, power: 999999, x: 1.68, z: 66, model: assets/tunnel_section.obj, color: #252166FF
-  - name: Frontline Furnace monument, power: 999999, x: 3.08, z: 142, model: assets/triumphal-arch.obj, color: #984836FF
-  - name: Frontline Furnace sentinel, power: 999999, x: -3.36, z: 180, model: assets/tunnel_section.obj, color: #D266FFFF
+  - name: Frontline Furnace archway, power: 999999, x: -2.24, z: 30, model: assets/triumphal-arch.obj, color: #DE6833FF
+  - name: Frontline Furnace tunnel, power: 999999, x: 2.24, z: 96, model: assets/tunnel_section.obj, color: #252166FF
+  - name: Frontline Furnace monument, power: 999999, x: -5.25, z: 190, model: assets/triumphal-arch.obj, color: #984836FF
+  - name: Frontline Furnace sentinel, power: 999999, x: 5.25, z: 320, model: assets/tunnel_section.obj, color: #D266FFFF
 
 decorations:
-  - name: Frontline Furnace first banner, power: 999999, x: -1.8, z: 104.77, model: assets/bannner.obj, color: #7A6A57FF
-  - name: Frontline Furnace second banner, power: 999999, x: 1.8, z: 209.53, model: assets/bannner.obj, color: #7A6A57FF
+  - name: Frontline Furnace first banner, power: 999999, x: -1.8, z: 130, model: assets/bannner.obj, color: #7A6A57FF
+  - name: Frontline Furnace second banner, power: 999999, x: 1.8, z: 260, model: assets/bannner.obj, color: #7A6A57FF
 
 cards:
-  - op: plus, param: manpower, val: 18, x: -1.89, z: 20
-  - op: times, param: firepower, val: 2, x: 1.721, z: 30
-  - op: plus, param: soldierlife, val: 6, x: 0.48, z: 42
-  - op: minus, param: manpower, val: 8, x: -2.342, z: 56
-  - op: plus, param: bulletpower, val: 6, x: 2.511, z: 72
-  - op: times, param: firepower, val: 3, x: -2.681, z: 82
-  - op: plus, param: manpower, val: 28, x: 1.157, z: 94
-  - op: div, param: firepower, val: 2, x: -1.157, z: 108
-  - op: times, param: bulletpower, val: 2, x: 2.342, z: 124
-  - op: plus, param: soldierlife, val: 8, x: -2.173, z: 134
+  - op: plus, param: manpower, val: 18, x: -1.97, z: 20
+  - op: times, param: firepower, val: 2, x: 1.97, z: 30
+  - op: plus, param: soldierlife, val: 6, x: -4.62, z: 48
+  - op: minus, param: manpower, val: 8, x: 4.62, z: 58
+  - op: plus, param: bulletpower, val: 6, x: 0, z: 76
+  - op: times, param: firepower, val: 3, x: -1.01, z: 104
+  - op: plus, param: manpower, val: 28, x: 1.01, z: 116
+  - op: div, param: firepower, val: 2, x: -1.97, z: 126
+  - op: times, param: bulletpower, val: 2, x: 1.97, z: 144
+  - op: plus, param: soldierlife, val: 8, x: -4.62, z: 154
 
 enemy_brigades:
-  - name: furnace pickets, effective: 151, strength: 15, x: -1.873, z: 35, color: #252166FF
-  - name: ember flank, effective: 198, strength: 16, x: 1.708, z: 52, color: #55F4A9FF
-  - name: heat wall, effective: 266, strength: 17, x: 0.445, z: 69, color: #984836FF
-  - name: smoke line, effective: 355, strength: 18, x: -2.432, z: 77, color: #D266FFFF
-  - name: burn reserve, effective: 444, strength: 19, x: 2.267, z: 94, color: #33DE68FF
-  - name: pressure ridge, effective: 596, strength: 20, x: -0.445, z: 111, color: #662521FF
-  - name: final spark, effective: 811, strength: 21, x: -0.88, z: 119, color: #A955F4FF
-  - name: furnace gate, effective: 1152, strength: 22, x: 0.88, z: 136, color: #369848FF
+  - name: furnace pickets, effective: 151, strength: 15, x: -3.35, z: 36, color: #252166FF
+  - name: ember flank, effective: 198, strength: 16, x: 3.35, z: 46, color: #55F4A9FF
+  - name: heat wall, effective: 266, strength: 17, x: -6.2, z: 64, color: #984836FF
+  - name: smoke line, effective: 355, strength: 18, x: 6.2, z: 74, color: #D266FFFF
+  - name: burn reserve, effective: 444, strength: 19, x: 0, z: 92, color: #33DE68FF
+  - name: pressure ridge, effective: 596, strength: 20, x: -1.72, z: 102, color: #662521FF
+  - name: final spark, effective: 811, strength: 21, x: 1.72, z: 128, color: #A955F4FF
+  - name: furnace gate, effective: 1152, strength: 22, x: -3.35, z: 142, color: #369848FF
 
 bosses:
-  - name: Captain Cinder, power: 87888.5, x: -0.945, z: 199.3, color: #F4A955FF
-  - name: Furnace Warden, power: 262845, x: -0.463, z: 244.3, model: assets/clown-head.obj, color: #483698FF
+  - name: Captain Cinder, power: 87888.5, x: -2.47, z: 211.3, color: #F4A955FF
+  - name: Furnace Warden, power: 262845, x: 2.47, z: 261.3, model: assets/clown-head.obj, color: #483698FF

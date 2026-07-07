@@ -1,5 +1,5 @@
 name: Dead Causeway
-road_length: 383.35
+road_length: 328.35
 road_width: 18
 starting_soldiers: 30
 fire_rate: 4.6
@@ -18,42 +18,42 @@ boss_color: #56389EFF
 decoration_color: #6A645BFF
 
 background_decorations:
-  - name: Dead Causeway archway, power: 999999, x: -3.24, z: 28, model: assets/triumphal-arch.obj, color: #588098FF
-  - name: Dead Causeway tunnel, power: 999999, x: 2.16, z: 66, model: assets/tunnel_section.obj, color: #333C27FF
-  - name: Dead Causeway monument, power: 999999, x: 3.96, z: 142, model: assets/triumphal-arch.obj, color: #DFCC72FF
-  - name: Dead Causeway sentinel, power: 999999, x: -4.32, z: 180, model: assets/bigpill.obj, color: #7B8A7AFF
+  - name: Dead Causeway archway, power: 999999, x: 0, z: 30, model: assets/triumphal-arch.obj, color: #588098FF
+  - name: Dead Causeway tunnel, power: 999999, x: -6.55, z: 88, model: assets/tunnel_section.obj, color: #333C27FF
+  - name: Dead Causeway monument, power: 999999, x: 6.55, z: 128, model: assets/triumphal-arch.obj, color: #DFCC72FF
+  - name: Dead Causeway sentinel, power: 999999, x: -2.94, z: 204, model: assets/bigpill.obj, color: #7B8A7AFF
 
 decorations:
-  - name: Dead Causeway first banner, power: 999999, x: -1.8, z: 127.78, model: assets/bannner.obj, color: #6A645BFF
-  - name: Dead Causeway second banner, power: 999999, x: 1.8, z: 255.57, model: assets/bannner.obj, color: #6A645BFF
+  - name: Dead Causeway first banner, power: 999999, x: -1.8, z: 109.45, model: assets/bannner.obj, color: #6A645BFF
+  - name: Dead Causeway second banner, power: 999999, x: 1.8, z: 218.9, model: assets/bannner.obj, color: #6A645BFF
 
 cards:
-  - op: plus, param: manpower, val: 30, x: -2.694, z: 20
-  - op: times, param: firepower, val: 2, x: 2.694, z: 30
-  - op: plus, param: soldierlife, val: 10, x: 0.25, z: 42
-  - op: minus, param: manpower, val: 16, x: -2.826, z: 56
-  - op: plus, param: bulletpower, val: 12, x: 2.642, z: 72
-  - op: times, param: manpower, val: 3, x: -2.274, z: 82
-  - op: div, param: firepower, val: 2, x: 0.802, z: 94
-  - op: plus, param: manpower, val: 50, x: 2.326, z: 108
-  - op: times, param: firepower, val: 4, x: -1.406, z: 124
-  - op: plus, param: soldierlife, val: 14, x: 0.486, z: 134
-  - op: times, param: bulletpower, val: 2, x: -0.486, z: 146
-  - op: minus, param: firepower, val: 5, x: 1.59, z: 160
+  - op: plus, param: manpower, val: 30, x: 0, z: 16
+  - op: times, param: firepower, val: 2, x: -5.81, z: 23
+  - op: plus, param: soldierlife, val: 10, x: 5.81, z: 32
+  - op: minus, param: manpower, val: 16, x: -2.61, z: 42
+  - op: plus, param: bulletpower, val: 12, x: 2.61, z: 56
+  - op: times, param: manpower, val: 3, x: -4.62, z: 64
+  - op: div, param: firepower, val: 2, x: 4.62, z: 81
+  - op: plus, param: manpower, val: 50, x: 0, z: 88
+  - op: times, param: firepower, val: 4, x: -5.81, z: 97
+  - op: plus, param: soldierlife, val: 14, x: 5.81, z: 107
+  - op: times, param: bulletpower, val: 2, x: -2.61, z: 121
+  - op: minus, param: firepower, val: 5, x: 2.61, z: 129
 
 enemy_brigades:
-  - name: dead causeway front, effective: 228, strength: 15, x: -2.66, z: 35, color: #333C27FF
-  - name: causeway right, effective: 273, strength: 16, x: 2.48, z: 50, color: #DD95C2FF
-  - name: causeway left, effective: 333, strength: 17, x: 0.22, z: 65, color: #DFCC72FF
-  - name: bridge brace, effective: 451, strength: 18, x: -2.56, z: 71, color: #7B8A7AFF
-  - name: bridge lock, effective: 584, strength: 19, x: 2.38, z: 86, color: #985880FF
-  - name: bridge core, effective: 760, strength: 20, x: -0.22, z: 101, color: #27333CFF
-  - name: bridge final, effective: 1037, strength: 21, x: -1.4, z: 107, color: #C2DD95FF
-  - name: dead causeway crown, effective: 1402, strength: 22, x: 1.4, z: 122, color: #72DFCCFF
-  - name: causeway tomb, effective: 1882, strength: 23, x: 0.22, z: 137, color: #7A7B8AFF
-  - name: final blockade, effective: 2493, strength: 24, x: -0.22, z: 143, color: #809858FF
+  - name: dead causeway front, effective: 228, strength: 15, x: 0, z: 24, color: #333C27FF
+  - name: causeway right, effective: 273, strength: 16, x: -8.2, z: 31, color: #DD95C2FF
+  - name: causeway left, effective: 333, strength: 17, x: 8.2, z: 39, color: #DFCC72FF
+  - name: bridge brace, effective: 451, strength: 18, x: -4.44, z: 50, color: #7B8A7AFF
+  - name: bridge lock, effective: 584, strength: 19, x: 4.44, z: 59, color: #985880FF
+  - name: bridge core, effective: 760, strength: 20, x: -7.86, z: 75, color: #27333CFF
+  - name: bridge final, effective: 1037, strength: 21, x: 7.86, z: 95, color: #C2DD95FF
+  - name: dead causeway crown, effective: 1402, strength: 22, x: 0, z: 107, color: #72DFCCFF
+  - name: causeway tomb, effective: 1882, strength: 23, x: -8.2, z: 114, color: #7A7B8AFF
+  - name: final blockade, effective: 2493, strength: 24, x: 8.2, z: 122, color: #809858FF
 
 bosses:
-  - name: Ravager Spire, power: 27633.92, x: -1.28, z: 223.35, color: #95C2DDFF
-  - name: Iron Wake, power: 66243.92, x: 1.28, z: 268.35, color: #CC72DFFF
-  - name: Causeway Tyrant, power: 112860, x: 0.25, z: 313.35, model: assets/bigbot.obj, color: #8A7A7BFF
+  - name: Ravager Spire, power: 27633.92, x: 3.16, z: 188.35, color: #95C2DDFF
+  - name: Iron Wake, power: 66243.92, x: -1.42, z: 220.35, color: #CC72DFFF
+  - name: Causeway Tyrant, power: 112860, x: 1.42, z: 258.35, model: assets/bigbot.obj, color: #8A7A7BFF

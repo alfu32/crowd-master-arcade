@@ -1,5 +1,5 @@
 name: Blackout Divide
-road_length: 358.75
+road_length: 309.17
 road_width: 16
 starting_soldiers: 22
 fire_rate: 6.0
@@ -18,39 +18,39 @@ boss_color: #30459CFF
 decoration_color: #665F59FF
 
 background_decorations:
-  - name: Blackout Divide archway, power: 999999, x: -2.88, z: 28, model: assets/triumphal-arch.obj, color: #588098FF
-  - name: Blackout Divide tunnel, power: 999999, x: 1.92, z: 66, model: assets/tunnel_section.obj, color: #333C27FF
-  - name: Blackout Divide monument, power: 999999, x: 3.52, z: 142, model: assets/triumphal-arch.obj, color: #DFCC72FF
-  - name: Blackout Divide sentinel, power: 999999, x: -3.84, z: 180, model: assets/bigpill.obj, color: #7B8A7AFF
+  - name: Blackout Divide archway, power: 999999, x: 0, z: 30, model: assets/triumphal-arch.obj, color: #588098FF
+  - name: Blackout Divide tunnel, power: 999999, x: -5.77, z: 88, model: assets/tunnel_section.obj, color: #333C27FF
+  - name: Blackout Divide monument, power: 999999, x: 5.77, z: 128, model: assets/triumphal-arch.obj, color: #DFCC72FF
+  - name: Blackout Divide sentinel, power: 999999, x: -2.59, z: 204, model: assets/bigpill.obj, color: #7B8A7AFF
 
 decorations:
-  - name: Blackout Divide first banner, power: 999999, x: -1.8, z: 119.58, model: assets/bannner.obj, color: #665F59FF
-  - name: Blackout Divide second banner, power: 999999, x: 1.8, z: 239.17, model: assets/bannner.obj, color: #665F59FF
+  - name: Blackout Divide first banner, power: 999999, x: -1.8, z: 103.06, model: assets/bannner.obj, color: #665F59FF
+  - name: Blackout Divide second banner, power: 999999, x: 1.8, z: 206.11, model: assets/bannner.obj, color: #665F59FF
 
 cards:
-  - op: plus, param: manpower, val: 22, x: -2.228, z: 20
-  - op: times, param: firepower, val: 2, x: 2.059, z: 30
-  - op: plus, param: soldierlife, val: 7, x: 0.48, z: 42
-  - op: minus, param: manpower, val: 12, x: -2.85, z: 56
-  - op: plus, param: bulletpower, val: 8, x: 2.681, z: 72
-  - op: times, param: manpower, val: 3, x: -2.342, z: 82
-  - op: div, param: firepower, val: 2, x: 0.988, z: 94
-  - op: plus, param: manpower, val: 34, x: 1.89, z: 108
-  - op: times, param: firepower, val: 4, x: -1.044, z: 124
-  - op: plus, param: soldierlife, val: 10, x: 0.197, z: 134
-  - op: times, param: bulletpower, val: 2, x: -0.197, z: 146
+  - op: plus, param: manpower, val: 22, x: 0, z: 16
+  - op: times, param: firepower, val: 2, x: -5.11, z: 23
+  - op: plus, param: soldierlife, val: 7, x: 5.11, z: 32
+  - op: minus, param: manpower, val: 12, x: -2.29, z: 42
+  - op: plus, param: bulletpower, val: 8, x: 2.29, z: 56
+  - op: times, param: manpower, val: 3, x: -4.06, z: 64
+  - op: div, param: firepower, val: 2, x: 4.06, z: 81
+  - op: plus, param: manpower, val: 34, x: 0, z: 88
+  - op: times, param: firepower, val: 4, x: -5.11, z: 97
+  - op: plus, param: soldierlife, val: 10, x: 5.11, z: 107
+  - op: times, param: bulletpower, val: 2, x: -2.29, z: 121
 
 enemy_brigades:
-  - name: blackout vanguard, effective: 193, strength: 16, x: -2.205, z: 35, color: #333C27FF
-  - name: right shell, effective: 240, strength: 16, x: 2.039, z: 52, color: #DD95C2FF
-  - name: center shell, effective: 307, strength: 17, x: 0.445, z: 69, color: #DFCC72FF
-  - name: left shell, effective: 396, strength: 18, x: -2.598, z: 77, color: #7B8A7AFF
-  - name: divide wall, effective: 507, strength: 19, x: 2.432, z: 94, color: #985880FF
-  - name: cross line, effective: 680, strength: 20, x: -0.445, z: 111, color: #27333CFF
-  - name: blind ridge, effective: 937, strength: 21, x: -1.045, z: 119, color: #C2DD95FF
-  - name: last blackout, effective: 1320, strength: 22, x: 0.88, z: 136, color: #72DFCCFF
+  - name: blackout vanguard, effective: 193, strength: 16, x: 0, z: 24, color: #333C27FF
+  - name: right shell, effective: 240, strength: 16, x: -7.2, z: 31, color: #DD95C2FF
+  - name: center shell, effective: 307, strength: 17, x: 7.2, z: 39, color: #DFCC72FF
+  - name: left shell, effective: 396, strength: 18, x: -3.89, z: 50, color: #7B8A7AFF
+  - name: divide wall, effective: 507, strength: 19, x: 3.89, z: 59, color: #985880FF
+  - name: cross line, effective: 680, strength: 20, x: -6.9, z: 75, color: #27333CFF
+  - name: blind ridge, effective: 937, strength: 21, x: 6.9, z: 95, color: #C2DD95FF
+  - name: last blackout, effective: 1320, strength: 22, x: 0, z: 107, color: #72DFCCFF
 
 bosses:
-  - name: Divider General, power: 65127.905, x: 0.463, z: 198.75, color: #95C2DDFF
-  - name: Blackout Engine, power: 154970.405, x: -1.87, z: 243.75, color: #CC72DFFF
-  - name: Night Splitter, power: 265815, x: 1.87, z: 288.75, model: assets/bigbot.obj, color: #8A7A7BFF
+  - name: Divider General, power: 65127.905, x: 2.76, z: 155.75, color: #95C2DDFF
+  - name: Blackout Engine, power: 154970.405, x: -1.24, z: 187.75, color: #CC72DFFF
+  - name: Night Splitter, power: 265815, x: 1.24, z: 225.75, model: assets/bigbot.obj, color: #8A7A7BFF
