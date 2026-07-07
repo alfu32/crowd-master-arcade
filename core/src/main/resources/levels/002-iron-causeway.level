@@ -20,9 +20,11 @@ decoration_color: #77736AFF
 background_decorations:
   - name: The Iron Causeway archway, power: 999999, x: -2.88, z: 28, model: assets/triumphal-arch.obj, color: #588098FF
   - name: The Iron Causeway tunnel, power: 999999, x: 1.92, z: 66, model: assets/tunnel_section.obj, color: #333C27FF
-  - name: The Iron Causeway first banner, power: 999999, x: -1.8, z: 140.63, model: assets/bannner.obj, color: #77736AFF
   - name: The Iron Causeway monument, power: 999999, x: 3.52, z: 142, model: assets/triumphal-arch.obj, color: #DFCC72FF
   - name: The Iron Causeway sentinel, power: 999999, x: -3.84, z: 180, model: assets/bigpill.obj, color: #7B8A7AFF
+
+decorations:
+  - name: The Iron Causeway first banner, power: 999999, x: -1.8, z: 140.63, model: assets/bannner.obj, color: #77736AFF
   - name: The Iron Causeway second banner, power: 999999, x: 1.8, z: 281.27, model: assets/bannner.obj, color: #77736AFF
 
 cards:
@@ -57,7 +59,7 @@ enemy_brigades:
   - name: final shield, effective: 1125, strength: 22, x: 2.101, z: 158, color: #3C2733FF
 
 bosses:
-  - name: Marshal Ferrum, power: 82293.75, x: -0.789, z: 216.9, color: #95C2DDFF
-  - name: Duchess Vanta, power: 137362.5, x: 0.945, z: 261.9, color: #CC72DFFF
-  - name: The Gate Engine, power: 259256.25, x: 0.463, z: 306.9, color: #8A7A7BFF
-  - name: Iron Crown, power: 447975, x: -0.463, z: 351.9, model: assets/clown-head.obj, color: #588098FF
+  - name: Marshal Ferrum, power: 49376.25, x: -0.789, z: 216.9, color: #95C2DDFF
+  - name: Duchess Vanta, power: 82417.5, x: 0.945, z: 261.9, color: #CC72DFFF
+  - name: The Gate Engine, power: 155553.75, x: 0.463, z: 306.9, color: #8A7A7BFF
+  - name: Iron Crown, power: 268785, x: -0.463, z: 351.9, model: assets/clown-head.obj, color: #588098FF

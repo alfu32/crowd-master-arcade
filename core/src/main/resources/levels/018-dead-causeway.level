@@ -20,9 +20,11 @@ decoration_color: #6A645BFF
 background_decorations:
   - name: Dead Causeway archway, power: 999999, x: -3.24, z: 28, model: assets/triumphal-arch.obj, color: #588098FF
   - name: Dead Causeway tunnel, power: 999999, x: 2.16, z: 66, model: assets/tunnel_section.obj, color: #333C27FF
-  - name: Dead Causeway first banner, power: 999999, x: -1.8, z: 127.78, model: assets/bannner.obj, color: #6A645BFF
   - name: Dead Causeway monument, power: 999999, x: 3.96, z: 142, model: assets/triumphal-arch.obj, color: #DFCC72FF
   - name: Dead Causeway sentinel, power: 999999, x: -4.32, z: 180, model: assets/bigpill.obj, color: #7B8A7AFF
+
+decorations:
+  - name: Dead Causeway first banner, power: 999999, x: -1.8, z: 127.78, model: assets/bannner.obj, color: #6A645BFF
   - name: Dead Causeway second banner, power: 999999, x: 1.8, z: 255.57, model: assets/bannner.obj, color: #6A645BFF
 
 cards:
@@ -52,6 +54,6 @@ enemy_brigades:
   - name: final blockade, effective: 2493, strength: 24, x: -0.22, z: 143, color: #809858FF
 
 bosses:
-  - name: Ravager Spire, power: 46056.533, x: -1.28, z: 223.35, color: #95C2DDFF
-  - name: Iron Wake, power: 110406.533, x: 1.28, z: 268.35, color: #CC72DFFF
-  - name: Causeway Tyrant, power: 188100, x: 0.25, z: 313.35, model: assets/bigbot.obj, color: #8A7A7BFF
+  - name: Ravager Spire, power: 27633.92, x: -1.28, z: 223.35, color: #95C2DDFF
+  - name: Iron Wake, power: 66243.92, x: 1.28, z: 268.35, color: #CC72DFFF
+  - name: Causeway Tyrant, power: 112860, x: 0.25, z: 313.35, model: assets/bigbot.obj, color: #8A7A7BFF

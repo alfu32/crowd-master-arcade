@@ -1,4 +1,7 @@
+bannner.obj
+bigbot.obj
 bigpill.obj
+clown-head.obj
 default-bulletpower-card.obj
 default-boss.obj
 default-decoration.obj
@@ -6,5 +9,9 @@ default-firepower-card.obj
 default-manpower-card.obj
 default-soldierlife-card.obj
 default-set.octd
+default-set.octd.bak
 default-soldier.obj
+index.txt
+thorn.obj
 triumphal-arch.obj
+tunnel_section.obj

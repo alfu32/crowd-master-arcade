@@ -20,9 +20,11 @@ decoration_color: #7F7468FF
 background_decorations:
   - name: Glass Canyon archway, power: 999999, x: -3.06, z: 28, model: assets/triumphal-arch.obj, color: #588098FF
   - name: Glass Canyon tunnel, power: 999999, x: 2.04, z: 66, model: assets/tunnel_section.obj, color: #333C27FF
-  - name: Glass Canyon first banner, power: 999999, x: -1.8, z: 124.13, model: assets/bannner.obj, color: #7F7468FF
   - name: Glass Canyon monument, power: 999999, x: 3.74, z: 142, model: assets/triumphal-arch.obj, color: #DFCC72FF
   - name: Glass Canyon sentinel, power: 999999, x: -4.08, z: 180, model: assets/bigpill.obj, color: #7B8A7AFF
+
+decorations:
+  - name: Glass Canyon first banner, power: 999999, x: -1.8, z: 124.13, model: assets/bannner.obj, color: #7F7468FF
   - name: Glass Canyon second banner, power: 999999, x: 1.8, z: 248.27, model: assets/bannner.obj, color: #7F7468FF
 
 cards:
@@ -51,6 +53,6 @@ enemy_brigades:
   - name: canyon throat, effective: 2062, strength: 24, x: 0.445, z: 137, color: #7A7B8AFF
 
 bosses:
-  - name: Shard Marshal, power: 105993.236, x: -0.945, z: 212.4, color: #95C2DDFF
-  - name: Canyon Prism, power: 258061.815, x: 0.945, z: 257.4, color: #CC72DFFF
-  - name: The Glass King, power: 443025, x: 0.463, z: 302.4, model: assets/bigbot.obj, color: #8A7A7BFF
+  - name: Shard Marshal, power: 63595.942, x: -0.945, z: 212.4, color: #95C2DDFF
+  - name: Canyon Prism, power: 154837.089, x: 0.945, z: 257.4, color: #CC72DFFF
+  - name: The Glass King, power: 265815, x: 0.463, z: 302.4, model: assets/bigbot.obj, color: #8A7A7BFF

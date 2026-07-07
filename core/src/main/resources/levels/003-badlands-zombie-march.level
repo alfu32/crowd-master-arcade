@@ -21,8 +21,10 @@ background_decorations:
   - name: Badlands Zombie March archway, power: 999999, x: -3.24, z: 28, model: assets/triumphal-arch.obj, color: #C46533FF
   - name: Badlands Zombie March tunnel, power: 999999, x: 2.16, z: 66, model: assets/tunnel_section.obj, color: #2B1F65FF
   - name: Badlands Zombie March monument, power: 999999, x: 3.96, z: 142, model: assets/thorn.obj, color: #987757FF
-  - name: Badlands Zombie March first banner, power: 999999, x: -1.8, z: 146.92, model: assets/bannner.obj, color: #9A805FFF
   - name: Badlands Zombie March sentinel, power: 999999, x: -4.32, z: 180, model: assets/triumphal-arch.obj, color: #5757ECFF
+
+decorations:
+  - name: Badlands Zombie March first banner, power: 999999, x: -1.8, z: 146.92, model: assets/bannner.obj, color: #9A805FFF
   - name: Badlands Zombie March second banner, power: 999999, x: 1.8, z: 293.83, model: assets/bannner.obj, color: #9A805FFF
 
 cards:
@@ -59,7 +61,7 @@ enemy_brigades:
   - name: last infected legion, effective: 1444, strength: 23, x: 1.211, z: 173, color: #D69948FF
 
 bosses:
-  - name: Sheriff Rotjaw, power: 85635, x: -1.101, z: 235.75, color: #D69948FF
-  - name: Mother Badlands, power: 141817.5, x: 1.101, z: 280.75, color: #775798FF
-  - name: The Zombie Baron, power: 242550, x: 0.463, z: 325.75, color: #57EC57FF
-  - name: Dead Mesa Colossus, power: 447975, x: -0.463, z: 370.75, model: assets/clown-head.obj, color: #C46533FF
+  - name: Sheriff Rotjaw, power: 51381, x: -1.101, z: 235.75, color: #D69948FF
+  - name: Mother Badlands, power: 85090.5, x: 1.101, z: 280.75, color: #775798FF
+  - name: The Zombie Baron, power: 145530, x: 0.463, z: 325.75, color: #57EC57FF
+  - name: Dead Mesa Colossus, power: 268785, x: -0.463, z: 370.75, model: assets/clown-head.obj, color: #C46533FF

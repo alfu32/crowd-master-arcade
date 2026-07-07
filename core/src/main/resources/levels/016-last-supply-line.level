@@ -20,8 +20,10 @@ decoration_color: #69615BFF
 background_decorations:
   - name: Last Supply Line archway, power: 999999, x: -3.24, z: 28, model: assets/triumphal-arch.obj, color: #6736ADFF
   - name: Last Supply Line tunnel, power: 999999, x: 2.16, z: 66, model: assets/tunnel_section.obj, color: #2B362BFF
-  - name: Last Supply Line first banner, power: 999999, x: -1.8, z: 121.38, model: assets/bannner.obj, color: #69615BFF
   - name: Last Supply Line monument, power: 999999, x: 3.96, z: 142, model: assets/clown-head.obj, color: #5886DAFF
+
+decorations:
+  - name: Last Supply Line first banner, power: 999999, x: -1.8, z: 121.38, model: assets/bannner.obj, color: #69615BFF
   - name: Last Supply Line second banner, power: 999999, x: 1.8, z: 242.77, model: assets/bannner.obj, color: #69615BFF
 
 cards:
@@ -50,6 +52,6 @@ enemy_brigades:
   - name: last convoy, effective: 1708, strength: 22, x: 0.22, z: 137, color: #E9D468FF
 
 bosses:
-  - name: Quartermaster Voss, power: 45899.989, x: -1.28, z: 204.15, color: #AE89FFFF
-  - name: Supply Tyrant, power: 113850, x: 1.28, z: 249.15, color: #86DA58FF
-  - name: The Last Wagon, power: 188100, x: 0.25, z: 294.15, model: assets/bigbot.obj, color: #68E9D4FF
+  - name: Quartermaster Voss, power: 27539.993, x: -1.28, z: 204.15, color: #AE89FFFF
+  - name: Supply Tyrant, power: 68310, x: 1.28, z: 249.15, color: #86DA58FF
+  - name: The Last Wagon, power: 112860, x: 0.25, z: 294.15, model: assets/bigbot.obj, color: #68E9D4FF

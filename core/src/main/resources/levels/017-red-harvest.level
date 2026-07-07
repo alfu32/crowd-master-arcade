@@ -20,8 +20,10 @@ decoration_color: #725F56FF
 background_decorations:
   - name: Red Harvest archway, power: 999999, x: -3.24, z: 28, model: assets/triumphal-arch.obj, color: #B37633FF
   - name: Red Harvest tunnel, power: 999999, x: 2.16, z: 66, model: assets/tunnel_section.obj, color: #3B1B55FF
-  - name: Red Harvest first banner, power: 999999, x: -1.8, z: 122.3, model: assets/bannner.obj, color: #725F56FF
   - name: Red Harvest sentinel, power: 999999, x: -4.32, z: 180, model: assets/triumphal-arch.obj, color: #5757ECFF
+
+decorations:
+  - name: Red Harvest first banner, power: 999999, x: -1.8, z: 122.3, model: assets/bannner.obj, color: #725F56FF
   - name: Red Harvest second banner, power: 999999, x: 1.8, z: 244.6, model: assets/bannner.obj, color: #725F56FF
 
 cards:
@@ -50,6 +52,6 @@ enemy_brigades:
   - name: final crop, effective: 1882, strength: 22, x: 0.22, z: 137, color: #EC5757FF
 
 bosses:
-  - name: Reaper Hal, power: 46671.446, x: -1.28, z: 206.9, color: #E8C155FF
-  - name: Crimson Binder, power: 113850, x: 1.28, z: 251.9, color: #674187FF
-  - name: The Harvest King, power: 188100, x: 0.25, z: 296.9, model: assets/bigbot.obj, color: #57EC57FF
+  - name: Reaper Hal, power: 28002.868, x: -1.28, z: 206.9, color: #E8C155FF
+  - name: Crimson Binder, power: 68310, x: 1.28, z: 251.9, color: #674187FF
+  - name: The Harvest King, power: 112860, x: 0.25, z: 296.9, model: assets/bigbot.obj, color: #57EC57FF

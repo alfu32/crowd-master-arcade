@@ -90,7 +90,7 @@ object ResourceHome {
     }
 
     private fun seedOctdSources(root: FileHandle) {
-        assetIndexEntries()
+        packagedAssetEntries()
             .filter { it.endsWith(".octd", ignoreCase = true) }
             .forEach { name ->
                 copyMissing(Gdx.files.internal("assets/$name"), root.child(name.substringAfterLast('/')))
@@ -99,18 +99,23 @@ object ResourceHome {
 
     private fun seedAssets(root: FileHandle) {
         val assetRoot = root.child("assets")
-        val entries = assetIndexEntries()
-        if (entries.isNotEmpty()) {
-            entries.forEach { name ->
-                copyMissing(Gdx.files.internal("assets/$name"), assetRoot.child(name))
-            }
-        } else {
-            copyMissing(Gdx.files.internal("assets"), assetRoot)
+        val packagedAssets = Gdx.files.internal("assets")
+        if (copyInternalDirectory(packagedAssets, assetRoot)) {
+            seedOctdSources(root)
+            return
+        }
+
+        packagedAssetEntries().forEach { name ->
+            copyMissing(Gdx.files.internal("assets/$name"), assetRoot.child(name))
         }
         seedOctdSources(root)
     }
 
-    private fun assetIndexEntries(): List<String> {
+    private fun packagedAssetEntries(): List<String> {
+        val assets = Gdx.files.internal("assets")
+        val listed = listFilesRecursive(assets)
+        if (listed.isNotEmpty()) return listed
+
         val index = Gdx.files.internal("assets/index.txt")
         if (!index.exists()) return emptyList()
         return index.readString("UTF-8")
@@ -119,6 +124,31 @@ object ResourceHome {
             .filter { it.isNotBlank() }
             .toList()
     }
+
+    private fun listFilesRecursive(root: FileHandle): List<String> =
+        runCatching {
+            if (!root.exists() || !root.isDirectory) return@runCatching emptyList()
+            root.list()
+                .flatMap { child ->
+                    if (child.isDirectory) {
+                        listFilesRecursive(child).map { "${child.name()}/$it" }
+                    } else {
+                        listOf(child.name())
+                    }
+                }
+        }.getOrDefault(emptyList())
+
+    private fun copyInternalDirectory(source: FileHandle, target: FileHandle): Boolean =
+        runCatching {
+            if (!source.exists() || !source.isDirectory) return@runCatching false
+            val children = source.list()
+            if (children.isEmpty()) return@runCatching false
+            target.mkdirs()
+            children.forEach { child ->
+                copyMissing(child, target.child(child.name()))
+            }
+            true
+        }.getOrDefault(false)
 
     private fun copyMissing(source: FileHandle, target: FileHandle) {
         if (!source.exists()) return

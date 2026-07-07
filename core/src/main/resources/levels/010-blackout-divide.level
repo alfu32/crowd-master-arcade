@@ -20,9 +20,11 @@ decoration_color: #665F59FF
 background_decorations:
   - name: Blackout Divide archway, power: 999999, x: -2.88, z: 28, model: assets/triumphal-arch.obj, color: #588098FF
   - name: Blackout Divide tunnel, power: 999999, x: 1.92, z: 66, model: assets/tunnel_section.obj, color: #333C27FF
-  - name: Blackout Divide first banner, power: 999999, x: -1.8, z: 119.58, model: assets/bannner.obj, color: #665F59FF
   - name: Blackout Divide monument, power: 999999, x: 3.52, z: 142, model: assets/triumphal-arch.obj, color: #DFCC72FF
   - name: Blackout Divide sentinel, power: 999999, x: -3.84, z: 180, model: assets/bigpill.obj, color: #7B8A7AFF
+
+decorations:
+  - name: Blackout Divide first banner, power: 999999, x: -1.8, z: 119.58, model: assets/bannner.obj, color: #665F59FF
   - name: Blackout Divide second banner, power: 999999, x: 1.8, z: 239.17, model: assets/bannner.obj, color: #665F59FF
 
 cards:
@@ -49,6 +51,6 @@ enemy_brigades:
   - name: last blackout, effective: 1320, strength: 22, x: 0.88, z: 136, color: #72DFCCFF
 
 bosses:
-  - name: Divider General, power: 108546.508, x: 0.463, z: 198.75, color: #95C2DDFF
-  - name: Blackout Engine, power: 258284.008, x: -1.87, z: 243.75, color: #CC72DFFF
-  - name: Night Splitter, power: 443025, x: 1.87, z: 288.75, model: assets/bigbot.obj, color: #8A7A7BFF
+  - name: Divider General, power: 65127.905, x: 0.463, z: 198.75, color: #95C2DDFF
+  - name: Blackout Engine, power: 154970.405, x: -1.87, z: 243.75, color: #CC72DFFF
+  - name: Night Splitter, power: 265815, x: 1.87, z: 288.75, model: assets/bigbot.obj, color: #8A7A7BFF

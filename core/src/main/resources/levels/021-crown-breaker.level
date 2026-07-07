@@ -21,8 +21,10 @@ background_decorations:
   - name: Crown Breaker archway, power: 999999, x: -3.24, z: 28, model: assets/triumphal-arch.obj, color: #588098FF
   - name: Crown Breaker tunnel, power: 999999, x: 2.16, z: 66, model: assets/tunnel_section.obj, color: #333C27FF
   - name: Crown Breaker monument, power: 999999, x: 3.96, z: 142, model: assets/triumphal-arch.obj, color: #DFCC72FF
-  - name: Crown Breaker first banner, power: 999999, x: -1.8, z: 145.35, model: assets/bannner.obj, color: #6C665DFF
   - name: Crown Breaker sentinel, power: 999999, x: -4.32, z: 180, model: assets/bigpill.obj, color: #7B8A7AFF
+
+decorations:
+  - name: Crown Breaker first banner, power: 999999, x: -1.8, z: 145.35, model: assets/bannner.obj, color: #6C665DFF
   - name: Crown Breaker second banner, power: 999999, x: 1.8, z: 290.7, model: assets/bannner.obj, color: #6C665DFF
 
 cards:
@@ -53,7 +55,7 @@ enemy_brigades:
   - name: last breaker, effective: 2928, strength: 24, x: -0.22, z: 143, color: #809858FF
 
 bosses:
-  - name: Crown Guard, power: 38797.357, x: -1.28, z: 231.05, color: #95C2DDFF
-  - name: Break King, power: 91106.73, x: 1.28, z: 276.05, color: #CC72DFFF
-  - name: Iron Regent, power: 134185.095, x: 0.25, z: 321.05, color: #8A7A7BFF
-  - name: Broken Crown, power: 188100, x: -0.25, z: 366.05, model: assets/clown-head.obj, color: #588098FF
+  - name: Crown Guard, power: 23278.414, x: -1.28, z: 231.05, color: #95C2DDFF
+  - name: Break King, power: 54664.038, x: 1.28, z: 276.05, color: #CC72DFFF
+  - name: Iron Regent, power: 80511.057, x: 0.25, z: 321.05, color: #8A7A7BFF
+  - name: Broken Crown, power: 112860, x: -0.25, z: 366.05, model: assets/clown-head.obj, color: #588098FF

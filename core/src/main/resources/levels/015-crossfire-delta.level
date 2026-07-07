@@ -20,9 +20,11 @@ decoration_color: #64716DFF
 background_decorations:
   - name: Crossfire Delta archway, power: 999999, x: -3.24, z: 28, model: assets/triumphal-arch.obj, color: #588098FF
   - name: Crossfire Delta tunnel, power: 999999, x: 2.16, z: 66, model: assets/tunnel_section.obj, color: #333C27FF
-  - name: Crossfire Delta first banner, power: 999999, x: -1.8, z: 125.23, model: assets/bannner.obj, color: #64716DFF
   - name: Crossfire Delta monument, power: 999999, x: 3.96, z: 142, model: assets/triumphal-arch.obj, color: #DFCC72FF
   - name: Crossfire Delta sentinel, power: 999999, x: -4.32, z: 180, model: assets/bigpill.obj, color: #7B8A7AFF
+
+decorations:
+  - name: Crossfire Delta first banner, power: 999999, x: -1.8, z: 125.23, model: assets/bannner.obj, color: #64716DFF
   - name: Crossfire Delta second banner, power: 999999, x: 1.8, z: 250.47, model: assets/bannner.obj, color: #64716DFF
 
 cards:
@@ -51,6 +53,6 @@ enemy_brigades:
   - name: delta crown, effective: 2376, strength: 24, x: 0.445, z: 137, color: #7A7B8AFF
 
 bosses:
-  - name: Delta Commander, power: 109551.389, x: -0.945, z: 215.7, color: #95C2DDFF
-  - name: Crossfire Lord, power: 262805.833, x: 0.945, z: 260.7, color: #CC72DFFF
-  - name: The Delta Engine, power: 443025, x: 0.463, z: 305.7, model: assets/bigbot.obj, color: #8A7A7BFF
+  - name: Delta Commander, power: 65730.833, x: -0.945, z: 215.7, color: #95C2DDFF
+  - name: Crossfire Lord, power: 157683.5, x: 0.945, z: 260.7, color: #CC72DFFF
+  - name: The Delta Engine, power: 265815, x: 0.463, z: 305.7, model: assets/bigbot.obj, color: #8A7A7BFF

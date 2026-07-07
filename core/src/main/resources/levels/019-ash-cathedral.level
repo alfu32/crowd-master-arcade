@@ -21,8 +21,10 @@ background_decorations:
   - name: Ash Cathedral archway, power: 999999, x: -3.24, z: 28, model: assets/triumphal-arch.obj, color: #E2652DFF
   - name: Ash Cathedral tunnel, power: 999999, x: 2.16, z: 66, model: assets/tunnel_section.obj, color: #2D1C77FF
   - name: Ash Cathedral monument, power: 999999, x: 3.96, z: 142, model: assets/triumphal-arch.obj, color: #A93D2EFF
-  - name: Ash Cathedral first banner, power: 999999, x: -1.8, z: 143.33, model: assets/bannner.obj, color: #71685DFF
   - name: Ash Cathedral sentinel, power: 999999, x: -4.32, z: 180, model: assets/clown-head.obj, color: #D266FFFF
+
+decorations:
+  - name: Ash Cathedral first banner, power: 999999, x: -1.8, z: 143.33, model: assets/bannner.obj, color: #71685DFF
   - name: Ash Cathedral second banner, power: 999999, x: 1.8, z: 286.67, model: assets/bannner.obj, color: #71685DFF
 
 cards:
@@ -52,7 +54,7 @@ enemy_brigades:
   - name: final choir, effective: 2580, strength: 24, x: -0.22, z: 143, color: #652DE2FF
 
 bosses:
-  - name: Ash Deacon, power: 38671.875, x: -1.28, z: 225, color: #F39C46FF
-  - name: Choir Engine, power: 89100, x: 1.28, z: 270, color: #3D2EA9FF
-  - name: Cathedral Heart, power: 135815.625, x: 0.25, z: 315, color: #66FFD2FF
-  - name: Fallen Bell, power: 188100, x: -0.25, z: 360, model: assets/clown-head.obj, color: #E2652DFF
+  - name: Ash Deacon, power: 23203.125, x: -1.28, z: 225, color: #F39C46FF
+  - name: Choir Engine, power: 53460, x: 1.28, z: 270, color: #3D2EA9FF
+  - name: Cathedral Heart, power: 81489.375, x: 0.25, z: 315, color: #66FFD2FF
+  - name: Fallen Bell, power: 112860, x: -0.25, z: 360, model: assets/clown-head.obj, color: #E2652DFF

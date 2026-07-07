@@ -20,9 +20,11 @@ decoration_color: #27664AFF
 background_decorations:
   - name: Run Through the Jungle archway, power: 999999, x: -3.6, z: 28, model: assets/triumphal-arch.obj, color: #378B53FF
   - name: Run Through the Jungle tunnel, power: 999999, x: 2.4, z: 66, model: assets/tunnel_section.obj, color: #43311BFF
-  - name: Run Through the Jungle first banner, power: 999999, x: -1.8, z: 127.28, model: assets/bannner.obj, color: #27664AFF
   - name: Run Through the Jungle monument, power: 999999, x: 4.4, z: 142, model: assets/thorn.obj, color: #DAC666FF
   - name: Run Through the Jungle sentinel, power: 999999, x: -4.8, z: 180, model: assets/bigpill.obj, color: #553076FF
+
+decorations:
+  - name: Run Through the Jungle first banner, power: 999999, x: -1.8, z: 127.28, model: assets/bannner.obj, color: #27664AFF
   - name: Run Through the Jungle second banner, power: 999999, x: 1.8, z: 254.57, model: assets/bannner.obj, color: #27664AFF
 
 cards:
@@ -58,6 +60,6 @@ enemy_brigades:
   - name: last jungle tide, effective: 1713, strength: 25, x: 0.445, z: 158, color: #311B43FF
 
 bosses:
-  - name: Colonel Vine, power: 99000, x: -1.492, z: 221.85, color: #99D454FF
-  - name: River Mother, power: 164092.5, x: 1.492, z: 266.85, color: #C666DAFF
-  - name: The Green Thunder, power: 443025, x: 0.463, z: 311.85, model: assets/bigbot.obj, color: #307655FF
+  - name: Colonel Vine, power: 59400, x: -1.492, z: 221.85, color: #99D454FF
+  - name: River Mother, power: 98455.5, x: 1.492, z: 266.85, color: #C666DAFF
+  - name: The Green Thunder, power: 265815, x: 0.463, z: 311.85, model: assets/bigbot.obj, color: #307655FF

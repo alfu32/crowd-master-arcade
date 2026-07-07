@@ -20,9 +20,11 @@ decoration_color: #706B5DFF
 background_decorations:
   - name: Short Burn, power: 999999, x: -2.52, z: 28, model: assets/triumphal-arch.obj, color: #E2652DFF
   - name: Short Burn, power: 999999, x: 1.68, z: 66, model: assets/tunnel_section.obj, color: #2D1C77FF
-  - name: Short Burn, Hard Burn first banner, power: 999999, x: -1.8, z: 98.92, model: assets/bannner.obj, color: #706B5DFF
   - name: Short Burn, power: 999999, x: 3.08, z: 142, model: assets/triumphal-arch.obj, color: #A93D2EFF
   - name: Short Burn, power: 999999, x: -3.36, z: 180, model: assets/clown-head.obj, color: #D266FFFF
+
+decorations:
+  - name: Short Burn, Hard Burn first banner, power: 999999, x: -1.8, z: 98.92, model: assets/bannner.obj, color: #706B5DFF
   - name: Short Burn, Hard Burn second banner, power: 999999, x: 1.8, z: 197.83, model: assets/bannner.obj, color: #706B5DFF
 
 cards:
@@ -50,5 +52,5 @@ enemy_brigades:
   - name: final flame, effective: 1147, strength: 24, x: -0.714, z: 119, color: #9C46F3FF
 
 bosses:
-  - name: Captain Flashpoint, power: 113849.907, x: 1.87, z: 181.75, color: #F39C46FF
-  - name: The Furnace Duke, power: 438075, x: -0.463, z: 226.75, model: assets/clown-head.obj, color: #3D2EA9FF
+  - name: Captain Flashpoint, power: 68309.944, x: 1.87, z: 181.75, color: #F39C46FF
+  - name: The Furnace Duke, power: 262845, x: -0.463, z: 226.75, model: assets/clown-head.obj, color: #3D2EA9FF

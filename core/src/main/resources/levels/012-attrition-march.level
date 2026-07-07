@@ -20,9 +20,11 @@ decoration_color: #6E6255FF
 background_decorations:
   - name: Attrition March archway, power: 999999, x: -3.06, z: 28, model: assets/triumphal-arch.obj, color: #588098FF
   - name: Attrition March tunnel, power: 999999, x: 2.04, z: 66, model: assets/tunnel_section.obj, color: #333C27FF
-  - name: Attrition March first banner, power: 999999, x: -1.8, z: 123.03, model: assets/bannner.obj, color: #6E6255FF
   - name: Attrition March monument, power: 999999, x: 3.74, z: 142, model: assets/triumphal-arch.obj, color: #DFCC72FF
   - name: Attrition March sentinel, power: 999999, x: -4.08, z: 180, model: assets/bigpill.obj, color: #7B8A7AFF
+
+decorations:
+  - name: Attrition March first banner, power: 999999, x: -1.8, z: 123.03, model: assets/bannner.obj, color: #6E6255FF
   - name: Attrition March second banner, power: 999999, x: 1.8, z: 246.07, model: assets/bannner.obj, color: #6E6255FF
 
 cards:
@@ -50,6 +52,6 @@ enemy_brigades:
   - name: attrition crest, effective: 1872, strength: 24, x: 0.445, z: 137, color: #7A7B8AFF
 
 bosses:
-  - name: Colonel Wear, power: 107353.125, x: -0.945, z: 209.1, color: #95C2DDFF
-  - name: General Fray, power: 257090.625, x: 0.945, z: 254.1, color: #CC72DFFF
-  - name: The Dry End, power: 443025, x: 0.463, z: 299.1, model: assets/bigbot.obj, color: #8A7A7BFF
+  - name: Colonel Wear, power: 64411.875, x: -0.945, z: 209.1, color: #95C2DDFF
+  - name: General Fray, power: 154254.375, x: 0.945, z: 254.1, color: #CC72DFFF
+  - name: The Dry End, power: 265815, x: 0.463, z: 299.1, model: assets/bigbot.obj, color: #8A7A7BFF

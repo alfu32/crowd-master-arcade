@@ -20,9 +20,11 @@ decoration_color: #7A6A57FF
 background_decorations:
   - name: Frontline Furnace archway, power: 999999, x: -2.52, z: 28, model: assets/triumphal-arch.obj, color: #DE6833FF
   - name: Frontline Furnace tunnel, power: 999999, x: 1.68, z: 66, model: assets/tunnel_section.obj, color: #252166FF
-  - name: Frontline Furnace first banner, power: 999999, x: -1.8, z: 104.77, model: assets/bannner.obj, color: #7A6A57FF
   - name: Frontline Furnace monument, power: 999999, x: 3.08, z: 142, model: assets/triumphal-arch.obj, color: #984836FF
   - name: Frontline Furnace sentinel, power: 999999, x: -3.36, z: 180, model: assets/tunnel_section.obj, color: #D266FFFF
+
+decorations:
+  - name: Frontline Furnace first banner, power: 999999, x: -1.8, z: 104.77, model: assets/bannner.obj, color: #7A6A57FF
   - name: Frontline Furnace second banner, power: 999999, x: 1.8, z: 209.53, model: assets/bannner.obj, color: #7A6A57FF
 
 cards:
@@ -48,5 +50,5 @@ enemy_brigades:
   - name: furnace gate, effective: 1152, strength: 22, x: 0.88, z: 136, color: #369848FF
 
 bosses:
-  - name: Captain Cinder, power: 146480.833, x: -0.945, z: 199.3, color: #F4A955FF
-  - name: Furnace Warden, power: 438075, x: -0.463, z: 244.3, model: assets/clown-head.obj, color: #483698FF
+  - name: Captain Cinder, power: 87888.5, x: -0.945, z: 199.3, color: #F4A955FF
+  - name: Furnace Warden, power: 262845, x: -0.463, z: 244.3, model: assets/clown-head.obj, color: #483698FF

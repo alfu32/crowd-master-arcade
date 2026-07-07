@@ -20,9 +20,11 @@ decoration_color: #8C8578FF
 background_decorations:
   - name: seven heaven archway, power: 999999, x: -2.88, z: 28, model: assets/triumphal-arch.obj, color: #588098FF
   - name: seven heaven tunnel, power: 999999, x: 1.92, z: 66, model: assets/tunnel_section.obj, color: #333C27FF
-  - name: seven heaven first banner, power: 999999, x: -1.8, z: 140.8, model: assets/bannner.obj, color: #8C8578FF
   - name: seven heaven monument, power: 999999, x: 3.52, z: 142, model: assets/triumphal-arch.obj, color: #DFCC72FF
   - name: seven heaven sentinel, power: 999999, x: -3.84, z: 180, model: assets/bigpill.obj, color: #7B8A7AFF
+
+decorations:
+  - name: seven heaven first banner, power: 999999, x: -1.8, z: 140.8, model: assets/bannner.obj, color: #8C8578FF
   - name: seven heaven second banner, power: 999999, x: 1.8, z: 281.6, model: assets/bannner.obj, color: #8C8578FF
 
 cards:
@@ -52,6 +54,6 @@ enemy_brigades:
   - effective: 830, strength: 104, x: 0.445, z: 209, color: #588098FF
 
 bosses:
-  - name: Arrrrah, power: 73940.625, x: 0.463, z: 262.4, color: #95C2DDFF
-  - power: 51603.75, x: -0.886, z: 307.4, color: #CC72DFFF
-  - name: ARCHENEMY, power: 2987943.75, x: 0.463, z: 352.4, model: assets/bigbot.obj, color: #8A7A7BFF
+  - name: Arrrrah, power: 44364.375, x: 0.463, z: 262.4, color: #95C2DDFF
+  - power: 30962.25, x: -0.886, z: 307.4, color: #CC72DFFF
+  - name: ARCHENEMY, power: 1792766.25, x: 0.463, z: 352.4, model: assets/bigbot.obj, color: #8A7A7BFF

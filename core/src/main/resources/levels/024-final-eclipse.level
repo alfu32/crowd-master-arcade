@@ -21,6 +21,8 @@ background_decorations:
   - name: Final Eclipse archway, power: 999999, x: -3.6, z: 28, model: assets/triumphal-arch.obj, color: #6736ADFF
   - name: Final Eclipse tunnel, power: 999999, x: 2.4, z: 66, model: assets/tunnel_section.obj, color: #2B362BFF
   - name: Final Eclipse monument, power: 999999, x: 4.4, z: 142, model: assets/clown-head.obj, color: #5886DAFF
+
+decorations:
   - name: Final Eclipse first banner, power: 999999, x: -1.8, z: 161.45, model: assets/bannner.obj, color: #5A666CFF
   - name: Final Eclipse second banner, power: 999999, x: 1.8, z: 322.9, model: assets/bannner.obj, color: #5A666CFF
 
@@ -53,8 +55,8 @@ enemy_brigades:
   - name: the last eclipse, effective: 3508, strength: 25, x: -0.22, z: 143, color: #36AD67FF
 
 bosses:
-  - name: Eclipse Herald, power: 43312.5, x: -1.28, z: 234.35, color: #AE89FFFF
-  - name: Black Sun, power: 103950, x: 1.28, z: 279.35, color: #86DA58FF
-  - name: Eclipse Throne, power: 149737.5, x: 0.25, z: 324.35, color: #68E9D4FF
-  - name: World Breaker, power: 195525, x: -0.25, z: 369.35, color: #6736ADFF
-  - name: The Last Light, power: 237600, x: 0.25, z: 414.35, model: assets/bigbot.obj, color: #2B362BFF
+  - name: Eclipse Herald, power: 25987.5, x: -1.28, z: 234.35, color: #AE89FFFF
+  - name: Black Sun, power: 62370, x: 1.28, z: 279.35, color: #86DA58FF
+  - name: Eclipse Throne, power: 89842.5, x: 0.25, z: 324.35, color: #68E9D4FF
+  - name: World Breaker, power: 117315, x: -0.25, z: 369.35, color: #6736ADFF
+  - name: The Last Light, power: 142560, x: 0.25, z: 414.35, model: assets/bigbot.obj, color: #2B362BFF

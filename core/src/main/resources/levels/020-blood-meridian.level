@@ -21,8 +21,10 @@ background_decorations:
   - name: Blood Meridian archway, power: 999999, x: -3.24, z: 28, model: assets/triumphal-arch.obj, color: #E2652DFF
   - name: Blood Meridian tunnel, power: 999999, x: 2.16, z: 66, model: assets/tunnel_section.obj, color: #2D1C77FF
   - name: Blood Meridian monument, power: 999999, x: 3.96, z: 142, model: assets/triumphal-arch.obj, color: #A93D2EFF
-  - name: Blood Meridian first banner, power: 999999, x: -1.8, z: 144.07, model: assets/bannner.obj, color: #715B52FF
   - name: Blood Meridian sentinel, power: 999999, x: -4.32, z: 180, model: assets/clown-head.obj, color: #D266FFFF
+
+decorations:
+  - name: Blood Meridian first banner, power: 999999, x: -1.8, z: 144.07, model: assets/bannner.obj, color: #715B52FF
   - name: Blood Meridian second banner, power: 999999, x: 1.8, z: 288.13, model: assets/bannner.obj, color: #715B52FF
 
 cards:
@@ -52,7 +54,7 @@ enemy_brigades:
   - name: final red tide, effective: 2696, strength: 24, x: -0.22, z: 143, color: #652DE2FF
 
 bosses:
-  - name: Blood Marshal, power: 38751.446, x: -1.28, z: 227.2, color: #F39C46FF
-  - name: Red Oracle, power: 91221.446, x: 1.28, z: 272.2, color: #3D2EA9FF
-  - name: Meridian Titan, power: 134357.108, x: 0.25, z: 317.2, color: #66FFD2FF
-  - name: Crimson Sun, power: 188100, x: -0.25, z: 362.2, model: assets/clown-head.obj, color: #E2652DFF
+  - name: Blood Marshal, power: 23250.868, x: -1.28, z: 227.2, color: #F39C46FF
+  - name: Red Oracle, power: 54732.868, x: 1.28, z: 272.2, color: #3D2EA9FF
+  - name: Meridian Titan, power: 80614.265, x: 0.25, z: 317.2, color: #66FFD2FF
+  - name: Crimson Sun, power: 112860, x: -0.25, z: 362.2, model: assets/clown-head.obj, color: #E2652DFF

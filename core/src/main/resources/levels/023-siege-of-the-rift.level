@@ -21,8 +21,10 @@ background_decorations:
   - name: Siege of the Rift archway, power: 999999, x: -3.24, z: 28, model: assets/triumphal-arch.obj, color: #7646B5FF
   - name: Siege of the Rift tunnel, power: 999999, x: 2.16, z: 66, model: assets/tunnel_section.obj, color: #38582DFF
   - name: Siege of the Rift monument, power: 999999, x: 3.96, z: 142, model: assets/bigbot.obj, color: #5492E5FF
-  - name: Siege of the Rift first banner, power: 999999, x: -1.8, z: 147, model: assets/bannner.obj, color: #64605CFF
   - name: Siege of the Rift sentinel, power: 999999, x: -4.32, z: 180, model: assets/tunnel_section.obj, color: #B969DAFF
+
+decorations:
+  - name: Siege of the Rift first banner, power: 999999, x: -1.8, z: 147, model: assets/bannner.obj, color: #64605CFF
   - name: Siege of the Rift second banner, power: 999999, x: 1.8, z: 294, model: assets/bannner.obj, color: #64605CFF
 
 cards:
@@ -53,7 +55,7 @@ enemy_brigades:
   - name: final breach, effective: 3218, strength: 24, x: -0.22, z: 143, color: #46B576FF
 
 bosses:
-  - name: Rift Sapper, power: 41085, x: -1.28, z: 236, color: #B578FFFF
-  - name: Rift King, power: 98381.25, x: 1.28, z: 281, color: #92E554FF
-  - name: Rift Machine, power: 138600, x: 0.25, z: 326, color: #69DAB9FF
-  - name: Deep Breach, power: 190327.5, x: -0.25, z: 371, model: assets/clown-head.obj, color: #7646B5FF
+  - name: Rift Sapper, power: 24651, x: -1.28, z: 236, color: #B578FFFF
+  - name: Rift King, power: 59028.75, x: 1.28, z: 281, color: #92E554FF
+  - name: Rift Machine, power: 83160, x: 0.25, z: 326, color: #69DAB9FF
+  - name: Deep Breach, power: 114196.5, x: -0.25, z: 371, model: assets/clown-head.obj, color: #7646B5FF

@@ -21,6 +21,8 @@ background_decorations:
   - name: Nightfall Bastion archway, power: 999999, x: -3.24, z: 28, model: assets/triumphal-arch.obj, color: #6736ADFF
   - name: Nightfall Bastion tunnel, power: 999999, x: 2.16, z: 66, model: assets/tunnel_section.obj, color: #2B362BFF
   - name: Nightfall Bastion monument, power: 999999, x: 3.96, z: 142, model: assets/clown-head.obj, color: #5886DAFF
+
+decorations:
   - name: Nightfall Bastion first banner, power: 999999, x: -1.8, z: 145.9, model: assets/bannner.obj, color: #5F6A6DFF
   - name: Nightfall Bastion second banner, power: 999999, x: 1.8, z: 291.8, model: assets/bannner.obj, color: #5F6A6DFF
 
@@ -52,7 +54,7 @@ enemy_brigades:
   - name: final bastion, effective: 3015, strength: 24, x: -0.22, z: 143, color: #36AD67FF
 
 bosses:
-  - name: Night Warden, power: 39600, x: -1.28, z: 232.7, color: #AE89FFFF
-  - name: Shadow Wall, power: 94811.558, x: 1.28, z: 277.7, color: #86DA58FF
-  - name: Bastion Heart, power: 134030.779, x: 0.25, z: 322.7, color: #68E9D4FF
-  - name: Dusk Emperor, power: 188100, x: -0.25, z: 367.7, model: assets/clown-head.obj, color: #6736ADFF
+  - name: Night Warden, power: 23760, x: -1.28, z: 232.7, color: #AE89FFFF
+  - name: Shadow Wall, power: 56886.935, x: 1.28, z: 277.7, color: #86DA58FF
+  - name: Bastion Heart, power: 80418.467, x: 0.25, z: 322.7, color: #68E9D4FF
+  - name: Dusk Emperor, power: 112860, x: -0.25, z: 367.7, model: assets/clown-head.obj, color: #6736ADFF

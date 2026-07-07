@@ -20,9 +20,11 @@ decoration_color: #6D665CFF
 background_decorations:
   - name: Long Road to Ruin archway, power: 999999, x: -2.88, z: 28, model: assets/triumphal-arch.obj, color: #64889BFF
   - name: Long Road to Ruin tunnel, power: 999999, x: 1.92, z: 66, model: assets/tunnel_section.obj, color: #3B432EFF
-  - name: Long Road to Ruin first banner, power: 999999, x: -1.8, z: 122.12, model: assets/bannner.obj, color: #6D665CFF
   - name: Long Road to Ruin monument, power: 999999, x: 3.52, z: 142, model: assets/triumphal-arch.obj, color: #DDC778FF
   - name: Long Road to Ruin sentinel, power: 999999, x: -3.84, z: 180, model: assets/bigbot.obj, color: #8C9687FF
+
+decorations:
+  - name: Long Road to Ruin first banner, power: 999999, x: -1.8, z: 122.12, model: assets/bannner.obj, color: #6D665CFF
   - name: Long Road to Ruin second banner, power: 999999, x: 1.8, z: 244.23, model: assets/bannner.obj, color: #6D665CFF
 
 cards:
@@ -51,6 +53,6 @@ enemy_brigades:
   - name: ruin gate, effective: 1662, strength: 24, x: 0.445, z: 137, color: #878C96FF
 
 bosses:
-  - name: Ruin Marshal, power: 105466.99, x: -0.945, z: 206.35, color: #AAD1EAFF
-  - name: The Long Scar, power: 259515.816, x: 0.945, z: 251.35, color: #C778DDFF
-  - name: Breakline Titan, power: 443025, x: 0.463, z: 296.35, model: assets/bigbot.obj, color: #96878CFF
+  - name: Ruin Marshal, power: 63280.194, x: -0.945, z: 206.35, color: #AAD1EAFF
+  - name: The Long Scar, power: 155709.49, x: 0.945, z: 251.35, color: #C778DDFF
+  - name: Breakline Titan, power: 265815, x: 0.463, z: 296.35, model: assets/bigbot.obj, color: #96878CFF

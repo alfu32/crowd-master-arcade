@@ -20,9 +20,11 @@ decoration_color: #50585BFF
 background_decorations:
   - name: Ambush archway, power: 999999, x: -3.24, z: 28, model: assets/triumphal-arch.obj, color: #378B53FF
   - name: Ambush tunnel, power: 999999, x: 2.16, z: 66, model: assets/tunnel_section.obj, color: #43311BFF
-  - name: Ambush first banner, power: 999999, x: -1.8, z: 122.47, model: assets/bannner.obj, color: #50585BFF
   - name: Ambush monument, power: 999999, x: 3.96, z: 142, model: assets/thorn.obj, color: #DAC666FF
   - name: Ambush sentinel, power: 999999, x: -4.32, z: 180, model: assets/bigpill.obj, color: #553076FF
+
+decorations:
+  - name: Ambush first banner, power: 999999, x: -1.8, z: 122.47, model: assets/bannner.obj, color: #50585BFF
   - name: Ambush second banner, power: 999999, x: 1.8, z: 244.93, model: assets/bannner.obj, color: #50585BFF
 
 cards:
@@ -55,6 +57,6 @@ enemy_brigades:
   - name: no escape line, effective: 1540, strength: 24, x: 0.714, z: 143, color: #8B5337FF
 
 bosses:
-  - name: Lady Snare, power: 111149.899, x: -1.727, z: 207.4, color: #99D454FF
-  - name: Baron Crossfire, power: 157612.424, x: 1.727, z: 252.4, color: #C666DAFF
-  - name: The Netmaker, power: 443025, x: 0.463, z: 297.4, model: assets/bigbot.obj, color: #307655FF
+  - name: Lady Snare, power: 66689.939, x: -1.727, z: 207.4, color: #99D454FF
+  - name: Baron Crossfire, power: 94567.454, x: 1.727, z: 252.4, color: #C666DAFF
+  - name: The Netmaker, power: 265815, x: 0.463, z: 297.4, model: assets/bigbot.obj, color: #307655FF
