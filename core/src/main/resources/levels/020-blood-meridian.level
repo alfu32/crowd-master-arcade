@@ -1,10 +1,10 @@
 name: Blood Meridian
-road_length: 559.2
+road_length: 559
 road_width: 18
 starting_soldiers: 32
-fire_rate: 4.2
-max_fire_rate: 116.0
-projectile_pool: 2000
+fire_rate: 4
+max_fire_rate: 116
+projectile_pool: 5000
 projectile_length: 76
 soldier_model: assets/default-soldier.obj
 boss_model: assets/default-boss.obj
@@ -18,43 +18,43 @@ boss_color: #5A379CFF
 decoration_color: #715B52FF
 
 background_decorations:
-  - name: Blood Meridian archway, power: 999999, x: -1.51, z: 42, model: assets/triumphal-arch.obj, color: #E2652DFF
-  - name: Blood Meridian tunnel, power: 999999, x: 1.51, z: 116, model: assets/tunnel_section.obj, color: #2D1C77FF
-  - name: Blood Meridian monument, power: 999999, x: -2.69, z: 198, model: assets/triumphal-arch.obj, color: #A93D2EFF
-  - name: Blood Meridian sentinel, power: 999999, x: 2.69, z: 286, model: assets/clown-head.obj, color: #D266FFFF
+  - name: Blood Meridian archway, power: 999999, x: 0, z: 42,  model: assets/triumphal-arch.obj,  color: #E2652DFF
+  - name: Blood Meridian tunnel, power: 999999, x: 0, z: 116,  model: assets/tunnel_section.obj,  color: #2D1C77FF
+  - name: Blood Meridian monument, power: 999999, x: 0, z: 198,  model: assets/triumphal-arch.obj,  color: #A93D2EFF
+  - name: Blood Meridian sentinel, power: 999999, x: 0, z: 286,  model: assets/clown-head.obj,  color: #D266FFFF
 
 decorations:
-  - name: Blood Meridian first banner, power: 999999, x: -1.8, z: 186.4, model: assets/bannner.obj, color: #715B52FF
-  - name: Blood Meridian second banner, power: 999999, x: 1.8, z: 372.8, model: assets/bannner.obj, color: #715B52FF
+  - name: Blood Meridian first banner, power: 999999, x: 0, z: 186,  model: assets/bannner.obj,  color: #715B52FF
+  - name: Blood Meridian second banner, power: 999999, x: 0, z: 373,  model: assets/bannner.obj,  color: #715B52FF
 
 cards:
-  - op: plus, param: manpower, val: 32, x: -1.34, z: 24
-  - op: times, param: firepower, val: 2, x: 1.34, z: 40
-  - op: plus, param: soldierlife, val: 10, x: -2.39, z: 58
-  - op: minus, param: manpower, val: 18, x: 2.39, z: 78
-  - op: plus, param: bulletpower, val: 14, x: 0, z: 92
-  - op: times, param: manpower, val: 3, x: -3.28, z: 114
-  - op: div, param: firepower, val: 2, x: 3.28, z: 130
-  - op: plus, param: manpower, val: 54, x: -1.34, z: 148
-  - op: times, param: firepower, val: 4, x: 1.34, z: 168
-  - op: plus, param: soldierlife, val: 16, x: -2.39, z: 182
-  - op: times, param: bulletpower, val: 2, x: 2.39, z: 204
-  - op: minus, param: firepower, val: 5, x: 0, z: 220
+  - op: plus,  param: manpower, val: 32, x: -1, z: 24
+  - op: times,  param: firepower, val: 2, x: 1, z: 40
+  - op: plus,  param: soldierlife, val: 10, x: -2, z: 58
+  - op: minus,  param: manpower, val: 18, x: 2, z: 78
+  - op: plus,  param: bulletpower, val: 14, x: 0, z: 92
+  - op: times,  param: manpower, val: 3, x: -3, z: 114
+  - op: div,  param: firepower, val: 2, x: 3, z: 130
+  - op: plus,  param: manpower, val: 54, x: -1, z: 148
+  - op: times,  param: firepower, val: 4, x: 1, z: 168
+  - op: plus,  param: soldierlife, val: 16, x: -2, z: 182
+  - op: times,  param: bulletpower, val: 2, x: 2, z: 204
+  - op: minus,  param: firepower, val: 5, x: 0, z: 220
 
 enemy_brigades:
-  - name: blood scouts, effective: 256, strength: 15, x: -2.28, z: 46, color: #2D1C77FF
-  - name: red flank, effective: 316, strength: 16, x: 2.28, z: 64, color: #46F39CFF
-  - name: meridian line, effective: 391, strength: 17, x: -4.06, z: 84, color: #A93D2EFF
-  - name: blood gate, effective: 509, strength: 18, x: 4.06, z: 106, color: #D266FFFF
-  - name: red line, effective: 656, strength: 19, x: 0, z: 123, color: #2DE265FF
-  - name: meridian core, effective: 861, strength: 20, x: -5.58, z: 147, color: #772D1CFF
-  - name: blood crown, effective: 1138, strength: 21, x: 5.58, z: 167, color: #9C46F3FF
-  - name: red crown, effective: 1532, strength: 22, x: -2.28, z: 185, color: #2EA93DFF
-  - name: meridian tomb, effective: 2027, strength: 23, x: 2.28, z: 205, color: #FFD266FF
-  - name: final red tide, effective: 2696, strength: 24, x: -4.06, z: 227, color: #652DE2FF
+  - name: blood scouts, effective: 256, strength: 15, x: -2, z: 46,  color: #2D1C77FF
+  - name: red flank, effective: 316, strength: 16, x: 2, z: 62,  color: #46F39CFF
+  - name: meridian line, effective: 391, strength: 17, x: -4, z: 78,  color: #A93D2EFF
+  - name: blood gate, effective: 509, strength: 18, x: 4, z: 99,  color: #D266FFFF
+  - name: red line, effective: 600, strength: 19, x: 0, z: 123,  color: #2DE265FF
+  - name: meridian core, effective: 600, strength: 20, x: -6, z: 142,  color: #772D1CFF
+  - name: blood crown, effective: 600, strength: 21, x: 6, z: 183,  color: #9C46F3FF
+  - name: red crown, effective: 600, strength: 22, x: -2, z: 224,  color: #2EA93DFF
+  - name: meridian tomb, effective: 600, strength: 23, x: 2, z: 246,  color: #FFD266FF
+  - name: final red tide, effective: 600, strength: 24, x: -4, z: 268,  color: #652DE2FF
 
 bosses:
-  - name: Blood Marshal, power: 23250.868, x: -1.3, z: 321.2, color: #F39C46FF
-  - name: Red Oracle, power: 54732.868, x: 1.3, z: 377.2, color: #3D2EA9FF
-  - name: Meridian Titan, power: 80614.265, x: 0, z: 427.2, color: #66FFD2FF
-  - name: Crimson Sun, power: 112860, x: -1.78, z: 489.2, model: assets/clown-head.obj, color: #E2652DFF
+  - name: Blood Marshal, power: 23000, x: 0, z: 350,  color: #F39C46FF
+  - name: Red Oracle, power: 55000, x: 0, z: 398,  color: #3D2EA9FF
+  - name: Meridian Titan, power: 81000, x: 0, z: 446,  color: #66FFD2FF
+  - name: Crimson Sun, power: 383000, x: 0, z: 494,  model: assets/clown-head.obj,  color: #E2652DFF

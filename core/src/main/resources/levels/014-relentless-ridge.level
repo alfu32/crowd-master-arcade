@@ -1,10 +1,10 @@
 name: Relentless Ridge
-road_length: 453.4
+road_length: 453
 road_width: 18
 starting_soldiers: 26
-fire_rate: 5.2
-max_fire_rate: 100.0
-projectile_pool: 1700
+fire_rate: 5
+max_fire_rate: 100
+projectile_pool: 5000
 projectile_length: 64
 soldier_model: assets/default-soldier.obj
 boss_model: assets/default-boss.obj
@@ -18,41 +18,41 @@ boss_color: #4D2D88FF
 decoration_color: #6A6359FF
 
 background_decorations:
-  - name: Relentless Ridge archway, power: 999999, x: -4.62, z: 36, model: assets/triumphal-arch.obj, color: #588098FF
-  - name: Relentless Ridge tunnel, power: 999999, x: -2.52, z: 110, model: assets/tunnel_section.obj, color: #333C27FF
-  - name: Relentless Ridge monument, power: 999999, x: 0, z: 210, model: assets/triumphal-arch.obj, color: #DFCC72FF
-  - name: Relentless Ridge sentinel, power: 999999, x: 2.52, z: 314, model: assets/bigpill.obj, color: #7B8A7AFF
+  - name: Relentless Ridge archway, power: 999999, x: 0, z: 36,  model: assets/triumphal-arch.obj,  color: #588098FF
+  - name: Relentless Ridge tunnel, power: 999999, x: 0, z: 110,  model: assets/tunnel_section.obj,  color: #333C27FF
+  - name: Relentless Ridge monument, power: 999999, x: 0, z: 210,  model: assets/triumphal-arch.obj,  color: #DFCC72FF
+  - name: Relentless Ridge sentinel, power: 999999, x: 0, z: 314,  model: assets/bigpill.obj,  color: #7B8A7AFF
 
 decorations:
-  - name: Relentless Ridge first banner, power: 999999, x: -1.8, z: 151.13, model: assets/bannner.obj, color: #6A6359FF
-  - name: Relentless Ridge second banner, power: 999999, x: 1.8, z: 302.27, model: assets/bannner.obj, color: #6A6359FF
+  - name: Relentless Ridge first banner, power: 999999, x: 0, z: 151,  model: assets/bannner.obj,  color: #6A6359FF
+  - name: Relentless Ridge second banner, power: 999999, x: 0, z: 302,  model: assets/bannner.obj,  color: #6A6359FF
 
 cards:
-  - op: plus, param: manpower, val: 26, x: -4.1, z: 22
-  - op: times, param: firepower, val: 2, x: -2.24, z: 33
-  - op: plus, param: soldierlife, val: 8, x: 0, z: 48
-  - op: minus, param: manpower, val: 14, x: 2.24, z: 67
-  - op: plus, param: bulletpower, val: 10, x: 4.1, z: 90
-  - op: times, param: manpower, val: 3, x: -0.75, z: 105
-  - op: div, param: firepower, val: 2, x: 0.75, z: 116
-  - op: plus, param: manpower, val: 42, x: -4.1, z: 131
-  - op: times, param: firepower, val: 4, x: -2.24, z: 150
-  - op: plus, param: soldierlife, val: 12, x: 0, z: 173
-  - op: plus, param: bulletpower, val: 12, x: 2.24, z: 188
-  - op: minus, param: firepower, val: 4, x: 4.1, z: 199
+  - op: plus,  param: manpower, val: 26, x: -4, z: 22
+  - op: times,  param: firepower, val: 2, x: -2, z: 33
+  - op: plus,  param: soldierlife, val: 8, x: 0, z: 48
+  - op: minus,  param: manpower, val: 14, x: 2, z: 67
+  - op: plus,  param: bulletpower, val: 10, x: 4, z: 90
+  - op: times,  param: manpower, val: 3, x: -1, z: 105
+  - op: div,  param: firepower, val: 2, x: 1, z: 116
+  - op: plus,  param: manpower, val: 42, x: -4, z: 131
+  - op: times,  param: firepower, val: 4, x: -2, z: 150
+  - op: plus,  param: soldierlife, val: 12, x: 0, z: 173
+  - op: plus,  param: bulletpower, val: 12, x: 2, z: 188
+  - op: minus,  param: firepower, val: 4, x: 4, z: 199
 
 enemy_brigades:
-  - name: ridge front, effective: 256, strength: 16, x: -6.97, z: 40, color: #333C27FF
-  - name: ridge right, effective: 324, strength: 17, x: -3.8, z: 52, color: #DD95C2FF
-  - name: ridge left, effective: 391, strength: 18, x: 0, z: 68, color: #DFCC72FF
-  - name: ridge brace, effective: 524, strength: 19, x: 3.8, z: 88, color: #7B8A7AFF
-  - name: ridge grip, effective: 675, strength: 20, x: 6.97, z: 112, color: #985880FF
-  - name: ridge core, effective: 870, strength: 21, x: -1.27, z: 140, color: #27333CFF
-  - name: ridge apex, effective: 1189, strength: 22, x: 1.27, z: 158, color: #C2DD95FF
-  - name: ridge final, effective: 1657, strength: 23, x: -6.97, z: 170, color: #72DFCCFF
-  - name: ridge crown, effective: 2208, strength: 24, x: -3.8, z: 186, color: #7A7B8AFF
+  - name: ridge front, effective: 256, strength: 16, x: -7, z: 40,  color: #333C27FF
+  - name: ridge right, effective: 324, strength: 17, x: -4, z: 69,  color: #DD95C2FF
+  - name: ridge left, effective: 391, strength: 18, x: 0, z: 87,  color: #DFCC72FF
+  - name: ridge brace, effective: 524, strength: 19, x: 4, z: 103,  color: #7B8A7AFF
+  - name: ridge grip, effective: 600, strength: 20, x: 7, z: 128,  color: #985880FF
+  - name: ridge core, effective: 600, strength: 21, x: -1, z: 184,  color: #27333CFF
+  - name: ridge apex, effective: 600, strength: 22, x: 1, z: 204,  color: #C2DD95FF
+  - name: ridge final, effective: 600, strength: 23, x: -7, z: 224,  color: #72DFCCFF
+  - name: ridge crown, effective: 600, strength: 24, x: -4, z: 280,  color: #7A7B8AFF
 
 bosses:
-  - name: Ridge Captain, power: 65065.591, x: 0, z: 277.4, color: #95C2DDFF
-  - name: The Relentless, power: 155343.957, x: 1.22, z: 337.4, color: #CC72DFFF
-  - name: Summit Breaker, power: 265815, x: 2.23, z: 383.4, model: assets/bigbot.obj, color: #8A7A7BFF
+  - name: Ridge Captain, power: 65000, x: 0, z: 362,  color: #95C2DDFF
+  - name: The Relentless, power: 132000, x: 0, z: 410,  color: #CC72DFFF
+  - name: Summit Breaker, power: 357000, x: 0, z: 458,  model: assets/bigbot.obj,  color: #8A7A7BFF

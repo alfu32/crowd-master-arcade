@@ -1,6 +1,7 @@
 package com.crowdmasterarcade.model
 
 import com.crowdmasterarcade.config.GameConfig
+import kotlin.math.roundToInt
 
 object LevelTextParser {
     fun parse(text: String): LevelDefinition {
@@ -31,23 +32,23 @@ object LevelTextParser {
                                 operation = parseOperation(item.required("op")),
                                 target = parseTarget(item.required("param")),
                                 value = item.float("val"),
-                                x = item.float("x", 0f),
-                                z = item.float("z"),
+                                x = item.coordinate("x", 0f),
+                                z = item.coordinate("z"),
                                 modelPath = item["model"]
                             )
                             "decorations" -> decorations += DecorationDefinition(
                                 name = item["name"] ?: "decoration ${decorations.size + 1}",
                                 power = item.float("power", 1f),
-                                x = item.float("x", 0f),
-                                z = item.float("z"),
+                                x = item.coordinate("x", 0f),
+                                z = item.coordinate("z"),
                                 modelPath = item["model"] ?: "assets/default-decoration.obj",
                                 color = item.color("color")
                             )
                             "background_decorations" -> backgroundDecorations += BackgroundDecorationDefinition(
                                 name = item["name"] ?: "background decoration ${backgroundDecorations.size + 1}",
                                 power = item.float("power", 1f),
-                                x = item.float("x", 0f),
-                                z = item.float("z"),
+                                x = item.coordinate("x", 0f),
+                                z = item.coordinate("z"),
                                 modelPath = item["model"] ?: "assets/default-decoration.obj",
                                 color = item.color("color")
                             )
@@ -55,16 +56,16 @@ object LevelTextParser {
                                 effective = item.int("effective"),
                                 unitStrength = item.float("strength", 10f),
                                 name = item["name"],
-                                x = item.float("x", 0f),
-                                z = item.float("z"),
+                                x = item.coordinate("x", 0f),
+                                z = item.coordinate("z"),
                                 modelPath = item["model"],
                                 color = item.color("color")
                             )
                             "bosses", "boss" -> bosses += BossDefinition(
                                 power = item.float("power"),
                                 name = item["name"],
-                                x = item.float("x", 0f),
-                                z = item.float("z"),
+                                x = item.coordinate("x", 0f),
+                                z = item.coordinate("z"),
                                 modelPath = item["model"],
                                 color = item.color("color")
                             )
@@ -162,6 +163,9 @@ object LevelTextParser {
 
     private fun Map<String, String>.float(key: String, default: Float? = null): Float =
         this[key]?.toFloat() ?: default ?: error("Missing required float level field: $key")
+
+    private fun Map<String, String>.coordinate(key: String, default: Float? = null): Float =
+        float(key, default).roundToInt().toFloat()
 
     private fun Map<String, String>.int(key: String, default: Int? = null): Int =
         this[key]?.toInt() ?: default ?: error("Missing required int level field: $key")

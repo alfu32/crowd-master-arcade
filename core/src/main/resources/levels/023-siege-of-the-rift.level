@@ -2,9 +2,9 @@ name: Siege of the Rift
 road_length: 485
 road_width: 18
 starting_soldiers: 36
-fire_rate: 4.0
-max_fire_rate: 128.0
-projectile_pool: 2200
+fire_rate: 4
+max_fire_rate: 128
+projectile_pool: 5000
 projectile_length: 82
 soldier_model: assets/default-soldier.obj
 boss_model: assets/default-boss.obj
@@ -18,44 +18,44 @@ boss_color: #493C9CFF
 decoration_color: #64605CFF
 
 background_decorations:
-  - name: Siege of the Rift archway, power: 999999, x: 0, z: 20, model: assets/triumphal-arch.obj, color: #7646B5FF
-  - name: Siege of the Rift tunnel, power: 999999, x: -5.46, z: 134, model: assets/tunnel_section.obj, color: #38582DFF
-  - name: Siege of the Rift monument, power: 999999, x: -1.26, z: 178, model: assets/bigbot.obj, color: #5492E5FF
-  - name: Siege of the Rift sentinel, power: 999999, x: 6.89, z: 292, model: assets/tunnel_section.obj, color: #B969DAFF
+  - name: Siege of the Rift archway, power: 999999, x: 0, z: 20,  model: assets/triumphal-arch.obj,  color: #7646B5FF
+  - name: Siege of the Rift tunnel, power: 999999, x: 0, z: 134,  model: assets/tunnel_section.obj,  color: #38582DFF
+  - name: Siege of the Rift monument, power: 999999, x: 0, z: 178,  model: assets/bigbot.obj,  color: #5492E5FF
+  - name: Siege of the Rift sentinel, power: 999999, x: 0, z: 292,  model: assets/tunnel_section.obj,  color: #B969DAFF
 
 decorations:
-  - name: Siege of the Rift first banner, power: 999999, x: -1.8, z: 161.67, model: assets/bannner.obj, color: #64605CFF
-  - name: Siege of the Rift second banner, power: 999999, x: 1.8, z: 323.33, model: assets/bannner.obj, color: #64605CFF
+  - name: Siege of the Rift first banner, power: 999999, x: 0, z: 162,  model: assets/bannner.obj,  color: #64605CFF
+  - name: Siege of the Rift second banner, power: 999999, x: 0, z: 323,  model: assets/bannner.obj,  color: #64605CFF
 
 cards:
-  - op: plus, param: manpower, val: 38, x: 0, z: 15
-  - op: times, param: firepower, val: 2, x: -4.85, z: 20
-  - op: plus, param: soldierlife, val: 12, x: -1.12, z: 44
-  - op: minus, param: manpower, val: 20, x: 6.11, z: 50
-  - op: plus, param: bulletpower, val: 16, x: 1.34, z: 72
-  - op: times, param: manpower, val: 3, x: -6.71, z: 80
-  - op: div, param: firepower, val: 2, x: 4.32, z: 106
-  - op: plus, param: manpower, val: 64, x: 0, z: 111
-  - op: times, param: firepower, val: 4, x: -4.85, z: 135
-  - op: plus, param: soldierlife, val: 16, x: -1.12, z: 141
-  - op: times, param: bulletpower, val: 2, x: 6.11, z: 163
-  - op: minus, param: firepower, val: 5, x: 1.34, z: 171
-  - op: plus, param: manpower, val: 30, x: -6.71, z: 197
+  - op: plus,  param: manpower, val: 38, x: 0, z: 15
+  - op: times,  param: firepower, val: 2, x: -5, z: 20
+  - op: plus,  param: soldierlife, val: 12, x: -1, z: 44
+  - op: minus,  param: manpower, val: 20, x: 6, z: 50
+  - op: plus,  param: bulletpower, val: 16, x: 1, z: 72
+  - op: times,  param: manpower, val: 3, x: -7, z: 80
+  - op: div,  param: firepower, val: 2, x: 4, z: 106
+  - op: plus,  param: manpower, val: 64, x: 0, z: 111
+  - op: times,  param: firepower, val: 4, x: -5, z: 135
+  - op: plus,  param: soldierlife, val: 16, x: -1, z: 141
+  - op: times,  param: bulletpower, val: 2, x: 6, z: 163
+  - op: minus,  param: firepower, val: 5, x: 1, z: 171
+  - op: plus,  param: manpower, val: 30, x: -7, z: 197
 
 enemy_brigades:
-  - name: rift scouts, effective: 300, strength: 15, x: 0, z: 28, color: #38582DFF
-  - name: rift flank, effective: 374, strength: 16, x: -8.2, z: 34, color: #FFB578FF
-  - name: rift wall, effective: 478, strength: 17, x: -1.9, z: 61, color: #5492E5FF
-  - name: rift brace, effective: 640, strength: 18, x: 8.2, z: 68, color: #B969DAFF
-  - name: rift lock, effective: 830, strength: 19, x: 2.28, z: 99, color: #B57646FF
-  - name: rift core, effective: 1078, strength: 20, x: -8.2, z: 107, color: #2D3858FF
-  - name: rift crown, effective: 1414, strength: 21, x: 7.35, z: 136, color: #78FFB5FF
-  - name: rift tomb, effective: 1851, strength: 22, x: 0, z: 146, color: #E55492FF
-  - name: rift final, effective: 2462, strength: 23, x: -8.2, z: 152, color: #DAB969FF
-  - name: final breach, effective: 3218, strength: 24, x: -1.9, z: 179, color: #46B576FF
+  - name: rift scouts, effective: 300, strength: 15, x: 0, z: 28,  color: #38582DFF
+  - name: rift flank, effective: 374, strength: 16, x: -7, z: 44,  color: #FFB578FF
+  - name: rift wall, effective: 478, strength: 17, x: -2, z: 82,  color: #5492E5FF
+  - name: rift brace, effective: 600, strength: 18, x: 7, z: 101,  color: #B969DAFF
+  - name: rift lock, effective: 600, strength: 19, x: 2, z: 157,  color: #B57646FF
+  - name: rift core, effective: 600, strength: 20, x: -7, z: 179,  color: #2D3858FF
+  - name: rift crown, effective: 600, strength: 21, x: 7, z: 235,  color: #78FFB5FF
+  - name: rift tomb, effective: 600, strength: 22, x: 0, z: 291,  color: #E55492FF
+  - name: rift final, effective: 600, strength: 23, x: -7, z: 310,  color: #DAB969FF
+  - name: final breach, effective: 600, strength: 24, x: -2, z: 366,  color: #46B576FF
 
 bosses:
-  - name: Rift Sapper, power: 24651, x: -0.61, z: 276, color: #B578FFFF
-  - name: Rift King, power: 59028.75, x: 3.33, z: 311, color: #92E554FF
-  - name: Rift Machine, power: 83160, x: 0.73, z: 376, color: #69DAB9FF
-  - name: Deep Breach, power: 114196.5, x: -3.65, z: 415, model: assets/clown-head.obj, color: #7646B5FF
+  - name: Rift Sapper, power: 25000, x: 0, z: 443,  color: #B578FFFF
+  - name: Rift King, power: 59000, x: 0, z: 491,  color: #92E554FF
+  - name: Rift Machine, power: 83000, x: 0, z: 539,  color: #69DAB9FF
+  - name: Deep Breach, power: 396000, x: 0, z: 587,  model: assets/clown-head.obj,  color: #7646B5FF
