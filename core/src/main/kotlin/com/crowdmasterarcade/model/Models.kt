@@ -34,7 +34,8 @@ data class PlayerBrigade(
     var fireRate: Float,
     var fireCooldown: Float,
     var alive: Boolean,
-    val color: LevelColor
+    val color: LevelColor,
+    val formationSpacing: Float
 )
 
 data class EnemyBrigade(
@@ -46,7 +47,8 @@ data class EnemyBrigade(
     val modelPath: String,
     val color: LevelColor,
     var soldiers: MutableList<RegularSoldier>,
-    var alive: Boolean
+    var alive: Boolean,
+    val formationSpacing: Float
 )
 
 data class RegularSoldier(

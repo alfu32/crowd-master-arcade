@@ -79,37 +79,21 @@ class CrowdDefenseGame : ApplicationAdapter() {
 
     private fun renderGame() {
         if (Gdx.input.isKeyJustPressed(Input.Keys.R)) {
-            campaignStats.recordSelectedLevel(levelIndex + 1)
-            appModel = loadLevel(levelIndex)
+            restartLevel()
         }
         if (Gdx.input.isKeyJustPressed(Input.Keys.C) && appModel.gameState == GameState.WON) {
-            recordCompletionIfNeeded()
-            if (!campaignMode) {
-                showMenu()
-                return
-            }
-            if (levelIndex + 1 < levels.size) {
-                levelIndex += 1
-                campaignStats.recordSelectedLevel(levelIndex + 1)
-                appModel = loadLevel(levelIndex)
-            } else {
-                appModel.gameState = GameState.EXIT
-                Gdx.app.exit()
-            }
+            continueAfterWin()
             return
         }
         if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) {
-            recordCompletionIfNeeded()
-            campaignStats.recordSelectedLevel(levelIndex + 1)
-            appModel.gameState = GameState.EXIT
-            showMenu()
+            returnToMenuFromGame()
             return
         }
 
         val previousState = appModel.gameState
         inputController.readInput(inputState)
         controller.changeAppModelState(appModel, inputState, Gdx.graphics.deltaTime)
-        if (previousState == GameState.RUNNING && appModel.gameState != GameState.RUNNING) {
+        if (previousState == GameState.RUNNING && appModel.gameState in setOf(GameState.WON, GameState.LOST)) {
             recordCompletionIfNeeded()
         }
         view?.presentAppModel(appModel)
@@ -215,9 +199,60 @@ class CrowdDefenseGame : ApplicationAdapter() {
         levelIndex = index.coerceIn(0, levels.lastIndex)
         campaignMode = campaign
         appModel = loadLevel(levelIndex)
-        if (view == null) view = GameView()
+        if (view == null) {
+            view = GameView(
+                onPause = { pauseGame() },
+                onContinue = { resumeGame() },
+                onRetry = { restartLevel() },
+                onMenu = { returnToMenuFromGame() },
+                onNextLevel = { continueAfterWin() }
+            )
+        }
         Gdx.input.inputProcessor = view?.uiStage
         screen = AppScreen.GAME
+    }
+
+    private fun pauseGame() {
+        if (::appModel.isInitialized && appModel.gameState == GameState.RUNNING) {
+            appModel.gameState = GameState.PAUSED
+        }
+    }
+
+    private fun resumeGame() {
+        if (::appModel.isInitialized && appModel.gameState == GameState.PAUSED) {
+            appModel.gameState = GameState.RUNNING
+        }
+    }
+
+    private fun restartLevel() {
+        campaignStats.recordSelectedLevel(levelIndex + 1)
+        appModel = loadLevel(levelIndex)
+    }
+
+    private fun continueAfterWin() {
+        if (!::appModel.isInitialized || appModel.gameState != GameState.WON) return
+        recordCompletionIfNeeded()
+        if (!campaignMode) {
+            showMenu()
+            return
+        }
+        if (levelIndex + 1 < levels.size) {
+            levelIndex += 1
+            campaignStats.recordSelectedLevel(levelIndex + 1)
+            appModel = loadLevel(levelIndex)
+        } else {
+            appModel.gameState = GameState.EXIT
+            Gdx.app.exit()
+        }
+    }
+
+    private fun returnToMenuFromGame() {
+        if (::appModel.isInitialized) {
+            recordCompletionIfNeeded()
+            campaignStats.recordSelectedLevel(levelIndex + 1)
+            appModel.gameState = GameState.EXIT
+        }
+        showMenu()
     }
 
     private fun showMenu() {

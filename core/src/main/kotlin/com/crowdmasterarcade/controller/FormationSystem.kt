@@ -13,28 +13,40 @@ object FormationSystem {
     fun recalculateFormation(
         soldiers: MutableList<RegularSoldier>,
         roadWidth: Float = GameConfig.ROAD_WIDTH,
-        zDirection: Float = -1f
+        zDirection: Float = -1f,
+        spacing: Float = GameConfig.SOLDIER_SPACING
     ) {
         val count = soldiers.size
         if (count == 0) return
-        val usableWidth = (roadWidth - GameConfig.SOLDIER_SPACING).coerceAtLeast(GameConfig.SOLDIER_SPACING)
-        val columns = ceil(usableWidth / GameConfig.SOLDIER_SPACING).toInt().coerceAtLeast(1)
+        val unitSpacing = spacing.coerceAtLeast(GameConfig.SOLDIER_SPACING)
+        val usableWidth = (roadWidth - unitSpacing).coerceAtLeast(unitSpacing)
+        val columns = ceil(usableWidth / unitSpacing).toInt().coerceAtLeast(1)
         soldiers.forEachIndexed { index, soldier ->
             val row = index / columns
             val column = index % columns
             val rowWidth = minOf(columns, count - row * columns)
-            val x = (column - (rowWidth - 1) / 2f) * GameConfig.SOLDIER_SPACING
-            val z = row * GameConfig.SOLDIER_SPACING * zDirection
+            val x = (column - (rowWidth - 1) / 2f) * unitSpacing
+            val z = row * unitSpacing * zDirection
             soldier.localOffset.set(x, 0f, z)
         }
     }
 
     fun recalculatePlayerFormation(player: PlayerBrigade, road: Road) {
-        recalculateFormation(player.soldiers, playerFormationWidth(player.position.x, road), zDirection = 1f)
+        recalculateFormation(
+            player.soldiers,
+            playerFormationWidth(player.position.x, road, player.formationSpacing),
+            zDirection = 1f,
+            spacing = player.formationSpacing
+        )
     }
 
     fun recalculateEnemyFormation(enemy: EnemyBrigade, road: Road) {
-        recalculateFormation(enemy.soldiers, maxFormationWidthAt(enemy.position.x, road), zDirection = 1f)
+        recalculateFormation(
+            enemy.soldiers,
+            maxFormationWidthAt(enemy.position.x, road, enemy.formationSpacing),
+            zDirection = 1f,
+            spacing = enemy.formationSpacing
+        )
     }
 
     fun updatePlayerFormation(player: PlayerBrigade, road: Road, alpha: Float) {
@@ -46,14 +58,14 @@ object FormationSystem {
         updateFormation(enemy.soldiers, enemy.position, alpha)
     }
 
-    fun playerFormationWidth(centerX: Float, road: Road): Float =
-        min(road.width / 2f, maxFormationWidthAt(centerX, road))
+    fun playerFormationWidth(centerX: Float, road: Road, minimumWidth: Float = GameConfig.SOLDIER_SPACING): Float =
+        min(road.width / 2f, maxFormationWidthAt(centerX, road, minimumWidth))
 
-    fun maxFormationWidthAt(centerX: Float, road: Road): Float {
+    fun maxFormationWidthAt(centerX: Float, road: Road, minimumWidth: Float = GameConfig.SOLDIER_SPACING): Float {
         val leftSpace = centerX - road.leftBoundary
         val rightSpace = road.rightBoundary - centerX
         return (2f * min(leftSpace, rightSpace))
-            .coerceIn(GameConfig.SOLDIER_SPACING, road.width)
+            .coerceIn(minimumWidth.coerceAtLeast(GameConfig.SOLDIER_SPACING), road.width)
     }
 
     private fun updateFormation(soldiers: MutableList<RegularSoldier>, center: Vector3, alpha: Float) {

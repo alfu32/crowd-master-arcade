@@ -18,6 +18,7 @@ object AppModelFactory {
             leftBoundary = -levelDefinition.roadWidth / 2f,
             rightBoundary = levelDefinition.roadWidth / 2f
         )
+        val playerSoldierSpacing = formationSpacing(levelDefinition.modelPaths.soldier)
         val player = PlayerBrigade(
             position = Vector3(0f, GameConfig.PLAYER_Y, GameConfig.PLAYER_Z),
             lateralSpeed = GameConfig.PLAYER_LATERAL_SPEED,
@@ -26,7 +27,8 @@ object AppModelFactory {
             fireRate = levelDefinition.fireRate,
             fireCooldown = 0f,
             alive = true,
-            color = levelDefinition.colors.player
+            color = levelDefinition.colors.player,
+            formationSpacing = playerSoldierSpacing
         )
         FormationSystem.recalculatePlayerFormation(player, road)
         FormationSystem.updatePlayerFormation(player, road, 1f)
@@ -119,16 +121,18 @@ object AppModelFactory {
     ): EnemyBrigade {
         val soldiers = createSoldiers(definition.effective)
         soldiers.forEach { it.health = definition.unitStrength }
+        val modelPath = definition.modelPath ?: levelModels.soldier
         val brigade = EnemyBrigade(
             id = nextId++,
             name = definition.name ?: "brigade $index",
             position = Vector3(definition.x, GameConfig.PLAYER_Y, definition.z + zOffset),
             speed = GameConfig.ENEMY_SPEED,
             unitStrength = definition.unitStrength,
-            modelPath = definition.modelPath ?: levelModels.soldier,
+            modelPath = modelPath,
             color = definition.color ?: levelColors.enemy,
             soldiers = soldiers,
-            alive = true
+            alive = true,
+            formationSpacing = formationSpacing(modelPath)
         )
         FormationSystem.recalculateEnemyFormation(brigade, road)
         FormationSystem.updateEnemyFormation(brigade, 1f)
@@ -189,6 +193,12 @@ object AppModelFactory {
 
     private fun projectile(active: Boolean): Projectile =
         Projectile(nextId++, Vector3(), Vector3(), GameConfig.PROJECTILE_DAMAGE, remainingLife = 0f, active)
+
+    private fun formationSpacing(modelPath: String): Float {
+        val footprint = ModelFootprintCatalog.footprint(modelPath, GameConfig.SOLDIER_SPACING * 0.5f)
+        val planarSize = maxOf(footprint.halfWidth * 2f, footprint.halfDepth * 2f)
+        return maxOf(GameConfig.SOLDIER_SPACING, planarSize * 1.04f)
+    }
 }
 
 data class CampaignLevelContext(

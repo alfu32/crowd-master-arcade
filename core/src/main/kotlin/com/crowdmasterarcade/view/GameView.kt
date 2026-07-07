@@ -4,9 +4,15 @@ import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.graphics.GL20
 import com.crowdmasterarcade.model.AppModel
 
-class GameView {
+class GameView(
+    onPause: () -> Unit,
+    onContinue: () -> Unit,
+    onRetry: () -> Unit,
+    onMenu: () -> Unit,
+    onNextLevel: () -> Unit
+) {
     private val worldRenderer = WorldRenderer()
-    private val uiRenderer = UiRenderer()
+    private val uiRenderer = UiRenderer(onPause, onContinue, onRetry, onMenu, onNextLevel)
     val uiStage = uiRenderer.stage
 
     fun presentAppModel(appModel: AppModel) {
