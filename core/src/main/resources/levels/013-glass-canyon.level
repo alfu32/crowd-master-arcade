@@ -1,5 +1,5 @@
 name: Glass Canyon
-road_length: 344.4
+road_length: 372.4
 road_width: 17
 starting_soldiers: 24
 fire_rate: 5.4
@@ -39,17 +39,17 @@ cards:
   - op: minus, param: manpower, val: 16, x: 1.213, z: 160
 
 enemy_brigades:
-  - name: crystal scouts, effective: 235, strength: 16, x: -2.205, z: 35, model: assets/triumphal-arch.obj, color: #333C27FF
+  - name: crystal scouts, effective: 235, strength: 16, x: -2.205, z: 35, color: #333C27FF
   - name: canyon split, effective: 302, strength: 17, x: 2.039, z: 50, color: #DD95C2FF
   - name: glass wall, effective: 371, strength: 18, x: 0.445, z: 65, color: #DFCC72FF
-  - name: shard flank, effective: 480, strength: 19, x: -2.598, z: 71, model: assets/bigpill.obj, color: #7B8A7AFF
+  - name: shard flank, effective: 480, strength: 19, x: -2.598, z: 71, color: #7B8A7AFF
   - name: fracture line, effective: 633, strength: 20, x: 2.432, z: 86, color: #985880FF
   - name: canyon break, effective: 806, strength: 21, x: -0.445, z: 101, color: #27333CFF
-  - name: last shard, effective: 1105, strength: 22, x: -0.88, z: 107, model: assets/bannner.obj, color: #C2DD95FF
+  - name: last shard, effective: 1105, strength: 22, x: -0.88, z: 107, color: #C2DD95FF
   - name: glass crown, effective: 1573, strength: 23, x: 1.045, z: 122, color: #72DFCCFF
   - name: canyon throat, effective: 2062, strength: 24, x: 0.445, z: 137, color: #7A7B8AFF
 
 bosses:
-  - name: Shard Marshal, power: 192714.975, x: -0.945, z: 206.4, model: assets/bigbot.obj, color: #95C2DDFF
-  - name: Canyon Prism, power: 469203.3, x: 0.945, z: 240.4, model: assets/clown-head.obj, color: #CC72DFFF
-  - name: The Glass King, power: 805500, x: 0.463, z: 274.4, model: assets/bigbot.obj, color: #8A7A7BFF
+  - name: Shard Marshal, power: 105993.236, x: -0.945, z: 212.4, color: #95C2DDFF
+  - name: Canyon Prism, power: 258061.815, x: 0.945, z: 257.4, color: #CC72DFFF
+  - name: The Glass King, power: 443025, x: 0.463, z: 302.4, model: assets/bigbot.obj, color: #8A7A7BFF

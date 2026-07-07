@@ -1,5 +1,5 @@
 name: Blackout Divide
-road_length: 330.75
+road_length: 358.75
 road_width: 16
 starting_soldiers: 22
 fire_rate: 6.0
@@ -38,16 +38,16 @@ cards:
   - op: times, param: bulletpower, val: 2, x: -0.197, z: 146
 
 enemy_brigades:
-  - name: blackout vanguard, effective: 193, strength: 16, x: -2.205, z: 35, model: assets/triumphal-arch.obj, color: #333C27FF
+  - name: blackout vanguard, effective: 193, strength: 16, x: -2.205, z: 35, color: #333C27FF
   - name: right shell, effective: 240, strength: 16, x: 2.039, z: 52, color: #DD95C2FF
   - name: center shell, effective: 307, strength: 17, x: 0.445, z: 69, color: #DFCC72FF
-  - name: left shell, effective: 396, strength: 18, x: -2.598, z: 77, model: assets/bigpill.obj, color: #7B8A7AFF
+  - name: left shell, effective: 396, strength: 18, x: -2.598, z: 77, color: #7B8A7AFF
   - name: divide wall, effective: 507, strength: 19, x: 2.432, z: 94, color: #985880FF
   - name: cross line, effective: 680, strength: 20, x: -0.445, z: 111, color: #27333CFF
-  - name: blind ridge, effective: 937, strength: 21, x: -1.045, z: 119, model: assets/bannner.obj, color: #C2DD95FF
+  - name: blind ridge, effective: 937, strength: 21, x: -1.045, z: 119, color: #C2DD95FF
   - name: last blackout, effective: 1320, strength: 22, x: 0.88, z: 136, color: #72DFCCFF
 
 bosses:
-  - name: Divider General, power: 197357.288, x: 0.463, z: 192.75, model: assets/bigbot.obj, color: #95C2DDFF
-  - name: Blackout Engine, power: 469607.288, x: -1.87, z: 226.75, model: assets/clown-head.obj, color: #CC72DFFF
-  - name: Night Splitter, power: 805500, x: 1.87, z: 260.75, model: assets/bigbot.obj, color: #8A7A7BFF
+  - name: Divider General, power: 108546.508, x: 0.463, z: 198.75, color: #95C2DDFF
+  - name: Blackout Engine, power: 258284.008, x: -1.87, z: 243.75, color: #CC72DFFF
+  - name: Night Splitter, power: 443025, x: 1.87, z: 288.75, model: assets/bigbot.obj, color: #8A7A7BFF

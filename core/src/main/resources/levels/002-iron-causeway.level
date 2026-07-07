@@ -1,5 +1,5 @@
 name: The Iron Causeway
-road_length: 370.9
+road_length: 421.9
 road_width: 16
 starting_soldiers: 12
 fire_rate: 4.4
@@ -43,20 +43,20 @@ cards:
   - op: times, param: bulletpower, val: 2, x: -0.057, z: 212
 
 enemy_brigades:
-  - name: bridge picket, effective: 140, strength: 14, x: -1.873, z: 35, model: assets/triumphal-arch.obj, color: #333C27FF
+  - name: bridge picket, effective: 140, strength: 14, x: -1.873, z: 35, color: #333C27FF
   - name: right column, effective: 187, strength: 15, x: 1.708, z: 50, color: #DD95C2FF
   - name: center wall, effective: 234, strength: 16, x: 0.445, z: 65, color: #DFCC72FF
-  - name: left hooks, effective: 292, strength: 16, x: -2.432, z: 71, model: assets/bigpill.obj, color: #7B8A7AFF
+  - name: left hooks, effective: 292, strength: 16, x: -2.432, z: 71, color: #7B8A7AFF
   - name: steel reserve, effective: 360, strength: 17, x: 2.267, z: 86, color: #985880FF
   - name: causeway block, effective: 427, strength: 18, x: -0.445, z: 101, color: #27333CFF
-  - name: gate watch, effective: 306, strength: 19, x: -2.039, z: 107, model: assets/bannner.obj, color: #C2DD95FF
+  - name: gate watch, effective: 306, strength: 19, x: -2.039, z: 107, color: #C2DD95FF
   - name: hammer flank, effective: 375, strength: 19, x: 2.039, z: 122, color: #72DFCCFF
   - name: redoubt, effective: 526, strength: 20, x: 0.445, z: 137, color: #7A7B8AFF
-  - name: black standard, effective: 741, strength: 22, x: -1.935, z: 143, model: assets/tunnel_section.obj, color: #809858FF
+  - name: black standard, effective: 741, strength: 22, x: -1.935, z: 143, color: #809858FF
   - name: final shield, effective: 1125, strength: 22, x: 2.101, z: 158, color: #3C2733FF
 
 bosses:
-  - name: Marshal Ferrum, power: 149625, x: -0.789, z: 210.9, model: assets/bigbot.obj, color: #95C2DDFF
-  - name: Duchess Vanta, power: 249750, x: 0.945, z: 240.9, model: assets/clown-head.obj, color: #CC72DFFF
-  - name: The Gate Engine, power: 471375, x: 0.463, z: 270.9, model: assets/bigbot.obj, color: #8A7A7BFF
-  - name: Iron Crown, power: 814500, x: -0.463, z: 300.9, model: assets/clown-head.obj, color: #588098FF
+  - name: Marshal Ferrum, power: 82293.75, x: -0.789, z: 216.9, color: #95C2DDFF
+  - name: Duchess Vanta, power: 137362.5, x: 0.945, z: 261.9, color: #CC72DFFF
+  - name: The Gate Engine, power: 259256.25, x: 0.463, z: 306.9, color: #8A7A7BFF
+  - name: Iron Crown, power: 447975, x: -0.463, z: 351.9, model: assets/clown-head.obj, color: #588098FF

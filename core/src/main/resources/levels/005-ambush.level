@@ -1,5 +1,5 @@
 name: Ambush
-road_length: 339.4
+road_length: 367.4
 road_width: 18
 starting_soldiers: 16
 fire_rate: 5.2
@@ -42,18 +42,18 @@ cards:
   - op: plus, param: bulletpower, val: 14, x: 2.342, z: 198
 
 enemy_brigades:
-  - name: hidden left, effective: 213, strength: 15, x: -2.536, z: 35, model: assets/thorn.obj, color: #43311BFF
+  - name: hidden left, effective: 213, strength: 15, x: -2.536, z: 35, color: #43311BFF
   - name: hidden right, effective: 218, strength: 15, x: 2.536, z: 50, color: #5499D4FF
   - name: center bait, effective: 266, strength: 16, x: 0.445, z: 65, color: #DAC666FF
-  - name: knife wing, effective: 376, strength: 17, x: -3.095, z: 71, model: assets/bigpill.obj, color: #553076FF
+  - name: knife wing, effective: 376, strength: 17, x: -3.095, z: 71, color: #553076FF
   - name: trap wing, effective: 423, strength: 17, x: 3.095, z: 86, color: #53378BFF
   - name: closing net, effective: 554, strength: 19, x: -0.445, z: 101, color: #1B4331FF
-  - name: rear left surge, effective: 685, strength: 20, x: -1.708, z: 107, model: assets/tunnel_section.obj, color: #D45499FF
+  - name: rear left surge, effective: 685, strength: 20, x: -1.708, z: 107, color: #D45499FF
   - name: rear right surge, effective: 690, strength: 20, x: 1.708, z: 122, color: #66DAC6FF
   - name: ambush core, effective: 1073, strength: 22, x: 0.445, z: 137, color: #765530FF
-  - name: no escape line, effective: 1540, strength: 24, x: 0.714, z: 143, model: assets/bannner.obj, color: #8B5337FF
+  - name: no escape line, effective: 1540, strength: 24, x: 0.714, z: 143, color: #8B5337FF
 
 bosses:
-  - name: Lady Snare, power: 202090.725, x: -1.727, z: 201.4, model: assets/bigbot.obj, color: #99D454FF
-  - name: Baron Crossfire, power: 286568.044, x: 1.727, z: 235.4, model: assets/clown-head.obj, color: #C666DAFF
-  - name: The Netmaker, power: 805500, x: 0.463, z: 269.4, model: assets/bigbot.obj, color: #307655FF
+  - name: Lady Snare, power: 111149.899, x: -1.727, z: 207.4, color: #99D454FF
+  - name: Baron Crossfire, power: 157612.424, x: 1.727, z: 252.4, color: #C666DAFF
+  - name: The Netmaker, power: 443025, x: 0.463, z: 297.4, model: assets/bigbot.obj, color: #307655FF

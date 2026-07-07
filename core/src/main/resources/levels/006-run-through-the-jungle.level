@@ -1,5 +1,5 @@
 name: Run Through the Jungle
-road_length: 353.85
+road_length: 381.85
 road_width: 20
 starting_soldiers: 20
 fire_rate: 5.6
@@ -44,19 +44,19 @@ cards:
   - op: times, param: firepower, val: 6, x: -1.551, z: 228
 
 enemy_brigades:
-  - name: green scouts, effective: 193, strength: 15, x: -2.867, z: 35, model: assets/thorn.obj, color: #43311BFF
+  - name: green scouts, effective: 193, strength: 15, x: -2.867, z: 35, color: #43311BFF
   - name: river flank, effective: 261, strength: 16, x: 2.867, z: 50, color: #5499D4FF
   - name: canopy rush, effective: 329, strength: 16, x: 0.445, z: 65, color: #DAC666FF
-  - name: thorn column, effective: 418, strength: 18, x: -3.26, z: 71, model: assets/bigpill.obj, color: #553076FF
+  - name: thorn column, effective: 418, strength: 18, x: -3.26, z: 71, color: #553076FF
   - name: fern wall, effective: 507, strength: 18, x: 3.095, z: 86, color: #53378BFF
   - name: deep green horde, effective: 638, strength: 19, x: -0.445, z: 101, color: #1B4331FF
-  - name: river teeth, effective: 601, strength: 20, x: -2.701, z: 107, model: assets/tunnel_section.obj, color: #D45499FF
+  - name: river teeth, effective: 601, strength: 20, x: -2.701, z: 107, color: #D45499FF
   - name: jungle drums, effective: 774, strength: 21, x: 2.536, z: 122, color: #66DAC6FF
   - name: canopy guard, effective: 947, strength: 22, x: -1.045, z: 137, color: #765530FF
-  - name: root blockade, effective: 1162, strength: 23, x: 1.045, z: 143, model: assets/bannner.obj, color: #8B5337FF
+  - name: root blockade, effective: 1162, strength: 23, x: 1.045, z: 143, color: #8B5337FF
   - name: last jungle tide, effective: 1713, strength: 25, x: 0.445, z: 158, color: #311B43FF
 
 bosses:
-  - name: Colonel Vine, power: 180000, x: -1.492, z: 215.85, model: assets/bigbot.obj, color: #99D454FF
-  - name: River Mother, power: 298350, x: 1.492, z: 249.85, model: assets/clown-head.obj, color: #C666DAFF
-  - name: The Green Thunder, power: 805500, x: 0.463, z: 283.85, model: assets/bigbot.obj, color: #307655FF
+  - name: Colonel Vine, power: 99000, x: -1.492, z: 221.85, color: #99D454FF
+  - name: River Mother, power: 164092.5, x: 1.492, z: 266.85, color: #C666DAFF
+  - name: The Green Thunder, power: 443025, x: 0.463, z: 311.85, model: assets/bigbot.obj, color: #307655FF

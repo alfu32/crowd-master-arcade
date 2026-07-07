@@ -1,5 +1,5 @@
 name: Crossfire Delta
-road_length: 347.7
+road_length: 375.7
 road_width: 18
 starting_soldiers: 26
 fire_rate: 5.0
@@ -39,17 +39,17 @@ cards:
   - op: minus, param: manpower, val: 18, x: 1.213, z: 160
 
 enemy_brigades:
-  - name: front delta, effective: 277, strength: 16, x: -2.37, z: 35, model: assets/triumphal-arch.obj, color: #333C27FF
+  - name: front delta, effective: 277, strength: 16, x: -2.37, z: 35, color: #333C27FF
   - name: right delta, effective: 346, strength: 17, x: 2.205, z: 50, color: #DD95C2FF
   - name: left delta, effective: 434, strength: 18, x: 0.445, z: 65, color: #DFCC72FF
-  - name: delta brace, effective: 564, strength: 19, x: -2.598, z: 71, model: assets/bigpill.obj, color: #7B8A7AFF
+  - name: delta brace, effective: 564, strength: 19, x: -2.598, z: 71, color: #7B8A7AFF
   - name: delta fold, effective: 737, strength: 20, x: 2.432, z: 86, color: #985880FF
   - name: delta core, effective: 954, strength: 21, x: -0.445, z: 101, color: #27333CFF
-  - name: delta lock, effective: 1273, strength: 22, x: -1.045, z: 107, model: assets/bannner.obj, color: #C2DD95FF
+  - name: delta lock, effective: 1273, strength: 22, x: -1.045, z: 107, color: #C2DD95FF
   - name: delta final, effective: 1783, strength: 23, x: 1.045, z: 122, color: #72DFCCFF
   - name: delta crown, effective: 2376, strength: 24, x: 0.445, z: 137, color: #7A7B8AFF
 
 bosses:
-  - name: Delta Commander, power: 199184.344, x: -0.945, z: 209.7, model: assets/bigbot.obj, color: #95C2DDFF
-  - name: Crossfire Lord, power: 477828.788, x: 0.945, z: 243.7, model: assets/clown-head.obj, color: #CC72DFFF
-  - name: The Delta Engine, power: 805500, x: 0.463, z: 277.7, model: assets/bigbot.obj, color: #8A7A7BFF
+  - name: Delta Commander, power: 109551.389, x: -0.945, z: 215.7, color: #95C2DDFF
+  - name: Crossfire Lord, power: 262805.833, x: 0.945, z: 260.7, color: #CC72DFFF
+  - name: The Delta Engine, power: 443025, x: 0.463, z: 305.7, model: assets/bigbot.obj, color: #8A7A7BFF

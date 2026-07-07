@@ -1,5 +1,5 @@
 name: Siege of the Rift
-road_length: 390
+road_length: 441
 road_width: 18
 starting_soldiers: 36
 fire_rate: 4.0
@@ -40,19 +40,19 @@ cards:
   - op: plus, param: manpower, val: 30, x: 0.25, z: 176
 
 enemy_brigades:
-  - name: rift scouts, effective: 300, strength: 15, x: -2.66, z: 35, model: assets/bigbot.obj, color: #38582DFF
+  - name: rift scouts, effective: 300, strength: 15, x: -2.66, z: 35, color: #38582DFF
   - name: rift flank, effective: 374, strength: 16, x: 2.48, z: 50, color: #FFB578FF
   - name: rift wall, effective: 478, strength: 17, x: 0.22, z: 65, color: #5492E5FF
-  - name: rift brace, effective: 640, strength: 18, x: -2.56, z: 71, model: assets/tunnel_section.obj, color: #B969DAFF
+  - name: rift brace, effective: 640, strength: 18, x: -2.56, z: 71, color: #B969DAFF
   - name: rift lock, effective: 830, strength: 19, x: 2.38, z: 86, color: #B57646FF
   - name: rift core, effective: 1078, strength: 20, x: -0.22, z: 101, color: #2D3858FF
-  - name: rift crown, effective: 1414, strength: 21, x: -1.4, z: 107, model: assets/triumphal-arch.obj, color: #78FFB5FF
+  - name: rift crown, effective: 1414, strength: 21, x: -1.4, z: 107, color: #78FFB5FF
   - name: rift tomb, effective: 1851, strength: 22, x: 1.4, z: 122, color: #E55492FF
   - name: rift final, effective: 2462, strength: 23, x: 0.22, z: 137, color: #DAB969FF
-  - name: final breach, effective: 3218, strength: 24, x: -0.22, z: 143, model: assets/clown-head.obj, color: #46B576FF
+  - name: final breach, effective: 3218, strength: 24, x: -0.22, z: 143, color: #46B576FF
 
 bosses:
-  - name: Rift Sapper, power: 74700, x: -1.28, z: 230, model: assets/bigbot.obj, color: #B578FFFF
-  - name: Rift King, power: 178875, x: 1.28, z: 260, model: assets/clown-head.obj, color: #92E554FF
-  - name: Rift Machine, power: 252000, x: 0.25, z: 290, model: assets/bigbot.obj, color: #69DAB9FF
-  - name: Deep Breach, power: 346050, x: -0.25, z: 320, model: assets/clown-head.obj, color: #7646B5FF
+  - name: Rift Sapper, power: 41085, x: -1.28, z: 236, color: #B578FFFF
+  - name: Rift King, power: 98381.25, x: 1.28, z: 281, color: #92E554FF
+  - name: Rift Machine, power: 138600, x: 0.25, z: 326, color: #69DAB9FF
+  - name: Deep Breach, power: 190327.5, x: -0.25, z: 371, model: assets/clown-head.obj, color: #7646B5FF

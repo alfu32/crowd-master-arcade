@@ -1,5 +1,5 @@
 name: Nightfall Bastion
-road_length: 386.7
+road_length: 437.7
 road_width: 18
 starting_soldiers: 34
 fire_rate: 4.0
@@ -40,19 +40,19 @@ cards:
   - op: plus, param: manpower, val: 24, x: 0.25, z: 176
 
 enemy_brigades:
-  - name: night scouts, effective: 286, strength: 15, x: -2.66, z: 35, model: assets/clown-head.obj, color: #2B362BFF
+  - name: night scouts, effective: 286, strength: 15, x: -2.66, z: 35, color: #2B362BFF
   - name: shadow flank, effective: 360, strength: 16, x: 2.48, z: 50, color: #FFAE89FF
   - name: bastion wall, effective: 464, strength: 17, x: 0.22, z: 65, color: #5886DAFF
-  - name: night line, effective: 610, strength: 18, x: -2.56, z: 71, model: assets/bannner.obj, color: #D468E9FF
+  - name: night line, effective: 610, strength: 18, x: -2.56, z: 71, color: #D468E9FF
   - name: shadow line, effective: 786, strength: 19, x: 2.38, z: 86, color: #AD6736FF
   - name: bastion core, effective: 1020, strength: 20, x: -0.22, z: 101, color: #2B2B36FF
-  - name: night crown, effective: 1342, strength: 21, x: -1.4, z: 107, model: assets/triumphal-arch.obj, color: #89FFAEFF
+  - name: night crown, effective: 1342, strength: 21, x: -1.4, z: 107, color: #89FFAEFF
   - name: shadow crown, effective: 1735, strength: 22, x: 1.4, z: 122, color: #DA5886FF
   - name: bastion tomb, effective: 2288, strength: 23, x: 0.22, z: 137, color: #E9D468FF
-  - name: final bastion, effective: 3015, strength: 24, x: -0.22, z: 143, model: assets/bigbot.obj, color: #36AD67FF
+  - name: final bastion, effective: 3015, strength: 24, x: -0.22, z: 143, color: #36AD67FF
 
 bosses:
-  - name: Night Warden, power: 72000, x: -1.28, z: 226.7, model: assets/bigbot.obj, color: #AE89FFFF
-  - name: Shadow Wall, power: 172384.65, x: 1.28, z: 256.7, model: assets/clown-head.obj, color: #86DA58FF
-  - name: Bastion Heart, power: 243692.325, x: 0.25, z: 286.7, model: assets/bigbot.obj, color: #68E9D4FF
-  - name: Dusk Emperor, power: 342000, x: -0.25, z: 316.7, model: assets/clown-head.obj, color: #6736ADFF
+  - name: Night Warden, power: 39600, x: -1.28, z: 232.7, color: #AE89FFFF
+  - name: Shadow Wall, power: 94811.558, x: 1.28, z: 277.7, color: #86DA58FF
+  - name: Bastion Heart, power: 134030.779, x: 0.25, z: 322.7, color: #68E9D4FF
+  - name: Dusk Emperor, power: 188100, x: -0.25, z: 367.7, model: assets/clown-head.obj, color: #6736ADFF

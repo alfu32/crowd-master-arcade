@@ -1,5 +1,5 @@
 name: Frontline Furnace
-road_length: 297.3
+road_length: 314.3
 road_width: 14
 starting_soldiers: 20
 fire_rate: 7.2
@@ -37,15 +37,15 @@ cards:
   - op: plus, param: soldierlife, val: 8, x: -2.173, z: 134
 
 enemy_brigades:
-  - name: furnace pickets, effective: 151, strength: 15, x: -1.873, z: 35, model: assets/triumphal-arch.obj, color: #252166FF
+  - name: furnace pickets, effective: 151, strength: 15, x: -1.873, z: 35, color: #252166FF
   - name: ember flank, effective: 198, strength: 16, x: 1.708, z: 52, color: #55F4A9FF
   - name: heat wall, effective: 266, strength: 17, x: 0.445, z: 69, color: #984836FF
-  - name: smoke line, effective: 355, strength: 18, x: -2.432, z: 77, model: assets/tunnel_section.obj, color: #D266FFFF
+  - name: smoke line, effective: 355, strength: 18, x: -2.432, z: 77, color: #D266FFFF
   - name: burn reserve, effective: 444, strength: 19, x: 2.267, z: 94, color: #33DE68FF
   - name: pressure ridge, effective: 596, strength: 20, x: -0.445, z: 111, color: #662521FF
-  - name: final spark, effective: 811, strength: 21, x: -0.88, z: 119, model: assets/bannner.obj, color: #A955F4FF
+  - name: final spark, effective: 811, strength: 21, x: -0.88, z: 119, color: #A955F4FF
   - name: furnace gate, effective: 1152, strength: 22, x: 0.88, z: 136, color: #369848FF
 
 bosses:
-  - name: Captain Cinder, power: 266328.787, x: -0.945, z: 193.3, model: assets/bigbot.obj, color: #F4A955FF
-  - name: Furnace Warden, power: 796500, x: -0.463, z: 227.3, model: assets/clown-head.obj, color: #483698FF
+  - name: Captain Cinder, power: 146480.833, x: -0.945, z: 199.3, color: #F4A955FF
+  - name: Furnace Warden, power: 438075, x: -0.463, z: 244.3, model: assets/clown-head.obj, color: #483698FF

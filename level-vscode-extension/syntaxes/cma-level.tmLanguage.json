@@ -1,0 +1,120 @@
+{
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+  "name": "Crowd Master Arcade Level",
+  "scopeName": "source.cma-level",
+  "patterns": [
+    {
+      "include": "#comments"
+    },
+    {
+      "include": "#categories"
+    },
+    {
+      "include": "#keys"
+    },
+    {
+      "include": "#hexColors"
+    },
+    {
+      "include": "#paths"
+    },
+    {
+      "include": "#operations"
+    },
+    {
+      "include": "#params"
+    },
+    {
+      "include": "#numbers"
+    },
+    {
+      "include": "#punctuation"
+    }
+  ],
+  "repository": {
+    "comments": {
+      "patterns": [
+        {
+          "name": "comment.line.number-sign.cma-level",
+          "match": "# .*$"
+        }
+      ]
+    },
+    "categories": {
+      "patterns": [
+        {
+          "name": "entity.name.section.cma-level",
+          "match": "^\\s*\\b(cards|decorations|background_decorations|enemy_brigades|bosses|enemies|boss)\\b(?=\\s*:)"
+        }
+      ]
+    },
+    "keys": {
+      "patterns": [
+        {
+          "name": "support.type.property-name.cma-level",
+          "match": "\\b(name|road_length|road_width|starting_soldiers|fire_rate|max_fire_rate|projectile_pool|projectile_length|soldier_model|boss_model|manpower_card_model|firepower_card_model|bulletpower_card_model|soldierlife_card_model|player_color|enemy_color|boss_color|decoration_color|op|param|val|x|y|z|model|color|power|effective|strength)\\b(?=\\s*:)"
+        }
+      ]
+    },
+    "operations": {
+      "patterns": [
+        {
+          "name": "constant.language.operation.cma-level",
+          "match": "\\b(plus|minus|div|times)\\b"
+        }
+      ]
+    },
+    "params": {
+      "patterns": [
+        {
+          "name": "constant.language.parameter.cma-level",
+          "match": "\\b(manpower|firepower|bulletpower|bullet_power|soldierlife|soldier_life)\\b"
+        }
+      ]
+    },
+    "numbers": {
+      "patterns": [
+        {
+          "name": "constant.numeric.cma-level",
+          "match": "(?<![A-Za-z_])[-+]?\\d+(?:\\.\\d+)?[fF]?(?![A-Za-z_])"
+        }
+      ]
+    },
+    "hexColors": {
+      "patterns": [
+        {
+          "name": "constant.other.color.rgb-value.cma-level",
+          "match": "#(?:[0-9a-fA-F]{6}|[0-9a-fA-F]{8})\\b"
+        }
+      ]
+    },
+    "paths": {
+      "patterns": [
+        {
+          "name": "string.unquoted.path.cma-level",
+          "match": "(?:[A-Za-z]:)?[A-Za-z0-9_.~/-]+\\.obj\\b|(?:\\.\\.?|assets|/)[A-Za-z0-9_./\\\\-]+"
+        }
+      ]
+    },
+    "punctuation": {
+      "patterns": [
+        {
+          "name": "punctuation.separator.key-value.cma-level",
+          "match": ":"
+        },
+        {
+          "name": "punctuation.separator.sequence.cma-level",
+          "match": ","
+        },
+        {
+          "name": "punctuation.definition.list.begin.cma-level",
+          "match": "^\\s*-"
+        },
+        {
+          "name": "punctuation.section.parens.cma-level",
+          "match": "[()]"
+        }
+      ]
+    }
+  }
+}

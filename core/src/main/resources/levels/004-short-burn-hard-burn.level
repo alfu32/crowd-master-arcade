@@ -1,5 +1,5 @@
 name: Short Burn, Hard Burn
-road_length: 279.75
+road_length: 296.75
 road_width: 14
 starting_soldiers: 18
 fire_rate: 6.8
@@ -40,14 +40,14 @@ cards:
   - op: plus, param: soldierlife, val: 10, x: -1.044, z: 176
 
 enemy_brigades:
-  - name: spark screen, effective: 193, strength: 16, x: -1.542, z: 35, model: assets/triumphal-arch.obj, color: #2D1C77FF
+  - name: spark screen, effective: 193, strength: 16, x: -1.542, z: 35, color: #2D1C77FF
   - name: right flare, effective: 240, strength: 16, x: 1.542, z: 52, color: #46F39CFF
   - name: flash wall, effective: 329, strength: 18, x: 0.445, z: 69, color: #A93D2EFF
-  - name: hard burn line, effective: 480, strength: 20, x: -1.935, z: 77, model: assets/clown-head.obj, color: #D266FFFF
+  - name: hard burn line, effective: 480, strength: 20, x: -1.935, z: 77, color: #D266FFFF
   - name: ember reserve, effective: 591, strength: 21, x: 2.101, z: 94, color: #2DE265FF
   - name: furnace block, effective: 806, strength: 22, x: -0.445, z: 111, color: #772D1CFF
-  - name: final flame, effective: 1147, strength: 24, x: -0.714, z: 119, model: assets/bannner.obj, color: #9C46F3FF
+  - name: final flame, effective: 1147, strength: 24, x: -0.714, z: 119, color: #9C46F3FF
 
 bosses:
-  - name: Captain Flashpoint, power: 206999.831, x: 1.87, z: 175.75, model: assets/bigbot.obj, color: #F39C46FF
-  - name: The Furnace Duke, power: 796500, x: -0.463, z: 209.75, model: assets/clown-head.obj, color: #3D2EA9FF
+  - name: Captain Flashpoint, power: 113849.907, x: 1.87, z: 181.75, color: #F39C46FF
+  - name: The Furnace Duke, power: 438075, x: -0.463, z: 226.75, model: assets/clown-head.obj, color: #3D2EA9FF

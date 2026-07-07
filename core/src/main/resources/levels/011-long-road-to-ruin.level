@@ -1,5 +1,5 @@
 name: Long Road to Ruin
-road_length: 338.35
+road_length: 366.35
 road_width: 16
 starting_soldiers: 22
 fire_rate: 5.8
@@ -39,17 +39,17 @@ cards:
   - op: minus, param: manpower, val: 16, x: 1.213, z: 160
 
 enemy_brigades:
-  - name: first ruin line, effective: 213, strength: 16, x: -1.873, z: 35, model: assets/triumphal-arch.obj, color: #3B432EFF
+  - name: first ruin line, effective: 213, strength: 16, x: -1.873, z: 35, color: #3B432EFF
   - name: split flank, effective: 261, strength: 17, x: 1.708, z: 50, color: #EAAAD1FF
   - name: ruin wall, effective: 329, strength: 18, x: 0.445, z: 65, color: #DDC778FF
-  - name: hard pack, effective: 439, strength: 19, x: -2.432, z: 71, model: assets/bigbot.obj, color: #8C9687FF
+  - name: hard pack, effective: 439, strength: 19, x: -2.432, z: 71, color: #8C9687FF
   - name: grind line, effective: 549, strength: 20, x: 2.267, z: 86, color: #9B6488FF
   - name: push wedge, effective: 722, strength: 21, x: -0.445, z: 101, color: #2E3B43FF
-  - name: deep ruin, effective: 937, strength: 22, x: -1.045, z: 107, model: assets/bannner.obj, color: #D1EAAAFF
+  - name: deep ruin, effective: 937, strength: 22, x: -1.045, z: 107, color: #D1EAAAFF
   - name: end ridge, effective: 1278, strength: 23, x: 1.045, z: 122, color: #78DDC7FF
   - name: ruin gate, effective: 1662, strength: 24, x: 0.445, z: 137, color: #878C96FF
 
 bosses:
-  - name: Ruin Marshal, power: 191758.163, x: -0.945, z: 200.35, model: assets/bigbot.obj, color: #AAD1EAFF
-  - name: The Long Scar, power: 471846.938, x: 0.945, z: 234.35, model: assets/clown-head.obj, color: #C778DDFF
-  - name: Breakline Titan, power: 805500, x: 0.463, z: 268.35, model: assets/bigbot.obj, color: #96878CFF
+  - name: Ruin Marshal, power: 105466.99, x: -0.945, z: 206.35, color: #AAD1EAFF
+  - name: The Long Scar, power: 259515.816, x: 0.945, z: 251.35, color: #C778DDFF
+  - name: Breakline Titan, power: 443025, x: 0.463, z: 296.35, model: assets/bigbot.obj, color: #96878CFF

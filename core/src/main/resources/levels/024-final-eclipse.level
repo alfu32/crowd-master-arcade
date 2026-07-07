@@ -1,5 +1,5 @@
 name: Final Eclipse
-road_length: 418.35
+road_length: 484.35
 road_width: 20
 starting_soldiers: 38
 fire_rate: 3.8
@@ -41,20 +41,20 @@ cards:
   - op: times, param: firepower, val: 5, x: -0.25, z: 186
 
 enemy_brigades:
-  - name: eclipse scouts, effective: 329, strength: 16, x: -2.84, z: 35, model: assets/clown-head.obj, color: #2B362BFF
+  - name: eclipse scouts, effective: 329, strength: 16, x: -2.84, z: 35, color: #2B362BFF
   - name: eclipse flank, effective: 418, strength: 17, x: 2.66, z: 50, color: #FFAE89FF
   - name: eclipse wall, effective: 536, strength: 18, x: 0.22, z: 65, color: #5886DAFF
-  - name: eclipse brace, effective: 698, strength: 19, x: -2.74, z: 71, model: assets/bannner.obj, color: #D468E9FF
+  - name: eclipse brace, effective: 698, strength: 19, x: -2.74, z: 71, color: #D468E9FF
   - name: eclipse lock, effective: 917, strength: 20, x: 2.56, z: 86, color: #AD6736FF
   - name: eclipse core, effective: 1180, strength: 21, x: -0.22, z: 101, color: #2B2B36FF
-  - name: eclipse crown, effective: 1530, strength: 22, x: -1.58, z: 107, model: assets/triumphal-arch.obj, color: #89FFAEFF
+  - name: eclipse crown, effective: 1530, strength: 22, x: -1.58, z: 107, color: #89FFAEFF
   - name: eclipse tomb, effective: 1996, strength: 23, x: 1.58, z: 122, color: #DA5886FF
   - name: eclipse final, effective: 2636, strength: 24, x: 0.22, z: 137, color: #E9D468FF
-  - name: the last eclipse, effective: 3508, strength: 25, x: -0.22, z: 143, model: assets/bigbot.obj, color: #36AD67FF
+  - name: the last eclipse, effective: 3508, strength: 25, x: -0.22, z: 143, color: #36AD67FF
 
 bosses:
-  - name: Eclipse Herald, power: 78750, x: -1.28, z: 228.35, model: assets/bigbot.obj, color: #AE89FFFF
-  - name: Black Sun, power: 189000, x: 1.28, z: 258.35, model: assets/clown-head.obj, color: #86DA58FF
-  - name: Eclipse Throne, power: 272250, x: 0.25, z: 288.35, model: assets/bigbot.obj, color: #68E9D4FF
-  - name: World Breaker, power: 355500, x: -0.25, z: 318.35, model: assets/clown-head.obj, color: #6736ADFF
-  - name: The Last Light, power: 432000, x: 0.25, z: 348.35, model: assets/bigbot.obj, color: #2B362BFF
+  - name: Eclipse Herald, power: 43312.5, x: -1.28, z: 234.35, color: #AE89FFFF
+  - name: Black Sun, power: 103950, x: 1.28, z: 279.35, color: #86DA58FF
+  - name: Eclipse Throne, power: 149737.5, x: 0.25, z: 324.35, color: #68E9D4FF
+  - name: World Breaker, power: 195525, x: -0.25, z: 369.35, color: #6736ADFF
+  - name: The Last Light, power: 237600, x: 0.25, z: 414.35, model: assets/bigbot.obj, color: #2B362BFF

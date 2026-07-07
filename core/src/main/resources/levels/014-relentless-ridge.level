@@ -1,5 +1,5 @@
 name: Relentless Ridge
-road_length: 344.4
+road_length: 372.4
 road_width: 18
 starting_soldiers: 26
 fire_rate: 5.2
@@ -39,17 +39,17 @@ cards:
   - op: minus, param: firepower, val: 4, x: 1.213, z: 160
 
 enemy_brigades:
-  - name: ridge front, effective: 256, strength: 16, x: -2.205, z: 35, model: assets/triumphal-arch.obj, color: #333C27FF
+  - name: ridge front, effective: 256, strength: 16, x: -2.205, z: 35, color: #333C27FF
   - name: ridge right, effective: 324, strength: 17, x: 2.039, z: 50, color: #DD95C2FF
   - name: ridge left, effective: 391, strength: 18, x: 0.445, z: 65, color: #DFCC72FF
-  - name: ridge brace, effective: 524, strength: 19, x: -2.598, z: 71, model: assets/bigpill.obj, color: #7B8A7AFF
+  - name: ridge brace, effective: 524, strength: 19, x: -2.598, z: 71, color: #7B8A7AFF
   - name: ridge grip, effective: 675, strength: 20, x: 2.432, z: 86, color: #985880FF
   - name: ridge core, effective: 870, strength: 21, x: -0.445, z: 101, color: #27333CFF
-  - name: ridge apex, effective: 1189, strength: 22, x: -1.045, z: 107, model: assets/bannner.obj, color: #C2DD95FF
+  - name: ridge apex, effective: 1189, strength: 22, x: -1.045, z: 107, color: #C2DD95FF
   - name: ridge final, effective: 1657, strength: 23, x: 1.045, z: 122, color: #72DFCCFF
   - name: ridge crown, effective: 2208, strength: 24, x: 0.445, z: 137, color: #7A7B8AFF
 
 bosses:
-  - name: Ridge Captain, power: 197168.456, x: -0.945, z: 206.4, model: assets/bigbot.obj, color: #95C2DDFF
-  - name: The Relentless, power: 470739.263, x: 0.945, z: 240.4, model: assets/clown-head.obj, color: #CC72DFFF
-  - name: Summit Breaker, power: 805500, x: 0.463, z: 274.4, model: assets/bigbot.obj, color: #8A7A7BFF
+  - name: Ridge Captain, power: 108442.651, x: -0.945, z: 212.4, color: #95C2DDFF
+  - name: The Relentless, power: 258906.595, x: 0.945, z: 257.4, color: #CC72DFFF
+  - name: Summit Breaker, power: 443025, x: 0.463, z: 302.4, model: assets/bigbot.obj, color: #8A7A7BFF

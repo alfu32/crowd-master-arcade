@@ -1,0 +1,48 @@
+{
+  "name": "crowd-master-arcade-level-vscode",
+  "displayName": "Crowd Master Arcade Level Support",
+  "description": "Syntax highlighting for Crowd Master Arcade .level and .cma-level files.",
+  "version": "0.1.0",
+  "publisher": "k3d0",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/K3D0/crowd-master-arcade.git",
+    "directory": "level-vscode-extension"
+  },
+  "engines": {
+    "vscode": "^1.90.0"
+  },
+  "categories": [
+    "Programming Languages"
+  ],
+  "contributes": {
+    "languages": [
+      {
+        "id": "cma-level",
+        "aliases": [
+          "Crowd Master Arcade Level",
+          "CMA Level"
+        ],
+        "extensions": [
+          ".level",
+          ".cma-level"
+        ],
+        "configuration": "./language-configuration.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "cma-level",
+        "scopeName": "source.cma-level",
+        "path": "./syntaxes/cma-level.tmLanguage.json"
+      }
+    ]
+  },
+  "scripts": {
+    "package": "vsce package"
+  },
+  "devDependencies": {
+    "@vscode/vsce": "^3.6.0"
+  }
+}

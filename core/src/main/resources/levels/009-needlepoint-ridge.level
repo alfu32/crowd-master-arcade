@@ -1,5 +1,5 @@
 name: Needlepoint Ridge
-road_length: 293.45
+road_length: 310.45
 road_width: 15
 starting_soldiers: 20
 fire_rate: 6.4
@@ -37,15 +37,15 @@ cards:
   - op: plus, param: soldierlife, val: 10, x: -2.173, z: 134
 
 enemy_brigades:
-  - name: front needle, effective: 172, strength: 15, x: -2.039, z: 35, model: assets/triumphal-arch.obj, color: #333C27FF
+  - name: front needle, effective: 172, strength: 15, x: -2.039, z: 35, color: #333C27FF
   - name: right spike, effective: 230, strength: 16, x: 1.873, z: 52, color: #DD95C2FF
   - name: center spike, effective: 287, strength: 17, x: 0.445, z: 69, color: #DFCC72FF
-  - name: left spike, effective: 355, strength: 18, x: -2.598, z: 77, model: assets/bigpill.obj, color: #7B8A7AFF
+  - name: left spike, effective: 355, strength: 18, x: -2.598, z: 77, color: #7B8A7AFF
   - name: ridge guards, effective: 444, strength: 19, x: 2.267, z: 94, color: #985880FF
   - name: split wall, effective: 554, strength: 20, x: -0.445, z: 111, color: #27333CFF
-  - name: pressure pin, effective: 747, strength: 21, x: -0.88, z: 119, model: assets/bannner.obj, color: #C2DD95FF
+  - name: pressure pin, effective: 747, strength: 21, x: -0.88, z: 119, color: #C2DD95FF
   - name: ridge seal, effective: 1068, strength: 22, x: 1.045, z: 136, color: #72DFCCFF
 
 bosses:
-  - name: Needle Baron, power: 265938.975, x: -0.945, z: 189.45, model: assets/bigbot.obj, color: #95C2DDFF
-  - name: Ridge Suture, power: 796500, x: 0.945, z: 223.45, model: assets/clown-head.obj, color: #CC72DFFF
+  - name: Needle Baron, power: 146266.436, x: -0.945, z: 195.45, color: #95C2DDFF
+  - name: Ridge Suture, power: 438075, x: 0.945, z: 240.45, model: assets/clown-head.obj, color: #CC72DFFF

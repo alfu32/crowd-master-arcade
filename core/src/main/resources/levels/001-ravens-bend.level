@@ -1,5 +1,5 @@
 name: The Raven's Bend
-road_length: 339.95
+road_length: 390.95
 road_width: 16
 starting_soldiers: 10
 fire_rate: 4.0
@@ -42,19 +42,19 @@ cards:
   - op: plus, param: soldierlife, val: 4, x: -0.197, z: 198
 
 enemy_brigades:
-  - name: vanguard, effective: 109, strength: 14, x: 2.101, z: 35, model: assets/triumphal-arch.obj, color: #333C27FF
+  - name: vanguard, effective: 109, strength: 14, x: 2.101, z: 35, color: #333C27FF
   - effective: 156, strength: 14, x: -2.101, z: 50, color: #DD95C2FF
   - effective: 202, strength: 16, x: -0.797, z: 65, color: #DFCC72FF
-  - effective: 249, strength: 16, x: 0.714, z: 71, model: assets/bigpill.obj, color: #7B8A7AFF
+  - effective: 249, strength: 16, x: 0.714, z: 71, color: #7B8A7AFF
   - effective: 254, strength: 18, x: -1.211, z: 86, color: #985880FF
   - effective: 343, strength: 18, x: 1.211, z: 101, color: #27333CFF
-  - effective: 180, strength: 14, x: -1.211, z: 107, model: assets/bannner.obj, color: #C2DD95FF
+  - effective: 180, strength: 14, x: -1.211, z: 107, color: #C2DD95FF
   - effective: 227, strength: 16, x: -1.687, z: 122, color: #72DFCCFF
   - effective: 274, strength: 16, x: 1.604, z: 137, color: #7A7B8AFF
-  - effective: 279, strength: 18, x: -2.101, z: 143, model: assets/tunnel_section.obj, color: #809858FF
+  - effective: 279, strength: 18, x: -2.101, z: 143, color: #809858FF
 
 bosses:
-  - name: General Raven, power: 90900, x: 0.463, z: 179.95, model: assets/bigbot.obj, color: #95C2DDFF
-  - name: Darth Putin, power: 189000, x: -0.463, z: 209.95, model: assets/clown-head.obj, color: #CC72DFFF
-  - name: Moloch, power: 724500, x: 0.463, z: 239.95, model: assets/bigbot.obj, color: #8A7A7BFF
-  - name: Moloch, power: 814500, x: -0.463, z: 269.95, model: assets/clown-head.obj, color: #588098FF
+  - name: General Raven, power: 49995, x: 0.463, z: 185.95, color: #95C2DDFF
+  - name: Darth Putin, power: 103950, x: -0.463, z: 230.95, color: #CC72DFFF
+  - name: Moloch, power: 398475, x: 0.463, z: 275.95, color: #8A7A7BFF
+  - name: Moloch, power: 447975, x: -0.463, z: 320.95, model: assets/clown-head.obj, color: #588098FF

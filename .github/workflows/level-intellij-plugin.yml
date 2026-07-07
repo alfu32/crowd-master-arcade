@@ -1,4 +1,4 @@
-name: Level IntelliJ Plugin
+name: Level Editor Plugins
 
 on:
   workflow_dispatch:
@@ -19,7 +19,7 @@ permissions:
   contents: write
 
 jobs:
-  build-plugin:
+  build-plugins:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
@@ -27,25 +27,36 @@ jobs:
         with:
           distribution: temurin
           java-version: "21"
+      - uses: actions/setup-node@v6
+        with:
+          node-version: "22"
       - name: Resolve tag
         id: vars
         run: |
           set -euo pipefail
           tag="${{ inputs.tag }}"
           echo "tag=$tag" >> "$GITHUB_OUTPUT"
-      - name: Build plugin
+      - name: Build IntelliJ plugin
         run: ./gradlew :level-intellij-plugin:buildPlugin -PreleaseNumber="${{ steps.vars.outputs.tag }}"
-      - name: Collect plugin ZIP
+      - name: Collect IntelliJ plugin ZIP
         run: |
           set -euo pipefail
           mkdir -p dist
           zip_path="$(find level-intellij-plugin/build/distributions -type f -name '*.zip' | head -n 1)"
           test -n "$zip_path"
           cp "$zip_path" "dist/crowd-master-arcade-level-intellij-plugin-${{ steps.vars.outputs.tag }}.zip"
+      - name: Build VS Code extension
+        working-directory: level-vscode-extension
+        run: |
+          set -euo pipefail
+          npm ci
+          npm run package -- --out "../dist/crowd-master-arcade-level-vscode-extension-${{ steps.vars.outputs.tag }}.vsix"
       - uses: actions/upload-artifact@v4
         with:
-          name: crowd-master-arcade-level-intellij-plugin
-          path: dist/*.zip
+          name: crowd-master-arcade-level-editor-plugins
+          path: |
+            dist/*.zip
+            dist/*.vsix
       - name: Upload to GitHub release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -59,4 +70,4 @@ jobs:
           else
             gh release edit "$TAG" --draft="$DRAFT" --prerelease="$PRERELEASE"
           fi
-          gh release upload "$TAG" dist/*.zip --clobber
+          gh release upload "$TAG" dist/*.zip dist/*.vsix --clobber

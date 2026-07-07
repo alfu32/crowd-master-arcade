@@ -1,5 +1,5 @@
 name: Red Harvest
-road_length: 338.9
+road_length: 366.9
 road_width: 18
 starting_soldiers: 28
 fire_rate: 4.8
@@ -39,17 +39,17 @@ cards:
   - op: minus, param: manpower, val: 18, x: 1.59, z: 160
 
 enemy_brigades:
-  - name: red stalkers, effective: 213, strength: 14, x: -2.66, z: 35, model: assets/bannner.obj, color: #3B1B55FF
+  - name: red stalkers, effective: 213, strength: 14, x: -2.66, z: 35, color: #3B1B55FF
   - name: right reapers, effective: 258, strength: 15, x: 2.48, z: 50, color: #55E8C1FF
   - name: left reapers, effective: 333, strength: 16, x: 0.22, z: 65, color: #876741FF
-  - name: harvest line, effective: 451, strength: 17, x: -2.56, z: 71, model: assets/triumphal-arch.obj, color: #5757ECFF
+  - name: harvest line, effective: 451, strength: 17, x: -2.56, z: 71, color: #5757ECFF
   - name: sickle pack, effective: 584, strength: 18, x: 2.38, z: 86, color: #33B376FF
   - name: red core, effective: 760, strength: 19, x: -0.22, z: 101, color: #553B1BFF
-  - name: last cut, effective: 1037, strength: 20, x: -1.4, z: 107, model: assets/bigpill.obj, color: #C155E8FF
+  - name: last cut, effective: 1037, strength: 20, x: -1.4, z: 107, color: #C155E8FF
   - name: harvest crown, effective: 1416, strength: 21, x: 1.4, z: 122, color: #418767FF
   - name: final crop, effective: 1882, strength: 22, x: 0.22, z: 137, color: #EC5757FF
 
 bosses:
-  - name: Reaper Hal, power: 84857.175, x: -1.28, z: 200.9, model: assets/bigbot.obj, color: #E8C155FF
-  - name: Crimson Binder, power: 207000, x: 1.28, z: 234.9, model: assets/clown-head.obj, color: #674187FF
-  - name: The Harvest King, power: 342000, x: 0.25, z: 268.9, model: assets/bigbot.obj, color: #57EC57FF
+  - name: Reaper Hal, power: 46671.446, x: -1.28, z: 206.9, color: #E8C155FF
+  - name: Crimson Binder, power: 113850, x: 1.28, z: 251.9, color: #674187FF
+  - name: The Harvest King, power: 188100, x: 0.25, z: 296.9, model: assets/bigbot.obj, color: #57EC57FF

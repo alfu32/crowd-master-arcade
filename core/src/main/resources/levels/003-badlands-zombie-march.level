@@ -1,5 +1,5 @@
 name: Badlands Zombie March
-road_length: 389.75
+road_length: 440.75
 road_width: 18
 starting_soldiers: 14
 fire_rate: 4.8
@@ -44,21 +44,21 @@ cards:
   - op: times, param: bulletpower, val: 2, x: -1.044, z: 228
 
 enemy_brigades:
-  - name: badlands shamblers, effective: 172, strength: 14, x: -2.205, z: 35, model: assets/thorn.obj, color: #2B1F65FF
+  - name: badlands shamblers, effective: 172, strength: 14, x: -2.205, z: 35, color: #2B1F65FF
   - name: dust zombies, effective: 230, strength: 15, x: 2.122, z: 50, color: #48D699FF
   - name: canyon biters, effective: 287, strength: 16, x: 0.445, z: 65, color: #987757FF
-  - name: sunken dead, effective: 344, strength: 17, x: -2.763, z: 71, model: assets/triumphal-arch.obj, color: #5757ECFF
+  - name: sunken dead, effective: 344, strength: 17, x: -2.763, z: 71, color: #5757ECFF
   - name: ash walkers, effective: 401, strength: 18, x: 2.763, z: 86, color: #33C465FF
   - name: badlands horde, effective: 512, strength: 18, x: -0.445, z: 101, color: #652B1FFF
-  - name: grave dust swarm, effective: 432, strength: 19, x: -2.37, z: 107, model: assets/bannner.obj, color: #9948D6FF
+  - name: grave dust swarm, effective: 432, strength: 19, x: -2.37, z: 107, color: #9948D6FF
   - name: ridge zombies, effective: 500, strength: 19, x: 2.205, z: 122, color: #579877FF
   - name: bone field, effective: 610, strength: 20, x: -0.797, z: 137, color: #EC5757FF
-  - name: dead river crossing, effective: 741, strength: 21, x: 0.88, z: 143, model: assets/bigpill.obj, color: #6533C4FF
+  - name: dead river crossing, effective: 741, strength: 21, x: 0.88, z: 143, color: #6533C4FF
   - name: badlands zombie wall, effective: 1083, strength: 22, x: 0.445, z: 158, color: #1F652BFF
   - name: last infected legion, effective: 1444, strength: 23, x: 1.211, z: 173, color: #D69948FF
 
 bosses:
-  - name: Sheriff Rotjaw, power: 155700, x: -1.101, z: 229.75, model: assets/bigbot.obj, color: #D69948FF
-  - name: Mother Badlands, power: 257850, x: 1.101, z: 259.75, model: assets/clown-head.obj, color: #775798FF
-  - name: The Zombie Baron, power: 441000, x: 0.463, z: 289.75, model: assets/bigbot.obj, color: #57EC57FF
-  - name: Dead Mesa Colossus, power: 814500, x: -0.463, z: 319.75, model: assets/clown-head.obj, color: #C46533FF
+  - name: Sheriff Rotjaw, power: 85635, x: -1.101, z: 235.75, color: #D69948FF
+  - name: Mother Badlands, power: 141817.5, x: 1.101, z: 280.75, color: #775798FF
+  - name: The Zombie Baron, power: 242550, x: 0.463, z: 325.75, color: #57EC57FF
+  - name: Dead Mesa Colossus, power: 447975, x: -0.463, z: 370.75, model: assets/clown-head.obj, color: #C46533FF

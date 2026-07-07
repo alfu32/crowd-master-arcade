@@ -1,5 +1,5 @@
 name: Blood Meridian
-road_length: 381.2
+road_length: 432.2
 road_width: 18
 starting_soldiers: 32
 fire_rate: 4.2
@@ -39,19 +39,19 @@ cards:
   - op: minus, param: firepower, val: 5, x: 1.59, z: 160
 
 enemy_brigades:
-  - name: blood scouts, effective: 256, strength: 15, x: -2.84, z: 35, model: assets/triumphal-arch.obj, color: #2D1C77FF
+  - name: blood scouts, effective: 256, strength: 15, x: -2.84, z: 35, color: #2D1C77FF
   - name: red flank, effective: 316, strength: 16, x: 2.66, z: 50, color: #46F39CFF
   - name: meridian line, effective: 391, strength: 17, x: 0.22, z: 65, color: #A93D2EFF
-  - name: blood gate, effective: 509, strength: 18, x: -2.56, z: 71, model: assets/clown-head.obj, color: #D266FFFF
+  - name: blood gate, effective: 509, strength: 18, x: -2.56, z: 71, color: #D266FFFF
   - name: red line, effective: 656, strength: 19, x: 2.38, z: 86, color: #2DE265FF
   - name: meridian core, effective: 861, strength: 20, x: -0.22, z: 101, color: #772D1CFF
-  - name: blood crown, effective: 1138, strength: 21, x: -1.4, z: 107, model: assets/bannner.obj, color: #9C46F3FF
+  - name: blood crown, effective: 1138, strength: 21, x: -1.4, z: 107, color: #9C46F3FF
   - name: red crown, effective: 1532, strength: 22, x: 1.4, z: 122, color: #2EA93DFF
   - name: meridian tomb, effective: 2027, strength: 23, x: 0.22, z: 137, color: #FFD266FF
-  - name: final red tide, effective: 2696, strength: 24, x: -0.22, z: 143, model: assets/bigpill.obj, color: #652DE2FF
+  - name: final red tide, effective: 2696, strength: 24, x: -0.22, z: 143, color: #652DE2FF
 
 bosses:
-  - name: Blood Marshal, power: 70457.175, x: -1.28, z: 221.2, model: assets/bigbot.obj, color: #F39C46FF
-  - name: Red Oracle, power: 165857.175, x: 1.28, z: 251.2, model: assets/clown-head.obj, color: #3D2EA9FF
-  - name: Meridian Titan, power: 244285.65, x: 0.25, z: 281.2, model: assets/bigbot.obj, color: #66FFD2FF
-  - name: Crimson Sun, power: 342000, x: -0.25, z: 311.2, model: assets/clown-head.obj, color: #E2652DFF
+  - name: Blood Marshal, power: 38751.446, x: -1.28, z: 227.2, color: #F39C46FF
+  - name: Red Oracle, power: 91221.446, x: 1.28, z: 272.2, color: #3D2EA9FF
+  - name: Meridian Titan, power: 134357.108, x: 0.25, z: 317.2, color: #66FFD2FF
+  - name: Crimson Sun, power: 188100, x: -0.25, z: 362.2, model: assets/clown-head.obj, color: #E2652DFF

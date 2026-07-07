@@ -1,5 +1,5 @@
 name: Ash Cathedral
-road_length: 379
+road_length: 430
 road_width: 18
 starting_soldiers: 30
 fire_rate: 4.4
@@ -39,19 +39,19 @@ cards:
   - op: minus, param: manpower, val: 18, x: 1.59, z: 160
 
 enemy_brigades:
-  - name: ash sentries, effective: 242, strength: 15, x: -2.66, z: 35, model: assets/triumphal-arch.obj, color: #2D1C77FF
+  - name: ash sentries, effective: 242, strength: 15, x: -2.66, z: 35, color: #2D1C77FF
   - name: ash choir left, effective: 288, strength: 16, x: 2.48, z: 50, color: #46F39CFF
   - name: ash choir right, effective: 362, strength: 17, x: 0.22, z: 65, color: #A93D2EFF
-  - name: ash nave, effective: 480, strength: 18, x: -2.56, z: 71, model: assets/clown-head.obj, color: #D266FFFF
+  - name: ash nave, effective: 480, strength: 18, x: -2.56, z: 71, color: #D266FFFF
   - name: ash transept, effective: 627, strength: 19, x: 2.38, z: 86, color: #2DE265FF
   - name: ash altar, effective: 803, strength: 20, x: -0.22, z: 101, color: #772D1CFF
-  - name: ash reliquary, effective: 1066, strength: 21, x: -1.4, z: 107, model: assets/bannner.obj, color: #9C46F3FF
+  - name: ash reliquary, effective: 1066, strength: 21, x: -1.4, z: 107, color: #9C46F3FF
   - name: ash tower, effective: 1445, strength: 22, x: 1.4, z: 122, color: #2EA93DFF
   - name: ash crypt, effective: 1940, strength: 23, x: 0.22, z: 137, color: #FFD266FF
-  - name: final choir, effective: 2580, strength: 24, x: -0.22, z: 143, model: assets/bigpill.obj, color: #652DE2FF
+  - name: final choir, effective: 2580, strength: 24, x: -0.22, z: 143, color: #652DE2FF
 
 bosses:
-  - name: Ash Deacon, power: 70312.5, x: -1.28, z: 219, model: assets/bigbot.obj, color: #F39C46FF
-  - name: Choir Engine, power: 162000, x: 1.28, z: 249, model: assets/clown-head.obj, color: #3D2EA9FF
-  - name: Cathedral Heart, power: 246937.5, x: 0.25, z: 279, model: assets/bigbot.obj, color: #66FFD2FF
-  - name: Fallen Bell, power: 342000, x: -0.25, z: 309, model: assets/clown-head.obj, color: #E2652DFF
+  - name: Ash Deacon, power: 38671.875, x: -1.28, z: 225, color: #F39C46FF
+  - name: Choir Engine, power: 89100, x: 1.28, z: 270, color: #3D2EA9FF
+  - name: Cathedral Heart, power: 135815.625, x: 0.25, z: 315, color: #66FFD2FF
+  - name: Fallen Bell, power: 188100, x: -0.25, z: 360, model: assets/clown-head.obj, color: #E2652DFF
