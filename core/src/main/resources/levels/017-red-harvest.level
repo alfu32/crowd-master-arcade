@@ -12,6 +12,7 @@ manpower_card_model: assets/default-manpower-card.obj
 firepower_card_model: assets/default-firepower-card.obj
 bulletpower_card_model: assets/default-bulletpower-card.obj
 soldierlife_card_model: assets/default-soldierlife-card.obj
+bulletrange_card_model: assets/default-bulletrange-card.obj
 player_color: #1FB8EBFF
 enemy_color: #A12D2DFF
 boss_color: #512B8BFF
@@ -37,6 +38,8 @@ cards:
   - op: plus,  param: soldierlife, val: 14, x: -2, z: 136
   - op: times,  param: bulletpower, val: 2, x: 3, z: 152
   - op: minus,  param: manpower, val: 18, x: -4, z: 161
+  - op: plus,  param: bulletrange, val: 15, x: -4, z: 75
+  - op: times,  param: bulletrange, val: 2, x: 4, z: 131
 
 enemy_brigades:
   - name: red stalkers, effective: 213, strength: 14, x: -7, z: 32,  color: #3B1B55FF

@@ -259,6 +259,7 @@ class WorldRenderer {
         appModel.decorations.filter { it.active }.forEach(::renderDecoration)
         appModel.projectiles.filter { it.active }.forEach {
             assets.projectile.transform.setToTranslation(it.position)
+            assets.projectile.transform.scale(projectileVisualScale(it.damage), projectileVisualScale(it.damage), projectileVisualScale(it.damage))
             activeBatch.render(assets.projectile, environment)
         }
         appModel.bosses.filter { it.active && it.alive }.forEach { boss ->
@@ -334,6 +335,11 @@ class WorldRenderer {
             CardOperation.TIMES -> Color(0.2f, 0.48f, 0.9f, 1f)
             CardOperation.DIV -> Color(0.9f, 0.66f, 0.14f, 1f)
         }
+
+    private fun projectileVisualScale(damage: Float): Float {
+        val normalized = ((damage - 10f) / 70f).coerceIn(0f, 1f)
+        return 0.45f + normalized * 1.55f
+    }
 
     private fun LevelColor.toGdxColor(): Color =
         Color(red, green, blue, alpha)
@@ -418,6 +424,8 @@ class WorldRenderer {
             private set
         var soldierLifeCard = instance(box(1.2f, 1.2f, 0.22f, Color.WHITE))
             private set
+        var bulletRangeCard = instance(box(1.2f, 1.2f, 0.22f, Color.WHITE))
+            private set
         var manpowerCardTopY = modelTopY(manpowerCard.model)
             private set
         var firepowerCardTopY = modelTopY(firepowerCard.model)
@@ -425,6 +433,8 @@ class WorldRenderer {
         var bulletPowerCardTopY = modelTopY(bulletPowerCard.model)
             private set
         var soldierLifeCardTopY = modelTopY(soldierLifeCard.model)
+            private set
+        var bulletRangeCardTopY = modelTopY(bulletRangeCard.model)
             private set
         var bossTopY = modelTopY(boss.model)
             private set
@@ -438,10 +448,12 @@ class WorldRenderer {
             firepowerCard = instance(loadObj(paths.firepowerCard, fallback = { box(1.2f, 1.2f, 0.22f, Color.WHITE) }))
             bulletPowerCard = instance(loadObj(paths.bulletPowerCard, fallback = { box(1.2f, 1.2f, 0.22f, Color.WHITE) }))
             soldierLifeCard = instance(loadObj(paths.soldierLifeCard, fallback = { box(1.2f, 1.2f, 0.22f, Color.WHITE) }))
+            bulletRangeCard = instance(loadObj(paths.bulletRangeCard, fallback = { box(1.2f, 1.2f, 0.22f, Color.WHITE) }))
             manpowerCardTopY = modelTopY(manpowerCard.model)
             firepowerCardTopY = modelTopY(firepowerCard.model)
             bulletPowerCardTopY = modelTopY(bulletPowerCard.model)
             soldierLifeCardTopY = modelTopY(soldierLifeCard.model)
+            bulletRangeCardTopY = modelTopY(bulletRangeCard.model)
             bossTopY = modelTopY(boss.model)
         }
 
@@ -495,6 +507,7 @@ class WorldRenderer {
                 CardTarget.FIREPOWER -> currentPaths?.firepowerCard
                 CardTarget.BULLET_POWER -> currentPaths?.bulletPowerCard
                 CardTarget.SOLDIER_LIFE -> currentPaths?.soldierLifeCard
+                CardTarget.BULLET_RANGE -> currentPaths?.bulletRangeCard
             }
 
         private fun defaultCardInstance(target: CardTarget): ModelInstance =
@@ -503,6 +516,7 @@ class WorldRenderer {
                 CardTarget.FIREPOWER -> firepowerCard
                 CardTarget.BULLET_POWER -> bulletPowerCard
                 CardTarget.SOLDIER_LIFE -> soldierLifeCard
+                CardTarget.BULLET_RANGE -> bulletRangeCard
             }
 
         private fun defaultCardTopY(target: CardTarget): Float =
@@ -511,6 +525,7 @@ class WorldRenderer {
                 CardTarget.FIREPOWER -> firepowerCardTopY
                 CardTarget.BULLET_POWER -> bulletPowerCardTopY
                 CardTarget.SOLDIER_LIFE -> soldierLifeCardTopY
+                CardTarget.BULLET_RANGE -> bulletRangeCardTopY
             }
 
         fun bossTopY(path: String): Float =
@@ -753,12 +768,13 @@ class WorldRenderer {
         fun renderCardText(modelBatch: ModelBatch, environment: Environment, card: Card) {
             val cardTopOffset = assets.cardTopY(card)
             val cardTopY = card.position.y + cardTopOffset
-            val smallCell = 0.08f
+            val target = targetTop(card)
+            val smallCell = if (target.length > 8) 0.055f else 0.07f
             val largeCell = 0.14f
             val targetBaselineY = cardTopY + 0.58f
             val operationBaselineY = targetBaselineY + glyphHeight(largeCell) + 0.18f
             renderLine(modelBatch, environment, operationLabel(card), card.position.x, operationBaselineY, card.position.z - 0.14f, largeCell)
-            renderLine(modelBatch, environment, targetTop(card), card.position.x, targetBaselineY, card.position.z - 0.14f, smallCell)
+            renderLine(modelBatch, environment, target, card.position.x, targetBaselineY, card.position.z - 0.14f, smallCell)
         }
 
         fun renderBossText(modelBatch: ModelBatch, environment: Environment, boss: Boss) {
@@ -821,10 +837,11 @@ class WorldRenderer {
 
         private fun targetTop(card: Card): String =
             when (card.target) {
-                CardTarget.MANPOWER -> "MAN"
-                CardTarget.FIREPOWER -> "FIRE"
-                CardTarget.BULLET_POWER -> "BUL"
-                CardTarget.SOLDIER_LIFE -> "LIFE"
+                CardTarget.MANPOWER -> "MANPOWER"
+                CardTarget.FIREPOWER -> "FIREPOWER"
+                CardTarget.BULLET_POWER -> "BULLET POWER"
+                CardTarget.SOLDIER_LIFE -> "SOLDIER LIFE"
+                CardTarget.BULLET_RANGE -> "BULLET RANGE"
             }
 
         private fun glyph(char: Char): List<String> =

@@ -12,6 +12,7 @@ manpower_card_model: assets/default-manpower-card.obj
 firepower_card_model: assets/default-firepower-card.obj
 bulletpower_card_model: assets/default-bulletpower-card.obj
 soldierlife_card_model: assets/default-soldierlife-card.obj
+bulletrange_card_model: assets/default-bulletrange-card.obj
 player_color: #1FB8EBFF
 enemy_color: #E0442EFF
 boss_color: #6622AAFF
@@ -40,6 +41,8 @@ cards:
   - op: plus,  param: bulletpower, val: 12, x: 2, z: 204
   - op: plus,  param: manpower, val: 25, x: 0, z: 220
   - op: plus,  param: soldierlife, val: 10, x: -2, z: 238
+  - op: plus,  param: bulletrange, val: 11, x: -4, z: 98
+  - op: times,  param: bulletrange, val: 2, x: 4, z: 174
 
 enemy_brigades:
   - name: spark screen, effective: 193, strength: 16, x: -2, z: 46,  color: #2D1C77FF

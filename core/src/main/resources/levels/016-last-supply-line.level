@@ -12,6 +12,7 @@ manpower_card_model: assets/default-manpower-card.obj
 firepower_card_model: assets/default-firepower-card.obj
 bulletpower_card_model: assets/default-bulletpower-card.obj
 soldierlife_card_model: assets/default-soldierlife-card.obj
+bulletrange_card_model: assets/default-bulletrange-card.obj
 player_color: #1FB8EBFF
 enemy_color: #5F2D43FF
 boss_color: #46349AFF
@@ -37,6 +38,8 @@ cards:
   - op: plus,  param: soldierlife, val: 14, x: -6, z: 154
   - op: times,  param: bulletpower, val: 2, x: 6, z: 172
   - op: minus,  param: firepower, val: 5, x: 0, z: 200
+  - op: plus,  param: bulletrange, val: 15, x: -4, z: 82
+  - op: times,  param: bulletrange, val: 2, x: 4, z: 150
 
 enemy_brigades:
   - name: broken convoy, effective: 198, strength: 14, x: -4, z: 36,  color: #2B362BFF

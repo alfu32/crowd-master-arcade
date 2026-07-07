@@ -12,6 +12,7 @@ manpower_card_model: assets/default-manpower-card.obj
 firepower_card_model: assets/default-firepower-card.obj
 bulletpower_card_model: assets/default-bulletpower-card.obj
 soldierlife_card_model: assets/default-soldierlife-card.obj
+bulletrange_card_model: assets/default-bulletrange-card.obj
 player_color: #1FB8EBFF
 enemy_color: #7C2A52FF
 boss_color: #433A9EFF
@@ -39,6 +40,8 @@ cards:
   - op: plus,  param: soldierlife, val: 14, x: -1, z: 141
   - op: times,  param: bulletpower, val: 2, x: 6, z: 163
   - op: minus,  param: manpower, val: 18, x: 1, z: 171
+  - op: plus,  param: bulletrange, val: 15, x: -4, z: 78
+  - op: times,  param: bulletrange, val: 2, x: 4, z: 141
 
 enemy_brigades:
   - name: front delta, effective: 277, strength: 16, x: 0, z: 28,  color: #333C27FF

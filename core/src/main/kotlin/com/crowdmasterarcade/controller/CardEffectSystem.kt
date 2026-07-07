@@ -30,6 +30,7 @@ object CardEffectSystem {
             CardTarget.FIREPOWER -> applyFirepower(player, card, maxFireRate)
             CardTarget.BULLET_POWER -> appModel?.let { applyBulletPower(it, card) }
             CardTarget.SOLDIER_LIFE -> applySoldierLife(player, card)
+            CardTarget.BULLET_RANGE -> appModel?.let { applyBulletRange(it, card) }
         }
         card.active = false
         val road = Road(roadWidth, 0f, -roadWidth / 2f, roadWidth / 2f)
@@ -61,6 +62,17 @@ object CardEffectSystem {
             CardOperation.TIMES -> appModel.runtimeConfig.projectileDamage * card.value
             CardOperation.DIV -> if (card.value <= 0f) appModel.runtimeConfig.projectileDamage else appModel.runtimeConfig.projectileDamage / card.value
         }.coerceAtLeast(1f)
+    }
+
+    private fun applyBulletRange(appModel: AppModel, card: Card) {
+        val currentLength = appModel.runtimeConfig.projectileLifeSeconds * appModel.runtimeConfig.projectileSpeed
+        val newLength = when (card.operation) {
+            CardOperation.PLUS -> currentLength + card.value
+            CardOperation.MINUS -> currentLength - card.value
+            CardOperation.TIMES -> currentLength * card.value
+            CardOperation.DIV -> if (card.value <= 0f) currentLength else currentLength / card.value
+        }.coerceAtLeast(5f)
+        appModel.runtimeConfig.projectileLifeSeconds = newLength / appModel.runtimeConfig.projectileSpeed
     }
 
     private fun applySoldierLife(player: PlayerBrigade, card: Card) {

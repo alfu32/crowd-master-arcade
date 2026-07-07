@@ -20,7 +20,7 @@ The TextMate grammar recognizes the same lightweight level format parsed by the 
 - Section/object categories: `cards`, `decorations`, `background_decorations`, `enemy_brigades`, `bosses`, plus parser aliases `enemies` and `boss`.
 - Key names before `:`, including common level, model, color, card, enemy, boss, and decoration fields.
 - Operation enum values: `plus`, `minus`, `div`, `times`.
-- Param enum values: `manpower`, `firepower`, `bulletpower`, `bullet_power`, `soldierlife`, and `soldier_life`.
+- Param enum values: `manpower`, `firepower`, `bulletpower`, `bullet_power`, `soldierlife`, `soldier_life`, `bulletrange`, `bullet_range`, `projectile_range`, and `range`.
 - Number values: signed integer and decimal values, with optional `f`/`F` suffix.
 - Hex colors: `#RRGGBB` and `#RRGGBBAA`.
 - Path references: slash-separated paths, backslash-separated paths, and `.obj` files.

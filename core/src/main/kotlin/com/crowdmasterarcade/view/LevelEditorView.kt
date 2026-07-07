@@ -134,6 +134,7 @@ class LevelEditorView(
         prototypeButton(table, "Firepower card", EditorPrototype.Card(CardTarget.FIREPOWER))
         prototypeButton(table, "Bullet power card", EditorPrototype.Card(CardTarget.BULLET_POWER))
         prototypeButton(table, "Soldier life card", EditorPrototype.Card(CardTarget.SOLDIER_LIFE))
+        prototypeButton(table, "Bullet range card", EditorPrototype.Card(CardTarget.BULLET_RANGE))
         prototypeButton(table, "Decoration", EditorPrototype.Decoration)
         prototypeButton(table, "Background decoration", EditorPrototype.BackgroundDecoration)
         prototypeButton(table, "Boss", EditorPrototype.Boss)
@@ -178,6 +179,7 @@ class LevelEditorView(
         path("firepower_card_model", draft.firepowerCardModel) { draft.firepowerCardModel = it }
         path("bulletpower_card_model", draft.bulletPowerCardModel) { draft.bulletPowerCardModel = it }
         path("soldierlife_card_model", draft.soldierLifeCardModel) { draft.soldierLifeCardModel = it }
+        path("bulletrange_card_model", draft.bulletRangeCardModel) { draft.bulletRangeCardModel = it }
         color("player_color", draft.playerColor) { draft.playerColor = it }
         color("enemy_color", draft.enemyColor) { draft.enemyColor = it }
         color("boss_color", draft.bossColor) { draft.bossColor = it }
@@ -717,6 +719,7 @@ class LevelEditorView(
         var firepowerCardModel: String,
         var bulletPowerCardModel: String,
         var soldierLifeCardModel: String,
+        var bulletRangeCardModel: String,
         var playerColor: LevelColor,
         var enemyColor: LevelColor,
         var bossColor: LevelColor,
@@ -737,7 +740,7 @@ class LevelEditorView(
                 projectilePool = projectilePool,
                 projectileLength = projectileLength,
                 maxFireRate = maxFireRate,
-                modelPaths = LevelModelPaths(soldierModel, bossModel, manpowerCardModel, firepowerCardModel, bulletPowerCardModel, soldierLifeCardModel),
+                modelPaths = LevelModelPaths(soldierModel, bossModel, manpowerCardModel, firepowerCardModel, bulletPowerCardModel, soldierLifeCardModel, bulletRangeCardModel),
                 colors = LevelColors(playerColor, enemyColor, bossColor, decorationColor),
                 cards = cards.map { CardDefinition(it.operation, it.target, it.value, it.x, it.z, it.modelPath) },
                 decorations = decorations.map { DecorationDefinition(it.name, it.power, it.x, it.z, it.modelPath, it.color) },
@@ -763,6 +766,7 @@ class LevelEditorView(
                     firepowerCardModel = level.modelPaths.firepowerCard,
                     bulletPowerCardModel = level.modelPaths.bulletPowerCard,
                     soldierLifeCardModel = level.modelPaths.soldierLifeCard,
+                    bulletRangeCardModel = level.modelPaths.bulletRangeCard,
                     playerColor = level.colors.player,
                     enemyColor = level.colors.enemy,
                     bossColor = level.colors.boss,

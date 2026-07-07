@@ -69,6 +69,16 @@ class CardEffectSystemTest {
         assertEquals(GameConfig.PROJECTILE_DAMAGE * 3f, appModel.runtimeConfig.projectileDamage)
     }
 
+    @Test
+    fun bulletRangeUpdatesProjectileLifeFromRange() {
+        val appModel = AppModelFactory.initAppModel()
+        val originalLength = appModel.runtimeConfig.projectileLifeSeconds * appModel.runtimeConfig.projectileSpeed
+
+        CardEffectSystem.applyCard(appModel, card(CardOperation.PLUS, CardTarget.BULLET_RANGE, 25f))
+
+        assertEquals((originalLength + 25f) / appModel.runtimeConfig.projectileSpeed, appModel.runtimeConfig.projectileLifeSeconds)
+    }
+
     private fun player(count: Int) = PlayerBrigade(
         position = Vector3(),
         lateralSpeed = GameConfig.PLAYER_LATERAL_SPEED,

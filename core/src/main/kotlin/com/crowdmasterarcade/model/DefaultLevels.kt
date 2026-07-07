@@ -13,6 +13,7 @@ object DefaultLevels {
         boss_model: assets/default-boss.obj
         manpower_card_model: assets/default-manpower-card.obj
         firepower_card_model: assets/default-firepower-card.obj
+        bulletrange_card_model: assets/default-bulletrange-card.obj
 
         cards:
           - op: plus, param: manpower, val: 10, x: -2, z: 28

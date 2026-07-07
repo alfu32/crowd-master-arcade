@@ -11,5 +11,6 @@ enum class CardTarget {
     MANPOWER,
     FIREPOWER,
     BULLET_POWER,
-    SOLDIER_LIFE
+    SOLDIER_LIFE,
+    BULLET_RANGE
 }

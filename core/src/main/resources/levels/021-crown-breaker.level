@@ -12,6 +12,7 @@ manpower_card_model: assets/default-manpower-card.obj
 firepower_card_model: assets/default-firepower-card.obj
 bulletpower_card_model: assets/default-bulletpower-card.obj
 soldierlife_card_model: assets/default-soldierlife-card.obj
+bulletrange_card_model: assets/default-bulletrange-card.obj
 player_color: #1FB8EBFF
 enemy_color: #8A2F4BFF
 boss_color: #51368EFF
@@ -39,6 +40,8 @@ cards:
   - op: times,  param: bulletpower, val: 2, x: 6, z: 170
   - op: minus,  param: manpower, val: 20, x: -6, z: 182
   - op: plus,  param: firepower, val: 5, x: 2, z: 206
+  - op: plus,  param: bulletrange, val: 17, x: -4, z: 82
+  - op: times,  param: bulletrange, val: 2, x: 4, z: 140
 
 enemy_brigades:
   - name: crown scouts, effective: 271, strength: 15, x: -7, z: 34,  color: #333C27FF

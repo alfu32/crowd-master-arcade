@@ -12,6 +12,7 @@ manpower_card_model: assets/default-manpower-card.obj
 firepower_card_model: assets/default-firepower-card.obj
 bulletpower_card_model: assets/default-bulletpower-card.obj
 soldierlife_card_model: assets/default-soldierlife-card.obj
+bulletrange_card_model: assets/default-bulletrange-card.obj
 player_color: #1FB8EBFF
 enemy_color: #B93B2DFF
 boss_color: #5830AAFF
@@ -38,6 +39,8 @@ cards:
   - op: plus,  param: soldierlife, val: 10, x: -1, z: 134
   - op: plus,  param: bulletpower, val: 12, x: 1, z: 152
   - op: minus,  param: manpower, val: 16, x: -5, z: 166
+  - op: plus,  param: bulletrange, val: 13, x: -4, z: 74
+  - op: times,  param: bulletrange, val: 2, x: 4, z: 132
 
 enemy_brigades:
   - name: first ruin line, effective: 213, strength: 16, x: -6, z: 38,  color: #3B432EFF

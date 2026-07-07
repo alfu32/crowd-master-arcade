@@ -12,6 +12,7 @@ manpower_card_model: assets/default-manpower-card.obj
 firepower_card_model: assets/default-firepower-card.obj
 bulletpower_card_model: assets/default-bulletpower-card.obj
 soldierlife_card_model: assets/default-soldierlife-card.obj
+bulletrange_card_model: assets/default-bulletrange-card.obj
 player_color: #1FB8EBFF
 enemy_color: #58294EFF
 boss_color: #3A3E9EFF
@@ -39,6 +40,8 @@ cards:
   - op: minus,  param: firepower, val: 6, x: 0, z: 200
   - op: plus,  param: manpower, val: 36, x: -2, z: 212
   - op: times,  param: firepower, val: 5, x: 2, z: 222
+  - op: plus,  param: bulletrange, val: 18, x: -5, z: 82
+  - op: times,  param: bulletrange, val: 2, x: 5, z: 160
 
 enemy_brigades:
   - name: eclipse scouts, effective: 329, strength: 16, x: -5, z: 36,  color: #2B362BFF

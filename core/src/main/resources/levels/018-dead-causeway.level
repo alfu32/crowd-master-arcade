@@ -12,6 +12,7 @@ manpower_card_model: assets/default-manpower-card.obj
 firepower_card_model: assets/default-firepower-card.obj
 bulletpower_card_model: assets/default-bulletpower-card.obj
 soldierlife_card_model: assets/default-soldierlife-card.obj
+bulletrange_card_model: assets/default-bulletrange-card.obj
 player_color: #1FB8EBFF
 enemy_color: #7B3030FF
 boss_color: #56389EFF
@@ -38,6 +39,8 @@ cards:
   - op: plus,  param: soldierlife, val: 14, x: 6, z: 107
   - op: times,  param: bulletpower, val: 2, x: -3, z: 121
   - op: minus,  param: firepower, val: 5, x: 3, z: 129
+  - op: plus,  param: bulletrange, val: 16, x: -4, z: 62
+  - op: times,  param: bulletrange, val: 2, x: 4, z: 103
 
 enemy_brigades:
   - name: dead causeway front, effective: 228, strength: 15, x: 0, z: 24,  color: #333C27FF

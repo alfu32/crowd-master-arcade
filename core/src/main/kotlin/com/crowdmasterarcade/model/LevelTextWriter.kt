@@ -18,6 +18,7 @@ object LevelTextWriter {
         appendLine("firepower_card_model: ${level.modelPaths.firepowerCard}")
         appendLine("bulletpower_card_model: ${level.modelPaths.bulletPowerCard}")
         appendLine("soldierlife_card_model: ${level.modelPaths.soldierLifeCard}")
+        appendLine("bulletrange_card_model: ${level.modelPaths.bulletRangeCard}")
         appendLine("player_color: ${color(level.colors.player)}")
         appendLine("enemy_color: ${color(level.colors.enemy)}")
         appendLine("boss_color: ${color(level.colors.boss)}")
@@ -95,5 +96,6 @@ object LevelTextWriter {
             CardTarget.FIREPOWER -> "firepower"
             CardTarget.BULLET_POWER -> "bulletpower"
             CardTarget.SOLDIER_LIFE -> "soldierlife"
+            CardTarget.BULLET_RANGE -> "bulletrange"
         }
 }

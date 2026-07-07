@@ -119,7 +119,7 @@ data class RuntimeConfig(
     val maxFireRate: Float,
     val projectileSpeed: Float,
     var projectileDamage: Float,
-    val projectileLifeSeconds: Float,
+    var projectileLifeSeconds: Float,
     var gameSpeed: Float = 1f
 )
 

@@ -12,6 +12,7 @@ manpower_card_model: assets/default-manpower-card.obj
 firepower_card_model: assets/default-firepower-card.obj
 bulletpower_card_model: assets/default-bulletpower-card.obj
 soldierlife_card_model: assets/default-soldierlife-card.obj
+bulletrange_card_model: assets/default-bulletrange-card.obj
 player_color: #1FB8EBFF
 enemy_color: #B23A2DFF
 boss_color: #4D2D88FF
@@ -39,6 +40,8 @@ cards:
   - op: plus,  param: soldierlife, val: 12, x: 0, z: 173
   - op: plus,  param: bulletpower, val: 12, x: 2, z: 188
   - op: minus,  param: firepower, val: 4, x: 4, z: 199
+  - op: plus,  param: bulletrange, val: 14, x: -4, z: 96
+  - op: times,  param: bulletrange, val: 2, x: 4, z: 156
 
 enemy_brigades:
   - name: ridge front, effective: 256, strength: 16, x: -7, z: 40,  color: #333C27FF

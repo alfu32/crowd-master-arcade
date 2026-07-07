@@ -12,6 +12,7 @@ manpower_card_model: assets/default-manpower-card.obj
 firepower_card_model: assets/default-firepower-card.obj
 bulletpower_card_model: assets/default-bulletpower-card.obj
 soldierlife_card_model: assets/default-soldierlife-card.obj
+bulletrange_card_model: assets/default-bulletrange-card.obj
 player_color: #1FB8EBFF
 enemy_color: #6D2636FF
 boss_color: #493C9CFF
@@ -40,6 +41,8 @@ cards:
   - op: times,  param: bulletpower, val: 2, x: 6, z: 163
   - op: minus,  param: firepower, val: 5, x: 1, z: 171
   - op: plus,  param: manpower, val: 30, x: -7, z: 197
+  - op: plus,  param: bulletrange, val: 17, x: -4, z: 78
+  - op: times,  param: bulletrange, val: 2, x: 4, z: 141
 
 enemy_brigades:
   - name: rift scouts, effective: 300, strength: 15, x: 0, z: 28,  color: #38582DFF

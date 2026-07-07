@@ -12,6 +12,7 @@ manpower_card_model: assets/default-manpower-card.obj
 firepower_card_model: assets/default-firepower-card.obj
 bulletpower_card_model: assets/default-bulletpower-card.obj
 soldierlife_card_model: assets/default-soldierlife-card.obj
+bulletrange_card_model: assets/default-bulletrange-card.obj
 player_color: #1FB8EBFF
 enemy_color: #317B3DFF
 boss_color: #6B3B87FF
@@ -44,6 +45,8 @@ cards:
   - op: plus,  param: manpower, val: 55, x: -5, z: 256
   - op: times,  param: bulletpower, val: 2, x: -3, z: 271
   - op: times,  param: firepower, val: 6, x: 0, z: 282
+  - op: plus,  param: bulletrange, val: 12, x: -5, z: 111
+  - op: times,  param: bulletrange, val: 2, x: 5, z: 205
 
 enemy_brigades:
   - name: green scouts, effective: 193, strength: 15, x: -8, z: 40,  color: #43311BFF

@@ -4,6 +4,7 @@ bigpill.obj
 clown-head.obj
 default-boss.obj
 default-bulletpower-card.obj
+default-bulletrange-card.obj
 default-decoration.obj
 default-firepower-card.obj
 default-manpower-card.obj

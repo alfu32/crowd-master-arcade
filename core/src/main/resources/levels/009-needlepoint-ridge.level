@@ -12,6 +12,7 @@ manpower_card_model: assets/default-manpower-card.obj
 firepower_card_model: assets/default-firepower-card.obj
 bulletpower_card_model: assets/default-bulletpower-card.obj
 soldierlife_card_model: assets/default-soldierlife-card.obj
+bulletrange_card_model: assets/default-bulletrange-card.obj
 player_color: #1FB8EBFF
 enemy_color: #C73D31FF
 boss_color: #4B4E9BFF
@@ -36,6 +37,8 @@ cards:
   - op: plus,  param: manpower, val: 30, x: -4, z: 107
   - op: times,  param: firepower, val: 4, x: 4, z: 125
   - op: plus,  param: soldierlife, val: 10, x: -2, z: 136
+  - op: plus,  param: bulletrange, val: 13, x: -4, z: 64
+  - op: times,  param: bulletrange, val: 2, x: 4, z: 100
 
 enemy_brigades:
   - name: front needle, effective: 172, strength: 15, x: -6, z: 32,  color: #333C27FF

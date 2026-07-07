@@ -106,6 +106,7 @@ object AppModelFactory {
                 CardTarget.FIREPOWER -> levelModels.firepowerCard
                 CardTarget.BULLET_POWER -> levelModels.bulletPowerCard
                 CardTarget.SOLDIER_LIFE -> levelModels.soldierLifeCard
+                CardTarget.BULLET_RANGE -> levelModels.bulletRangeCard
             },
             position = Vector3(definition.x, 0.7f, definition.z + zOffset),
             speed = GameConfig.CARD_SPEED,

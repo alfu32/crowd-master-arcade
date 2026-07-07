@@ -12,6 +12,7 @@ manpower_card_model: assets/default-manpower-card.obj
 firepower_card_model: assets/default-firepower-card.obj
 bulletpower_card_model: assets/default-bulletpower-card.obj
 soldierlife_card_model: assets/default-soldierlife-card.obj
+bulletrange_card_model: assets/default-bulletrange-card.obj
 player_color: #1FB8EBFF
 enemy_color: #D6292EFF
 boss_color: #5C248FFF
@@ -42,6 +43,8 @@ cards:
   - op: times,  param: firepower, val: 5, x: 5, z: 174
   - op: plus,  param: bulletpower, val: 5, x: 0, z: 192
   - op: plus,  param: soldierlife, val: 4, x: -5, z: 203
+  - op: plus,  param: bulletrange, val: 10, x: -4, z: 91
+  - op: times,  param: bulletrange, val: 2, x: 4, z: 158
 
 enemy_brigades:
   - name: vanguard, effective: 109, strength: 14, x: -6, z: 32,  color: #333C27FF
