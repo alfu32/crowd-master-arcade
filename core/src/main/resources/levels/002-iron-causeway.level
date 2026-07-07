@@ -30,15 +30,15 @@ cards:
   - op: plus,  param: manpower, val: 20, x: 0, z: 16
   - op: times,  param: firepower, val: 3, x: -5, z: 23
   - op: plus,  param: soldierlife, val: 6, x: 5, z: 32
-  - op: minus,  param: manpower, val: 8, x: -2, z: 42
+  - op: minus,  param: manpower, val: 10, x: -2, z: 42
   - op: plus,  param: manpower, val: 25, x: 2, z: 56
-  - op: div,  param: firepower, val: 2, x: -4, z: 64
+  - op: div,  param: firepower, val: 3, x: -4, z: 64
   - op: times,  param: manpower, val: 3, x: 4, z: 81
   - op: times,  param: firepower, val: 4, x: 0, z: 88
   - op: plus,  param: bulletpower, val: 8, x: -5, z: 97
-  - op: minus,  param: firepower, val: 5, x: 5, z: 107
+  - op: minus,  param: firepower, val: 6, x: 5, z: 107
   - op: plus,  param: manpower, val: 30, x: -2, z: 121
-  - op: div,  param: manpower, val: 2, x: 2, z: 129
+  - op: div,  param: manpower, val: 3, x: 2, z: 129
   - op: times,  param: firepower, val: 5, x: -4, z: 146
   - op: plus,  param: manpower, val: 20, x: 4, z: 153
   - op: plus,  param: soldierlife, val: 8, x: 0, z: 162
@@ -60,7 +60,7 @@ enemy_brigades:
   - name: final shield, effective: 600, strength: 22, x: -4, z: 330,  color: #3C2733FF
 
 bosses:
-  - name: Marshal Ferrum, power: 49000, x: 0, z: 417,  color: #95C2DDFF
-  - name: Duchess Vanta, power: 82000, x: 0, z: 465,  color: #CC72DFFF
-  - name: The Gate Engine, power: 149000, x: 0, z: 513,  color: #8A7A7BFF
-  - name: Iron Crown, power: 304000, x: 0, z: 561,  model: assets/clown-head.obj,  color: #588098FF
+  - name: Marshal Ferrum, power: 54000, x: 0, z: 417,  color: #95C2DDFF
+  - name: Duchess Vanta, power: 91000, x: 0, z: 465,  color: #CC72DFFF
+  - name: The Gate Engine, power: 165000, x: 0, z: 513,  color: #8A7A7BFF
+  - name: Iron Crown, power: 337000, x: 0, z: 561,  model: assets/clown-head.obj,  color: #588098FF

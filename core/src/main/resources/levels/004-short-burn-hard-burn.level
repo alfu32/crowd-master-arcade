@@ -32,10 +32,10 @@ cards:
   - op: plus,  param: manpower, val: 20, x: 1, z: 40
   - op: times,  param: firepower, val: 4, x: -2, z: 58
   - op: plus,  param: bulletpower, val: 10, x: 2, z: 78
-  - op: minus,  param: manpower, val: 10, x: 0, z: 92
+  - op: minus,  param: manpower, val: 12, x: 0, z: 92
   - op: plus,  param: manpower, val: 35, x: -2, z: 114
   - op: times,  param: soldierlife, val: 2, x: 2, z: 130
-  - op: div,  param: firepower, val: 2, x: -1, z: 148
+  - op: div,  param: firepower, val: 3, x: -1, z: 148
   - op: times,  param: manpower, val: 3, x: 1, z: 168
   - op: times,  param: firepower, val: 5, x: -2, z: 182
   - op: plus,  param: bulletpower, val: 12, x: 2, z: 204
@@ -54,5 +54,5 @@ enemy_brigades:
   - name: final flame, effective: 600, strength: 24, x: 4, z: 191,  color: #9C46F3FF
 
 bosses:
-  - name: Captain Flashpoint, power: 68000, x: 0, z: 287,  color: #F39C46FF
-  - name: The Furnace Duke, power: 313000, x: 0, z: 335,  model: assets/clown-head.obj,  color: #3D2EA9FF
+  - name: Captain Flashpoint, power: 77000, x: 0, z: 287,  color: #F39C46FF
+  - name: The Furnace Duke, power: 352000, x: 0, z: 335,  model: assets/clown-head.obj,  color: #3D2EA9FF

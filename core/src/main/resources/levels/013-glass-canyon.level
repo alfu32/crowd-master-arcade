@@ -30,15 +30,15 @@ cards:
   - op: plus,  param: manpower, val: 24, x: -6, z: 18
   - op: times,  param: firepower, val: 2, x: 6, z: 30
   - op: plus,  param: soldierlife, val: 8, x: 0, z: 40
-  - op: minus,  param: manpower, val: 12, x: 5, z: 66
+  - op: minus,  param: manpower, val: 15, x: 5, z: 66
   - op: plus,  param: bulletpower, val: 10, x: -5, z: 76
   - op: times,  param: manpower, val: 3, x: 2, z: 88
-  - op: div,  param: firepower, val: 2, x: -2, z: 112
+  - op: div,  param: firepower, val: 3, x: -2, z: 112
   - op: plus,  param: manpower, val: 40, x: -6, z: 124
   - op: times,  param: firepower, val: 4, x: 6, z: 134
   - op: plus,  param: soldierlife, val: 12, x: 0, z: 160
   - op: times,  param: bulletpower, val: 2, x: 5, z: 170
-  - op: minus,  param: manpower, val: 16, x: -5, z: 182
+  - op: minus,  param: manpower, val: 20, x: -5, z: 182
   - op: plus,  param: bulletrange, val: 14, x: -4, z: 82
   - op: times,  param: bulletrange, val: 2, x: 4, z: 140
 
@@ -54,6 +54,6 @@ enemy_brigades:
   - name: canyon throat, effective: 600, strength: 24, x: 6, z: 280,  color: #7A7B8AFF
 
 bosses:
-  - name: Shard Marshal, power: 64000, x: 0, z: 380,  color: #95C2DDFF
-  - name: Canyon Prism, power: 130000, x: 0, z: 428,  color: #CC72DFFF
-  - name: The Glass King, power: 352000, x: 0, z: 476,  model: assets/bigbot.obj,  color: #8A7A7BFF
+  - name: Shard Marshal, power: 77000, x: 0, z: 380,  color: #95C2DDFF
+  - name: Canyon Prism, power: 157000, x: 0, z: 428,  color: #CC72DFFF
+  - name: The Glass King, power: 424000, x: 0, z: 476,  model: assets/bigbot.obj,  color: #8A7A7BFF

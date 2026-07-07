@@ -30,15 +30,15 @@ cards:
   - op: plus,  param: manpower, val: 30, x: 0, z: 16
   - op: times,  param: firepower, val: 2, x: -6, z: 23
   - op: plus,  param: soldierlife, val: 10, x: 6, z: 32
-  - op: minus,  param: manpower, val: 16, x: -3, z: 42
+  - op: minus,  param: manpower, val: 20, x: -3, z: 42
   - op: plus,  param: bulletpower, val: 12, x: 3, z: 56
   - op: times,  param: manpower, val: 3, x: -5, z: 64
-  - op: div,  param: firepower, val: 2, x: 5, z: 81
+  - op: div,  param: firepower, val: 3, x: 5, z: 81
   - op: plus,  param: manpower, val: 50, x: 0, z: 88
   - op: times,  param: firepower, val: 4, x: -6, z: 97
   - op: plus,  param: soldierlife, val: 14, x: 6, z: 107
   - op: times,  param: bulletpower, val: 2, x: -3, z: 121
-  - op: minus,  param: firepower, val: 5, x: 3, z: 129
+  - op: minus,  param: firepower, val: 6, x: 3, z: 129
   - op: plus,  param: bulletrange, val: 16, x: -4, z: 62
   - op: times,  param: bulletrange, val: 2, x: 4, z: 103
 
@@ -55,6 +55,6 @@ enemy_brigades:
   - name: final blockade, effective: 600, strength: 24, x: 7, z: 342,  color: #809858FF
 
 bosses:
-  - name: Ravager Spire, power: 28000, x: 0, z: 453,  color: #95C2DDFF
-  - name: Iron Wake, power: 66000, x: 0, z: 501,  color: #CC72DFFF
-  - name: Causeway Tyrant, power: 374000, x: 0, z: 549,  model: assets/bigbot.obj,  color: #8A7A7BFF
+  - name: Ravager Spire, power: 35000, x: 0, z: 453,  color: #95C2DDFF
+  - name: Iron Wake, power: 82000, x: 0, z: 501,  color: #CC72DFFF
+  - name: Causeway Tyrant, power: 467000, x: 0, z: 549,  model: assets/bigbot.obj,  color: #8A7A7BFF

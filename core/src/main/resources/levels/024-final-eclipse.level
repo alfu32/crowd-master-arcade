@@ -29,15 +29,15 @@ cards:
   - op: plus,  param: manpower, val: 40, x: -3, z: 20
   - op: times,  param: firepower, val: 2, x: 3, z: 30
   - op: plus,  param: soldierlife, val: 14, x: -7, z: 48
-  - op: minus,  param: manpower, val: 22, x: 7, z: 58
+  - op: minus,  param: manpower, val: 28, x: 7, z: 58
   - op: plus,  param: bulletpower, val: 16, x: 0, z: 76
   - op: times,  param: manpower, val: 3, x: -2, z: 104
-  - op: div,  param: firepower, val: 2, x: 2, z: 116
+  - op: div,  param: firepower, val: 3, x: 2, z: 116
   - op: plus,  param: manpower, val: 70, x: -3, z: 126
   - op: times,  param: firepower, val: 4, x: 3, z: 144
   - op: plus,  param: soldierlife, val: 18, x: -7, z: 154
   - op: times,  param: bulletpower, val: 2, x: 7, z: 172
-  - op: minus,  param: firepower, val: 6, x: 0, z: 200
+  - op: minus,  param: firepower, val: 8, x: 0, z: 200
   - op: plus,  param: manpower, val: 36, x: -2, z: 212
   - op: times,  param: firepower, val: 5, x: 2, z: 222
   - op: plus,  param: bulletrange, val: 18, x: -5, z: 82
@@ -56,8 +56,8 @@ enemy_brigades:
   - name: the last eclipse, effective: 600, strength: 25, x: -8, z: 300,  color: #36AD67FF
 
 bosses:
-  - name: Eclipse Herald, power: 26000, x: 0, z: 411,  color: #AE89FFFF
-  - name: Black Sun, power: 62000, x: 0, z: 459,  color: #86DA58FF
-  - name: Eclipse Throne, power: 90000, x: 0, z: 507,  color: #68E9D4FF
-  - name: World Breaker, power: 117000, x: 0, z: 555,  color: #6736ADFF
-  - name: The Last Light, power: 400000, x: 0, z: 603,  model: assets/bigbot.obj,  color: #2B362BFF
+  - name: Eclipse Herald, power: 34000, x: 0, z: 411,  color: #AE89FFFF
+  - name: Black Sun, power: 81000, x: 0, z: 459,  color: #86DA58FF
+  - name: Eclipse Throne, power: 117000, x: 0, z: 507,  color: #68E9D4FF
+  - name: World Breaker, power: 152000, x: 0, z: 555,  color: #6736ADFF
+  - name: The Last Light, power: 520000, x: 0, z: 603,  model: assets/bigbot.obj,  color: #2B362BFF

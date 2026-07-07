@@ -29,11 +29,11 @@ decorations:
 cards:
   - op: plus,  param: manpower, val: 20, x: -4, z: 18
   - op: times,  param: firepower, val: 2, x: 4, z: 27
-  - op: minus,  param: manpower, val: 10, x: -2, z: 40
+  - op: minus,  param: manpower, val: 12, x: -2, z: 40
   - op: plus,  param: soldierlife, val: 6, x: 2, z: 58
   - op: plus,  param: bulletpower, val: 8, x: -4, z: 69
   - op: times,  param: manpower, val: 3, x: 5, z: 85
-  - op: div,  param: firepower, val: 2, x: 0, z: 94
+  - op: div,  param: firepower, val: 3, x: 0, z: 94
   - op: plus,  param: manpower, val: 30, x: -4, z: 107
   - op: times,  param: firepower, val: 4, x: 4, z: 125
   - op: plus,  param: soldierlife, val: 10, x: -2, z: 136
@@ -51,5 +51,5 @@ enemy_brigades:
   - name: ridge seal, effective: 600, strength: 22, x: -6, z: 285,  color: #72DFCCFF
 
 bosses:
-  - name: Needle Baron, power: 84000, x: 0, z: 414,  color: #95C2DDFF
-  - name: Ridge Suture, power: 335000, x: 0, z: 462,  model: assets/clown-head.obj,  color: #CC72DFFF
+  - name: Needle Baron, power: 98000, x: 0, z: 414,  color: #95C2DDFF
+  - name: Ridge Suture, power: 392000, x: 0, z: 462,  model: assets/clown-head.obj,  color: #CC72DFFF

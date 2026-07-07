@@ -30,11 +30,11 @@ cards:
   - op: plus,  param: manpower, val: 18, x: -2, z: 20
   - op: times,  param: firepower, val: 2, x: 2, z: 30
   - op: plus,  param: soldierlife, val: 6, x: -5, z: 48
-  - op: minus,  param: manpower, val: 8, x: 5, z: 58
+  - op: minus,  param: manpower, val: 10, x: 5, z: 58
   - op: plus,  param: bulletpower, val: 6, x: 0, z: 76
   - op: times,  param: firepower, val: 3, x: -1, z: 104
   - op: plus,  param: manpower, val: 28, x: 1, z: 116
-  - op: div,  param: firepower, val: 2, x: -2, z: 126
+  - op: div,  param: firepower, val: 3, x: -2, z: 126
   - op: times,  param: bulletpower, val: 2, x: 2, z: 144
   - op: plus,  param: soldierlife, val: 8, x: -5, z: 154
   - op: plus,  param: bulletrange, val: 12, x: -4, z: 64
@@ -51,5 +51,5 @@ enemy_brigades:
   - name: furnace gate, effective: 600, strength: 22, x: -3, z: 207,  color: #369848FF
 
 bosses:
-  - name: Captain Cinder, power: 83000, x: 0, z: 375,  color: #F4A955FF
-  - name: Furnace Warden, power: 330000, x: 0, z: 375,  model: assets/clown-head.obj,  color: #483698FF
+  - name: Captain Cinder, power: 96000, x: 0, z: 375,  color: #F4A955FF
+  - name: Furnace Warden, power: 383000, x: 0, z: 375,  model: assets/clown-head.obj,  color: #483698FF

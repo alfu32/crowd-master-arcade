@@ -31,15 +31,15 @@ cards:
   - op: plus,  param: manpower, val: 32, x: -1, z: 24
   - op: times,  param: firepower, val: 2, x: 1, z: 40
   - op: plus,  param: soldierlife, val: 10, x: -2, z: 58
-  - op: minus,  param: manpower, val: 18, x: 2, z: 78
+  - op: minus,  param: manpower, val: 22, x: 2, z: 78
   - op: plus,  param: bulletpower, val: 14, x: 0, z: 92
   - op: times,  param: manpower, val: 3, x: -3, z: 114
-  - op: div,  param: firepower, val: 2, x: 3, z: 130
+  - op: div,  param: firepower, val: 3, x: 3, z: 130
   - op: plus,  param: manpower, val: 54, x: -1, z: 148
   - op: times,  param: firepower, val: 4, x: 1, z: 168
   - op: plus,  param: soldierlife, val: 16, x: -2, z: 182
   - op: times,  param: bulletpower, val: 2, x: 2, z: 204
-  - op: minus,  param: firepower, val: 5, x: 0, z: 220
+  - op: minus,  param: firepower, val: 6, x: 0, z: 220
   - op: plus,  param: bulletrange, val: 16, x: -4, z: 98
   - op: times,  param: bulletrange, val: 2, x: 4, z: 174
 
@@ -56,7 +56,7 @@ enemy_brigades:
   - name: final red tide, effective: 600, strength: 24, x: -4, z: 268,  color: #652DE2FF
 
 bosses:
-  - name: Blood Marshal, power: 23000, x: 0, z: 350,  color: #F39C46FF
-  - name: Red Oracle, power: 55000, x: 0, z: 398,  color: #3D2EA9FF
-  - name: Meridian Titan, power: 81000, x: 0, z: 446,  color: #66FFD2FF
-  - name: Crimson Sun, power: 383000, x: 0, z: 494,  model: assets/clown-head.obj,  color: #E2652DFF
+  - name: Blood Marshal, power: 29000, x: 0, z: 350,  color: #F39C46FF
+  - name: Red Oracle, power: 70000, x: 0, z: 398,  color: #3D2EA9FF
+  - name: Meridian Titan, power: 102000, x: 0, z: 446,  color: #66FFD2FF
+  - name: Crimson Sun, power: 485000, x: 0, z: 494,  model: assets/clown-head.obj,  color: #E2652DFF

@@ -30,16 +30,16 @@ cards:
   - op: plus,  param: manpower, val: 25, x: -7, z: 20
   - op: times,  param: firepower, val: 3, x: 7, z: 34
   - op: plus,  param: soldierlife, val: 7, x: -1, z: 40
-  - op: minus,  param: manpower, val: 10, x: 1, z: 60
+  - op: minus,  param: manpower, val: 12, x: 1, z: 60
   - op: plus,  param: manpower, val: 35, x: -6, z: 68
-  - op: div,  param: firepower, val: 2, x: 6, z: 86
+  - op: div,  param: firepower, val: 3, x: 6, z: 86
   - op: times,  param: manpower, val: 3, x: 0, z: 100
   - op: times,  param: firepower, val: 4, x: -7, z: 106
   - op: plus,  param: bulletpower, val: 10, x: 7, z: 126
-  - op: minus,  param: firepower, val: 5, x: -1, z: 134
+  - op: minus,  param: firepower, val: 6, x: -1, z: 134
   - op: plus,  param: manpower, val: 30, x: 1, z: 152
   - op: times,  param: firepower, val: 5, x: -6, z: 166
-  - op: div,  param: manpower, val: 2, x: 6, z: 172
+  - op: div,  param: manpower, val: 3, x: 6, z: 172
   - op: plus,  param: manpower, val: 40, x: 0, z: 192
   - op: times,  param: firepower, val: 6, x: -7, z: 200
   - op: plus,  param: soldierlife, val: 10, x: 7, z: 218
@@ -62,7 +62,7 @@ enemy_brigades:
   - name: last infected legion, effective: 600, strength: 23, x: -7, z: 372,  color: #D69948FF
 
 bosses:
-  - name: Sheriff Rotjaw, power: 51000, x: 0, z: 483,  color: #D69948FF
-  - name: Mother Badlands, power: 85000, x: 0, z: 531,  color: #775798FF
-  - name: The Zombie Baron, power: 146000, x: 0, z: 579,  color: #57EC57FF
-  - name: Dead Mesa Colossus, power: 309000, x: 0, z: 627,  model: assets/clown-head.obj,  color: #C46533FF
+  - name: Sheriff Rotjaw, power: 57000, x: 0, z: 483,  color: #D69948FF
+  - name: Mother Badlands, power: 95000, x: 0, z: 531,  color: #775798FF
+  - name: The Zombie Baron, power: 163000, x: 0, z: 579,  color: #57EC57FF
+  - name: Dead Mesa Colossus, power: 345000, x: 0, z: 627,  model: assets/clown-head.obj,  color: #C46533FF

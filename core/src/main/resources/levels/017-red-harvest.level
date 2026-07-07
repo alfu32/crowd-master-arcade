@@ -29,15 +29,15 @@ cards:
   - op: plus,  param: manpower, val: 30, x: -5, z: 18
   - op: times,  param: firepower, val: 2, x: 5, z: 27
   - op: plus,  param: soldierlife, val: 10, x: -2, z: 40
-  - op: minus,  param: manpower, val: 16, x: 3, z: 58
+  - op: minus,  param: manpower, val: 20, x: 3, z: 58
   - op: plus,  param: bulletpower, val: 12, x: -4, z: 69
   - op: times,  param: manpower, val: 3, x: 6, z: 85
-  - op: div,  param: firepower, val: 2, x: 0, z: 94
+  - op: div,  param: firepower, val: 3, x: 0, z: 94
   - op: plus,  param: manpower, val: 52, x: -5, z: 107
   - op: times,  param: firepower, val: 4, x: 5, z: 125
   - op: plus,  param: soldierlife, val: 14, x: -2, z: 136
   - op: times,  param: bulletpower, val: 2, x: 3, z: 152
-  - op: minus,  param: manpower, val: 18, x: -4, z: 161
+  - op: minus,  param: manpower, val: 22, x: -4, z: 161
   - op: plus,  param: bulletrange, val: 15, x: -4, z: 75
   - op: times,  param: bulletrange, val: 2, x: 4, z: 131
 
@@ -53,6 +53,6 @@ enemy_brigades:
   - name: final crop, effective: 600, strength: 22, x: 7, z: 319,  color: #EC5757FF
 
 bosses:
-  - name: Reaper Hal, power: 28000, x: 0, z: 430,  color: #E8C155FF
-  - name: Crimson Binder, power: 68000, x: 0, z: 478,  color: #674187FF
-  - name: The Harvest King, power: 370000, x: 0, z: 526,  model: assets/bigbot.obj,  color: #57EC57FF
+  - name: Reaper Hal, power: 35000, x: 0, z: 430,  color: #E8C155FF
+  - name: Crimson Binder, power: 84000, x: 0, z: 478,  color: #674187FF
+  - name: The Harvest King, power: 458000, x: 0, z: 526,  model: assets/bigbot.obj,  color: #57EC57FF

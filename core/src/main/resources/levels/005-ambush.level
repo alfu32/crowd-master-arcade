@@ -29,15 +29,15 @@ decorations:
 cards:
   - op: plus,  param: manpower, val: 18, x: -6, z: 18
   - op: times,  param: firepower, val: 3, x: 6, z: 30
-  - op: minus,  param: manpower, val: 12, x: 0, z: 40
+  - op: minus,  param: manpower, val: 15, x: 0, z: 40
   - op: plus,  param: manpower, val: 30, x: 6, z: 66
   - op: plus,  param: soldierlife, val: 8, x: -6, z: 76
-  - op: div,  param: firepower, val: 2, x: 2, z: 88
+  - op: div,  param: firepower, val: 3, x: 2, z: 88
   - op: times,  param: manpower, val: 3, x: -2, z: 112
   - op: plus,  param: manpower, val: 40, x: -6, z: 124
   - op: times,  param: firepower, val: 4, x: 6, z: 134
   - op: times,  param: bulletpower, val: 2, x: 0, z: 160
-  - op: minus,  param: firepower, val: 5, x: 6, z: 170
+  - op: minus,  param: firepower, val: 6, x: 6, z: 170
   - op: times,  param: firepower, val: 5, x: -6, z: 182
   - op: plus,  param: soldierlife, val: 12, x: 2, z: 206
   - op: plus,  param: manpower, val: 35, x: -2, z: 218
@@ -58,6 +58,6 @@ enemy_brigades:
   - name: no escape line, effective: 600, strength: 24, x: 0, z: 341,  color: #8B5337FF
 
 bosses:
-  - name: Lady Snare, power: 67000, x: 0, z: 415,  color: #99D454FF
-  - name: Baron Crossfire, power: 95000, x: 0, z: 463,  color: #C666DAFF
-  - name: The Netmaker, power: 317000, x: 0, z: 511,  model: assets/bigbot.obj,  color: #307655FF
+  - name: Lady Snare, power: 76000, x: 0, z: 415,  color: #99D454FF
+  - name: Baron Crossfire, power: 108000, x: 0, z: 463,  color: #C666DAFF
+  - name: The Netmaker, power: 360000, x: 0, z: 511,  model: assets/bigbot.obj,  color: #307655FF

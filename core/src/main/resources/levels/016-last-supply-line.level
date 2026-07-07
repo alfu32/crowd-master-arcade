@@ -29,15 +29,15 @@ cards:
   - op: plus,  param: manpower, val: 28, x: -3, z: 20
   - op: times,  param: firepower, val: 2, x: 3, z: 30
   - op: plus,  param: soldierlife, val: 10, x: -6, z: 48
-  - op: minus,  param: manpower, val: 16, x: 6, z: 58
+  - op: minus,  param: manpower, val: 20, x: 6, z: 58
   - op: plus,  param: bulletpower, val: 12, x: 0, z: 76
   - op: times,  param: manpower, val: 3, x: -1, z: 104
-  - op: div,  param: firepower, val: 2, x: 1, z: 116
+  - op: div,  param: firepower, val: 3, x: 1, z: 116
   - op: plus,  param: manpower, val: 48, x: -3, z: 126
   - op: times,  param: firepower, val: 4, x: 3, z: 144
   - op: plus,  param: soldierlife, val: 14, x: -6, z: 154
   - op: times,  param: bulletpower, val: 2, x: 6, z: 172
-  - op: minus,  param: firepower, val: 5, x: 0, z: 200
+  - op: minus,  param: firepower, val: 6, x: 0, z: 200
   - op: plus,  param: bulletrange, val: 15, x: -4, z: 82
   - op: times,  param: bulletrange, val: 2, x: 4, z: 150
 
@@ -53,6 +53,6 @@ enemy_brigades:
   - name: last convoy, effective: 600, strength: 22, x: 4, z: 231,  color: #E9D468FF
 
 bosses:
-  - name: Quartermaster Voss, power: 28000, x: 0, z: 313,  color: #AE89FFFF
-  - name: Supply Tyrant, power: 68000, x: 0, z: 361,  color: #86DA58FF
-  - name: The Last Wagon, power: 365000, x: 0, z: 409,  model: assets/bigbot.obj,  color: #68E9D4FF
+  - name: Quartermaster Voss, power: 34000, x: 0, z: 313,  color: #AE89FFFF
+  - name: Supply Tyrant, power: 84000, x: 0, z: 361,  color: #86DA58FF
+  - name: The Last Wagon, power: 449000, x: 0, z: 409,  model: assets/bigbot.obj,  color: #68E9D4FF

@@ -30,15 +30,15 @@ cards:
   - op: plus,  param: manpower, val: 36, x: -4, z: 22
   - op: times,  param: firepower, val: 2, x: -2, z: 33
   - op: plus,  param: soldierlife, val: 12, x: 0, z: 48
-  - op: minus,  param: manpower, val: 20, x: 2, z: 67
+  - op: minus,  param: manpower, val: 25, x: 2, z: 67
   - op: plus,  param: bulletpower, val: 14, x: 4, z: 90
   - op: times,  param: manpower, val: 3, x: -1, z: 105
-  - op: div,  param: firepower, val: 2, x: 1, z: 116
+  - op: div,  param: firepower, val: 3, x: 1, z: 116
   - op: plus,  param: manpower, val: 60, x: -4, z: 131
   - op: times,  param: firepower, val: 4, x: -2, z: 150
   - op: plus,  param: soldierlife, val: 16, x: 0, z: 173
   - op: times,  param: bulletpower, val: 2, x: 2, z: 188
-  - op: minus,  param: firepower, val: 5, x: 4, z: 199
+  - op: minus,  param: firepower, val: 6, x: 4, z: 199
   - op: plus,  param: manpower, val: 24, x: -1, z: 214
   - op: plus,  param: bulletrange, val: 17, x: -4, z: 96
   - op: times,  param: bulletrange, val: 2, x: 4, z: 156
@@ -56,7 +56,7 @@ enemy_brigades:
   - name: final bastion, effective: 600, strength: 24, x: 0, z: 313,  color: #36AD67FF
 
 bosses:
-  - name: Night Warden, power: 24000, x: 0, z: 387,  color: #AE89FFFF
-  - name: Shadow Wall, power: 57000, x: 0, z: 435,  color: #86DA58FF
-  - name: Bastion Heart, power: 80000, x: 0, z: 483,  color: #68E9D4FF
-  - name: Dusk Emperor, power: 391000, x: 0, z: 531,  model: assets/clown-head.obj,  color: #6736ADFF
+  - name: Night Warden, power: 31000, x: 0, z: 387,  color: #AE89FFFF
+  - name: Shadow Wall, power: 73000, x: 0, z: 435,  color: #86DA58FF
+  - name: Bastion Heart, power: 103000, x: 0, z: 483,  color: #68E9D4FF
+  - name: Dusk Emperor, power: 502000, x: 0, z: 531,  model: assets/clown-head.obj,  color: #6736ADFF

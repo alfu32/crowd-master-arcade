@@ -30,15 +30,15 @@ cards:
   - op: plus,  param: manpower, val: 24, x: -6, z: 20
   - op: times,  param: firepower, val: 2, x: 6, z: 34
   - op: plus,  param: soldierlife, val: 7, x: -1, z: 40
-  - op: minus,  param: manpower, val: 12, x: 1, z: 60
+  - op: minus,  param: manpower, val: 15, x: 1, z: 60
   - op: plus,  param: bulletpower, val: 8, x: -5, z: 68
   - op: times,  param: manpower, val: 3, x: 5, z: 86
-  - op: div,  param: firepower, val: 2, x: 0, z: 100
+  - op: div,  param: firepower, val: 3, x: 0, z: 100
   - op: plus,  param: manpower, val: 36, x: -6, z: 106
   - op: times,  param: firepower, val: 4, x: 6, z: 126
   - op: plus,  param: soldierlife, val: 10, x: -1, z: 134
   - op: plus,  param: bulletpower, val: 12, x: 1, z: 152
-  - op: minus,  param: manpower, val: 16, x: -5, z: 166
+  - op: minus,  param: manpower, val: 20, x: -5, z: 166
   - op: plus,  param: bulletrange, val: 13, x: -4, z: 74
   - op: times,  param: bulletrange, val: 2, x: 4, z: 132
 
@@ -54,6 +54,6 @@ enemy_brigades:
   - name: ruin gate, effective: 600, strength: 24, x: 6, z: 311,  color: #878C96FF
 
 bosses:
-  - name: Ruin Marshal, power: 63000, x: 0, z: 422,  color: #AAD1EAFF
-  - name: The Long Scar, power: 127000, x: 0, z: 470,  color: #C778DDFF
-  - name: Breakline Titan, power: 343000, x: 0, z: 518,  model: assets/bigbot.obj,  color: #96878CFF
+  - name: Ruin Marshal, power: 75000, x: 0, z: 422,  color: #AAD1EAFF
+  - name: The Long Scar, power: 151000, x: 0, z: 470,  color: #C778DDFF
+  - name: Breakline Titan, power: 407000, x: 0, z: 518,  model: assets/bigbot.obj,  color: #96878CFF

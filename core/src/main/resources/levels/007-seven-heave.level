@@ -56,6 +56,6 @@ enemy_brigades:
   - effective: 600, strength: 104, x: 0, z: 488,  color: #588098FF
 
 bosses:
-  - name: Arrrrah, power: 44000, x: 0, z: 563,  color: #95C2DDFF
-  - power: 31000, x: 0, z: 611,  color: #CC72DFFF
-  - name: ARCHENEMY, power: 326000, x: 0, z: 659,  model: assets/bigbot.obj,  color: #8A7A7BFF
+  - name: Arrrrah, power: 51000, x: 0, z: 563,  color: #95C2DDFF
+  - power: 36000, x: 0, z: 611,  color: #CC72DFFF
+  - name: ARCHENEMY, power: 376000, x: 0, z: 659,  model: assets/bigbot.obj,  color: #8A7A7BFF

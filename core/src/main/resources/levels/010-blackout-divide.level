@@ -30,10 +30,10 @@ cards:
   - op: plus,  param: manpower, val: 22, x: 0, z: 16
   - op: times,  param: firepower, val: 2, x: -5, z: 23
   - op: plus,  param: soldierlife, val: 7, x: 5, z: 32
-  - op: minus,  param: manpower, val: 12, x: -2, z: 42
+  - op: minus,  param: manpower, val: 15, x: -2, z: 42
   - op: plus,  param: bulletpower, val: 8, x: 2, z: 56
   - op: times,  param: manpower, val: 3, x: -4, z: 64
-  - op: div,  param: firepower, val: 2, x: 4, z: 81
+  - op: div,  param: firepower, val: 3, x: 4, z: 81
   - op: plus,  param: manpower, val: 34, x: 0, z: 88
   - op: times,  param: firepower, val: 4, x: -5, z: 97
   - op: plus,  param: soldierlife, val: 10, x: 5, z: 107
@@ -52,6 +52,6 @@ enemy_brigades:
   - name: last blackout, effective: 600, strength: 22, x: 0, z: 266,  color: #72DFCCFF
 
 bosses:
-  - name: Divider General, power: 65000, x: 0, z: 341,  color: #95C2DDFF
-  - name: Blackout Engine, power: 125000, x: 0, z: 389,  color: #CC72DFFF
-  - name: Night Splitter, power: 339000, x: 0, z: 437,  model: assets/bigbot.obj,  color: #8A7A7BFF
+  - name: Divider General, power: 77000, x: 0, z: 341,  color: #95C2DDFF
+  - name: Blackout Engine, power: 147000, x: 0, z: 389,  color: #CC72DFFF
+  - name: Night Splitter, power: 399000, x: 0, z: 437,  model: assets/bigbot.obj,  color: #8A7A7BFF

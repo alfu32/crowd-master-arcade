@@ -30,15 +30,15 @@ cards:
   - op: plus,  param: manpower, val: 32, x: -7, z: 20
   - op: times,  param: firepower, val: 2, x: 7, z: 34
   - op: plus,  param: soldierlife, val: 10, x: -1, z: 40
-  - op: minus,  param: manpower, val: 18, x: 1, z: 60
+  - op: minus,  param: manpower, val: 22, x: 1, z: 60
   - op: plus,  param: bulletpower, val: 12, x: -6, z: 68
   - op: times,  param: manpower, val: 3, x: 6, z: 86
-  - op: div,  param: firepower, val: 2, x: 0, z: 100
+  - op: div,  param: firepower, val: 3, x: 0, z: 100
   - op: plus,  param: manpower, val: 52, x: -7, z: 106
   - op: times,  param: firepower, val: 4, x: 7, z: 126
   - op: plus,  param: soldierlife, val: 14, x: -1, z: 134
   - op: times,  param: bulletpower, val: 2, x: 1, z: 152
-  - op: minus,  param: manpower, val: 18, x: -6, z: 166
+  - op: minus,  param: manpower, val: 22, x: -6, z: 166
   - op: plus,  param: bulletrange, val: 16, x: -4, z: 74
   - op: times,  param: bulletrange, val: 2, x: 4, z: 132
 
@@ -55,7 +55,7 @@ enemy_brigades:
   - name: final choir, effective: 600, strength: 24, x: -2, z: 377,  color: #652DE2FF
 
 bosses:
-  - name: Ash Deacon, power: 23000, x: 0, z: 454,  color: #F39C46FF
-  - name: Choir Engine, power: 53000, x: 0, z: 502,  color: #3D2EA9FF
-  - name: Cathedral Heart, power: 81000, x: 0, z: 550,  color: #66FFD2FF
-  - name: Fallen Bell, power: 378000, x: 0, z: 598,  model: assets/clown-head.obj,  color: #E2652DFF
+  - name: Ash Deacon, power: 29000, x: 0, z: 454,  color: #F39C46FF
+  - name: Choir Engine, power: 67000, x: 0, z: 502,  color: #3D2EA9FF
+  - name: Cathedral Heart, power: 102000, x: 0, z: 550,  color: #66FFD2FF
+  - name: Fallen Bell, power: 475000, x: 0, z: 598,  model: assets/clown-head.obj,  color: #E2652DFF
