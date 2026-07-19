@@ -1,3 +1,5 @@
+import org.gradle.language.jvm.tasks.ProcessResources
+
 plugins {
     kotlin("jvm")
 }
@@ -30,7 +32,7 @@ val generateAssetIndex by tasks.registering {
     }
 }
 
-tasks.named("processResources") {
+tasks.named<ProcessResources>("processResources") {
     dependsOn(generateAssetIndex)
     exclude("**/*.bak")
 }
