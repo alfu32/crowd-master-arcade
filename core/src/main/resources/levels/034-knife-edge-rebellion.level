@@ -1,0 +1,59 @@
+name: Knife-Edge Rebellion
+road_length: 410
+road_width: 12
+starting_soldiers: 53
+fire_rate: 10
+max_fire_rate: 185
+projectile_pool: 6000
+projectile_length: 90
+soldier_model: assets/default-soldier.obj
+boss_model: assets/default-boss.obj
+manpower_card_model: assets/default-manpower-card.obj
+firepower_card_model: assets/default-firepower-card.obj
+bulletpower_card_model: assets/default-bulletpower-card.obj
+soldierlife_card_model: assets/default-soldierlife-card.obj
+bulletrange_card_model: assets/default-bulletrange-card.obj
+player_color: #1FB8EBFF
+enemy_color: #6B3040FF
+boss_color: #493478FF
+decoration_color: #697078FF
+
+background_decorations:
+  - name: Knife-Edge Rebellion threshold, power: 999999, x: 0, z: 139, model: assets/tunnel_section.obj, color: #A8FF60FF
+  - name: Knife-Edge Rebellion warning, power: 999999, x: 0, z: 279, model: assets/bigpill.obj, color: #FFE66DFF
+
+decorations:
+  - name: Knife-Edge Rebellion first marker, power: 999999, x: 0, z: 103, model: assets/bannner.obj
+  - name: Knife-Edge Rebellion final marker, power: 999999, x: 0, z: 308, model: assets/bannner.obj
+
+cards:
+  - op: plus, param: manpower, val: 60, x: -5, z: 18
+  - op: times, param: firepower, val: 2, x: 5, z: 18
+  - op: minus, param: manpower, val: 35, x: 0, z: 43
+  - op: plus, param: soldierlife, val: 19, x: -2, z: 43
+  - op: plus, param: bulletpower, val: 22, x: 2, z: 68
+  - op: div, param: firepower, val: 3, x: -5, z: 68
+  - op: times, param: manpower, val: 3, x: 5, z: 94
+  - op: plus, param: bulletrange, val: 29, x: -2, z: 119
+  - op: times, param: firepower, val: 3, x: 2, z: 119
+  - op: minus, param: manpower, val: 41, x: 5, z: 151
+  - op: plus, param: manpower, val: 91, x: -5, z: 151
+  - op: times, param: bulletpower, val: 2, x: 0, z: 184
+  - op: plus, param: soldierlife, val: 26, x: 5, z: 218
+  - op: times, param: firepower, val: 2, x: -5, z: 218
+
+enemy_brigades:
+  - name: rebel scouts, effective: 492, strength: 22, x: -5, z: 31, color: #A8FF60FF
+  - name: rebel left hook, effective: 547, strength: 23, x: 5, z: 57, color: #C56CFFFF
+  - name: rebel right hook, effective: 602, strength: 24, x: -2, z: 89, color: #FFE66DFF
+  - name: rebel breaker line, effective: 657, strength: 25, x: 2, z: 122, color: #FFB347FF
+  - name: rebel kill box, effective: 712, strength: 26, x: 0, z: 157, color: #5CE1E6FF
+  - name: rebel reserve, effective: 767, strength: 27, x: -5, z: 198, color: #FF5C8AFF
+  - name: rebel last wall, effective: 800, strength: 28, x: 5, z: 240, color: #A8FF60FF
+  - name: rebel death guard, effective: 800, strength: 29, x: 0, z: 287, color: #C56CFFFF
+
+bosses:
+  - name: Knife-Edge Rebellion Vanguard, power: 76500, x: -2, z: 314, color: #C56CFFFF
+  - name: Knife-Edge Rebellion Engine, power: 172500, x: 2, z: 352, model: assets/bigbot.obj, color: #FFB347FF
+  - name: The Usurper, power: 702000, x: 0, z: 390, model: assets/clown-head.obj, color: #FF5C8AFF
+

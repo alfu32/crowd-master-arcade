@@ -1,0 +1,59 @@
+name: Redline Panic
+road_length: 400
+road_width: 12
+starting_soldiers: 62
+fire_rate: 6
+max_fire_rate: 215
+projectile_pool: 6000
+projectile_length: 102
+soldier_model: assets/default-soldier.obj
+boss_model: assets/default-boss.obj
+manpower_card_model: assets/default-manpower-card.obj
+firepower_card_model: assets/default-firepower-card.obj
+bulletpower_card_model: assets/default-bulletpower-card.obj
+soldierlife_card_model: assets/default-soldierlife-card.obj
+bulletrange_card_model: assets/default-bulletrange-card.obj
+player_color: #1FB8EBFF
+enemy_color: #6B3040FF
+boss_color: #493478FF
+decoration_color: #697078FF
+
+background_decorations:
+  - name: Redline Panic threshold, power: 999999, x: 0, z: 136, model: assets/tunnel_section.obj, color: #A8FF60FF
+  - name: Redline Panic warning, power: 999999, x: 0, z: 272, model: assets/bigpill.obj, color: #FFE66DFF
+
+decorations:
+  - name: Redline Panic first marker, power: 999999, x: 0, z: 100, model: assets/bannner.obj
+  - name: Redline Panic final marker, power: 999999, x: 0, z: 300, model: assets/bannner.obj
+
+cards:
+  - op: plus, param: manpower, val: 72, x: -5, z: 18
+  - op: times, param: firepower, val: 2, x: 5, z: 18
+  - op: minus, param: manpower, val: 41, x: 0, z: 43
+  - op: plus, param: soldierlife, val: 21, x: -2, z: 43
+  - op: plus, param: bulletpower, val: 25, x: 2, z: 68
+  - op: div, param: firepower, val: 3, x: -5, z: 68
+  - op: times, param: manpower, val: 3, x: 5, z: 94
+  - op: plus, param: bulletrange, val: 35, x: -2, z: 119
+  - op: times, param: firepower, val: 3, x: 2, z: 119
+  - op: minus, param: manpower, val: 47, x: 5, z: 151
+  - op: plus, param: manpower, val: 109, x: -5, z: 151
+  - op: times, param: bulletpower, val: 2, x: 0, z: 184
+  - op: plus, param: soldierlife, val: 29, x: 5, z: 218
+  - op: times, param: firepower, val: 2, x: -5, z: 218
+
+enemy_brigades:
+  - name: redline scouts, effective: 600, strength: 25, x: -5, z: 30, color: #A8FF60FF
+  - name: redline left hook, effective: 655, strength: 26, x: 5, z: 55, color: #C56CFFFF
+  - name: redline right hook, effective: 710, strength: 27, x: -2, z: 86, color: #FFE66DFF
+  - name: redline breaker line, effective: 765, strength: 28, x: 2, z: 118, color: #FFB347FF
+  - name: redline kill box, effective: 800, strength: 29, x: 0, z: 152, color: #5CE1E6FF
+  - name: redline reserve, effective: 800, strength: 30, x: -5, z: 191, color: #FF5C8AFF
+  - name: redline last wall, effective: 800, strength: 31, x: 5, z: 232, color: #A8FF60FF
+  - name: redline death guard, effective: 800, strength: 32, x: 0, z: 277, color: #C56CFFFF
+
+bosses:
+  - name: Redline Panic Vanguard, power: 97500, x: -2, z: 304, color: #C56CFFFF
+  - name: Redline Panic Engine, power: 217500, x: 2, z: 342, model: assets/bigbot.obj, color: #FFB347FF
+  - name: Code Crimson, power: 810000, x: 0, z: 380, model: assets/clown-head.obj, color: #FF5C8AFF
+

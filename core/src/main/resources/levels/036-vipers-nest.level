@@ -1,0 +1,59 @@
+name: Viper's Nest
+road_length: 500
+road_width: 16
+starting_soldiers: 56
+fire_rate: 7
+max_fire_rate: 195
+projectile_pool: 6000
+projectile_length: 94
+soldier_model: assets/default-soldier.obj
+boss_model: assets/default-boss.obj
+manpower_card_model: assets/default-manpower-card.obj
+firepower_card_model: assets/default-firepower-card.obj
+bulletpower_card_model: assets/default-bulletpower-card.obj
+soldierlife_card_model: assets/default-soldierlife-card.obj
+bulletrange_card_model: assets/default-bulletrange-card.obj
+player_color: #1FB8EBFF
+enemy_color: #6B3040FF
+boss_color: #493478FF
+decoration_color: #697078FF
+
+background_decorations:
+  - name: Viper's Nest threshold, power: 999999, x: 0, z: 170, model: assets/triumphal-arch.obj, color: #FFE66DFF
+  - name: Viper's Nest warning, power: 999999, x: 0, z: 340, model: assets/bigpill.obj, color: #5CE1E6FF
+
+decorations:
+  - name: Viper's Nest first marker, power: 999999, x: 0, z: 125, model: assets/bannner.obj
+  - name: Viper's Nest final marker, power: 999999, x: 0, z: 375, model: assets/bannner.obj
+
+cards:
+  - op: plus, param: manpower, val: 64, x: -7, z: 18
+  - op: times, param: firepower, val: 2, x: 7, z: 18
+  - op: minus, param: manpower, val: 37, x: 0, z: 43
+  - op: plus, param: soldierlife, val: 19, x: -3, z: 43
+  - op: plus, param: bulletpower, val: 23, x: 3, z: 68
+  - op: div, param: firepower, val: 3, x: -7, z: 68
+  - op: times, param: manpower, val: 3, x: 7, z: 94
+  - op: plus, param: bulletrange, val: 31, x: -3, z: 119
+  - op: times, param: firepower, val: 5, x: 3, z: 119
+  - op: minus, param: manpower, val: 43, x: 7, z: 151
+  - op: plus, param: manpower, val: 97, x: -7, z: 151
+  - op: times, param: bulletpower, val: 2, x: 0, z: 184
+  - op: plus, param: soldierlife, val: 27, x: 7, z: 218
+  - op: times, param: firepower, val: 2, x: -7, z: 218
+
+enemy_brigades:
+  - name: viper scouts, effective: 528, strength: 23, x: -7, z: 41, color: #FFE66DFF
+  - name: viper left hook, effective: 583, strength: 24, x: 7, z: 74, color: #FFB347FF
+  - name: viper right hook, effective: 638, strength: 25, x: -3, z: 115, color: #5CE1E6FF
+  - name: viper breaker line, effective: 693, strength: 26, x: 3, z: 158, color: #FF5C8AFF
+  - name: viper kill box, effective: 748, strength: 27, x: 0, z: 203, color: #A8FF60FF
+  - name: viper reserve, effective: 800, strength: 28, x: -7, z: 256, color: #C56CFFFF
+  - name: viper last wall, effective: 800, strength: 29, x: 7, z: 311, color: #FFE66DFF
+  - name: viper death guard, effective: 800, strength: 30, x: 0, z: 371, color: #FFB347FF
+
+bosses:
+  - name: Viper's Nest Vanguard, power: 83500, x: -3, z: 404, color: #FFB347FF
+  - name: Viper's Nest Engine, power: 187500, x: 3, z: 442, model: assets/bigbot.obj, color: #FF5C8AFF
+  - name: The Death Adder, power: 738000, x: 0, z: 480, model: assets/clown-head.obj, color: #C56CFFFF
+

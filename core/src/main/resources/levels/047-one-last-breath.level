@@ -1,0 +1,59 @@
+name: One Last Breath
+road_length: 490
+road_width: 14
+starting_soldiers: 73
+fire_rate: 8
+max_fire_rate: 250
+projectile_pool: 6000
+projectile_length: 116
+soldier_model: assets/default-soldier.obj
+boss_model: assets/default-boss.obj
+manpower_card_model: assets/default-manpower-card.obj
+firepower_card_model: assets/default-firepower-card.obj
+bulletpower_card_model: assets/default-bulletpower-card.obj
+soldierlife_card_model: assets/default-soldierlife-card.obj
+bulletrange_card_model: assets/default-bulletrange-card.obj
+player_color: #1FB8EBFF
+enemy_color: #6B3040FF
+boss_color: #493478FF
+decoration_color: #697078FF
+
+background_decorations:
+  - name: One Last Breath threshold, power: 999999, x: 0, z: 167, model: assets/thorn.obj, color: #C56CFFFF
+  - name: One Last Breath warning, power: 999999, x: 0, z: 333, model: assets/bigpill.obj, color: #FFB347FF
+
+decorations:
+  - name: One Last Breath first marker, power: 999999, x: 0, z: 123, model: assets/bannner.obj
+  - name: One Last Breath final marker, power: 999999, x: 0, z: 368, model: assets/bannner.obj
+
+cards:
+  - op: plus, param: manpower, val: 86, x: -6, z: 18
+  - op: times, param: firepower, val: 2, x: 6, z: 18
+  - op: minus, param: manpower, val: 48, x: 0, z: 43
+  - op: plus, param: soldierlife, val: 23, x: -3, z: 43
+  - op: plus, param: bulletpower, val: 29, x: 3, z: 68
+  - op: div, param: firepower, val: 3, x: -6, z: 68
+  - op: times, param: manpower, val: 3, x: 6, z: 94
+  - op: plus, param: bulletrange, val: 42, x: -3, z: 119
+  - op: times, param: firepower, val: 4, x: 3, z: 119
+  - op: minus, param: manpower, val: 54, x: 6, z: 151
+  - op: plus, param: manpower, val: 130, x: -6, z: 151
+  - op: times, param: bulletpower, val: 2, x: 0, z: 184
+  - op: plus, param: soldierlife, val: 33, x: 6, z: 218
+  - op: times, param: firepower, val: 2, x: -6, z: 218
+
+enemy_brigades:
+  - name: last breath scouts, effective: 726, strength: 29, x: -6, z: 40, color: #C56CFFFF
+  - name: last breath left hook, effective: 781, strength: 30, x: 6, z: 72, color: #FFE66DFF
+  - name: last breath right hook, effective: 800, strength: 31, x: -3, z: 112, color: #FFB347FF
+  - name: last breath breaker line, effective: 800, strength: 32, x: 3, z: 154, color: #5CE1E6FF
+  - name: last breath kill box, effective: 800, strength: 33, x: 0, z: 198, color: #FF5C8AFF
+  - name: last breath reserve, effective: 800, strength: 34, x: -6, z: 250, color: #A8FF60FF
+  - name: last breath last wall, effective: 800, strength: 35, x: 6, z: 303, color: #C56CFFFF
+  - name: last breath death guard, effective: 800, strength: 36, x: 0, z: 362, color: #FFE66DFF
+
+bosses:
+  - name: One Last Breath Vanguard, power: 122000, x: -3, z: 394, color: #FFE66DFF
+  - name: One Last Breath Engine, power: 270000, x: 3, z: 432, model: assets/bigbot.obj, color: #5CE1E6FF
+  - name: The Suffocation, power: 936000, x: 0, z: 470, model: assets/clown-head.obj, color: #A8FF60FF
+

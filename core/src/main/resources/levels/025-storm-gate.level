@@ -1,0 +1,59 @@
+name: Storm Gate
+road_length: 430
+road_width: 12
+starting_soldiers: 40
+fire_rate: 6
+max_fire_rate: 140
+projectile_pool: 6000
+projectile_length: 72
+soldier_model: assets/default-soldier.obj
+boss_model: assets/default-boss.obj
+manpower_card_model: assets/default-manpower-card.obj
+firepower_card_model: assets/default-firepower-card.obj
+bulletpower_card_model: assets/default-bulletpower-card.obj
+soldierlife_card_model: assets/default-soldierlife-card.obj
+bulletrange_card_model: assets/default-bulletrange-card.obj
+player_color: #1FB8EBFF
+enemy_color: #6B3040FF
+boss_color: #493478FF
+decoration_color: #697078FF
+
+background_decorations:
+  - name: Storm Gate threshold, power: 999999, x: 0, z: 146, model: assets/tunnel_section.obj, color: #FFB347FF
+  - name: Storm Gate warning, power: 999999, x: 0, z: 292, model: assets/bigpill.obj, color: #FF5C8AFF
+
+decorations:
+  - name: Storm Gate first marker, power: 999999, x: 0, z: 108, model: assets/bannner.obj
+  - name: Storm Gate final marker, power: 999999, x: 0, z: 323, model: assets/bannner.obj
+
+cards:
+  - op: plus, param: manpower, val: 42, x: -5, z: 18
+  - op: times, param: firepower, val: 2, x: 5, z: 18
+  - op: minus, param: manpower, val: 26, x: 0, z: 43
+  - op: plus, param: soldierlife, val: 16, x: -2, z: 43
+  - op: plus, param: bulletpower, val: 18, x: 2, z: 68
+  - op: div, param: firepower, val: 3, x: -5, z: 68
+  - op: times, param: manpower, val: 3, x: 5, z: 94
+  - op: plus, param: bulletrange, val: 20, x: -2, z: 119
+  - op: times, param: firepower, val: 3, x: 2, z: 119
+  - op: minus, param: manpower, val: 32, x: 5, z: 151
+  - op: plus, param: manpower, val: 64, x: -5, z: 151
+  - op: times, param: bulletpower, val: 2, x: 0, z: 184
+  - op: plus, param: soldierlife, val: 22, x: 5, z: 218
+  - op: times, param: firepower, val: 2, x: -5, z: 218
+
+enemy_brigades:
+  - name: storm scouts, effective: 330, strength: 18, x: -5, z: 33, color: #FFB347FF
+  - name: storm left hook, effective: 385, strength: 19, x: 5, z: 61, color: #5CE1E6FF
+  - name: storm right hook, effective: 440, strength: 20, x: -2, z: 95, color: #FF5C8AFF
+  - name: storm breaker line, effective: 495, strength: 21, x: 2, z: 130, color: #A8FF60FF
+  - name: storm kill box, effective: 550, strength: 22, x: 0, z: 167, color: #C56CFFFF
+  - name: storm reserve, effective: 605, strength: 23, x: -5, z: 211, color: #FFE66DFF
+  - name: storm last wall, effective: 660, strength: 24, x: 5, z: 256, color: #FFB347FF
+  - name: storm death guard, effective: 715, strength: 25, x: 0, z: 305, color: #5CE1E6FF
+
+bosses:
+  - name: Storm Gate Vanguard, power: 45000, x: -2, z: 334, color: #5CE1E6FF
+  - name: Storm Gate Engine, power: 105000, x: 2, z: 372, model: assets/bigbot.obj, color: #A8FF60FF
+  - name: Eye of the Storm, power: 540000, x: 0, z: 410, model: assets/clown-head.obj, color: #FFE66DFF
+

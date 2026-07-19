@@ -1,0 +1,59 @@
+name: No Man's Crown
+road_length: 540
+road_width: 16
+starting_soldiers: 68
+fire_rate: 10
+max_fire_rate: 235
+projectile_pool: 6000
+projectile_length: 110
+soldier_model: assets/default-soldier.obj
+boss_model: assets/default-boss.obj
+manpower_card_model: assets/default-manpower-card.obj
+firepower_card_model: assets/default-firepower-card.obj
+bulletpower_card_model: assets/default-bulletpower-card.obj
+soldierlife_card_model: assets/default-soldierlife-card.obj
+bulletrange_card_model: assets/default-bulletrange-card.obj
+player_color: #1FB8EBFF
+enemy_color: #6B3040FF
+boss_color: #493478FF
+decoration_color: #697078FF
+
+background_decorations:
+  - name: No Man's Crown threshold, power: 999999, x: 0, z: 184, model: assets/thorn.obj, color: #5CE1E6FF
+  - name: No Man's Crown warning, power: 999999, x: 0, z: 367, model: assets/bigpill.obj, color: #A8FF60FF
+
+decorations:
+  - name: No Man's Crown first marker, power: 999999, x: 0, z: 135, model: assets/bannner.obj
+  - name: No Man's Crown final marker, power: 999999, x: 0, z: 405, model: assets/bannner.obj
+
+cards:
+  - op: plus, param: manpower, val: 80, x: -7, z: 18
+  - op: times, param: firepower, val: 2, x: 7, z: 18
+  - op: minus, param: manpower, val: 45, x: 0, z: 43
+  - op: plus, param: soldierlife, val: 22, x: -3, z: 43
+  - op: plus, param: bulletpower, val: 27, x: 3, z: 68
+  - op: div, param: firepower, val: 3, x: -7, z: 68
+  - op: times, param: manpower, val: 3, x: 7, z: 94
+  - op: plus, param: bulletrange, val: 39, x: -3, z: 119
+  - op: times, param: firepower, val: 4, x: 3, z: 119
+  - op: minus, param: manpower, val: 51, x: 7, z: 151
+  - op: plus, param: manpower, val: 121, x: -7, z: 151
+  - op: times, param: bulletpower, val: 2, x: 0, z: 184
+  - op: plus, param: soldierlife, val: 31, x: 7, z: 218
+  - op: times, param: firepower, val: 2, x: -7, z: 218
+
+enemy_brigades:
+  - name: crownless scouts, effective: 672, strength: 27, x: -7, z: 45, color: #5CE1E6FF
+  - name: crownless left hook, effective: 727, strength: 28, x: 7, z: 82, color: #FF5C8AFF
+  - name: crownless right hook, effective: 782, strength: 29, x: -3, z: 127, color: #A8FF60FF
+  - name: crownless breaker line, effective: 800, strength: 30, x: 3, z: 174, color: #C56CFFFF
+  - name: crownless kill box, effective: 800, strength: 31, x: 0, z: 224, color: #FFE66DFF
+  - name: crownless reserve, effective: 800, strength: 32, x: -7, z: 282, color: #FFB347FF
+  - name: crownless last wall, effective: 800, strength: 33, x: 7, z: 343, color: #5CE1E6FF
+  - name: crownless death guard, effective: 800, strength: 34, x: 0, z: 409, color: #FF5C8AFF
+
+bosses:
+  - name: No Man's Crown Vanguard, power: 111500, x: -3, z: 444, color: #FF5C8AFF
+  - name: No Man's Crown Engine, power: 247500, x: 3, z: 482, model: assets/bigbot.obj, color: #C56CFFFF
+  - name: No Man, power: 882000, x: 0, z: 520, model: assets/clown-head.obj, color: #FFB347FF
+

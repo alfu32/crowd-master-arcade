@@ -1,0 +1,59 @@
+name: Absolute Zero
+road_length: 640
+road_width: 18
+starting_soldiers: 74
+fire_rate: 9
+max_fire_rate: 255
+projectile_pool: 6000
+projectile_length: 118
+soldier_model: assets/default-soldier.obj
+boss_model: assets/default-boss.obj
+manpower_card_model: assets/default-manpower-card.obj
+firepower_card_model: assets/default-firepower-card.obj
+bulletpower_card_model: assets/default-bulletpower-card.obj
+soldierlife_card_model: assets/default-soldierlife-card.obj
+bulletrange_card_model: assets/default-bulletrange-card.obj
+player_color: #1FB8EBFF
+enemy_color: #6B3040FF
+boss_color: #493478FF
+decoration_color: #697078FF
+
+background_decorations:
+  - name: Absolute Zero threshold, power: 999999, x: 0, z: 218, model: assets/triumphal-arch.obj, color: #FFE66DFF
+  - name: Absolute Zero warning, power: 999999, x: 0, z: 435, model: assets/bigpill.obj, color: #5CE1E6FF
+
+decorations:
+  - name: Absolute Zero first marker, power: 999999, x: 0, z: 160, model: assets/bannner.obj
+  - name: Absolute Zero final marker, power: 999999, x: 0, z: 480, model: assets/bannner.obj
+
+cards:
+  - op: plus, param: manpower, val: 88, x: -8, z: 18
+  - op: times, param: firepower, val: 2, x: 8, z: 18
+  - op: minus, param: manpower, val: 49, x: 0, z: 43
+  - op: plus, param: soldierlife, val: 23, x: -4, z: 43
+  - op: plus, param: bulletpower, val: 29, x: 4, z: 68
+  - op: div, param: firepower, val: 3, x: -8, z: 68
+  - op: times, param: manpower, val: 3, x: 8, z: 94
+  - op: plus, param: bulletrange, val: 43, x: -4, z: 119
+  - op: times, param: firepower, val: 5, x: 4, z: 119
+  - op: minus, param: manpower, val: 55, x: 8, z: 151
+  - op: plus, param: manpower, val: 133, x: -8, z: 151
+  - op: times, param: bulletpower, val: 2, x: 0, z: 184
+  - op: plus, param: soldierlife, val: 33, x: 8, z: 218
+  - op: times, param: firepower, val: 2, x: -8, z: 218
+
+enemy_brigades:
+  - name: zero legion scouts, effective: 744, strength: 29, x: -8, z: 55, color: #FFE66DFF
+  - name: zero legion left hook, effective: 799, strength: 30, x: 8, z: 101, color: #FFB347FF
+  - name: zero legion right hook, effective: 800, strength: 31, x: -4, z: 156, color: #5CE1E6FF
+  - name: zero legion breaker line, effective: 800, strength: 32, x: 4, z: 214, color: #FF5C8AFF
+  - name: zero legion kill box, effective: 800, strength: 33, x: 0, z: 276, color: #A8FF60FF
+  - name: zero legion reserve, effective: 800, strength: 34, x: -8, z: 347, color: #C56CFFFF
+  - name: zero legion last wall, effective: 800, strength: 35, x: 8, z: 422, color: #FFE66DFF
+  - name: zero legion death guard, effective: 800, strength: 36, x: 0, z: 503, color: #FFB347FF
+
+bosses:
+  - name: Absolute Zero Vanguard, power: 125500, x: -4, z: 544, color: #FFB347FF
+  - name: Absolute Zero Engine, power: 277500, x: 4, z: 582, model: assets/bigbot.obj, color: #FF5C8AFF
+  - name: Absolute Zero, power: 954000, x: 0, z: 620, model: assets/clown-head.obj, color: #C56CFFFF
+

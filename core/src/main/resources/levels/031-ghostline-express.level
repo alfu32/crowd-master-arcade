@@ -1,0 +1,59 @@
+name: Ghostline Express
+road_length: 560
+road_width: 22
+starting_soldiers: 49
+fire_rate: 7
+max_fire_rate: 170
+projectile_pool: 6000
+projectile_length: 84
+soldier_model: assets/default-soldier.obj
+boss_model: assets/default-boss.obj
+manpower_card_model: assets/default-manpower-card.obj
+firepower_card_model: assets/default-firepower-card.obj
+bulletpower_card_model: assets/default-bulletpower-card.obj
+soldierlife_card_model: assets/default-soldierlife-card.obj
+bulletrange_card_model: assets/default-bulletrange-card.obj
+player_color: #1FB8EBFF
+enemy_color: #6B3040FF
+boss_color: #493478FF
+decoration_color: #697078FF
+
+background_decorations:
+  - name: Ghostline Express threshold, power: 999999, x: 0, z: 190, model: assets/tunnel_section.obj, color: #FFB347FF
+  - name: Ghostline Express warning, power: 999999, x: 0, z: 381, model: assets/bigpill.obj, color: #FF5C8AFF
+
+decorations:
+  - name: Ghostline Express first marker, power: 999999, x: 0, z: 140, model: assets/bannner.obj
+  - name: Ghostline Express final marker, power: 999999, x: 0, z: 420, model: assets/bannner.obj
+
+cards:
+  - op: plus, param: manpower, val: 54, x: -10, z: 18
+  - op: times, param: firepower, val: 2, x: 10, z: 18
+  - op: minus, param: manpower, val: 32, x: 0, z: 43
+  - op: plus, param: soldierlife, val: 18, x: -5, z: 43
+  - op: plus, param: bulletpower, val: 21, x: 5, z: 68
+  - op: div, param: firepower, val: 3, x: -10, z: 68
+  - op: times, param: manpower, val: 3, x: 10, z: 94
+  - op: plus, param: bulletrange, val: 26, x: -5, z: 119
+  - op: times, param: firepower, val: 3, x: 5, z: 119
+  - op: minus, param: manpower, val: 38, x: 10, z: 151
+  - op: plus, param: manpower, val: 82, x: -10, z: 151
+  - op: times, param: bulletpower, val: 2, x: 0, z: 184
+  - op: plus, param: soldierlife, val: 25, x: 10, z: 218
+  - op: times, param: firepower, val: 2, x: -10, z: 218
+
+enemy_brigades:
+  - name: ghostline scouts, effective: 438, strength: 21, x: -10, z: 47, color: #FFB347FF
+  - name: ghostline left hook, effective: 493, strength: 22, x: 10, z: 85, color: #5CE1E6FF
+  - name: ghostline right hook, effective: 548, strength: 23, x: -5, z: 132, color: #FF5C8AFF
+  - name: ghostline breaker line, effective: 603, strength: 24, x: 5, z: 182, color: #A8FF60FF
+  - name: ghostline kill box, effective: 658, strength: 25, x: 0, z: 234, color: #C56CFFFF
+  - name: ghostline reserve, effective: 713, strength: 26, x: -10, z: 295, color: #FFE66DFF
+  - name: ghostline last wall, effective: 768, strength: 27, x: 10, z: 358, color: #FFB347FF
+  - name: ghostline death guard, effective: 800, strength: 28, x: 0, z: 427, color: #5CE1E6FF
+
+bosses:
+  - name: Ghostline Express Vanguard, power: 66000, x: -5, z: 464, color: #5CE1E6FF
+  - name: Ghostline Express Engine, power: 150000, x: 5, z: 502, model: assets/bigbot.obj, color: #A8FF60FF
+  - name: Last Train, power: 648000, x: 0, z: 540, model: assets/clown-head.obj, color: #FFE66DFF
+

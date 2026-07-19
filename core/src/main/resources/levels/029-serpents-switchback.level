@@ -1,0 +1,59 @@
+name: Serpent's Switchback
+road_length: 455
+road_width: 14
+starting_soldiers: 46
+fire_rate: 10
+max_fire_rate: 160
+projectile_pool: 6000
+projectile_length: 80
+soldier_model: assets/default-soldier.obj
+boss_model: assets/default-boss.obj
+manpower_card_model: assets/default-manpower-card.obj
+firepower_card_model: assets/default-firepower-card.obj
+bulletpower_card_model: assets/default-bulletpower-card.obj
+soldierlife_card_model: assets/default-soldierlife-card.obj
+bulletrange_card_model: assets/default-bulletrange-card.obj
+player_color: #1FB8EBFF
+enemy_color: #6B3040FF
+boss_color: #493478FF
+decoration_color: #697078FF
+
+background_decorations:
+  - name: Serpent's Switchback threshold, power: 999999, x: 0, z: 155, model: assets/thorn.obj, color: #C56CFFFF
+  - name: Serpent's Switchback warning, power: 999999, x: 0, z: 309, model: assets/bigpill.obj, color: #FFB347FF
+
+decorations:
+  - name: Serpent's Switchback first marker, power: 999999, x: 0, z: 114, model: assets/bannner.obj
+  - name: Serpent's Switchback final marker, power: 999999, x: 0, z: 341, model: assets/bannner.obj
+
+cards:
+  - op: plus, param: manpower, val: 50, x: -6, z: 18
+  - op: times, param: firepower, val: 2, x: 6, z: 18
+  - op: minus, param: manpower, val: 30, x: 0, z: 43
+  - op: plus, param: soldierlife, val: 17, x: -3, z: 43
+  - op: plus, param: bulletpower, val: 20, x: 3, z: 68
+  - op: div, param: firepower, val: 3, x: -6, z: 68
+  - op: times, param: manpower, val: 3, x: 6, z: 94
+  - op: plus, param: bulletrange, val: 24, x: -3, z: 119
+  - op: times, param: firepower, val: 4, x: 3, z: 119
+  - op: minus, param: manpower, val: 36, x: 6, z: 151
+  - op: plus, param: manpower, val: 76, x: -6, z: 151
+  - op: times, param: bulletpower, val: 2, x: 0, z: 184
+  - op: plus, param: soldierlife, val: 24, x: 6, z: 218
+  - op: times, param: firepower, val: 2, x: -6, z: 218
+
+enemy_brigades:
+  - name: serpent scouts, effective: 402, strength: 20, x: -6, z: 36, color: #C56CFFFF
+  - name: serpent left hook, effective: 457, strength: 21, x: 6, z: 66, color: #FFE66DFF
+  - name: serpent right hook, effective: 512, strength: 22, x: -3, z: 102, color: #FFB347FF
+  - name: serpent breaker line, effective: 567, strength: 23, x: 3, z: 140, color: #5CE1E6FF
+  - name: serpent kill box, effective: 622, strength: 24, x: 0, z: 180, color: #FF5C8AFF
+  - name: serpent reserve, effective: 677, strength: 25, x: -6, z: 227, color: #A8FF60FF
+  - name: serpent last wall, effective: 732, strength: 26, x: 6, z: 276, color: #C56CFFFF
+  - name: serpent death guard, effective: 787, strength: 27, x: 0, z: 329, color: #FFE66DFF
+
+bosses:
+  - name: Serpent's Switchback Vanguard, power: 59000, x: -3, z: 359, color: #FFE66DFF
+  - name: Serpent's Switchback Engine, power: 135000, x: 3, z: 397, model: assets/bigbot.obj, color: #5CE1E6FF
+  - name: World Serpent, power: 612000, x: 0, z: 435, model: assets/clown-head.obj, color: #A8FF60FF
+

@@ -1,0 +1,59 @@
+name: Thunderhead Alley
+road_length: 510
+road_width: 20
+starting_soldiers: 43
+fire_rate: 8
+max_fire_rate: 150
+projectile_pool: 6000
+projectile_length: 76
+soldier_model: assets/default-soldier.obj
+boss_model: assets/default-boss.obj
+manpower_card_model: assets/default-manpower-card.obj
+firepower_card_model: assets/default-firepower-card.obj
+bulletpower_card_model: assets/default-bulletpower-card.obj
+soldierlife_card_model: assets/default-soldierlife-card.obj
+bulletrange_card_model: assets/default-bulletrange-card.obj
+player_color: #1FB8EBFF
+enemy_color: #6B3040FF
+boss_color: #493478FF
+decoration_color: #697078FF
+
+background_decorations:
+  - name: Thunderhead Alley threshold, power: 999999, x: 0, z: 173, model: assets/triumphal-arch.obj, color: #FF5C8AFF
+  - name: Thunderhead Alley warning, power: 999999, x: 0, z: 347, model: assets/bigpill.obj, color: #C56CFFFF
+
+decorations:
+  - name: Thunderhead Alley first marker, power: 999999, x: 0, z: 128, model: assets/bannner.obj
+  - name: Thunderhead Alley final marker, power: 999999, x: 0, z: 383, model: assets/bannner.obj
+
+cards:
+  - op: plus, param: manpower, val: 46, x: -9, z: 18
+  - op: times, param: firepower, val: 2, x: 9, z: 18
+  - op: minus, param: manpower, val: 28, x: 0, z: 43
+  - op: plus, param: soldierlife, val: 16, x: -4, z: 43
+  - op: plus, param: bulletpower, val: 19, x: 4, z: 68
+  - op: div, param: firepower, val: 3, x: -9, z: 68
+  - op: times, param: manpower, val: 3, x: 9, z: 94
+  - op: plus, param: bulletrange, val: 22, x: -4, z: 119
+  - op: times, param: firepower, val: 5, x: 4, z: 119
+  - op: minus, param: manpower, val: 34, x: 9, z: 151
+  - op: plus, param: manpower, val: 70, x: -9, z: 151
+  - op: times, param: bulletpower, val: 2, x: 0, z: 184
+  - op: plus, param: soldierlife, val: 23, x: 9, z: 218
+  - op: times, param: firepower, val: 2, x: -9, z: 218
+
+enemy_brigades:
+  - name: thunder scouts, effective: 366, strength: 19, x: -9, z: 42, color: #FF5C8AFF
+  - name: thunder left hook, effective: 421, strength: 20, x: 9, z: 76, color: #A8FF60FF
+  - name: thunder right hook, effective: 476, strength: 21, x: -4, z: 118, color: #C56CFFFF
+  - name: thunder breaker line, effective: 531, strength: 22, x: 4, z: 162, color: #FFE66DFF
+  - name: thunder kill box, effective: 586, strength: 23, x: 0, z: 209, color: #FFB347FF
+  - name: thunder reserve, effective: 641, strength: 24, x: -9, z: 263, color: #5CE1E6FF
+  - name: thunder last wall, effective: 696, strength: 25, x: 9, z: 319, color: #FF5C8AFF
+  - name: thunder death guard, effective: 751, strength: 26, x: 0, z: 380, color: #A8FF60FF
+
+bosses:
+  - name: Thunderhead Alley Vanguard, power: 52000, x: -4, z: 414, color: #A8FF60FF
+  - name: Thunderhead Alley Engine, power: 120000, x: 4, z: 452, model: assets/bigbot.obj, color: #FFE66DFF
+  - name: Thunderhead, power: 576000, x: 0, z: 490, model: assets/clown-head.obj, color: #5CE1E6FF
+

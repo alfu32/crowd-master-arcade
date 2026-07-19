@@ -1,0 +1,59 @@
+name: Powder Keg Run
+road_length: 420
+road_width: 18
+starting_soldiers: 47
+fire_rate: 6
+max_fire_rate: 165
+projectile_pool: 6000
+projectile_length: 82
+soldier_model: assets/default-soldier.obj
+boss_model: assets/default-boss.obj
+manpower_card_model: assets/default-manpower-card.obj
+firepower_card_model: assets/default-firepower-card.obj
+bulletpower_card_model: assets/default-bulletpower-card.obj
+soldierlife_card_model: assets/default-soldierlife-card.obj
+bulletrange_card_model: assets/default-bulletrange-card.obj
+player_color: #1FB8EBFF
+enemy_color: #6B3040FF
+boss_color: #493478FF
+decoration_color: #697078FF
+
+background_decorations:
+  - name: Powder Keg Run threshold, power: 999999, x: 0, z: 143, model: assets/triumphal-arch.obj, color: #FFE66DFF
+  - name: Powder Keg Run warning, power: 999999, x: 0, z: 286, model: assets/bigpill.obj, color: #5CE1E6FF
+
+decorations:
+  - name: Powder Keg Run first marker, power: 999999, x: 0, z: 105, model: assets/bannner.obj
+  - name: Powder Keg Run final marker, power: 999999, x: 0, z: 315, model: assets/bannner.obj
+
+cards:
+  - op: plus, param: manpower, val: 52, x: -8, z: 18
+  - op: times, param: firepower, val: 2, x: 8, z: 18
+  - op: minus, param: manpower, val: 31, x: 0, z: 43
+  - op: plus, param: soldierlife, val: 17, x: -4, z: 43
+  - op: plus, param: bulletpower, val: 20, x: 4, z: 68
+  - op: div, param: firepower, val: 3, x: -8, z: 68
+  - op: times, param: manpower, val: 3, x: 8, z: 94
+  - op: plus, param: bulletrange, val: 25, x: -4, z: 119
+  - op: times, param: firepower, val: 5, x: 4, z: 119
+  - op: minus, param: manpower, val: 37, x: 8, z: 151
+  - op: plus, param: manpower, val: 79, x: -8, z: 151
+  - op: times, param: bulletpower, val: 2, x: 0, z: 184
+  - op: plus, param: soldierlife, val: 24, x: 8, z: 218
+  - op: times, param: firepower, val: 2, x: -8, z: 218
+
+enemy_brigades:
+  - name: powder scouts, effective: 420, strength: 20, x: -8, z: 32, color: #FFE66DFF
+  - name: powder left hook, effective: 475, strength: 21, x: 8, z: 59, color: #FFB347FF
+  - name: powder right hook, effective: 530, strength: 22, x: -4, z: 92, color: #5CE1E6FF
+  - name: powder breaker line, effective: 585, strength: 23, x: 4, z: 126, color: #FF5C8AFF
+  - name: powder kill box, effective: 640, strength: 24, x: 0, z: 162, color: #A8FF60FF
+  - name: powder reserve, effective: 695, strength: 25, x: -8, z: 204, color: #C56CFFFF
+  - name: powder last wall, effective: 750, strength: 26, x: 8, z: 248, color: #FFE66DFF
+  - name: powder death guard, effective: 800, strength: 27, x: 0, z: 296, color: #FFB347FF
+
+bosses:
+  - name: Powder Keg Run Vanguard, power: 62500, x: -4, z: 324, color: #FFB347FF
+  - name: Powder Keg Run Engine, power: 142500, x: 4, z: 362, model: assets/bigbot.obj, color: #FF5C8AFF
+  - name: Powder Sun, power: 630000, x: 0, z: 400, model: assets/clown-head.obj, color: #C56CFFFF
+

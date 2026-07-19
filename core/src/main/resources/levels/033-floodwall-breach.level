@@ -1,0 +1,59 @@
+name: Floodwall Breach
+road_length: 525
+road_width: 20
+starting_soldiers: 52
+fire_rate: 9
+max_fire_rate: 180
+projectile_pool: 6000
+projectile_length: 88
+soldier_model: assets/default-soldier.obj
+boss_model: assets/default-boss.obj
+manpower_card_model: assets/default-manpower-card.obj
+firepower_card_model: assets/default-firepower-card.obj
+bulletpower_card_model: assets/default-bulletpower-card.obj
+soldierlife_card_model: assets/default-soldierlife-card.obj
+bulletrange_card_model: assets/default-bulletrange-card.obj
+player_color: #1FB8EBFF
+enemy_color: #6B3040FF
+boss_color: #493478FF
+decoration_color: #697078FF
+
+background_decorations:
+  - name: Floodwall Breach threshold, power: 999999, x: 0, z: 179, model: assets/triumphal-arch.obj, color: #FF5C8AFF
+  - name: Floodwall Breach warning, power: 999999, x: 0, z: 357, model: assets/bigpill.obj, color: #C56CFFFF
+
+decorations:
+  - name: Floodwall Breach first marker, power: 999999, x: 0, z: 131, model: assets/bannner.obj
+  - name: Floodwall Breach final marker, power: 999999, x: 0, z: 394, model: assets/bannner.obj
+
+cards:
+  - op: plus, param: manpower, val: 58, x: -9, z: 18
+  - op: times, param: firepower, val: 2, x: 9, z: 18
+  - op: minus, param: manpower, val: 34, x: 0, z: 43
+  - op: plus, param: soldierlife, val: 18, x: -4, z: 43
+  - op: plus, param: bulletpower, val: 22, x: 4, z: 68
+  - op: div, param: firepower, val: 3, x: -9, z: 68
+  - op: times, param: manpower, val: 3, x: 9, z: 94
+  - op: plus, param: bulletrange, val: 28, x: -4, z: 119
+  - op: times, param: firepower, val: 5, x: 4, z: 119
+  - op: minus, param: manpower, val: 40, x: 9, z: 151
+  - op: plus, param: manpower, val: 88, x: -9, z: 151
+  - op: times, param: bulletpower, val: 2, x: 0, z: 184
+  - op: plus, param: soldierlife, val: 26, x: 9, z: 218
+  - op: times, param: firepower, val: 2, x: -9, z: 218
+
+enemy_brigades:
+  - name: flood scouts, effective: 474, strength: 22, x: -9, z: 43, color: #FF5C8AFF
+  - name: flood left hook, effective: 529, strength: 23, x: 9, z: 79, color: #A8FF60FF
+  - name: flood right hook, effective: 584, strength: 24, x: -4, z: 122, color: #C56CFFFF
+  - name: flood breaker line, effective: 639, strength: 25, x: 4, z: 168, color: #FFE66DFF
+  - name: flood kill box, effective: 694, strength: 26, x: 0, z: 216, color: #FFB347FF
+  - name: flood reserve, effective: 749, strength: 27, x: -9, z: 272, color: #5CE1E6FF
+  - name: flood last wall, effective: 800, strength: 28, x: 9, z: 331, color: #FF5C8AFF
+  - name: flood death guard, effective: 800, strength: 29, x: 0, z: 395, color: #A8FF60FF
+
+bosses:
+  - name: Floodwall Breach Vanguard, power: 73000, x: -4, z: 429, color: #A8FF60FF
+  - name: Floodwall Breach Engine, power: 165000, x: 4, z: 467, model: assets/bigbot.obj, color: #FFE66DFF
+  - name: The Deluge, power: 684000, x: 0, z: 505, model: assets/clown-head.obj, color: #5CE1E6FF
+

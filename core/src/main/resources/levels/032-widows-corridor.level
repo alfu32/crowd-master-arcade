@@ -1,0 +1,59 @@
+name: Widow's Corridor
+road_length: 445
+road_width: 12
+starting_soldiers: 50
+fire_rate: 8
+max_fire_rate: 175
+projectile_pool: 6000
+projectile_length: 86
+soldier_model: assets/default-soldier.obj
+boss_model: assets/default-boss.obj
+manpower_card_model: assets/default-manpower-card.obj
+firepower_card_model: assets/default-firepower-card.obj
+bulletpower_card_model: assets/default-bulletpower-card.obj
+soldierlife_card_model: assets/default-soldierlife-card.obj
+bulletrange_card_model: assets/default-bulletrange-card.obj
+player_color: #1FB8EBFF
+enemy_color: #6B3040FF
+boss_color: #493478FF
+decoration_color: #697078FF
+
+background_decorations:
+  - name: Widow's Corridor threshold, power: 999999, x: 0, z: 151, model: assets/thorn.obj, color: #5CE1E6FF
+  - name: Widow's Corridor warning, power: 999999, x: 0, z: 303, model: assets/bigpill.obj, color: #A8FF60FF
+
+decorations:
+  - name: Widow's Corridor first marker, power: 999999, x: 0, z: 111, model: assets/bannner.obj
+  - name: Widow's Corridor final marker, power: 999999, x: 0, z: 334, model: assets/bannner.obj
+
+cards:
+  - op: plus, param: manpower, val: 56, x: -5, z: 18
+  - op: times, param: firepower, val: 2, x: 5, z: 18
+  - op: minus, param: manpower, val: 33, x: 0, z: 43
+  - op: plus, param: soldierlife, val: 18, x: -2, z: 43
+  - op: plus, param: bulletpower, val: 21, x: 2, z: 68
+  - op: div, param: firepower, val: 3, x: -5, z: 68
+  - op: times, param: manpower, val: 3, x: 5, z: 94
+  - op: plus, param: bulletrange, val: 27, x: -2, z: 119
+  - op: times, param: firepower, val: 4, x: 2, z: 119
+  - op: minus, param: manpower, val: 39, x: 5, z: 151
+  - op: plus, param: manpower, val: 85, x: -5, z: 151
+  - op: times, param: bulletpower, val: 2, x: 0, z: 184
+  - op: plus, param: soldierlife, val: 25, x: 5, z: 218
+  - op: times, param: firepower, val: 2, x: -5, z: 218
+
+enemy_brigades:
+  - name: widow scouts, effective: 456, strength: 21, x: -5, z: 35, color: #5CE1E6FF
+  - name: widow left hook, effective: 511, strength: 22, x: 5, z: 64, color: #FF5C8AFF
+  - name: widow right hook, effective: 566, strength: 23, x: -2, z: 99, color: #A8FF60FF
+  - name: widow breaker line, effective: 621, strength: 24, x: 2, z: 136, color: #C56CFFFF
+  - name: widow kill box, effective: 676, strength: 25, x: 0, z: 175, color: #FFE66DFF
+  - name: widow reserve, effective: 731, strength: 26, x: -5, z: 220, color: #FFB347FF
+  - name: widow last wall, effective: 786, strength: 27, x: 5, z: 268, color: #5CE1E6FF
+  - name: widow death guard, effective: 800, strength: 28, x: 0, z: 319, color: #FF5C8AFF
+
+bosses:
+  - name: Widow's Corridor Vanguard, power: 69500, x: -2, z: 349, color: #FF5C8AFF
+  - name: Widow's Corridor Engine, power: 157500, x: 2, z: 387, model: assets/bigbot.obj, color: #C56CFFFF
+  - name: The Black Widow, power: 666000, x: 0, z: 425, model: assets/clown-head.obj, color: #FFB347FF
+

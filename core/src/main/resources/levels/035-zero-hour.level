@@ -1,0 +1,59 @@
+name: Zero Hour
+road_length: 480
+road_width: 18
+starting_soldiers: 55
+fire_rate: 6
+max_fire_rate: 190
+projectile_pool: 6000
+projectile_length: 92
+soldier_model: assets/default-soldier.obj
+boss_model: assets/default-boss.obj
+manpower_card_model: assets/default-manpower-card.obj
+firepower_card_model: assets/default-firepower-card.obj
+bulletpower_card_model: assets/default-bulletpower-card.obj
+soldierlife_card_model: assets/default-soldierlife-card.obj
+bulletrange_card_model: assets/default-bulletrange-card.obj
+player_color: #1FB8EBFF
+enemy_color: #6B3040FF
+boss_color: #493478FF
+decoration_color: #697078FF
+
+background_decorations:
+  - name: Zero Hour threshold, power: 999999, x: 0, z: 163, model: assets/thorn.obj, color: #C56CFFFF
+  - name: Zero Hour warning, power: 999999, x: 0, z: 326, model: assets/bigpill.obj, color: #FFB347FF
+
+decorations:
+  - name: Zero Hour first marker, power: 999999, x: 0, z: 120, model: assets/bannner.obj
+  - name: Zero Hour final marker, power: 999999, x: 0, z: 360, model: assets/bannner.obj
+
+cards:
+  - op: plus, param: manpower, val: 62, x: -8, z: 18
+  - op: times, param: firepower, val: 2, x: 8, z: 18
+  - op: minus, param: manpower, val: 36, x: 0, z: 43
+  - op: plus, param: soldierlife, val: 19, x: -4, z: 43
+  - op: plus, param: bulletpower, val: 23, x: 4, z: 68
+  - op: div, param: firepower, val: 3, x: -8, z: 68
+  - op: times, param: manpower, val: 3, x: 8, z: 94
+  - op: plus, param: bulletrange, val: 30, x: -4, z: 119
+  - op: times, param: firepower, val: 4, x: 4, z: 119
+  - op: minus, param: manpower, val: 42, x: 8, z: 151
+  - op: plus, param: manpower, val: 94, x: -8, z: 151
+  - op: times, param: bulletpower, val: 2, x: 0, z: 184
+  - op: plus, param: soldierlife, val: 27, x: 8, z: 218
+  - op: times, param: firepower, val: 2, x: -8, z: 218
+
+enemy_brigades:
+  - name: clockwork scouts, effective: 510, strength: 23, x: -8, z: 39, color: #C56CFFFF
+  - name: clockwork left hook, effective: 565, strength: 24, x: 8, z: 70, color: #FFE66DFF
+  - name: clockwork right hook, effective: 620, strength: 25, x: -4, z: 109, color: #FFB347FF
+  - name: clockwork breaker line, effective: 675, strength: 26, x: 4, z: 150, color: #5CE1E6FF
+  - name: clockwork kill box, effective: 730, strength: 27, x: 0, z: 193, color: #FF5C8AFF
+  - name: clockwork reserve, effective: 785, strength: 28, x: -8, z: 243, color: #A8FF60FF
+  - name: clockwork last wall, effective: 800, strength: 29, x: 8, z: 295, color: #C56CFFFF
+  - name: clockwork death guard, effective: 800, strength: 30, x: 0, z: 352, color: #FFE66DFF
+
+bosses:
+  - name: Zero Hour Vanguard, power: 80000, x: -4, z: 384, color: #FFE66DFF
+  - name: Zero Hour Engine, power: 180000, x: 4, z: 422, model: assets/bigbot.obj, color: #5CE1E6FF
+  - name: Zero King, power: 720000, x: 0, z: 460, model: assets/clown-head.obj, color: #A8FF60FF
+

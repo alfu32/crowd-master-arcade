@@ -1,0 +1,59 @@
+name: Razorwire Sprint
+road_length: 390
+road_width: 14
+starting_soldiers: 41
+fire_rate: 7
+max_fire_rate: 145
+projectile_pool: 6000
+projectile_length: 74
+soldier_model: assets/default-soldier.obj
+boss_model: assets/default-boss.obj
+manpower_card_model: assets/default-manpower-card.obj
+firepower_card_model: assets/default-firepower-card.obj
+bulletpower_card_model: assets/default-bulletpower-card.obj
+soldierlife_card_model: assets/default-soldierlife-card.obj
+bulletrange_card_model: assets/default-bulletrange-card.obj
+player_color: #1FB8EBFF
+enemy_color: #6B3040FF
+boss_color: #493478FF
+decoration_color: #697078FF
+
+background_decorations:
+  - name: Razorwire Sprint threshold, power: 999999, x: 0, z: 133, model: assets/thorn.obj, color: #5CE1E6FF
+  - name: Razorwire Sprint warning, power: 999999, x: 0, z: 265, model: assets/bigpill.obj, color: #A8FF60FF
+
+decorations:
+  - name: Razorwire Sprint first marker, power: 999999, x: 0, z: 98, model: assets/bannner.obj
+  - name: Razorwire Sprint final marker, power: 999999, x: 0, z: 293, model: assets/bannner.obj
+
+cards:
+  - op: plus, param: manpower, val: 44, x: -6, z: 18
+  - op: times, param: firepower, val: 2, x: 6, z: 18
+  - op: minus, param: manpower, val: 27, x: 0, z: 43
+  - op: plus, param: soldierlife, val: 16, x: -3, z: 43
+  - op: plus, param: bulletpower, val: 18, x: 3, z: 68
+  - op: div, param: firepower, val: 3, x: -6, z: 68
+  - op: times, param: manpower, val: 3, x: 6, z: 94
+  - op: plus, param: bulletrange, val: 21, x: -3, z: 119
+  - op: times, param: firepower, val: 4, x: 3, z: 119
+  - op: minus, param: manpower, val: 33, x: 6, z: 151
+  - op: plus, param: manpower, val: 67, x: -6, z: 151
+  - op: times, param: bulletpower, val: 2, x: 0, z: 184
+  - op: plus, param: soldierlife, val: 22, x: 6, z: 218
+  - op: times, param: firepower, val: 2, x: -6, z: 218
+
+enemy_brigades:
+  - name: razor scouts, effective: 348, strength: 18, x: -6, z: 29, color: #5CE1E6FF
+  - name: razor left hook, effective: 403, strength: 19, x: 6, z: 54, color: #FF5C8AFF
+  - name: razor right hook, effective: 458, strength: 20, x: -3, z: 83, color: #A8FF60FF
+  - name: razor breaker line, effective: 513, strength: 21, x: 3, z: 114, color: #C56CFFFF
+  - name: razor kill box, effective: 568, strength: 22, x: 0, z: 147, color: #FFE66DFF
+  - name: razor reserve, effective: 623, strength: 23, x: -6, z: 185, color: #FFB347FF
+  - name: razor last wall, effective: 678, strength: 24, x: 6, z: 225, color: #5CE1E6FF
+  - name: razor death guard, effective: 733, strength: 25, x: 0, z: 268, color: #FF5C8AFF
+
+bosses:
+  - name: Razorwire Sprint Vanguard, power: 48500, x: -3, z: 294, color: #FF5C8AFF
+  - name: Razorwire Sprint Engine, power: 112500, x: 3, z: 332, model: assets/bigbot.obj, color: #C56CFFFF
+  - name: Razor King, power: 558000, x: 0, z: 370, model: assets/clown-head.obj, color: #FFB347FF
+

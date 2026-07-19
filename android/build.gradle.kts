@@ -74,6 +74,10 @@ android {
         }
     }
 
+    androidResources {
+        ignoreAssetsPatterns.add("!*.bak")
+    }
+
     packaging {
         resources {
             excludes += setOf(

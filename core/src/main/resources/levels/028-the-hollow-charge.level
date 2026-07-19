@@ -1,0 +1,59 @@
+name: The Hollow Charge
+road_length: 470
+road_width: 16
+starting_soldiers: 44
+fire_rate: 9
+max_fire_rate: 155
+projectile_pool: 6000
+projectile_length: 78
+soldier_model: assets/default-soldier.obj
+boss_model: assets/default-boss.obj
+manpower_card_model: assets/default-manpower-card.obj
+firepower_card_model: assets/default-firepower-card.obj
+bulletpower_card_model: assets/default-bulletpower-card.obj
+soldierlife_card_model: assets/default-soldierlife-card.obj
+bulletrange_card_model: assets/default-bulletrange-card.obj
+player_color: #1FB8EBFF
+enemy_color: #6B3040FF
+boss_color: #493478FF
+decoration_color: #697078FF
+
+background_decorations:
+  - name: The Hollow Charge threshold, power: 999999, x: 0, z: 160, model: assets/tunnel_section.obj, color: #A8FF60FF
+  - name: The Hollow Charge warning, power: 999999, x: 0, z: 320, model: assets/bigpill.obj, color: #FFE66DFF
+
+decorations:
+  - name: The Hollow Charge first marker, power: 999999, x: 0, z: 118, model: assets/bannner.obj
+  - name: The Hollow Charge final marker, power: 999999, x: 0, z: 353, model: assets/bannner.obj
+
+cards:
+  - op: plus, param: manpower, val: 48, x: -7, z: 18
+  - op: times, param: firepower, val: 2, x: 7, z: 18
+  - op: minus, param: manpower, val: 29, x: 0, z: 43
+  - op: plus, param: soldierlife, val: 17, x: -3, z: 43
+  - op: plus, param: bulletpower, val: 19, x: 3, z: 68
+  - op: div, param: firepower, val: 3, x: -7, z: 68
+  - op: times, param: manpower, val: 3, x: 7, z: 94
+  - op: plus, param: bulletrange, val: 23, x: -3, z: 119
+  - op: times, param: firepower, val: 3, x: 3, z: 119
+  - op: minus, param: manpower, val: 35, x: 7, z: 151
+  - op: plus, param: manpower, val: 73, x: -7, z: 151
+  - op: times, param: bulletpower, val: 2, x: 0, z: 184
+  - op: plus, param: soldierlife, val: 23, x: 7, z: 218
+  - op: times, param: firepower, val: 2, x: -7, z: 218
+
+enemy_brigades:
+  - name: hollow scouts, effective: 384, strength: 19, x: -7, z: 38, color: #A8FF60FF
+  - name: hollow left hook, effective: 439, strength: 20, x: 7, z: 69, color: #C56CFFFF
+  - name: hollow right hook, effective: 494, strength: 21, x: -3, z: 106, color: #FFE66DFF
+  - name: hollow breaker line, effective: 549, strength: 22, x: 3, z: 146, color: #FFB347FF
+  - name: hollow kill box, effective: 604, strength: 23, x: 0, z: 188, color: #5CE1E6FF
+  - name: hollow reserve, effective: 659, strength: 24, x: -7, z: 237, color: #FF5C8AFF
+  - name: hollow last wall, effective: 714, strength: 25, x: 7, z: 288, color: #A8FF60FF
+  - name: hollow death guard, effective: 769, strength: 26, x: 0, z: 343, color: #C56CFFFF
+
+bosses:
+  - name: The Hollow Charge Vanguard, power: 55500, x: -3, z: 374, color: #C56CFFFF
+  - name: The Hollow Charge Engine, power: 127500, x: 3, z: 412, model: assets/bigbot.obj, color: #FFB347FF
+  - name: The Empty Crown, power: 594000, x: 0, z: 450, model: assets/clown-head.obj, color: #FF5C8AFF
+

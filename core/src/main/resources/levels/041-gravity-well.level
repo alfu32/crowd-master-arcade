@@ -1,0 +1,59 @@
+name: Gravity Well
+road_length: 610
+road_width: 22
+starting_soldiers: 64
+fire_rate: 7
+max_fire_rate: 220
+projectile_pool: 6000
+projectile_length: 104
+soldier_model: assets/default-soldier.obj
+boss_model: assets/default-boss.obj
+manpower_card_model: assets/default-manpower-card.obj
+firepower_card_model: assets/default-firepower-card.obj
+bulletpower_card_model: assets/default-bulletpower-card.obj
+soldierlife_card_model: assets/default-soldierlife-card.obj
+bulletrange_card_model: assets/default-bulletrange-card.obj
+player_color: #1FB8EBFF
+enemy_color: #6B3040FF
+boss_color: #493478FF
+decoration_color: #697078FF
+
+background_decorations:
+  - name: Gravity Well threshold, power: 999999, x: 0, z: 207, model: assets/thorn.obj, color: #C56CFFFF
+  - name: Gravity Well warning, power: 999999, x: 0, z: 415, model: assets/bigpill.obj, color: #FFB347FF
+
+decorations:
+  - name: Gravity Well first marker, power: 999999, x: 0, z: 153, model: assets/bannner.obj
+  - name: Gravity Well final marker, power: 999999, x: 0, z: 458, model: assets/bannner.obj
+
+cards:
+  - op: plus, param: manpower, val: 74, x: -10, z: 18
+  - op: times, param: firepower, val: 2, x: 10, z: 18
+  - op: minus, param: manpower, val: 42, x: 0, z: 43
+  - op: plus, param: soldierlife, val: 21, x: -5, z: 43
+  - op: plus, param: bulletpower, val: 26, x: 5, z: 68
+  - op: div, param: firepower, val: 3, x: -10, z: 68
+  - op: times, param: manpower, val: 3, x: 10, z: 94
+  - op: plus, param: bulletrange, val: 36, x: -5, z: 119
+  - op: times, param: firepower, val: 4, x: 5, z: 119
+  - op: minus, param: manpower, val: 48, x: 10, z: 151
+  - op: plus, param: manpower, val: 112, x: -10, z: 151
+  - op: times, param: bulletpower, val: 2, x: 0, z: 184
+  - op: plus, param: soldierlife, val: 30, x: 10, z: 218
+  - op: times, param: firepower, val: 2, x: -10, z: 218
+
+enemy_brigades:
+  - name: gravity scouts, effective: 618, strength: 26, x: -10, z: 52, color: #C56CFFFF
+  - name: gravity left hook, effective: 673, strength: 27, x: 10, z: 95, color: #FFE66DFF
+  - name: gravity right hook, effective: 728, strength: 28, x: -5, z: 147, color: #FFB347FF
+  - name: gravity breaker line, effective: 783, strength: 29, x: 5, z: 202, color: #5CE1E6FF
+  - name: gravity kill box, effective: 800, strength: 30, x: 0, z: 260, color: #FF5C8AFF
+  - name: gravity reserve, effective: 800, strength: 31, x: -10, z: 327, color: #A8FF60FF
+  - name: gravity last wall, effective: 800, strength: 32, x: 10, z: 398, color: #C56CFFFF
+  - name: gravity death guard, effective: 800, strength: 33, x: 0, z: 474, color: #FFE66DFF
+
+bosses:
+  - name: Gravity Well Vanguard, power: 101000, x: -5, z: 514, color: #FFE66DFF
+  - name: Gravity Well Engine, power: 225000, x: 5, z: 552, model: assets/bigbot.obj, color: #5CE1E6FF
+  - name: The Event Horizon, power: 828000, x: 0, z: 590, model: assets/clown-head.obj, color: #A8FF60FF
+

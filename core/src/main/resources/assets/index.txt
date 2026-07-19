@@ -9,7 +9,6 @@ default-decoration.obj
 default-firepower-card.obj
 default-manpower-card.obj
 default-set.octd
-default-set.octd.bak
 default-soldier.obj
 default-soldierlife-card.obj
 thorn.obj

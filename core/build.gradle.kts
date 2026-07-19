@@ -15,14 +15,14 @@ dependencies {
 val generateAssetIndex by tasks.registering {
     val assetsDir = packagedAssetsDir.asFile
     val indexFile = packagedAssetsDir.file("index.txt").asFile
-    inputs.files(fileTree(assetsDir) { exclude("index.txt") })
+    inputs.files(fileTree(assetsDir) { exclude("index.txt", "**/*.bak") })
     outputs.file(indexFile)
     doLast {
         val entries = assetsDir
             .walkTopDown()
             .filter { it.isFile }
             .map { it.relativeTo(assetsDir).invariantSeparatorsPath }
-            .filter { it != "index.txt" }
+            .filter { it != "index.txt" && !it.endsWith(".bak", ignoreCase = true) }
             .sorted()
             .toList()
         indexFile.parentFile.mkdirs()
@@ -32,6 +32,7 @@ val generateAssetIndex by tasks.registering {
 
 tasks.named("processResources") {
     dependsOn(generateAssetIndex)
+    exclude("**/*.bak")
 }
 
 tasks.test {

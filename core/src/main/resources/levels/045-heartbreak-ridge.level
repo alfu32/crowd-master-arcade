@@ -1,0 +1,59 @@
+name: Heartbreak Ridge
+road_length: 450
+road_width: 12
+starting_soldiers: 70
+fire_rate: 6
+max_fire_rate: 240
+projectile_pool: 6000
+projectile_length: 112
+soldier_model: assets/default-soldier.obj
+boss_model: assets/default-boss.obj
+manpower_card_model: assets/default-manpower-card.obj
+firepower_card_model: assets/default-firepower-card.obj
+bulletpower_card_model: assets/default-bulletpower-card.obj
+soldierlife_card_model: assets/default-soldierlife-card.obj
+bulletrange_card_model: assets/default-bulletrange-card.obj
+player_color: #1FB8EBFF
+enemy_color: #6B3040FF
+boss_color: #493478FF
+decoration_color: #697078FF
+
+background_decorations:
+  - name: Heartbreak Ridge threshold, power: 999999, x: 0, z: 153, model: assets/triumphal-arch.obj, color: #FF5C8AFF
+  - name: Heartbreak Ridge warning, power: 999999, x: 0, z: 306, model: assets/bigpill.obj, color: #C56CFFFF
+
+decorations:
+  - name: Heartbreak Ridge first marker, power: 999999, x: 0, z: 113, model: assets/bannner.obj
+  - name: Heartbreak Ridge final marker, power: 999999, x: 0, z: 338, model: assets/bannner.obj
+
+cards:
+  - op: plus, param: manpower, val: 82, x: -5, z: 18
+  - op: times, param: firepower, val: 2, x: 5, z: 18
+  - op: minus, param: manpower, val: 46, x: 0, z: 43
+  - op: plus, param: soldierlife, val: 22, x: -2, z: 43
+  - op: plus, param: bulletpower, val: 28, x: 2, z: 68
+  - op: div, param: firepower, val: 3, x: -5, z: 68
+  - op: times, param: manpower, val: 3, x: 5, z: 94
+  - op: plus, param: bulletrange, val: 40, x: -2, z: 119
+  - op: times, param: firepower, val: 5, x: 2, z: 119
+  - op: minus, param: manpower, val: 52, x: 5, z: 151
+  - op: plus, param: manpower, val: 124, x: -5, z: 151
+  - op: times, param: bulletpower, val: 2, x: 0, z: 184
+  - op: plus, param: soldierlife, val: 32, x: 5, z: 218
+  - op: times, param: firepower, val: 2, x: -5, z: 218
+
+enemy_brigades:
+  - name: heartbreak scouts, effective: 690, strength: 28, x: -5, z: 36, color: #FF5C8AFF
+  - name: heartbreak left hook, effective: 745, strength: 29, x: 5, z: 65, color: #A8FF60FF
+  - name: heartbreak right hook, effective: 800, strength: 30, x: -2, z: 100, color: #C56CFFFF
+  - name: heartbreak breaker line, effective: 800, strength: 31, x: 2, z: 138, color: #FFE66DFF
+  - name: heartbreak kill box, effective: 800, strength: 32, x: 0, z: 178, color: #FFB347FF
+  - name: heartbreak reserve, effective: 800, strength: 33, x: -5, z: 224, color: #5CE1E6FF
+  - name: heartbreak last wall, effective: 800, strength: 34, x: 5, z: 272, color: #FF5C8AFF
+  - name: heartbreak death guard, effective: 800, strength: 35, x: 0, z: 324, color: #A8FF60FF
+
+bosses:
+  - name: Heartbreak Ridge Vanguard, power: 115000, x: -2, z: 354, color: #A8FF60FF
+  - name: Heartbreak Ridge Engine, power: 255000, x: 2, z: 392, model: assets/bigbot.obj, color: #FFE66DFF
+  - name: The Last Beat, power: 900000, x: 0, z: 430, model: assets/clown-head.obj, color: #5CE1E6FF
+
